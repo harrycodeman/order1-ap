@@ -32,10 +32,10 @@ blockquote { border-color: <?php echo $color ?>; }
 <?php if (!fluidGrid()): ?>
 .wrapper { width: 960px; margin: 0 auto; }
 <?php else: ?>
-.wrapper { margin: 0 40px; }
+.wrapper { width: 100%; margin: 0 auto; }
 <?php endif ?>
 
-.box .texts { border: 20px solid <?php echo $color ?>; background: <?php echo $color ?>;  }
+.box .texts { border: 10px solid <?php echo $color ?>; background: <?php echo $color ?>;  }
 <?php if (!imagesOnly()): ?>
 .box .categories { padding-top: 15px; }
 <?php endif ?>
@@ -79,14 +79,14 @@ $(document).ready(function() {
 	// grid
 	$('#boxes').masonry({
 		itemSelector: '.box',
-		columnWidth: 210,
-		gutterWidth: 40
+		columnWidth: 300,
+		gutterWidth: 20
 	});
 
 	$('#related').masonry({
 		itemSelector: '.box',
-		columnWidth: 210,
-		gutterWidth: 40
+		columnWidth: 300,
+		gutterWidth: 20
 	});
 	
 	$('.texts').live({
@@ -199,7 +199,7 @@ $(document).ready(function() {
 </head>
 
 <body <?php body_class(); ?>>
-
+<a name="top" />
 <div class="wrapper">
   <div class="header-wrapper">
     <div id="header">
@@ -210,7 +210,7 @@ $(document).ready(function() {
       <div id="contacts">
         <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number">243-456</span></h1>
         <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
-        <a>Показать на карте</a>
+        <a href="http://maps.google.com" target="_blank">Показать на карте</a>
       </div>
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons">

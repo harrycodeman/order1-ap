@@ -28,15 +28,15 @@ function imbalance2_aside( $atts, $content = null )
 }
 add_shortcode( 'aside', 'imbalance2_aside' );
 
-// 210px width images for the grid
+// 300px width images for the grid
 if ( function_exists( 'add_theme_support' ) )
 {
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 210 );
+	set_post_thumbnail_size( 300 );
 }
 if ( function_exists( 'add_image_size' ) )
 {
-	add_image_size( 'homepage-thumb', 210 );
+	add_image_size( 'homepage-thumb', 300 );
 }
 
 // font output for css
@@ -112,7 +112,7 @@ class Imbalance2_Walker_Nav_Menu extends Walker_Nav_Menu {
  * is designed for, generally via the style.css stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 720;
+	$content_width = 960;
 
 /** Tell WordPress to run imbalance2_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'imbalance2_setup' );
