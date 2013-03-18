@@ -352,4 +352,4 @@ function show_tours_on_main_page( $query ) {
         $query->set( 'post_type', array( 'post', 'ap_tour' ) );
 }
 
-require_once( get_stylesheet_directory().'/ap_tour.php' );
+require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );

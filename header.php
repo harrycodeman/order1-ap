@@ -206,7 +206,7 @@ $(document).ready(function() {
       <div id="site-title">
         <a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
       </div>
-      <div id="header-logo"></div>
+        <a href="<?php get_site_url(); ?>"><div id="header-logo"></div></a>
       <div id="contacts">
         <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number">243-456</span></h1>
         <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
