@@ -226,6 +226,3 @@ $(document).ready(function() {
       <div class="clear"></div>
     </div>
   </div>
-	
-	<div class="main-wrapper">
-    <div id="main">

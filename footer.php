@@ -1,7 +1,3 @@
-
-    </div><!-- #main -->
-  </div><!-- .main-wrapper -->
-  
   <div class="footer-wrapper">
     <div id="footer">
       <div id="footer-logo"></div>
