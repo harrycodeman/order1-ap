@@ -5,45 +5,45 @@ Template Name: Front-page
 ?>
 
 <?php get_header(); ?>
-<!--Data Picker-->
+<!--Подключение формы с календарем в div#toursearch "Data Picker"-->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
+<!--END Подключение формы с календарем в div#toursearch "Data Picker"-->
+<!--Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
 <script>
-  $(function(){
+  $(document).ready(function(){
     $.datepicker.setDefaults(
       $.extend($.datepicker.regional["ru"])
     );
     $("#datepicker").datepicker();
-});
+  });
 </script>
-<script>
-$(function(){
-    /*затормозим клик по ссылке*/
-    $('#toursearch a#additional-parameters-open-close').click(function(e){
-        /*e - объект типа event*/
-        e.preventDefault();
-        $(function(){
-          $('#toursearch a#additional-parameters-open-close').bind('click', function(){
-            if ($("div#additional-parameters").css("display") != "none") {
-              $("div#additional-parameters").css("display", "none");
-              $("#additional-parameters-open-close").css("top", "155px");
-              $(".buttons button").css("top", "143px");
-            } else {
-              $("div#additional-parameters").css("display", "block");
-              $("#additional-parameters-open-close").css("top", "215px");
-              $(".buttons button").css("top", "203px");
-            }
-          });
-        });
-    });
-});
+<!--END Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
 
+<!--Подключение bootstrap-->
+<link href="./wp-content/themes/imbalance2/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<script src="./wp-content/themes/imbalance2/bootstrap/js/bootstrap.js"></script>
+<!--END Подключение bootstrap-->
+
+<!--Скрипт обеспечивает вызов форм с дополнительными параметрами в div#toursearch-->
+<script>
+  $(document).ready(function(){
+    $("#additionalparameters-hideshow").click(function(){
+              if ($("div#additional-parameters").css("display") != "none") {
+                $("div#additional-parameters").css("display", "none");
+                $("#additionalparameters-hideshow").css("top", "160px");
+                $("#additionalparameters-submit").css("top", "143px");
+              } else {
+                $("div#additional-parameters").css("display", "block");
+                $("#additionalparameters-hideshow").css("top", "220px");
+                $("#additionalparameters-submit").css("top", "203px");
+              }
+    });
+  });
 </script>
-<!--End Data Picker-->
-<link href="wp-content\themes\imbalance2\bootstrap\css\bootstrap.css" rel="stylesheet" media="screen">
-<script src="wp-content\themes\imbalance2\bootstrap\js\bootstrap.js"></script>
+<!--END Скрипт обеспечивает вызов форм с дополнительными параметрами в div#toursearch-->
 
     <div class="banner-wrapper">
       <div id="banner">
@@ -51,55 +51,64 @@ $(function(){
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
           </ol>
           <!-- Carousel items -->
           <div class="carousel-inner">
             <div class="active item">
               <div class="banner-info">
                 <h2>День влюбленных в Турции</h2>
-                <p>12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
-                <p><img src="wp-content\themes\imbalance2\images\star.png">Hot Palmas Hotel Resot</p>
-                <p>13.02.2013 - 7 ночей</p>
-                <p>Осталось 4</p>
+                <p class="shortannouncement-title">12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
+                <p class="hotel-title"><img src="./wp-content/themes/imbalance2/images/star.png" alt="">Hot Palmas Hotel Resot</p>
+                <p class="nightcount-title">13.02.2013 - 7 ночей</p>
+                <p class="remainingtour-title">Осталось 4</p>
                 <button type="button">КУПИТЬ ТУР</button>
               </div>
-              <img src="wp-content\themes\imbalance2\images\banner.png">
+              <img src="./wp-content/themes/imbalance2/images/banner.png" width="960px" height="374px" alt="">
             </div>
             <div class="item">
               <div class="banner-info">
                 <h2>День влюбленных в Турции</h2>
-                <p>12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
-                <p><img src="wp-content\themes\imbalance2\images\star.png">Hot Palmas Hotel Resot</p>
-                <p>13.02.2013 - 7 ночей</p>
-                <p>Осталось 4</p>
+                <p class="shortannouncement-title">19 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
+                <p class="hotel-title"><img src="./wp-content/themes/imbalance2/images/star.png" alt="">Hot Palmas Hotel Resot</p>
+                <p class="nightcount-title">13.02.2013 - 7 ночей</p>
+                <p class="remainingtour-title">Осталось 4</p>
                 <button type="button">КУПИТЬ ТУР</button>
               </div>
-              <img src="wp-content\themes\imbalance2\images\banner.png">
+              <img src="./wp-content/themes/imbalance2/images/banner.png" width="960px" height="374px" alt="">
             </div>
           </div>
           <!-- Carousel nav -->
           <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
           <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#myCarousel').carousel({
+                  cycle: true,
+                  animation: 1000,
+                  itemFallbackDimension: 960
+                });
+          });
+        </script>
       </div>
     </div>
+
     <div class="toursearch-wrapper">
       <div id="toursearch">
         <div id="main-parameters">
-          <span>Хочу поехать в:</span>
-          <span>Дата вылета:</span>
-          <select id="toursearch-from-form" class="dropdown">
+          <span class="from-title">Хочу поехать в:</span>
+          <span class="date-title">Дата вылета:</span>
+          <select id="from-form" class="dropdown">
             <option value="">Патайя</option>
             <option value="">Тайланд</option>
           </select>
-          <select id="toursearch-to-form" class="dropdown">
+          <select id="to-form" class="dropdown">
             <option value="">Патайя</option>
             <option value="">Тайланд</option>
           </select>
           <input type="text" id="datepicker"/>
-          <span style="top: 13px; left: 155px;">на</span>
-          <select id="toursearch-days-form" class="dropdown">
+          <span style="top: 45px; left: 780px;">на</span>
+          <select id="days-form" class="dropdown">
             <option value="">1 день</option>
             <option value="">2 дня</option>
             <option value="">3 дня</option>
@@ -110,22 +119,23 @@ $(function(){
           </select>
         </div>
         <div id="additional-parameters">
-          <span>Стоимость тура:</span>
-          <span>Количество звезд:</span>
-          <span>Сколько вас:</span>
-          <input type="text" id="cost"/>
-          <span>&mdash;</span>
-          <input type="text" id="cost"/>
-          <select id="star-count" class="dropdown">
+          <span class="cost-title">Стоимость тура:</span>
+          <span class="starcount-title">Количество звезд:</span>
+          <span class="peoplecount-title">Сколько вас:</span>
+          
+          <input type="text" id="startcost"/>
+          <span style="position: absolute; top: 40px; left: 125px;">&mdash;</span>
+          <input type="text" id="endcost"/>
+          <select id="starcount" class="dropdown">
             <option value="">Неважно</option>
           </select>
-          <select id="adult-count" class="dropdown">
+          <select id="adultcount" class="dropdown">
             <option value="">1 взрослый</option>
             <option value="">2 взрослх</option>
             <option value="">3 взрослх</option>
             <option value="">4 взрослх</option>
           </select>
-          <select id="children-count" class="dropdown">
+          <select id="childrencount" class="dropdown">
             <option value="">Без детей</option>
             <option value="">1 ребенок</option>
             <option value="">2 ребенок</option>
@@ -134,52 +144,55 @@ $(function(){
           </select>
         </div>
         <div class="buttons">
-          <a id="additional-parameters-open-close" href="/">Указать дополнительные параметры</a>
-          <button type="button">ПОДОБРАТЬ</button>
+          <button id="additionalparameters-hideshow">Указать дополнительные параметры</button>
+          <button id="additionalparameters-submit">ПОДОБРАТЬ</button>
         </div>
       </div>
     </div>
+    
     <div class="interestingoffers-wrapper">
       <div id="interestingoffers">
         <h1>Интересные предложения</h1>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/1.jpg"/>
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/1.jpg" alt="">
             <span class="offername">Турция - Алания</span>
             <span class="offerprice">32 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/2.jpg"/>
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/2.jpg" alt="">
             <span class="offername">Тайланд - Патайя</span>
             <span class="offerprice">23 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/3.jpg"/>
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/3.jpg" alt="">
             <span class="offername">Испания - Майорка</span>
             <span class="offerprice">32 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/4.jpg"/>
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/4.jpg" alt="">
             <span class="offername">Тайланд - Патайя</span>
             <span class="offerprice">32 000</span>
           </div>
         </a>
       </div>
     </div>
+    
     <div class="snipping"></div>
+    
     <div class="triparticles-wrapper">
       <div id="triparticles">
         <h1>Статьи о путешествиях</h1>
         <a href="/">Другие статьи</a>
-        <div id="banner">
+        <div id="articlethumbnail">
           <div class="image">
-            <img src="<?php bloginfo('template_url'); ?>/images/paris-by-night.jpg"/>
+            <img src="<?php bloginfo('template_url'); ?>/images/paris-by-night.jpg" alt="">
           </div>
           <div id="left-arrow">
             <a href="/"></a>
@@ -197,16 +210,17 @@ $(function(){
 Типичным для архитектуры Парижа является особый вид особняков — hôtel particulier. Такой особняк представляет собой богатый частный дом П-образной формы с внутренним двором и садом с тыльной стороны средней части здания. Большинство построек были выполнены в XVII—XVIII веках, для построек XVIII века отличительной чертой является замкнутый со всех четырёх сторон двор. Наиболее внушительный пример тому — здание Пале-Рояль, королевского дворца с внутренней площадью, фонтаном и парком. Большинство сохранившихся городских особняков расположены в квартале Маре, к примеру Отель Субиз, Отель Сале и Отель Карнавале.</article>
         </div>
         <div class="links">
-          <p><a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png">Путевки в Париж</a></p>
+          <p><a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png" alt="">Путевки в Париж</a></p>
           <p><a class="left" href="/">Похожие направления</a></p>
         </div>
       </div>
     </div>
+    
     <div class="lastcomments-wrapper">
-      <div id="lastcomments">
-      
+      <div id="lastcomments">     
       </div>
     </div>
+    
 		<div id="container">
 			<div id="content" role="main">
 			</div><!-- #content -->
