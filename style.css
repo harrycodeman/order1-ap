@@ -203,29 +203,64 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	
 	/*----------TRIPARTICLES----------*/
 	.triparticles-wrapper { /*background: url('images/header-wrapper-background.png')*/ center; width: 100%; }
-	#triparticles { /*background: url('images/triparticles-background.png') no-repeat;*/ width: 960px; height: 870px; margin:0 auto; }
-	#triparticles h1 { position: relative; display: inline;}
-	#triparticles a { position: relative; font-size: 15px; color: #64abe3; text-decoration: underline; float:right; margin: 10px 15px 0 0; }
-	#triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 45px 0; border: 10px solid #bf283b;}
-	#triparticles #articlethumbnail .image { position: absolute; z-index: -1; }
+	#triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
+	#triparticles .title h1 { position: absolut; display: inline; }
+	#triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
+	#triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
+	#triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
 	#left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
 	#right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
 	#triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
-	#triparticles #articlethumbnail .announcement h1 { display: block; margin: 0px; position: absolute; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
+	#triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
 	#triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px;  color: #fff; margin: 0px; top: 190px;}
 	#article { position: relative; margin: 0 0 20px 0;}
 	article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; } 
-	#triparticles p a { line-height: 13px; font-weight: bolder; clear: both; }
-	#triparticles p a img { margin: 4px 5.5px 0 2px; }
-	#triparticles p:first-child {  }
-	#triparticles p:last-child { margin-left:20px }
+	#triparticles .links { display: block; width: auto; height: 70px; }
+	#triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; color: #64abe3; margin-left: 20px;}
+	#triparticles .links a img { margin: 4px 5.5px 0 -18px; }
 	
 	/*----------END TRIPARTICLES----------*/	
 
 	/*----------LASTCOMMENTS----------*/
 	.lastcomments-wrapper { /*background: url('images/header-wrapper-background.png')*/ center; width: 100%; }
 	#lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
-	/*----------END LASTCOMMENTS----------*/		
+	#comments { padding: 0 0 0 246px; width: 714px; }
+    .homepage #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
+    .homepage .commentlist { margin: 0; padding: 0; list-style: none; }
+    .homepage .commentlist ul.children { list-style: none;}
+    .homepage .commentlist li > div { position: relative; padding: 15px 0 15px 0px; min-height: 100px; height: auto;}
+    .homepage .commentlist li li > div { margin-left: 100px; }
+    .homepage .commentlist li li li > div { margin-left: 200px; }
+    .homepage .commentlist li li li li > div { margin-left: 270px; }
+    .homepage .commentlist li li li li li > div { margin-left: 360px; }
+    .homepage .comment-avatar { position: absolute; top: 30px; left: -96px; }
+    .homepage .comment-content { margin-left: 96px; border-bottom: 1px solid #dedfe0; }
+    .homepage .comment-author { position: relative; float: left; width: 100%; font-size: 14px; color: #bf283b;  top: 10px; vertical-align: top;}
+    .homepage .comment-author>img { -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; -o-border-radius: 7px; }
+    .homepage cite { margin-left: 15px; font-style: normal; font-weight: bold; color: #bf283b; vertical-align: top;}
+    .homepage .comment-meta { position: absolute; left: 105px; top: 45px; width: 150px; padding-right: 40px; color: #999999; }
+    .homepage .comment-meta a { left: 10px; font-size: 10px; color: #535349; }
+    .homepage .comment-body { position: relative; clear: both; padding-top: 7px; font-size: 12px; line-height: 17px; vertical-align: top;}
+    .homepage .comment-body p { position: relative; left: 100px; top: -20px; margin: 0px;}
+    .homepage .says { display: none; }
+    .homepage #respond { padding-left: 4px; }
+    .homepage li.comment > div { position: relative; }
+    .homepage .reply { position: absolute; top: 30px; right: 20px; }
+    .homepage #reply-title { font-size: 21px; }
+    .homepage .comment-reply-link { display: none; }
+    .homepage .comment-form-author, .comment-form-email, .comment-form-url { float: left; width: 460px; margin: 0; padding: 10px 0; }
+    .homepage .comment-form-comment { clear: both; width: 460px; margin: 0; padding: 10px 0; }
+    .homepage input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding: 8px; outline: none; color: #6b6b6b; -moz-border-radius: 4px; border-radius: 4px; }
+    .homepage #comments input[type="text"] { width: 442px; }
+    .homepage #comments textarea { width: 442px; }
+    .homepage .commentlist li > div { position: relative; border-bottom: none; padding: 10px 0 0 4px; }
+	
+	/*----------END LASTCOMMENTS----------*/
+		
+	.content-wrapper { width: 100%; }
+	#content { width: 960px; margin:0 auto; position: relative;}
+
+
 
 /*----------END MAIN----------*/
 

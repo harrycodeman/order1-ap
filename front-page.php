@@ -188,8 +188,12 @@ Template Name: Front-page
     
     <div class="triparticles-wrapper">
       <div id="triparticles">
-        <h1>Статьи о путешествиях</h1>
-        <a href="/">Другие статьи</a>
+      
+        <div class="title">
+          <h1>Статьи о путешествиях</h1>
+          <a href="/">Другие статьи</a>
+        </div>
+
         <div id="articlethumbnail">
           <div class="image">
             <img src="<?php bloginfo('template_url'); ?>/images/paris-by-night.jpg" alt="">
@@ -205,25 +209,55 @@ Template Name: Front-page
             <a href="/"></a>
           </div>
         </div>
-        <div id="article">
-          <article>Внешний вид современного города был задан в середине XIX века в результате грандиозной перестройки. Многие века до этого он представлял собой лабиринт узких улиц и деревянных домов. В 1852 году по плану усовершенствования города, задуманному бароном Османом, были разрушены целые кварталы ветхих построек, а на их месте появились широкие проспекты и выстроенные в единую линию каменные здания в неоклассическом стиле, столь характерные для новой эпохи буржуа. Принципы градоустройства времён Наполеона III и сейчас не потеряли своей актуальности: высота и размеры зданий подчиняются единому закону равномерности, и с середины XIX в. было сделано всего лишь несколько исключений из правил. Благодаря этому Париж остается «плоским».
-Типичным для архитектуры Парижа является особый вид особняков — hôtel particulier. Такой особняк представляет собой богатый частный дом П-образной формы с внутренним двором и садом с тыльной стороны средней части здания. Большинство построек были выполнены в XVII—XVIII веках, для построек XVIII века отличительной чертой является замкнутый со всех четырёх сторон двор. Наиболее внушительный пример тому — здание Пале-Рояль, королевского дворца с внутренней площадью, фонтаном и парком. Большинство сохранившихся городских особняков расположены в квартале Маре, к примеру Отель Субиз, Отель Сале и Отель Карнавале.</article>
-        </div>
-        <div class="links">
-          <p><a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png" alt="">Путевки в Париж</a></p>
-          <p><a class="left" href="/">Похожие направления</a></p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="lastcomments-wrapper">
-      <div id="lastcomments">     
-      </div>
-    </div>
-    
-		<div id="container">
-			<div id="content" role="main">
-			</div><!-- #content -->
-		</div><!-- #container -->
+        
+        <div id="content" class="homepage" role="main">
+        <?php query_posts('posts_per_page=1'); ?>
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
+            <!-- Display the Post's content in a div box. -->
+            <div  id="article" class="entry">
+              <article>
+              <?php the_content(); ?>
+              </article>
+            </div>
+            
+            <div class="links">
+              <a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png">Путевки в Париж</a>
+              <br>
+              <a class="left" href="/">Похожие направления</a>
+            </div>
+            
+            
+            <h2>Комментарии</h2>
+            <ol class="commentlist">
+              <?php
+                //Gather comments for a specific page/post 
+                $comments = get_comments(array(
+                  'post_id' => get_the_ID(),
+                  'status' => 'approve' //Change this to the type of comments to be displayed
+                ));
+
+                //Display the list of comments
+                wp_list_comments(array(
+                  'per_page' => 5, //Allow comment pagination
+                  'reverse_top_level' => true, //Show not the latest comments at the top of the list
+                  'style' => 'ul',
+                  'avatar_size' => 80,
+                ), $comments);
+              ?>
+            </ol>
+
+        <!-- Stop The Loop (but note the "else:" - see next line). -->
+        <?php endwhile; else: ?>
+
+          <!-- The very first "if" tested to see if there were any Posts to -->
+          <!-- display.  This "else" part tells what do if there weren't any. -->
+          <p>Sorry, no posts matched your criteria.</p>
+
+        <!-- REALLY stop The Loop. -->
+        <?php endif; ?>
+        </div><!-- #content -->
+      </div>
+    </div>
+    
 <?php get_footer(); ?>
