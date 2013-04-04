@@ -344,3 +344,12 @@ function imbalance2_tags() {
 	if ( $tag_list ) printf(__( '<div class="entry-tags"><span>Tags:</span> %1$s</div>', 'imbalance2' ), $tag_list );
 }
 endif;
+
+//--- Custom post types registrations ---
+add_action( 'pre_get_posts', 'show_tours_on_main_page' );
+function show_tours_on_main_page( $query ) {
+    if ( $query->is_main_query() && $query->is_home() )
+        $query->set( 'post_type', array( 'post', 'ap_tour' ) );
+}
+
+require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
