@@ -1,16 +1,13 @@
 <?php
 /*
-Template Name: Blog-page 2
+Template Name: Create-post
 */
 ?>
 
 <?php get_header(); ?>
 
-		<div id="container">
-        <h1>Статьи о путешествиях</h1>
-			<div id="content" role="main">
-                <?php get_template_part( 'loop', 'index' ); ?>
-			</div><!-- #content -->
-		</div><!-- #container -->
+<div id="container">
+    <h1>СОЗДАНИЕ НОВОЙ СТАТЬИ!!!</h1>
+</div><!-- #container -->
 
 <?php get_footer(); ?>

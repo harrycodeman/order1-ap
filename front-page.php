@@ -191,7 +191,7 @@ Template Name: Front-page
       
         <div class="title">
           <h1>Статьи о путешествиях</h1>
-          <a href="/">Другие статьи</a>
+          <a href="<?php ap_get_blog_url(); ?>">Другие статьи</a>
         </div>
 
         <div id="articlethumbnail">
