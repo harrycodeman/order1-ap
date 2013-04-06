@@ -76,19 +76,20 @@ $(document).ready(function() {
 		if ($(this).val() == '') $(this).val('Search');
 	});
 
-	// grid
-	$('#boxes').masonry({
-		itemSelector: '.box',
-		columnWidth: 300,
-		gutterWidth: 20
-	});
+    // grid
+    <?php if (is_home()): ?>
+    $('#boxes').masonry({
+        itemSelector: '.box',
+        columnWidth: 300,
+        gutterWidth: 20
+    });
 
-	$('#related').masonry({
-		itemSelector: '.box',
-		columnWidth: 300,
-		gutterWidth: 20
-	});
-	
+    $('#related').masonry({
+        itemSelector: '.box',
+        columnWidth: 300,
+        gutterWidth: 20
+    });
+
 	$('.texts').live({
 		'mouseenter': function() {
 			if ($(this).height() < $(this).find('.abs').height()) {
@@ -199,14 +200,14 @@ $(document).ready(function() {
 </head>
 
 <body <?php body_class(); ?>>
-<a name="top" />
+<a id="top"></a>
 <div class="wrapper">
   <div class="header-wrapper">
     <div id="header">
       <div id="site-title">
         <a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
       </div>
-        <a href="<?php get_site_url(); ?>"><div id="header-logo"></div></a>
+      <div id="header-logo" onclick="location.href='<?php echo home_url( '/' );?>';" style="cursor:pointer;"></div>
       <div id="contacts">
         <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number">243-456</span></h1>
         <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
@@ -215,8 +216,10 @@ $(document).ready(function() {
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons">
         <p>Войти через социальные сети</p>
-        <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/social-icon-vk.png"></a>
-        <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/social-icon-facebook.png"></a>
+        <p>
+          <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/social-icon-vk.png" alt="ВКонтакте"></a>
+          <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/social-icon-facebook.png" alt="Facebook"></a>
+        </p>
       </div>
       <div id="header-center"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-center', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="search">
@@ -226,6 +229,6 @@ $(document).ready(function() {
       <div class="clear"></div>
     </div>
   </div>
-	
-	<div class="main-wrapper">
+
+  <div class="main-wrapper">
     <div id="main">

@@ -345,11 +345,25 @@ function imbalance2_tags() {
 }
 endif;
 
-//--- Custom post types registrations ---
-add_action( 'pre_get_posts', 'show_tours_on_main_page' );
-function show_tours_on_main_page( $query ) {
-    if ( $query->is_main_query() && $query->is_home() )
+/*--- Helper functions ---*/
+function ap_get_blog_url() {
+    if( get_option( 'show_on_front' ) == 'page' ){
+        echo get_permalink( get_option( 'page_for_posts' ) );
+    } else {
+        echo bloginfo( 'url' );
+    }
+}
+
+function ap_get_image_url( $image_sub_path ) {
+    echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
+}
+
+/*--- Custom post types registrations ---*/
+add_action( 'pre_get_posts', 'ap_show_tours_on_main_page' );
+function ap_show_tours_on_main_page( $query ) {
+    if ( $query->is_main_query() && $query->is_home() ) {
         $query->set( 'post_type', array( 'post', 'ap_tour' ) );
+    }
 }
 
 require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
