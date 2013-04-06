@@ -1,7 +1,3 @@
-
-    </div><!-- #main -->
-  </div><!-- .main-wrapper -->
-  
   <div class="footer-wrapper">
     <div id="footer">
       <div id="footer-logo"></div>
@@ -14,10 +10,10 @@
         <?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'footer-right', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?>
       </div>
       <div id="footer-center">
-        <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-fb.png"></a>
-        <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-vk.png"></a>
-        <a href="http://instagram.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-insta.png"></a> 
-        <a href="http://twitter.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-tw.png"></a>
+        <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-fb.png" alt="Facebook"></a>
+        <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-vk.png" alt="ВКонтакте"></a>
+        <a href="http://instagram.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-insta.png" alt="Instagram"></a> 
+        <a href="http://twitter.com"><img src="wp-content/themes/imbalance2/images/footer-social-icon-tw.png" alt="Twitter"></a>
         <p>Мы в социальных сетях</p>
       </div>
       <div id="footer-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'footer-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>

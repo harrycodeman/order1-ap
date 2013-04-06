@@ -155,28 +155,28 @@ Template Name: Front-page
         <h1>Интересные предложения</h1>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php ap_get_image_url( '1.jpg' ); ?>" alt="">
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/1.jpg" alt="">
             <span class="offername">Турция - Алания</span>
             <span class="offerprice">32 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php ap_get_image_url( '2.jpg' ); ?>" alt="">
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/2.jpg" alt="">
             <span class="offername">Тайланд - Патайя</span>
             <span class="offerprice">23 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php ap_get_image_url( '3.jpg' ); ?>" alt="">
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/3.jpg" alt="">
             <span class="offername">Испания - Майорка</span>
             <span class="offerprice">32 000</span>
           </div>
         </a>
         <a href="/">
           <div class="interestingoffer">
-            <img class="image-circle" src="<?php ap_get_image_url( '4.jpg' ); ?>" alt="">
+            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/4.jpg" alt="">
             <span class="offername">Тайланд - Патайя</span>
             <span class="offerprice">32 000</span>
           </div>
@@ -191,12 +191,12 @@ Template Name: Front-page
       
         <div class="title">
           <h1>Статьи о путешествиях</h1>
-          <a href="<?php ap_get_blog_url() ?>">Другие статьи</a>
+          <a href="/">Другие статьи</a>
         </div>
 
         <div id="articlethumbnail">
           <div class="image">
-            <img src="<?php ap_get_image_url( 'paris-by-night.jpg' ); ?>" alt="">
+            <img src="<?php bloginfo('template_url'); ?>/images/paris-by-night.jpg" alt="">
           </div>
           <div id="left-arrow">
             <a href="/"></a>
@@ -222,7 +222,7 @@ Template Name: Front-page
             </div>
             
             <div class="links">
-              <a class="left" href="/"><img src="<?php ap_get_image_url( 'plane.png' ); ?>">Путевки в Париж</a>
+              <a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png">Путевки в Париж</a>
               <br>
               <a class="left" href="/">Похожие направления</a>
             </div>
@@ -261,4 +261,3 @@ Template Name: Front-page
     </div>
     
 <?php get_footer(); ?>
-

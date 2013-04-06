@@ -76,20 +76,19 @@ $(document).ready(function() {
 		if ($(this).val() == '') $(this).val('Search');
 	});
 
-    // grid
-    <?php if (is_home()): ?>
-    $('#boxes').masonry({
-        itemSelector: '.box',
-        columnWidth: 300,
-        gutterWidth: 20
-    });
+	// grid
+	$('#boxes').masonry({
+		itemSelector: '.box',
+		columnWidth: 300,
+		gutterWidth: 20
+	});
 
-    $('#related').masonry({
-        itemSelector: '.box',
-        columnWidth: 300,
-        gutterWidth: 20
-    });
-
+	$('#related').masonry({
+		itemSelector: '.box',
+		columnWidth: 300,
+		gutterWidth: 20
+	});
+	
 	$('.texts').live({
 		'mouseenter': function() {
 			if ($(this).height() < $(this).find('.abs').height()) {
@@ -216,10 +215,8 @@ $(document).ready(function() {
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons">
         <p>Войти через социальные сети</p>
-        <p>
-          <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/social-icon-vk.png" alt="ВКонтакте"></a>
-          <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/social-icon-facebook.png" alt="Facebook"></a>
-        </p>
+        <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/social-icon-vk.png" alt="ВКонтакте"></a>
+        <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/social-icon-facebook.png" alt="Facebook"></a>
       </div>
       <div id="header-center"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-center', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="search">
@@ -229,6 +226,3 @@ $(document).ready(function() {
       <div class="clear"></div>
     </div>
   </div>
-
-  <div class="main-wrapper">
-    <div id="main">

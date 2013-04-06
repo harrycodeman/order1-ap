@@ -32,195 +32,199 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 }
 
 /*----------HEADER----------*/
-    #header { /*background: url('images/header-background.png');*/ position: relative; width: 960px; height: 180px; margin:0 auto; }
-    .header-wrapper { width: 100%; }
-    #site-title { display: none; float: left; width: 210px; padding-right: 17px; overflow: hidden; line-height: 27px; font-size: 23px; }
-    #site-title a { color: #333; font-weight: bold; text-decoration: none; }
-    #header-left { position: absolute; top: 127px; left: 230px; float: left; }
-    #header-center { float: left; width: 210px; padding-right: 30px; }
-    #search { display: none; float: right; width: 220px; }
-    #header-right { margin: 20px 0 0 10px; }
-    #search label, #search input[type=submit] { display: none; }
-    #search input[type=text] { width: 200px; padding: 7px 9px; margin: 0; border: 1px solid #dedfe0; background: #fff; font-size: 13px; outline: none; }
-    #page_search input[type=submit] { display: none; }
-    .menu ul { list-style-type: none; }
-    .menu ul li { display: inline-block; padding-bottom: 9px; margin-right: 27px; zoom: 1; *display: inline;}
-    .menu ul a { font-size: 19px; line-height: 40px; color: #bf283b; text-decoration: none; }
-    .phone-code { position: relative; top: 10px; color: #cdc9c0; font-size: 25px; letter-spacing: 1px;}
-    .phone-number { position: relative; top: 10px; color: #bf283b; font-size: 25px;  letter-spacing: 1px;}
-    #contacts { position: relative; top: 17px; float: left; width: 300px; height: 80px; padding: 0 17px 0px 0; overflow: hidden; font-size: 12px; line-height: 7px; }
-    #contacts h1 { height: 40px; margin: 0;}
-    #contacts a { color: #64abe3; text-decoration: underline;}
-    #contacts p { line-height: 15px; margin-top: 0px; margin-bottom: 8px; }
-    #header-logo { position: relative; top: 20px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 139px; height: 141px; margin-right: 90px;}
-    #social-buttons { position: absolute; vertical-align: top; top: 0px; right: 10px; float: right; width: 170px;}
-    #social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
-    #header #social-buttons a { float: right;}
-    #header #social-buttons a:nth-child(3) { margin-right: 10px; }
+#header { /*background: url('images/header-background.png');*/ position: relative; width: 960px; height: 180px; margin:0 auto; }
+.header-wrapper { width: 100%; }
+#site-title { display: none; float: left; width: 210px; padding-right: 17px; overflow: hidden; line-height: 27px; font-size: 23px; }
+#site-title a { color: #333; font-weight: bold; text-decoration: none; }
+#header-left { position: absolute; top: 127px; left: 230px; float: left; }
+#header-center { float: left; width: 210px; padding-right: 30px; }
+#search { display: none; float: right; width: 220px; }
+#header-right { margin: 20px 0 0 10px; }
+#search label, #search input[type=submit] { display: none; }
+#search input[type=text] { width: 200px; padding: 7px 9px; margin: 0; border: 1px solid #dedfe0; background: #fff; font-size: 13px; outline: none; }
+#page_search input[type=submit] { display: none; }
+.menu ul { list-style-type: none; }
+.menu ul li { display: inline-block; padding-bottom: 9px; margin-right: 27px; zoom: 1; *display: inline;}
+.menu ul a { font-size: 19px; line-height: 40px; color: #bf283b; text-decoration: none; }
+.phone-code { position: relative; top: 10px; color: #cdc9c0; font-size: 25px; letter-spacing: 1px;}
+.phone-number { position: relative; top: 10px; color: #bf283b; font-size: 25px;  letter-spacing: 1px;}
+#contacts { position: relative; top: 17px; float: left; width: 300px; height: 80px; padding: 0 17px 0px 0; overflow: hidden; font-size: 12px; line-height: 7px; }
+#contacts h1 { height: 40px; margin: 0;}
+#contacts a { color: #64abe3; text-decoration: underline;}
+#contacts p { line-height: 15px; margin-top: 0px; margin-bottom: 8px; }
+#header-logo { position: relative; top: 20px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 139px; height: 141px; margin-right: 90px;}
+#social-buttons { position: absolute; vertical-align: top; top: 0px; right: 10px; float: right; width: 170px;}
+#social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
+#header #social-buttons a { float: right;}
+#header #social-buttons a:nth-child(3) { margin-right: 10px; }
+
 /*----------END HEADER----------*/
 
 /*----------MAIN----------*/
-    #main { /*background: url('images/main-wrapper-background.png') top no-repeat;*/ width: 960px; margin:0 auto; }
-    .main-wrapper { background: url('images/main-wrapper-background.png') center top no-repeat; width: 100%; }
-    #container { padding: 0 0 0 10px }
-    #container > h1 { font-size: 34px; color:#535349; margin: 0px; padding: 10px 0 20px 0; }
-    #boxes { }
-    .box { width: 300px; margin-bottom: 35px; color: #636363; }
-    .box .rel { position: relative; }
-    .box .rel p { margin: 0; }
-    .box .texts { position: absolute; top: -10px; left: -10px; width: 300px; color: #fff; z-index: 200; opacity: 0; filter: alpha(opacity=0); }
-    .box .texts .categories a, .box .texts a, .box .texts .posted, .box .texts .posted a { color: #fff; }
-    .box .texts .transparent img { opacity: 0.1; filter: alpha(opacity=10); }
-    .box .texts .abs { position: absolute; top: 0; }
-    .box .categories { display: none; padding-bottom: 10px; }
-    .box .categories a, .box .posted a { color: #a1a1a1; }
-    .box h1 { margin: 30px 0 0 0; padding-bottom: 10px; font-size: 16px; }
-    .box h1 a { color: #333; }
-    .box .posted { display: none; padding-top: 10px; color: #a1a1a1; }
-    .box img { display: block; }
-    .fetch { clear: both; width: 460px; margin: 0 auto 40px; background: #f9f9f9; -moz-border-radius: 4px; border-radius: 4px; text-align: center; }
-    .fetch a { display: block; height: 40px; line-height: 40px; font-size: 16px; font-weight: bold; color: #333; text-decoration: none; }
-    .fetch:hover a { color: #fff; }
-    #content { padding-bottom: 20px; padding-top: 25px;}
-    #nav-above { float: left; width: 210px; padding-right: 40px; text-align: right; color: #636363; }
-    #nav-above a { text-decoration: none; color: #333; }
-    .nav-previous, .nav-next { display: inline; }
-    .nav-separator { color: #e5e5e5; }
-    .post_title { margin-top: 35px; overflow: hidden; }
-    .post_title h1 { margin: 0 0 10px 250px; font-size: 27px; line-height: 35px; width: 710px; }
-    .entry-title, .page-title { margin-left: 250px; margin-top: 35px; }
-    .entry-meta { padding-bottom: 30px; color: #636363; }
-    .entry-meta a { color: #333; text-decoration: none; }
-    #wides { clear: both; }
-    .entry-aside { width: 210px; padding-right: 40px; vertical-align: middle; }
-    .entry-content-right { width: 710px; font-size: 15px; line-height: 21px; }
-    .entry-content { width: 710px; margin-left: 250px; font-size: 15px; line-height: 21px; }
-    .entry-utility { padding: 10px 0; }
-    .entry-tags { margin: 10px 0; }
-    .entry-tags span { font-weight: bolder; }
-    #social { padding: 20px 0 0 0; }
-    .twitter-share-button { float: left; margin: 2px 20px 0 0; }
-    .post img, .page img { margin: 20px 0; }
-    .post .alignleft, .page .alignleft { float: left; margin-right: 20px; }
-    .post .alignright, .page .alignright { float: right; margin-left: 20px; }
-    .post .aligncenter, .page .aligncenter { display: block; clear: both; margin: 20px auto; }
-    #comments { padding: 0 0 0 246px; width: 714px; }
-    #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
-    .commentlist { margin: 0; padding: 0; list-style: none; }
-    .commentlist ul.children { list-style: none; }
-    .commentlist li > div { position: relative; border-bottom: 1px solid #dedfe0; padding: 30px 0 30px 4px; }
-    .commentlist li li > div { margin-left: 90px; }
-    .commentlist li li li > div { margin-left: 180px; }
-    .commentlist li li li li > div { margin-left: 270px; }
-    .commentlist li li li li li > div { margin-left: 360px; }
-    .comment-avatar { position: absolute; top: 30px; left: -96px; }
-    .comment-content { margin-left: 96px; border-bottom: 1px solid #dedfe0; }
-    .comment-author { float: left; width: 210px; padding-right: 40px; font-size: 15px; }
-    cite { font-style: normal; font-weight: bold; }
-    .comment-meta { float: left; width: 210px; padding-right: 40px; color: #999999; }
-    .comment-body { clear: both; padding-top: 7px; font-size: 15px; line-height: 21px; }
-    #respond { padding-left: 4px; }
-    li.comment > div { position: relative; }
-    .reply { position: absolute; top: 30px; right: 20px; }
-    #reply-title { font-size: 21px; }
-    .comment-reply-link { display: none; }
-    .comment-form-author, .comment-form-email, .comment-form-url { float: left; width: 460px; margin: 0; padding: 10px 0; }
-    .comment-form-comment { clear: both; width: 460px; margin: 0; padding: 10px 0; }
-    input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding: 8px; outline: none; color: #6b6b6b; -moz-border-radius: 4px; border-radius: 4px; }
-    #comments input[type="text"] { width: 442px; }
-    #comments textarea { width: 442px; }
-    .form-submit { margin-bottom: 40px; }
-    .form-submit input { width: 460px; padding: 6px 0; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; border: 0; text-align: center; -moz-border-radius: 4px; border-radius: 4px; }
-    .recent { margin-top: 40px; padding-top: 40px; border-top: 1px solid #ccc; }
+#main { /*background: url('images/main-wrapper-background.png') top no-repeat;*/ width: 960px; margin:0 auto; }
+.main-wrapper { background: url('images/main-wrapper-background.png') center top no-repeat; width: 100%; }
+#container { padding: 0 0 0 10px }
+#container > h1 { font-size: 34px; color:#535349; margin: 0px; padding: 10px 0 20px 0; }
+#boxes { }
+.box { width: 300px; margin-bottom: 35px; color: #636363; }
+.box .rel { position: relative; }
+.box .rel p { margin: 0; }
+.box .texts { position: absolute; top: -10px; left: -10px; width: 300px; color: #fff; z-index: 200; opacity: 0; filter: alpha(opacity=0); }
+.box .texts .categories a, .box .texts a, .box .texts .posted, .box .texts .posted a { color: #fff; }
+.box .texts .transparent img { opacity: 0.1; filter: alpha(opacity=10); }
+.box .texts .abs { position: absolute; top: 0; }
+.box .categories { display: none; padding-bottom: 10px; }
+.box .categories a, .box .posted a { color: #a1a1a1; }
+.box h1 { margin: 30px 0 0 0; padding-bottom: 10px; font-size: 16px; }
+.box h1 a { color: #333; }
+.box .posted { display: none; padding-top: 10px; color: #a1a1a1; }
+.box img { display: block; }
+.fetch { clear: both; width: 460px; margin: 0 auto 40px; background: #f9f9f9; -moz-border-radius: 4px; border-radius: 4px; text-align: center; }
+.fetch a { display: block; height: 40px; line-height: 40px; font-size: 16px; font-weight: bold; color: #333; text-decoration: none; }
+.fetch:hover a { color: #fff; }
+#content { padding-bottom: 20px; padding-top: 25px;}
+#nav-above { float: left; width: 210px; padding-right: 40px; text-align: right; color: #636363; }
+#nav-above a { text-decoration: none; color: #333; }
+.nav-previous, .nav-next { display: inline; }
+.nav-separator { color: #e5e5e5; }
+.post_title { margin-top: 35px; overflow: hidden; }
+.post_title h1 { margin: 0 0 10px 250px; font-size: 27px; line-height: 35px; width: 710px; }
+.entry-title, .page-title { margin-left: 250px; margin-top: 35px; }
+.entry-meta { padding-bottom: 30px; color: #636363; }
+.entry-meta a { color: #333; text-decoration: none; }
+#wides { clear: both; }
+.entry-aside { width: 210px; padding-right: 40px; vertical-align: middle; }
+.entry-content-right { width: 710px; font-size: 15px; line-height: 21px; }
+.entry-content { width: 710px; margin-left: 250px; font-size: 15px; line-height: 21px; }
+.entry-utility { padding: 10px 0; }
+.entry-tags { margin: 10px 0; }
+.entry-tags span { font-weight: bolder; }
+#social { padding: 20px 0 0 0; }
+.twitter-share-button { float: left; margin: 2px 20px 0 0; }
+.post img, .page img { margin: 20px 0; }
+.post .alignleft, .page .alignleft { float: left; margin-right: 20px; }
+.post .alignright, .page .alignright { float: right; margin-left: 20px; }
+.post .aligncenter, .page .aligncenter { display: block; clear: both; margin: 20px auto; }
+#comments { padding: 0 0 0 246px; width: 714px; }
+#comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
+.commentlist { margin: 0; padding: 0; list-style: none; }
+.commentlist ul.children { list-style: none; }
+.commentlist li > div { position: relative; border-bottom: 1px solid #dedfe0; padding: 30px 0 30px 4px; }
+.commentlist li li > div { margin-left: 90px; }
+.commentlist li li li > div { margin-left: 180px; }
+.commentlist li li li li > div { margin-left: 270px; }
+.commentlist li li li li li > div { margin-left: 360px; }
+.comment-avatar { position: absolute; top: 30px; left: -96px; }
+.comment-content { margin-left: 96px; border-bottom: 1px solid #dedfe0; }
+.comment-author { float: left; width: 210px; padding-right: 40px; font-size: 15px; }
+cite { font-style: normal; font-weight: bold; }
+.comment-meta { float: left; width: 210px; padding-right: 40px; color: #999999; }
+.comment-body { clear: both; padding-top: 7px; font-size: 15px; line-height: 21px; }
+#respond { padding-left: 4px; }
+li.comment > div { position: relative; }
+.reply { position: absolute; top: 30px; right: 20px; }
+#reply-title { font-size: 21px; }
+.comment-reply-link { display: none; }
+.comment-form-author, .comment-form-email, .comment-form-url { float: left; width: 460px; margin: 0; padding: 10px 0; }
+.comment-form-comment { clear: both; width: 460px; margin: 0; padding: 10px 0; }
+input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding: 8px; outline: none; color: #6b6b6b; -moz-border-radius: 4px; border-radius: 4px; }
+#comments input[type="text"] { width: 442px; }
+#comments textarea { width: 442px; }
+.form-submit { margin-bottom: 40px; }
+.form-submit input { width: 460px; padding: 6px 0; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; border: 0; text-align: center; -moz-border-radius: 4px; border-radius: 4px; }
+.recent { margin-top: 40px; padding-top: 40px; border-top: 1px solid #ccc; }
 
-    /*----------BANNER----------*/
-    .banner-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-    .banner-wrapper #banner { /*background: url('images/header-background.png');*/ width: 960px; height: 360px; margin:0 auto; }
-    .banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
-    .banner-wrapper #banner .item>img { margin-left: 20px; width: 960px; }
-    #banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
-    #banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
+	/*----------BANNER----------*/
+	.banner-wrapper { /*background: url('images/header-wrapper-background.png')*/ center; width: 100%; }
+	.banner-wrapper #banner { /*background: url('images/header-background.png');*/ width: 960px; height: 360px; margin:0 auto; }
+	.banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
+	.banner-wrapper #banner .item>img { margin-left: 20px; width: 960px; }
+	#banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
+	#banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
     #banner .banner-info .hotel-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
     #banner .banner-info .hotel-title img { margin-right: 7px }
     #banner .banner-info .nightcount-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 20px ; }
     #banner .banner-info .remainingtour-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 20px ; }
     #banner .banner-info button { position: absolute; left: 122px; width: 144px; height: 40px; bottom: 10px; background: #d22f44; color: #fff; font-weight: bolder; letter-spacing: 1px; border: solid 1px #da4356; box-shadow: 0 1px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
-
-    #banner .carousel-control { width: 40px; top: 75%; left: auto; background: #bf283b; opacity: 1; border: none; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; z-index:2; }
-    #banner .carousel-control.left { right: 40px; }
-    #banner .carousel-control.right { right: 0px; }
-    /*----------END BANNER----------*/
-
-    /*----------TOURSEARCH----------*/
-    .toursearch-wrapper { background: url('images/toursearch-wrapper-background.png') center repeat-x;; width: 100%; }
-    #toursearch { width: 960px; height: 270px; margin:0 auto; position: relative;}
-    #toursearch #main-parameters { position: absolute; top: 30px; width: inherit; height: 100px; }
-    #toursearch #main-parameters .dropdown { position: absolute;  top: 40px; height: 40px; font-size: 22px; color: #1c81b5; border: none; padding: 5px;}
-    #toursearch #from-form {  left: 10px;   width: 245px; }
-    #toursearch #to-form {  left: 290px;   width: 240px; }
-    #toursearch #days-form {  left: 813px;   width: 145px; }
-    #toursearch #datepicker { position: absolute; top: 40px; left: 630px; height: 40px; width: 120px; font-size: 22px; color: #1c81b5; padding: 0 10px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-
-    #toursearch #main-parameters span { position: absolute; top: 10px; width: 170px; font-size: 20px; font-weight: bolder; color: #fff; }
-    #toursearch #main-parameters .from-title { left: 10px; }
-    #toursearch #main-parameters .date-title { left: 630px;}
-
-    #additional-parameters { display: none; position: absolute; top: 120px; width: inherit; height: 100px; }
-    #toursearch #additional-parameters span { position: absolute; top: 10px; width: 150px; font-size: 16px; font-weight: lighter; color: #fff; }
-    #toursearch #additional-parameters .cost-title { left: 10px;}
-    #toursearch #additional-parameters .starcount-title { left: 290px; }
-    #toursearch #additional-parameters .peoplecount-title { left: 630px; }
-    #toursearch #startcost, #endcost { position: absolute; top: 35px; height: 30px; width: 85px; font-size: 22px; color: #1c81b5; padding: 0 10px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-    #toursearch #startcost { left: 10px; }
-    #toursearch #endcost { left: 150px; }
-
-    #toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 30px; font-size: 16px; color: #1c81b5; border: none; padding: 3px;}
-    #toursearch #additional-parameters #starcount { width: 240px; left: 290px;}
-    #toursearch #additional-parameters #adultcount { width: 140px; left: 630px;}
-    #toursearch #additional-parameters #childrencount { width: 145px; left: 813px;}
-
+	
+	#banner .carousel-control { width: 40px; top: 75%; left: auto; background: #bf283b; opacity: 1; border: none; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; z-index:2; }
+	#banner .carousel-control.left { right: 40px; }
+	#banner .carousel-control.right { right: 0px; }
+	/*----------END BANNER----------*/
+	
+	/*----------TOURSEARCH----------*/
+	.toursearch-wrapper { background: url('images/toursearch-wrapper-background.png') center repeat-x;; width: 100%; }
+	#toursearch { width: 960px; height: 270px; margin:0 auto; position: relative;}
+	#toursearch #main-parameters { position: absolute; top: 30px; width: inherit; height: 100px; }
+	#toursearch #main-parameters .dropdown { position: absolute;  top: 40px; height: 40px; font-size: 22px; color: #1c81b5; border: none; padding: 5px;}
+	#toursearch #from-form {  left: 10px;   width: 245px; }
+	#toursearch #to-form {  left: 290px;   width: 240px; }
+	#toursearch #days-form {  left: 813px;   width: 145px; }
+	#toursearch #datepicker { position: absolute; top: 40px; left: 630px; height: 40px; width: 120px; font-size: 22px; color: #1c81b5; padding: 0 10px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+    
+	#toursearch #main-parameters span { position: absolute; top: 10px; width: 170px; font-size: 20px; font-weight: bolder; color: #fff; }
+	#toursearch #main-parameters .from-title { left: 10px; }
+	#toursearch #main-parameters .date-title { left: 630px;}
+	
+	#additional-parameters { display: none; position: absolute; top: 120px; width: inherit; height: 100px; }
+	#toursearch #additional-parameters span { position: absolute; top: 10px; width: 150px; font-size: 16px; font-weight: lighter; color: #fff; }
+	#toursearch #additional-parameters .cost-title { left: 10px;}
+	#toursearch #additional-parameters .starcount-title { left: 290px; }
+	#toursearch #additional-parameters .peoplecount-title { left: 630px; }
+	#toursearch #startcost, #endcost { position: absolute; top: 35px; height: 30px; width: 85px; font-size: 22px; color: #1c81b5; padding: 0 10px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+	#toursearch #startcost { left: 10px; }
+	#toursearch #endcost { left: 150px; }
+	
+	#toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 30px; font-size: 16px; color: #1c81b5; border: none; padding: 3px;}
+	#toursearch #additional-parameters #starcount { width: 240px; left: 290px;}
+	#toursearch #additional-parameters #adultcount { width: 140px; left: 630px;}
+	#toursearch #additional-parameters #childrencount { width: 145px; left: 813px;}
+    
     #toursearch button { position: absolute; font-size: 15px; border: none; }
-    #toursearch #additionalparameters-hideshow { top: 160px; left: 10px; width: 300px; font-size: 16px; color: #fff; background: transparent; text-decoration: none; border-bottom: 1px dotted; padding: 0px; cursor: pointer;}
+	#toursearch #additionalparameters-hideshow { top: 160px; left: 10px; width: 300px; font-size: 16px; color: #fff; background: transparent; text-decoration: none; border-bottom: 1px dotted; padding: 0px; cursor: pointer;}
     #toursearch #additionalparameters-submit { right: 3px; width: 143px; height: 37px; top: 143px; font-weight: bolder;  background: #e6e2d7; color: #5e5953;}
-    /*----------END TOURSEARCH----------*/
-
-    /*----------INTERESTINGOFFERS----------*/
-    .interestingoffers-wrapper { background: #efeee9; width: 100%; }
-    #interestingoffers { /*background: url('images/interestingoffers-background.png') no-repeat;*/ width: 960px; height: 430px; margin:0 auto; }
-    #interestingoffers a:hover { text-decoration: none; }
-    .interestingoffer { display: inline-block; width: 237px; height: 325px; text-align: center; padding: 20px 0 0 0; vertical-align: top; zoom: 1; *display: inline;}
-    .interestingoffer img { width: 200px; height: 200px; }
-    .image-circle { -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; -o-border-radius: 50em; border-top-right-radius: 50em;  border-top-left-radius: 50em;  border-bottom-right-radius: 50em;  border-bottom-left-radius: 50em;}
+	/*----------END TOURSEARCH----------*/
+	
+	/*----------INTERESTINGOFFERS----------*/
+	.interestingoffers-wrapper { background: #efeee9; width: 100%; }
+	#interestingoffers { /*background: url('images/interestingoffers-background.png') no-repeat;*/ width: 960px; height: 430px; margin:0 auto; }
+	#interestingoffers a:hover { text-decoration: none; }
+	.interestingoffer { display: inline-block; width: 237px; height: 325px; text-align: center; padding: 20px 0 0 0; vertical-align: top; zoom: 1; *display: inline;}
+	.interestingoffer img { width: 200px; height: 200px; }
+	.image-circle { -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; -o-border-radius: 50em; border-top-right-radius: 50em;  border-top-left-radius: 50em;  border-bottom-right-radius: 50em;  border-bottom-left-radius: 50em;}
     .offername, .offerprice { display:block; font-size: 20px; font-weight: bold; margin-top: 10}
     .offername { font-size: 16px; color:#535349; margin-top: 10px  }
     .offerprice { font-size: 20px; }
-    #interestingoffers > h1 { color:#bf283b; margin: 0px; padding: 35px 0 20px 10px; }
-    .snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}
-    /*----------END INTERESTINGOFFERS----------*/
+	#interestingoffers > h1 { color:#bf283b; margin: 0px; padding: 35px 0 20px 10px; }
+	.snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}
+	/*----------END INTERESTINGOFFERS----------*/
+	
+	
+	
+	/*----------TRIPARTICLES----------*/
+	.triparticles-wrapper { /*background: url('images/header-wrapper-background.png')*/ center; width: 100%; }
+	#triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
+	#triparticles .title h1 { position: absolut; display: inline; }
+	#triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
+	#triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
+	#triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
+	#left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
+	#right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
+	#triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
+	#triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
+	#triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px;  color: #fff; margin: 0px; top: 190px;}
+	#article { position: relative; margin: 0 0 20px 0;}
+	article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; } 
+	#triparticles .links { display: block; width: auto; height: 70px; }
+	#triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; color: #64abe3; margin-left: 20px;}
+	#triparticles .links a img { margin: 4px 5.5px 0 -18px; }
+	
+	/*----------END TRIPARTICLES----------*/	
 
-    /*----------TRIPARTICLES----------*/
-    .triparticles-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-    #triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
-    #triparticles .title h1 { /*position: absolute;*/ display: inline; }
-    #triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
-    #triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
-    #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
-    #left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
-    #right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
-    #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
-    #triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
-    #triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px;  color: #fff; margin: 0px; top: 190px;}
-    #article { position: relative; margin: 0 0 20px 0;}
-    article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
-    #triparticles .links { display: block; width: auto; height: 70px; }
-    #triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; color: #64abe3; margin-left: 20px;}
-    #triparticles .links a img { margin: 4px 5.5px 0 -18px; }
-    /*----------END TRIPARTICLES----------*/
-
-    /*----------LASTCOMMENTS----------*/
-    .lastcomments-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-    #lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
-    #comments { padding: 0 0 0 246px; width: 714px; }
+	/*----------LASTCOMMENTS----------*/
+	.lastcomments-wrapper { /*background: url('images/header-wrapper-background.png')*/ center; width: 100%; }
+	#lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
+	#comments { padding: 0 0 0 246px; width: 714px; }
     .homepage #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
     .homepage .commentlist { margin: 0; padding: 0; list-style: none; }
     .homepage .commentlist ul.children { list-style: none;}
@@ -250,10 +254,14 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
     .homepage #comments input[type="text"] { width: 442px; }
     .homepage #comments textarea { width: 442px; }
     .homepage .commentlist li > div { position: relative; border-bottom: none; padding: 10px 0 0 4px; }
-    /*----------END LASTCOMMENTS----------*/
+	
+	/*----------END LASTCOMMENTS----------*/
+		
+	.content-wrapper { width: 100%; }
+	#content { width: 960px; margin:0 auto; position: relative;}
 
-    .content-wrapper { width: 100%; }
-    #content { width: 960px; margin:0 auto; position: relative;}
+
+
 /*----------END MAIN----------*/
 
 
