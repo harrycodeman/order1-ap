@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <title><?php
 	global $page, $paged;
