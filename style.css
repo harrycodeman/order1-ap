@@ -298,7 +298,6 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	/*----------END ADDTOUR PAGE----------*/	
 	
 	/*----------ADDARTICLE PAGE----------*/
-	
 		.addarticle-wrapper { center; width: 100%; }
 		#addarticle { width: 960px; margin:0 auto; }
 		#addarticle .article { width: 680px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
@@ -311,7 +310,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	   
 	    #addarticle .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
 		#addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 155px; margin: 0 0 0 20px; }
-	    #addarticle .photo .addphoto  { display: inline-block; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
+	    #addarticle .photo .addphoto  { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
         #addarticle .photo .item { text-align: center; font-size: 10px; }
         #addarticle .photo>p { font-weight: bolder; margin-left: 20px; }
         #addarticle .photo .item p { margin: 10px 0 0 0; }
@@ -323,6 +322,33 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 		#addarticle #cancel-addarticle-button { background: #e3e1d8; color: #7e7d77; }
 		#addarticle #create-addarticle-button { background: #bf273a; color: #fff; }
 	/*----------END ADDARTICLE PAGE----------*/	
+	
+	/*----------TOURLIST PAGE----------*/
+		.tourlist-wrapper { center; width: 100%; }
+		#tourlist { width: 960px; margin:0 auto; }
+		#tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
+		#tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
+		#tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+		#tourlist input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+		#tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
+		
+		#tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
+		#tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
+		#tourlist .list .item .image { width: 120px; }
+		#tourlist .list .item .image img { width: 100px; height:100px; }
+		#tourlist .list .item .info { width: 360px; vertical-align: top;}
+		#tourlist .list .item .info h2 { margin: 15px 0 0 0; }
+		#tourlist .list .item .info p { margin-top: 0px; }
+		#tourlist .list .item .hotelrating { padding: 15px 0; width: 200px; }
+		#tourlist .list .item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin-right: 5px; }
+		#tourlist .list .item .cost { width: 265px; height: 100px;}
+		#tourlist .list .item .cost > * { float:right; clear: both;}
+		#tourlist .list .item .cost h2 { margin-bottom: 0px; }
+		#tourlist .list .item .cost p { margin: 0px 0 30px 0; }
+		#tourlist .list .item .cost .editdelete-links { height: 20px; }
+		#tourlist .list .item .cost .editdelete-links a { color: #64abe3; margin-left: 10px; }
+
+	/*----------END TOURLIST PAGE----------*/
 	
 	.content-wrapper { width: 100%; }
 	#content { width: 960px; margin:0 auto; position: relative;}
