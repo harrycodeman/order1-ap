@@ -78,7 +78,8 @@ Template Name: Tourlist-page
           <h2>34 000 руб</h2>
           <p>Цена за 1 путевку</p>
           <div class="editdelete-links">
-            <a href="" alt="">Редактировать</a><a href="" alt="">Удалить</a></p>
+            <a class="blue" href="" alt="">Редактировать</a>
+            <a class="blue" href="" alt="">Удалить</a></p>
           </div>
         </div>
       </div>
@@ -101,7 +102,8 @@ Template Name: Tourlist-page
           <h2>34 000 руб</h2>
           <p>Цена за 1 путевку</p>
           <div class="editdelete-links">
-            <a href="" alt="">Редактировать</a><a href="" alt="">Удалить</a></p>
+            <a class="blue" href="" alt="">Редактировать</a>
+            <a class="blue" href="" alt="">Удалить</a></p>
           </div>
         </div>
       </div>
