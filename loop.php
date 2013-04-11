@@ -50,14 +50,14 @@
 	if ( $imbalance2_theme_options['navigation'] == 0 ) : // Default ?>
 
 <div class="fetch">
-	<?php next_posts_link( __( 'Load more posts', 'imbalance2' ) ); ?>
+	<?php next_posts_link( __( 'Загрузить следующие статьи', 'imbalance2' ) ); ?>
 </div>
 
 <script type="text/javascript">
 // Ajax-fetching "Load more posts"
 $('.fetch a').live('click', function(e) {
 	e.preventDefault();
-	$(this).addClass('loading').text('Loading...');
+	$(this).addClass('loading').text('Загрузка...');
 	$.ajax({
 		type: "GET",
 		url: $(this).attr('href') + '#boxes',
@@ -80,7 +80,7 @@ $('.fetch a').live('click', function(e) {
 	<?php elseif ( $imbalance2_theme_options['navigation'] == 1 ) : // Infinite scroll ?>
 
 <div class="infinitescroll">
-	<?php next_posts_link( __( 'Load more posts', 'imbalance2' ) ); ?>
+	<?php next_posts_link( __( 'Загрузить следующие статьи', 'imbalance2' ) ); ?>
 </div>
 
 <script type="text/javascript">
@@ -92,7 +92,7 @@ $(document).ready(function() {
 		nextSelector : '.infinitescroll a',
 		itemSelector : '#boxes .box',
 		loadingImg : '<?php echo get_bloginfo('stylesheet_directory') ?>/images/loading.gif',
-		loadingText : 'Loading...',
+		loadingText : 'Загрузка...',
 		donetext : 'No more pages to load.',
 		debug : false
 	}, function(arrayOfNewElems) {
