@@ -33,11 +33,11 @@ Template Name: Front-page
     $("#additionalparameters-hideshow").click(function(){
               if ($("div#additional-parameters").css("display") != "none") {
                 $("div#additional-parameters").css("display", "none");
-                $("#additionalparameters-hideshow").css("top", "160px");
+                $("#additionalparameters-hideshow").css("top", "160px").text("Указать дополнительные параметры");
                 $("#additionalparameters-submit").css("top", "143px");
               } else {
                 $("div#additional-parameters").css("display", "block");
-                $("#additionalparameters-hideshow").css("top", "220px");
+                $("#additionalparameters-hideshow").css("top", "220px").text("Скрыть дополнительные параметры");
                 $("#additionalparameters-submit").css("top", "203px");
               }
     });
@@ -58,28 +58,29 @@ Template Name: Front-page
               <div class="banner-info">
                 <h2>День влюбленных в Турции</h2>
                 <p class="shortannouncement-title">12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
-                <p class="hotel-title"><img src="./wp-content/themes/imbalance2/images/star.png" alt="">Hot Palmas Hotel Resot</p>
-                <p class="nightcount-title">13.02.2013 - 7 ночей</p>
+                <p class="hotel-title"><img src="<?php ap_get_image_url( 'star.png' );?>" alt="">Hot Palmas Hotel Resot</p>
+                <p class="nightcount-title"><img src="<?php ap_get_image_url( 'plane-dark.png' ); ?>" alt="">13.02.2013 - 7 ночей</p>
                 <p class="remainingtour-title">Осталось 4</p>
                 <button type="button">КУПИТЬ ТУР</button>
               </div>
-              <img src="./wp-content/themes/imbalance2/images/banner.png" width="960px" height="374px" alt="">
+              <img src="<?php ap_get_image_url( 'banner.png' );?>" width="960px" height="374px" alt="">
             </div>
             <div class="item">
               <div class="banner-info">
                 <h2>День влюбленных в Турции</h2>
                 <p class="shortannouncement-title">19 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
-                <p class="hotel-title"><img src="./wp-content/themes/imbalance2/images/star.png" alt="">Hot Palmas Hotel Resot</p>
-                <p class="nightcount-title">13.02.2013 - 7 ночей</p>
+                <p class="hotel-title"><img src="<?php ap_get_image_url( 'star.png' );?>" alt="">Hot Palmas Hotel Resot</p>
+                <p class="nightcount-title"><img src="<?php ap_get_image_url( 'plane-dark.png' ); ?>" alt="">13.02.2013 - 7 ночей</p>
                 <p class="remainingtour-title">Осталось 4</p>
                 <button type="button">КУПИТЬ ТУР</button>
               </div>
-              <img src="./wp-content/themes/imbalance2/images/banner.png" width="960px" height="374px" alt="">
+              <img src="<?php ap_get_image_url( 'banner.png' );?>" width="960px" height="374px" alt="">
             </div>
           </div>
           <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
+          <div class="carousel-control divider"></div>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
         </div>
         <script type="text/javascript">
           $(document).ready(function() {
@@ -106,7 +107,12 @@ Template Name: Front-page
             <option value="">Патайя</option>
             <option value="">Тайланд</option>
           </select>
-          <input type="text" id="datepicker"/>
+<!--           <div class="detailsItem InputWCalendar"><span class="sh_calendar"><img src="/images/forma/dateicon.png" id="buttonDate" alt=""></span><div class="calen-cont"></div><input tabindex="3" title="Дата" size="16" id="date0" maxlength="10" type="text"><span class="date-arrow left"><img src="/images/date_inc.gif" onclick="stepDate(0,-1)" alt="-"></span><span class="date-arrow right"><img src="/images/date_inc.gif" onclick="stepDate(0,1)" alt="+"></span></div>-->
+            <div id="div-datepicker">
+                <input type="text" id="datepicker">
+                <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
+            </div>
+
           <span style="top: 45px; left: 780px;">на</span>
           <select id="days-form" class="dropdown">
             <option value="">1 день</option>
@@ -131,9 +137,9 @@ Template Name: Front-page
           </select>
           <select id="adultcount" class="dropdown">
             <option value="">1 взрослый</option>
-            <option value="">2 взрослх</option>
-            <option value="">3 взрослх</option>
-            <option value="">4 взрослх</option>
+            <option value="">2 взрослых</option>
+            <option value="">3 взрослых</option>
+            <option value="">4 взрослых</option>
           </select>
           <select id="childrencount" class="dropdown">
             <option value="">Без детей</option>
@@ -196,14 +202,14 @@ Template Name: Front-page
 
         <div id="articlethumbnail">
           <div class="image">
-            <img src="<?php bloginfo('template_url'); ?>/images/paris-by-night.jpg" alt="">
+            <img src="<?php ap_get_image_url( 'paris-by-night.jpg' ); ?>" alt="">
           </div>
           <div id="left-arrow">
             <a href="/"></a>
           </div>
           <div class="announcement">
             <h1>Вид на Париж с высоты птичьего полета или гений Эйфеля</h1>
-            <p>Ниезменные границы города, его чёткий план устройства и нехватка места для новго строительства постепенно превратили город в действующий и живущий музей.</p>
+            <p>Ниезменные границы города, его чёткий план устройства и нехватка места для нового строительства постепенно превратили город в действующий и живущий музей.</p>
           </div>
           <div id="right-arrow" class="horizontal-flip">
             <a href="/"></a>
@@ -212,7 +218,7 @@ Template Name: Front-page
         
         <div id="content" class="homepage" role="main">
         <?php query_posts('posts_per_page=1'); ?>
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <?php if ( have_posts() ) : the_post(); ?>
 
             <!-- Display the Post's content in a div box. -->
             <div  id="article" class="entry">
@@ -222,7 +228,7 @@ Template Name: Front-page
             </div>
             
             <div class="links">
-              <a class="left" href="/"><img src="<?php bloginfo('template_url'); ?>/images/plane.png">Путевки в Париж</a>
+              <a class="left" href="/"><img src="<?php ap_get_image_url( 'plane.png' ); ?>">Путевки в Париж</a>
               <br>
               <a class="left" href="/">Похожие направления</a>
             </div>
@@ -237,18 +243,20 @@ Template Name: Front-page
                   'status' => 'approve' //Change this to the type of comments to be displayed
                 ));
 
-                //Display the list of comments
-                wp_list_comments(array(
-                  'per_page' => 5, //Allow comment pagination
-                  'reverse_top_level' => true, //Show not the latest comments at the top of the list
-                  'style' => 'ul',
-                  'avatar_size' => 80,
-                ), $comments);
+                //Display the list of comments d.m.Y
+                wp_list_comments(
+                    array(
+                        'per_page' => 5, //Allow comment pagination
+                        'reverse_top_level' => true, //Show not the latest comments at the top of the list
+                        'style' => 'ul',
+                        'avatar_size' => 80,
+                        'callback' => 'ap_dirty_comments_list_start_el'
+                    ),
+                    $comments);
               ?>
             </ol>
 
-        <!-- Stop The Loop (but note the "else:" - see next line). -->
-        <?php endwhile; else: ?>
+        <?php else: ?>
 
           <!-- The very first "if" tested to see if there were any Posts to -->
           <!-- display.  This "else" part tells what do if there weren't any. -->

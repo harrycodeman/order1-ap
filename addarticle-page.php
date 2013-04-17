@@ -51,8 +51,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'
     wp_update_attachment_metadata( $attach_id, $attach_data );
 
     update_post_meta( $post_id, '_thumbnail_id', $attach_id );
-    update_post_meta( $post_id, 'immageDohu', 'asdasdasd,asdasd,asd,asd,' );
-
 }
 ?>
 
