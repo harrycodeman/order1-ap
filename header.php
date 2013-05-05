@@ -209,9 +209,9 @@ $(document).ready(function() {
       </div>
       <div id="header-logo" onclick="location.href='<?php echo home_url( '/' );?>';" style="cursor:pointer;"></div>
       <div id="contacts">
-        <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number">243-456</span></h1>
+        <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number red">243-456</span></h1>
         <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
-        <a href="http://maps.google.com" target="_blank">Показать на карте</a>
+        <a class="blue" href="http://maps.google.com" target="_blank">Показать на карте</a>
       </div>
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons">

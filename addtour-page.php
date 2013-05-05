@@ -12,6 +12,7 @@ Template Name: Addtour-page
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
 <!--END Подключение формы с календарем в div#toursearch "Data Picker"-->
+
 <!--Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
 <script>
   $(document).ready(function(){
@@ -84,7 +85,7 @@ Template Name: Addtour-page
         
         <div>
           <br><br><br>          
-          <input type="checkbox" name="" value="Горящий тур"> <span style="font-size: 18px; font-weight: bolder; color: #bf283b">Горящий тур</span>
+          <input type="checkbox" name="" value="Горящий тур"> <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
         </div>
         
       </div>
@@ -141,8 +142,6 @@ Template Name: Addtour-page
     </div>
     
     <br><br>
-    
-  </div>
 
 </div>
 

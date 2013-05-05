@@ -50,7 +50,7 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .phone-number { position: relative; top: 10px; color: #bf283b; font-size: 25px;  letter-spacing: 1px;}
 #contacts { position: relative; top: 17px; float: left; width: 300px; height: 80px; padding: 0 17px 0px 0; overflow: hidden; font-size: 12px; line-height: 7px; }
 #contacts h1 { height: 40px; margin: 0;}
-#contacts a { color: #64abe3; text-decoration: underline;}
+#contacts a { text-decoration: underline;}
 #contacts p { line-height: 15px; margin-top: 0px; margin-bottom: 8px; }
 #header-logo { position: relative; top: 20px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 139px; height: 141px; margin-right: 90px;}
 #social-buttons { position: absolute; vertical-align: top; top: 0px; right: 10px; float: right; width: 170px;}
@@ -133,18 +133,20 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 .form-submit { margin-bottom: 40px; }
 .form-submit input { width: 460px; padding: 6px 0; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; border: 0; text-align: center; -moz-border-radius: 4px; border-radius: 4px; }
 .recent { margin-top: 40px; padding-top: 40px; border-top: 1px solid #ccc; }
+.red { color: #bf283b; }
+.blue { color: #64abe3;}
 
 	/*----------FRONT PAGE----------*/
 		/*----------BANNER----------*/
-		.banner-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-		.banner-wrapper #banner { /*background: url('images/header-background.png');*/ width: 960px; height: 360px; margin:0 auto; }
+		.banner-wrapper { width: 100%; }
+		.banner-wrapper #banner { width: 960px; height: 360px; margin:0 auto; }
 		.banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
 		.banner-wrapper #banner .item > img { margin-left: 20px; width: 960px; }
 		#banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
 		#banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
 		#banner .banner-info .hotel-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
 		#banner .banner-info .hotel-title > img { margin-right: 7px; }
-		#banner .banner-info .nightcount-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px ; }
+		#banner .banner-info .nightcount-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
         #banner .banner-info .nightcount-title > img { margin-right: 7px; }
 		#banner .banner-info .remainingtour-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 20px ; }
 		#banner .banner-info button { position: absolute; left: 122px; width: 144px; height: 40px; bottom: 10px; background: #d22f44; color: #fff; font-weight: bolder; letter-spacing: 1px; border: solid 1px #da4356; box-shadow: 0 1px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
@@ -222,7 +224,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 		article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
         article > p { margin-top: 0px }
 		#triparticles .links { display: block; width: auto; height: 70px; }
-		#triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; color: #64abe3; margin-left: 20px;}
+		#triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; margin-left: 20px;}
 		#triparticles .links a img { margin: 4px 5.5px 0 -18px; }
 		/*----------END TRIPARTICLES----------*/	
 
@@ -293,12 +295,11 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	    #addtour .submitbuttons { width: 680px; margin: 0 auto;}
 		#addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
 		#addtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
-		#addtour #cancel-addtour-button { background: #e3e1d8; color: #7e7d77; }
-		#addtour #create-addtour-button { background: #bf273a; color: #fff; }
+		#cancel-addtour-button { background: #e3e1d8; color: #7e7d77; }
+		#create-addtour-button { background: #bf273a; color: #fff; }
 	/*----------END ADDTOUR PAGE----------*/	
 	
 	/*----------ADDARTICLE PAGE----------*/
-	
 		.addarticle-wrapper { width: 100%; }
 		#addarticle { width: 960px; margin:0 auto; }
 		#addarticle .article { width: 680px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
@@ -311,7 +312,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	   
 	    #addarticle .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
 		#addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 155px; margin: 0 0 0 20px; }
-	    #addarticle .photo .addphoto  { display: inline-block; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
+	    #addarticle .photo .addphoto  { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
         #addarticle .photo .item { text-align: center; font-size: 10px; }
         #addarticle .photo>p { font-weight: bolder; margin-left: 20px; }
         #addarticle .photo .item p { margin: 10px 0 0 0; }
@@ -320,19 +321,66 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	    #addarticle .submitbuttons { width: 680px; margin: 0 auto;}
 		#addarticle .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
 		#addarticle .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
-		#addarticle #cancel-addarticle-button { background: #e3e1d8; color: #7e7d77; }
-		#addarticle #create-addarticle-button { background: #bf273a; color: #fff; }
+		#cancel-addarticle-button { background: #e3e1d8; color: #7e7d77; }
+		#create-addarticle-button { background: #bf273a; color: #fff; }
 	/*----------END ADDARTICLE PAGE----------*/	
 	
+	/*----------TOURLIST PAGE----------*/
+		.tourlist-wrapper { width: 100%; }
+		#tourlist { width: 960px; margin:0 auto; }
+		#tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
+		#tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
+		#tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+		#tourlist input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+		#tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
+		
+		#tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
+		#tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
+		#tourlist .list .item .image { width: 120px; }
+		#tourlist .list .item .image img { width: 100px; height:100px; }
+		#tourlist .list .item .info { width: 360px; vertical-align: top;}
+		#tourlist .list .item .info h2 { margin: 15px 0 0 0; }
+		#tourlist .list .item .info p { margin-top: 0px; }
+		#tourlist .list .item .hotelrating { padding: 15px 0; width: 200px; }
+		#tourlist .list .item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin-right: 5px; }
+		#tourlist .list .item .cost { width: 265px; height: 100px;}
+		#tourlist .list .item .cost > * { float:right; clear: both;}
+		#tourlist .list .item .cost h2 { margin-bottom: 0px; }
+		#tourlist .list .item .cost p { margin: 0px 0 30px 0; }
+		#tourlist .list .item .cost .editdelete-links { height: 20px; }
+		#tourlist .list .item .cost .editdelete-links a { margin-left: 10px; }
+
+	/*----------END TOURLIST PAGE----------*/
+	
+	/*----------RESERVTOUR PAGE----------*/
+	
+		.reservtour-wrapper { width: 100%; }
+		#reservtour { width: 960px; margin:0 auto; }
+		#reservtour .tour { width: 680px; padding: 20px 0 20px 20px;}
+		#reservtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+		#reservtour .tour>div>div { position: relative; display:-moz-inline-stack; display:inline-block; height: 85px; margin: 0 20px 0 0; zoom:1; *display:inline;}
+		#reservtour .dropdown { position: relative;  height: 40px; font-size: 20px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+	    #reservtour input[type="text"] {  width: 123px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+	    #reservtour #country-reservtour-form, #resortcity-reservtour-form, #hotelname-reservtour-form { width: 300px; }
+			    
+		#adultcount-reservtour-form, #childrencount-reservtour-form { width: 138px; }
+		
+		#reservtour .client { width: 680px; background: #fff; padding: 20px 0 20px 20px;}
+		#reservtour .client>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+		#reservtour .client>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 0 20px 0 0;}
+		#surname-reservtour-form, #customer_phone, #email-reservtour-form, #name-reservtour-form { width: 300px !important; }
+		
+        #reservtour .submitbuttons { width: 680px; margin: 0 20px;}
+		#reservtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
+		#reservtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
+		#reserve-reservtour-button { background: #bf273a; color: #fff; }
+	/*----------END RESERVTOUR PAGE----------*/
 	.content-wrapper { width: 100%; }
 	#content { width: 960px; margin:0 auto; position: relative;}
-	
 /*----------END MAIN----------*/
 
-
-
 /*----------FOOTER----------*/
-#footer { /*background: #bf283b url('images/footer-background.png');*/ width: 960px; margin:0 auto; padding: 29px 0 25px; }
+#footer { width: 960px; margin:0 auto; padding: 29px 0 25px; }
 .footer-wrapper { background: #bf273a url('images/footer-wrapper-background.png') center no-repeat; width: 100%; }
 #footer-logo { position: relative; left: 0px; float: left; background: url('images/footer-logo.png') no-repeat; width: 128px; height: 100px;}
 #site-info { float: left; width: 280px; margin-right: 60px; line-height: 22px; }
