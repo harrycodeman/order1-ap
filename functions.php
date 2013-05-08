@@ -382,7 +382,7 @@ function ap_dirty_comments_list_start_el( $comment, $args, $depth ) {
         <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
     </div>
     <?php if ($comment->comment_approved == '0') : ?>
-        <em class="comment-awaiting-moderation"><?php _e('Выш комментарий ожидает рецензии.') ?></em>
+        <em class="comment-awaiting-moderation"><?php _e('Ваш комментарий ожидает рецензии.') ?></em>
         <br />
     <?php endif; ?>
 
