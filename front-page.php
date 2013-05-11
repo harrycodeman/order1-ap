@@ -5,21 +5,7 @@ Template Name: Front-page
 ?>
 
 <?php get_header(); ?>
-
-<!--Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"/>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script type="text/javascript"
-        src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $.datepicker.setDefaults(
-            $.extend($.datepicker.regional["ru"])
-        );
-        $("#datepicker").datepicker();
-    });
-</script>
+<?php ap_add_js_calendar_to_element( '#datepicker' ); ?>
 
 <!--Подключение bootstrap-->
 <link href="./wp-content/themes/imbalance2/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">

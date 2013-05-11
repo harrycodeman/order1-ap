@@ -1,7 +1,7 @@
 <?php
 
-add_action( 'init', 'create_post_type' );
-function create_post_type() {
+add_action( 'init', 'ap_create_post_type_tour' );
+function ap_create_post_type_tour() {
     register_post_type( 'ap_tour',
         array(
             'labels' => array(
@@ -22,30 +22,37 @@ function create_post_type() {
 }
 
 /*--- Adding Meta Box for Tour post type ---*/
-add_action( 'add_meta_boxes', 'add_tours_meta_boxes' );
-function add_tours_meta_boxes() {  
-    add_meta_box('truediv', 'Название', 'print_tour_meta_box', 'ap_tour', 'normal', 'high'); 
+add_action( 'add_meta_boxes', 'ap_add_tours_meta_boxes' );
+function ap_add_tours_meta_boxes() {
+    add_meta_box('truediv', 'Название', 'ap_print_tour_meta_box', 'ap_tour', 'normal', 'high');
 }
-function print_tour_meta_box($post) {
-	wp_nonce_field( basename( __FILE__ ), 'seo_metabox_nonce' );
-	$html .= '<label>Поле для поиска тура <input type="text" name="seotitle" value="' . get_post_meta($post->ID, 'seo_title',true) . '" /></label> ';
-	echo $html;
+
+function ap_print_tour_meta_box( $post ) {
+    global $html;
+    wp_nonce_field( basename( __FILE__ ), 'seo_metabox_nonce' );
+    $html .= '<label>Поле для поиска тура <input type="text" name="seotitle" value="'
+        . get_post_meta($post->ID, 'seo_title',true) . '" /></label> ';
+    echo $html;
 }
-add_action('save_post', 'save_tour_meta_box');
-function save_tour_meta_box ( $post_id ) {
-	if ( !isset( $_POST['seo_metabox_nonce'] )
-	|| !wp_verify_nonce( $_POST['seo_metabox_nonce'], basename( __FILE__ ) ) )
+
+add_action( 'save_post', 'ap_save_tour_meta_box' );
+function ap_save_tour_meta_box( $post_id ) {
+    if (!isset( $_POST['seo_metabox_nonce'] )
+        || !wp_verify_nonce( $_POST['seo_metabox_nonce'], basename( __FILE__ ) ) ) {
         return $post_id;
+    }
 
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
-		return $post_id;
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+    }
 
-	if ( !current_user_can( 'edit_post', $post_id ) )
-		return $post_id;
+    if ( !current_user_can( 'edit_post', $post_id ) ) {
+        return $post_id;
+    }
 
-	$post = get_post($post_id);
-	if ($post->post_type == 'ap_tour') {
-		update_post_meta($post_id, 'seo_title', esc_attr($_POST['seotitle']));
-	}
-	return $post_id;
+    $post = get_post($post_id);
+    if ($post->post_type == 'ap_tour') {
+        update_post_meta($post_id, 'seo_title', esc_attr($_POST['seotitle']));
+    }
+    return $post_id;
 }

@@ -403,6 +403,10 @@ function ap_dirty_comments_list_start_el( $comment, $args, $depth ) {
 <?php
 }
 
+function ap_add_js_calendar_to_element( $element_id ) {
+    include( get_stylesheet_directory().'/htmls/js_calendar.php' );
+}
+
 /*--- Custom post types registrations ---*/
 add_action( 'pre_get_posts', 'ap_show_tours_on_main_page' );
 function ap_show_tours_on_main_page( $query ) {
@@ -412,3 +416,11 @@ function ap_show_tours_on_main_page( $query ) {
 }
 
 require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
+
+/*--- Custom query paramenters (for post and tour editing) ---*/
+add_filter('query_vars', 'ap_add_queryvars' );
+function ap_add_queryvars( $qvars )
+{
+    $qvars[] = 'mode';
+    return $qvars;
+}

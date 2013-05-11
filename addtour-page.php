@@ -5,24 +5,7 @@ Template Name: Addtour-page
 ?>
 
 <?php get_header(); ?>
-
-<!--Подключение формы с календарем в div#toursearch "Data Picker"-->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
-<!--END Подключение формы с календарем в div#toursearch "Data Picker"-->
-
-<!--Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
-<script>
-  $(document).ready(function(){
-    $.datepicker.setDefaults(
-      $.extend($.datepicker.regional["ru"])
-    );
-    $("#addtour-datepicker").datepicker();
-  });
-</script>
-<!--END Скрипт обеспечивает вызов формы с календарем в div#toursearch-->
+<?php ap_add_js_calendar_to_element( '#addtour-datepicker' ); ?>
 
 <div class="addtour-wrapper">
 
