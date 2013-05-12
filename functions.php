@@ -403,8 +403,24 @@ function ap_dirty_comments_list_start_el( $comment, $args, $depth ) {
 <?php
 }
 
-function ap_add_js_calendar_to_element( $element_id ) {
-    include( get_stylesheet_directory().'/htmls/js_calendar.php' );
+function ap_add_js_calendar_to_element( $element_id ) { ?>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $.datepicker.setDefaults(
+                $.extend($.datepicker.regional["ru"])
+            );
+            $("<?php echo $element_id; ?>").datepicker();
+        });
+    </script>
+<?php }
+
+function ap_is_edit_mode() {
+    return ap_get_url_parameter( 'mode' ) == 'edit';
 }
 
 /*--- Custom post types registrations ---*/
@@ -417,10 +433,20 @@ function ap_show_tours_on_main_page( $query ) {
 
 require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
 
-/*--- Custom query paramenters (for post and tour editing) ---*/
-add_filter('query_vars', 'ap_add_queryvars' );
-function ap_add_queryvars( $qvars )
+/*--- Custom query parameters (for post and tour editing) ---*/
+add_filter('query_vars', 'ap_add_query_vars' );
+function ap_add_query_vars( $query_vars )
 {
-    $qvars[] = 'mode';
-    return $qvars;
+    $query_vars[] = 'mode';
+    return $query_vars;
+}
+
+function ap_get_url_parameter( $parameter_name )
+{
+    global $wp_query;
+    if (isset($wp_query->query_vars[$parameter_name]))
+    {
+        return $wp_query->query_vars[$parameter_name];
+    }
+    return NULL;
 }

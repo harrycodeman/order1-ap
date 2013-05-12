@@ -1,27 +1,15 @@
 <?php get_header(); ?>
 
-		<div id="content">
-
-            <div>
-                <p>Запись имеет тип "Тур"
-<?php
-function get_queryvar($varname)
-{
-    global $wp_query;
-    if (isset($wp_query->query_vars[$varname]))
-    {
-        return $wp_query->query_vars[$varname];
-    }
-    return NULL;
-}
-
-echo get_queryvar( 'mode' );
-?>
-                </p>
-            </div>
-
-		<?php get_template_part( 'loop', 'single' ); ?>
-
-		</div><!-- #content -->
+<div id="content">
+<?php if ( ap_is_edit_mode() ):
+    if ( is_user_logged_in() ):
+        get_template_part( 'ap_tour', 'edit' );
+    else:
+        get_template_part( 'error', 'low_rights' );
+    endif;
+else:
+    get_template_part( 'loop', 'single' );
+endif; ?>
+</div><!-- #content -->
 
 <?php get_footer(); ?>

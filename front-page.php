@@ -31,11 +31,6 @@ Template Name: Front-page
 <div class="banner-wrapper">
     <div id="banner">
         <div id="myCarousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-            </ol>
-
             <!-- Carousel items -->
             <div class="carousel-inner">
                 <div class="active item">
@@ -220,7 +215,7 @@ Template Name: Front-page
                     <div class="announcement">
                         <h1>Вид на Париж с высоты птичьего полета или гений Эйфеля</h1>
 
-                        <p>Ниезменные границы города, его чёткий план устройства и нехватка места для нового
+                        <p>Неизменные границы города, его чёткий план устройства и нехватка места для нового
                             строительства постепенно превратили город в действующий и живущий музей.</p>
                     </div>
                     <div id="right-arrow" class="horizontal-flip">
@@ -273,8 +268,7 @@ Template Name: Front-page
                         <p>Sorry, no posts matched your criteria.</p>
                     <?php endif; ?>
 
-                </div>
-                <!-- #content -->
+                </div><!-- #content -->
 
             </div>
 
