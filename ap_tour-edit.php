@@ -66,7 +66,7 @@
       
         <div>
           <p>Дата заезда:</p>
-          <input name="ap_tour_start_date" type="text" id="addtour-datepicker" />
+          <input name="ap_tour_start_date" type="text" id="addtour-datepicker" style="position: static;" />
         </div>
         
         <div>
@@ -102,7 +102,7 @@
     <div class="photo">
       <div>
         <p>Фотография (200x200px):</p>
-        <input id="photo-addtour-file" type="file" name="">
+        <input id="photo-addtour-file" name="" type="file" accept="image/*">
       </div>
     </div>
     
