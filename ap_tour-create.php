@@ -5,7 +5,7 @@ Template Name: Создание тура
 ?>
 
 <?php if (!is_user_logged_in()):
-    get_template_part( 'error', 'low_rights' );
+    ap_show_error( 'low_rights' );
 else:
     if (empty( $_POST )):
         get_header(); ?>

@@ -25,7 +25,8 @@ function ap_create_post_type_tour() {
 /*--- Adding Meta-Box for Tour content type ---*/
 add_action( 'add_meta_boxes', 'ap_add_tours_meta_boxes' );
 function ap_add_tours_meta_boxes() {
-    add_meta_box('ap_tour_info_meta_box', 'Информация о туре', 'ap_print_tour_info_meta_box', 'ap_tour', 'normal', 'high');
+    add_meta_box('ap_tour_info_meta_box', 'Информация о туре', 'ap_print_tour_info_meta_box', 'ap_tour', 'normal',
+        'high');
 }
 
 function ap_print_tour_info_meta_box( $post ) {
@@ -46,6 +47,8 @@ function ap_print_tour_info_meta_box( $post ) {
         . get_post_meta( $post->ID, 'ap_tour_cost', true ) . '" /></label></p>';
     $html .= '<p><label>Горящая путевка <input type="checkbox" name="ap_burning_tour" value="is_burning" '
         . (get_post_meta( $post->ID, 'ap_burning_tour', true ) ? 'checked' : '') . ' /></label></p>';
+    $html .= '<p><label>Иконка тура <input type="text" name="ap_tour_icon" value="'
+        . get_post_meta( $post->ID, 'ap_tour_icon', true ) . '" /></label></p>';
     echo $html;
 }
 
@@ -66,13 +69,14 @@ function ap_save_tour_meta_box( $post_id ) {
 
     $post = get_post( $post_id );
     if ($post->post_type == 'ap_tour') {
-        update_post_meta( $post_id, 'ap_burning_tour', esc_attr($_POST['ap_burning_tour']) );
         update_post_meta( $post_id, 'ap_tour_country', esc_attr($_POST['ap_tour_country']) );
         update_post_meta( $post_id, 'ap_tour_resort', esc_attr($_POST['ap_tour_resort']) );
         update_post_meta( $post_id, 'ap_tour_hotel', esc_attr($_POST['ap_tour_hotel']) );
         update_post_meta( $post_id, 'ap_tour_start_date', esc_attr($_POST['ap_tour_start_date']) );
         update_post_meta( $post_id, 'ap_tour_duration', esc_attr($_POST['ap_tour_duration']) );
         update_post_meta( $post_id, 'ap_tour_cost', esc_attr($_POST['ap_tour_cost']) );
+        update_post_meta( $post_id, 'ap_burning_tour', esc_attr($_POST['ap_burning_tour']) );
+        update_post_meta( $post_id, 'ap_tour_icon', esc_attr($_POST['ap_tour_icon']) );
     }
     return $post_id;
 }
@@ -100,5 +104,11 @@ function ap_create_tour_from_post() {
     update_post_meta( $new_post_id, 'ap_tour_start_date', esc_attr($_POST['ap_tour_start_date']) );
     update_post_meta( $new_post_id, 'ap_tour_duration', esc_attr($_POST['ap_tour_duration']) );
     update_post_meta( $new_post_id, 'ap_tour_cost', esc_attr($_POST['ap_tour_cost']) );
+
+    if (is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] )) {
+        $attach_id = ap_attach_image( $_FILES['ap_tour_icon'] );
+        update_post_meta( $new_post_id, 'ap_tour_icon', $attach_id );
+    }
+
     return $new_post_id;
 }

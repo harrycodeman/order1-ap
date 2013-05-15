@@ -90,25 +90,8 @@ $(document).ready(function() {
 		columnWidth: 300,
 		gutterWidth: 20
 	});
+<?php endif; ?>
 
-    $('.texts').live({
-        'mouseenter': function() {
-            if ($(this).height() < $(this).find('.abs').height()) {
-                $(this).height($(this).find('.abs').height());
-            }
-            $(this).stop(true, true).animate({
-                'opacity': '1',
-                'filter': 'alpha(opacity=100)'
-            }, 0);
-        },
-        'mouseleave': function() {
-            $(this).stop(true, true).animate({
-                'opacity': '0',
-                'filter': 'alpha(opacity=0)'
-            }, 0);
-        }
-    });
-<?php else: ?>
     $(document).on('mouseenter', '.texts',
         function() {
             if ($(this).height() < $(this).find('.abs').height()) {
@@ -128,7 +111,6 @@ $(document).ready(function() {
             }, 0);
         }
     );
-<?php endif; ?>
 
 	// comments
 	$('.comment-form-author label').hide();

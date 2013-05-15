@@ -2,7 +2,7 @@
 require_once ( get_stylesheet_directory() . '/theme-options.php' );
 if (!is_admin()) {
 	wp_deregister_script( 'jquery' );
-	wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.6.1.min.js' );
+	wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.9.1.min.js' );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
 	wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
@@ -421,6 +421,30 @@ function ap_add_js_calendar_to_element( $element_id ) { ?>
 
 function ap_is_edit_mode() {
     return ap_get_url_parameter( 'mode' ) == 'edit';
+}
+
+function ap_attach_image( $file_to_attach ) {
+    function_exists( 'wp_handle_upload' ) or require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    $required_for_upload_options = array( 'test_form' => false );
+    $uploaded_file = wp_handle_upload( $file_to_attach, $required_for_upload_options );
+
+    $attachment = array(
+        'guid' => $uploaded_file['url'],
+        'post_mime_type' => $uploaded_file['type'],
+        'post_title' => '',
+        'post_content' => '',
+        'post_status' => 'inherit'
+    );
+    $attach_id = wp_insert_attachment( $attachment, $uploaded_file['file'] );
+
+    function_exists( 'wp_generate_attachment_metadata' ) or require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    $attach_data = wp_generate_attachment_metadata( $attach_id, $uploaded_file['file'] );
+    wp_update_attachment_metadata( $attach_id, $attach_data );
+    return $attach_id;
+}
+
+function ap_show_error( $error_type ) {
+    get_template_part( 'error', $error_type );
 }
 
 /*--- Custom post types registrations ---*/

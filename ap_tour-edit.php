@@ -5,7 +5,8 @@
   <div id="addtour">
     <center><h1>Добавить новый тур</h1></center>
 
-      <form name="create-tour-form" action="http://79.136.153.126/order1-ap/?page_id=13" method="post">
+      <form name="create-tour-form" action="http://79.136.153.126/order1-ap/?page_id=13" method="post"
+            enctype="multipart/form-data">
     <div class="tour">
       <div>
         <div>
@@ -90,7 +91,7 @@
         
         <div>
           <br><br><br>          
-          <input type="checkbox" name="" value="Горящий тур">
+          <input name="ap_burning_tour" type="checkbox" value="is_burning">
           <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
         </div>
         
@@ -102,7 +103,8 @@
     <div class="photo">
       <div>
         <p>Фотография (200x200px):</p>
-        <input id="photo-addtour-file" name="" type="file" accept="image/*">
+        <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+        <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*">
       </div>
     </div>
     
