@@ -49,23 +49,23 @@ $(document).ready(function() {
 	$('.aside').detach().appendTo('.entry-aside');
 
 	// fluid grid
-	<?php if (fluidGrid()): ?>
-	function wrapperWidth() {
-		var wrapper_width = $('body').width() - 20;
-		wrapper_width = Math.floor(wrapper_width / 250) * 250 - 40;
-		if (wrapper_width < 1000) wrapper_width = 1000;
-		$('.wrapper').css('width', wrapper_width);
-	}
-	wrapperWidth();
-	$(window).resize(function() {
-		wrapperWidth();
-	});
-	<?php endif ?>
+<?php if (fluidGrid()): ?>
+    function wrapperWidth() {
+        var wrapper_width = $('body').width() - 20;
+        wrapper_width = Math.floor(wrapper_width / 250) * 250 - 40;
+        if (wrapper_width < 1000) wrapper_width = 1000;
+        $('.wrapper').css('width', wrapper_width);
+    }
+    wrapperWidth();
+    $(window).resize(function() {
+        wrapperWidth();
+    });
+<?php endif ?>
 
-	// search
-	$(document).ready(function() {
-		$('#s').val('Search');
-	});
+    // search
+    $(document).ready(function() {
+        $('#s').val('Search');
+    });
 
 	$('#s').bind('focus', function() {
 		$(this).css('border-color', '<?php echo $color ?>');
@@ -77,6 +77,7 @@ $(document).ready(function() {
 		if ($(this).val() == '') $(this).val('Search');
 	});
 
+<?php if (is_home()): ?>
 	// grid
 	$('#boxes').masonry({
 		itemSelector: '.box',
@@ -89,24 +90,45 @@ $(document).ready(function() {
 		columnWidth: 300,
 		gutterWidth: 20
 	});
-	
-	$('.texts').live({
-		'mouseenter': function() {
-			if ($(this).height() < $(this).find('.abs').height()) {
-				$(this).height($(this).find('.abs').height());
-			}
-			$(this).stop(true, true).animate({
-				'opacity': '1',
-				'filter': 'alpha(opacity=100)'
-			}, 0);
-		},
-		'mouseleave': function() {
-			$(this).stop(true, true).animate({
-				'opacity': '0',
-				'filter': 'alpha(opacity=0)'
-			}, 0);
-		}
-	});
+
+    $('.texts').live({
+        'mouseenter': function() {
+            if ($(this).height() < $(this).find('.abs').height()) {
+                $(this).height($(this).find('.abs').height());
+            }
+            $(this).stop(true, true).animate({
+                'opacity': '1',
+                'filter': 'alpha(opacity=100)'
+            }, 0);
+        },
+        'mouseleave': function() {
+            $(this).stop(true, true).animate({
+                'opacity': '0',
+                'filter': 'alpha(opacity=0)'
+            }, 0);
+        }
+    });
+<?php else: ?>
+    $(document).on('mouseenter', '.texts',
+        function() {
+            if ($(this).height() < $(this).find('.abs').height()) {
+                $(this).height($(this).find('.abs').height());
+            }
+            $(this).stop(true, true).animate({
+                'opacity': '1',
+                'filter': 'alpha(opacity=100)'
+            }, 0);
+        }
+    );
+    $(document).on('mouseleave', '.texts',
+        function() {
+            $(this).stop(true, true).animate({
+                'opacity': '0',
+                'filter': 'alpha(opacity=0)'
+            }, 0);
+        }
+    );
+<?php endif; ?>
 
 	// comments
 	$('.comment-form-author label').hide();
