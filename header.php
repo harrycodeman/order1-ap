@@ -220,8 +220,10 @@ $(document).ready(function() {
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons">
         <p>Войти через социальные сети</p>
-        <a href="http://vk.com"><img src="wp-content/themes/imbalance2/images/social-icon-vk.png" alt="ВКонтакте"></a>
-        <a href="http://facebook.com"><img src="wp-content/themes/imbalance2/images/social-icon-facebook.png" alt="Facebook"></a>
+        <a href="http://vk.com"><img src="<?php ap_print_image_url('social-icon-vk.png'); ?>" alt="ВКонтакте"></a>
+        <a href="http://facebook.com">
+            <img src="<?php ap_print_image_url('social-icon-facebook.png'); ?>" alt="Facebook">
+        </a>
       </div>
       <div id="header-center"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-center', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="search">

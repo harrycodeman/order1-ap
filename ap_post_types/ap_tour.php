@@ -6,14 +6,14 @@ function ap_create_post_type_tour() {
     register_post_type( 'ap_tour',
         array(
             'labels' => array(
-                'name' => __( 'Tours' ),
-                'singular_name' => __( 'Tour' ),
-                'add_new' => __('Add New'),
-                'add_new_item' => __('Add New Tour'),
-                'edit_item' => __('Edit Tour'),
-                'new_item' => __('New Tour'),
-                'all_items' => __('All Tours'),
-                'view_item' => __('View Tour'),
+                'name' => __( 'Записи о турах' ),
+                'singular_name' => __( 'Запись о туре' ),
+                'add_new' => __('Добавление новой записи'),
+                'add_new_item' => __('Добавить новую запись о Туре'),
+                'edit_item' => __('Редактировать запись о Туре'),
+                'new_item' => __('Новая запись о Туре'),
+                'all_items' => __('Все записи о Турах'),
+                'view_item' => __('Просмотреть запись о Туре'),
             ),
             'public' => true,
             'has_archive' => true,
@@ -22,93 +22,113 @@ function ap_create_post_type_tour() {
     );
 }
 
-/*--- Adding Meta-Box for Tour content type ---*/
-add_action( 'add_meta_boxes', 'ap_add_tours_meta_boxes' );
-function ap_add_tours_meta_boxes() {
-    add_meta_box('ap_tour_info_meta_box', 'Информация о туре', 'ap_print_tour_info_meta_box', 'ap_tour', 'normal',
-        'high');
-}
+//wp_nonce_field( basename( __FILE__ ), 'ap_tour_info_meta_box_nonce' );
 
-function ap_print_tour_info_meta_box( $post ) {
-    global $html;
-    wp_nonce_field( basename( __FILE__ ), 'ap_tour_info_meta_box_nonce' );
-    $html .= '<p><label>Страна <input type="text" name="ap_tour_country" value="'
-        . get_post_meta( $post->ID, 'ap_tour_country', true ) . '" /></label></p>';
-    $html .= '<p><label>Курорт/Город <input type="text" name="ap_tour_resort" value="'
-        . get_post_meta( $post->ID, 'ap_tour_resort', true ) . '" /></label></p>';
-    $html .= '<p><label>Название отеля <input type="text" name="ap_tour_hotel" value="'
-        . get_post_meta( $post->ID, 'ap_tour_hotel', true ) . '" /></label></p>';
-    $html .= '<p><label>Дата заезда <input id="ap_tour_start_date_picker" type="text" name="ap_tour_start_date" value="'
-        . get_post_meta( $post->ID, 'ap_tour_start_date', true ) . '" /></label></p>';
-    ap_add_js_calendar_to_element('#ap_tour_start_date_picker');
-    $html .= '<p><label>Количество ночей <input type="text" name="ap_tour_duration" value="'
-        . get_post_meta( $post->ID, 'ap_tour_duration', true ) . '" /></label></p>';
-    $html .= '<p><label>Стоимость тура <input type="text" name="ap_tour_cost" value="'
-        . get_post_meta( $post->ID, 'ap_tour_cost', true ) . '" /></label></p>';
-    $html .= '<p><label>Горящая путевка <input type="checkbox" name="ap_burning_tour" value="is_burning" '
-        . (get_post_meta( $post->ID, 'ap_burning_tour', true ) ? 'checked' : '') . ' /></label></p>';
-    $html .= '<p><label>Иконка тура <input type="text" name="ap_tour_icon" value="'
-        . get_post_meta( $post->ID, 'ap_tour_icon', true ) . '" /></label></p>';
-    echo $html;
-}
-
-add_action( 'save_post', 'ap_save_tour_meta_box' );
-function ap_save_tour_meta_box( $post_id ) {
-    if (!isset( $_POST['ap_tour_info_meta_box_nonce'] )
-        || !wp_verify_nonce( $_POST['ap_tour_info_meta_box_nonce'], basename( __FILE__ ) )) {
-        return $post_id;
-    }
-
-    if (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) {
-        return $post_id;
-    }
-
-    if (!current_user_can( 'edit_post', $post_id )) {
-        return $post_id;
-    }
-
-    $post = get_post( $post_id );
-    if ($post->post_type == 'ap_tour') {
-        update_post_meta( $post_id, 'ap_tour_country', esc_attr($_POST['ap_tour_country']) );
-        update_post_meta( $post_id, 'ap_tour_resort', esc_attr($_POST['ap_tour_resort']) );
-        update_post_meta( $post_id, 'ap_tour_hotel', esc_attr($_POST['ap_tour_hotel']) );
-        update_post_meta( $post_id, 'ap_tour_start_date', esc_attr($_POST['ap_tour_start_date']) );
-        update_post_meta( $post_id, 'ap_tour_duration', esc_attr($_POST['ap_tour_duration']) );
-        update_post_meta( $post_id, 'ap_tour_cost', esc_attr($_POST['ap_tour_cost']) );
-        update_post_meta( $post_id, 'ap_burning_tour', esc_attr($_POST['ap_burning_tour']) );
-        update_post_meta( $post_id, 'ap_tour_icon', esc_attr($_POST['ap_tour_icon']) );
-    }
-    return $post_id;
-}
+//if (!isset( $_POST['ap_tour_info_meta_box_nonce'] )
+//    || !wp_verify_nonce( $_POST['ap_tour_info_meta_box_nonce'], basename( __FILE__ )) ) {
+//    return $post_id;
+//}
 
 /*--- Create, Save and Delete methods ---*/
-function ap_create_tour_from_post() {
-    $post_content = esc_attr($_POST['ap_tour_country']) . ' ' . esc_attr($_POST['ap_tour_resort']) . ' '
-        . esc_attr($_POST['ap_tour_hotel']) . ' ' . esc_attr($_POST['ap_tour_start_date']) . ' '
-        . esc_attr($_POST['ap_tour_duration']) . ' ' . esc_attr($_POST['ap_tour_cost']);
-    $new_post = array(
-        'comment_status' => 'closed',
-        'post_author'    => get_current_user_id(),
-        'post_content'   => $post_content,
-        'post_excerpt'   => $post_content,
-        'post_name'      => $post_content,
-        'post_title'     => $post_content,
-        'post_status'    => 'publish',
-        'post_type'      => 'ap_tour',
-    );
-    $new_post_id = wp_insert_post( $new_post );
-    update_post_meta( $new_post_id, 'ap_burning_tour', esc_attr($_POST['ap_burning_tour']) );
-    update_post_meta( $new_post_id, 'ap_tour_country', esc_attr($_POST['ap_tour_country']) );
-    update_post_meta( $new_post_id, 'ap_tour_resort', esc_attr($_POST['ap_tour_resort']) );
-    update_post_meta( $new_post_id, 'ap_tour_hotel', esc_attr($_POST['ap_tour_hotel']) );
-    update_post_meta( $new_post_id, 'ap_tour_start_date', esc_attr($_POST['ap_tour_start_date']) );
-    update_post_meta( $new_post_id, 'ap_tour_duration', esc_attr($_POST['ap_tour_duration']) );
-    update_post_meta( $new_post_id, 'ap_tour_cost', esc_attr($_POST['ap_tour_cost']) );
-
-    if (is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] )) {
-        $attach_id = ap_attach_image( $_FILES['ap_tour_icon'] );
-        update_post_meta( $new_post_id, 'ap_tour_icon', $attach_id );
+function ap_create_tour_from_post( ) {
+    $tour = new AP_Tour();
+    $tour->is_burning = $_POST['ap_burning_tour'];
+    $tour->country = $_POST['ap_tour_country'];
+    $tour->resort = $_POST['ap_tour_resort'];
+    $tour->hotel = $_POST['ap_tour_hotel'];
+    $tour->start_date = $_POST['ap_tour_start_date'];
+    $tour->duration = $_POST['ap_tour_duration'];
+    $tour->cost = $_POST['ap_tour_cost'];
+    if ( is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] ) ) {
+        $tour->icon_attachment_id = ap_attach_image( $_FILES['ap_tour_icon'] );
     }
 
-    return $new_post_id;
+    $tour->offer_name = $_POST['ap_tour_offer_name'];
+    $tour->offer_description = $_POST['ap_tour_offer_description'];
+    if ( is_uploaded_file( $_FILES['ap_tour_offer_banner']['tmp_name'] ) ) {
+        $tour->offer_banner_attachment_id = ap_attach_image( $_FILES['ap_tour_offer_banner'] );
+    }
+
+    $tour->save();
+    return $tour->id;
+}
+
+class AP_Tour {
+    const burning_meta_name = 'ap_burning_tour';
+    const country_meta_name = 'ap_tour_country';
+    const resort_meta_name = 'ap_tour_resort';
+    const hotel_meta_name = 'ap_tour_hotel';
+    const start_date_meta_name = 'ap_tour_start_date';
+    const duration_meta_name = 'ap_tour_duration';
+    const cost_meta_name = 'ap_tour_cost';
+    const icon_meta_name = 'ap_tour_icon';
+    const offer_name_meta_name = 'ap_tour_offer_name';
+    const offer_description_meta_name = 'ap_tour_offer_description';
+    const offer_banner_meta_name = 'ap_tour_offer_banner';
+
+    public $id;
+
+    public $country;
+    public $resort;
+    public $hotel;
+    public $start_date;
+    public $duration;
+    public $cost;
+    public $icon_attachment_id;
+    public $is_burning;
+
+    public $offer_name;
+    public $offer_description;
+    public $offer_banner_attachment_id;
+
+    public function save() {
+        if ( !isset( $this->id ) ) {
+            $this->create_post();
+        }
+        $this->save_info();
+    }
+
+    private function create_post()
+    {
+        $tour_title = join('_', array(
+            $this->country,
+            $this->resort,
+            'выезд', $this->start_date,
+            'на', $this->duration, 'дня'
+        ));
+        $tour_info = $new_post = array(
+            'comment_status' => 'closed',
+            'post_author' => get_current_user_id(),
+            'post_content' => '',
+            'post_excerpt' => '',
+            'post_title' => $tour_title,
+            'post_name' => $tour_title,
+            'post_status' => 'publish',
+            'post_type' => 'ap_tour',
+        );
+        $this->id = wp_insert_post($tour_info);
+    }
+
+    private function save_info() {
+        $this->save_meta( self::burning_meta_name, $this->is_burning );
+        $this->save_meta( self::country_meta_name, $this->country );
+        $this->save_meta( self::resort_meta_name, $this->resort );
+        $this->save_meta( self::hotel_meta_name, $this->hotel );
+        $this->save_meta( self::start_date_meta_name, $this->start_date );
+        $this->save_meta( self::duration_meta_name, $this->duration );
+        $this->save_meta( self::cost_meta_name, $this->cost );
+        $this->save_meta( self::icon_meta_name, $this->icon_attachment_id );
+        $this->save_meta( self::offer_name_meta_name, $this->offer_name );
+        $this->save_meta( self::offer_description_meta_name, $this->offer_description );
+        $this->save_meta( self::offer_banner_meta_name, $this->offer_banner_attachment_id );
+    }
+
+    private function save_meta( $meta_name, $meta_value ) {
+        if ( empty($meta_value) ) {
+            delete_post_meta( $this-> id, $meta_name);
+        }
+        else {
+            update_post_meta( $this->id, $meta_name, esc_attr($meta_value) );
+        }
+    }
 }

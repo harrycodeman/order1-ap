@@ -289,8 +289,8 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 	    #addtour .sliderinfo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
 		#addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}
 	    #addtour .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
-	    #addtour #actionname-addtour-form { width: 300px; }
-	    #addtour #briefdescription-addtour-form { width: 300px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+	    #addtour #actionname-addtour-form { width: 500px; }
+	    #addtour #briefdescription-addtour-form { width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
 	    
 	    #addtour .submitbuttons { width: 680px; margin: 0 auto;}
 		#addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}

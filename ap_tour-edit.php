@@ -94,12 +94,12 @@
           <input name="ap_burning_tour" type="checkbox" value="is_burning">
           <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
         </div>
-        
+
       </div>
     </div>
-    
+
     <br><br>
-    
+
     <div class="photo">
       <div>
         <p>Фотография (200x200px):</p>
@@ -111,33 +111,22 @@
     <br><br>
     
     <div class="sliderinfo">
-    
+
       <p>Информация для слайдера (не обязательно к заполнению)</p>
       <div>
         <div>
           <p>Название акции:</p>
-          <input type="text" id="actionname-addtour-form"/>
+          <input name="ap_tour_offer_name" type="text" id="actionname-addtour-form"/>
         </div>
         <div>
           <p>Краткое описание:</p>
-          <textarea id="briefdescription-addtour-form" rows="5" cols="50"></textarea>
+          <textarea name="ap_tour_offer_description" id="briefdescription-addtour-form" rows="5" cols="50"></textarea>
         </div>
         <div>
           <p>Фотография для слайдера(960x374px):</p>
-          <input id="sliderphoto-addtour-file" type="file" name="">
+          <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file" type="file" name="">
         </div>
       </div>
-      <div>
-        <div>
-          <p>Осталось путевок:</p>
-          <select id="staycount-addtour-form" class="dropdown">
-              <option value="">1 путевок</option>
-              <option value="">2 путевок</option>
-              <option value="">3 путевок</option>
-          </select>
-        </div>
-      </div>
-
     </div>
 
     <br><br>

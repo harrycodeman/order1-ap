@@ -346,7 +346,7 @@ function imbalance2_tags() {
 endif;
 
 /*--- Helper functions ---*/
-function ap_get_blog_url() {
+function ap_print_blog_url() {
     if( get_option( 'show_on_front' ) == 'page' ){
         echo get_permalink( get_option( 'page_for_posts' ) );
     } else {
@@ -354,7 +354,7 @@ function ap_get_blog_url() {
     }
 }
 
-function ap_get_image_url( $image_sub_path ) {
+function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 

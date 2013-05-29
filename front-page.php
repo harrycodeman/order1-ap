@@ -39,16 +39,16 @@ Template Name: Front-page
 
                         <p class="shortannouncement-title">12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
 
-                        <p class="hotel-title"><img src="<?php ap_get_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
+                        <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
                             Resot</p>
 
-                        <p class="nightcount-title"><img src="<?php ap_get_image_url('plane-dark.png'); ?>" alt="">13.02.2013
+                        <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">13.02.2013
                             - 7 ночей</p>
 
                         <p class="remainingtour-title">Осталось 4</p>
                         <button type="button">КУПИТЬ ТУР</button>
                     </div>
-                    <img src="<?php ap_get_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
+                    <img src="<?php ap_print_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
                 </div>
                 <div class="item">
                     <div class="banner-info">
@@ -56,16 +56,16 @@ Template Name: Front-page
 
                         <p class="shortannouncement-title">19 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
 
-                        <p class="hotel-title"><img src="<?php ap_get_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
+                        <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
                             Resot</p>
 
-                        <p class="nightcount-title"><img src="<?php ap_get_image_url('plane-dark.png'); ?>" alt="">13.02.2013
+                        <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">13.02.2013
                             - 7 ночей</p>
 
                         <p class="remainingtour-title">Осталось 4</p>
                         <button type="button">КУПИТЬ ТУР</button>
                     </div>
-                    <img src="<?php ap_get_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
+                    <img src="<?php ap_print_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
                 </div>
             </div>
             <!-- Carousel nav -->
@@ -202,12 +202,12 @@ Template Name: Front-page
 
                 <div class="title">
                     <h1>Статьи о путешествиях</h1>
-                    <a href="<?php ap_get_blog_url(); ?>">Другие статьи</a>
+                    <a href="<?php ap_print_blog_url(); ?>">Другие статьи</a>
                 </div>
 
                 <div id="articlethumbnail">
                     <div class="image">
-                        <img src="<?php ap_get_image_url('paris-by-night.jpg'); ?>" alt="">
+                        <img src="<?php ap_print_image_url('paris-by-night.jpg'); ?>" alt="">
                     </div>
                     <div id="left-arrow">
                         <a href="/"></a>
@@ -235,7 +235,7 @@ Template Name: Front-page
                         </div>
 
                         <div class="links">
-                            <a class="left" href="/"><img src="<?php ap_get_image_url('plane.png'); ?>">Путевки
+                            <a class="left" href="/"><img src="<?php ap_print_image_url('plane.png'); ?>">Путевки
                                 в Париж</a>
                             <br>
                             <a class="left" href="/">Похожие направления</a>
