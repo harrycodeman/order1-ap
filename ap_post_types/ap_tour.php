@@ -29,30 +29,6 @@ function ap_create_post_type_tour() {
 //    return $post_id;
 //}
 
-/*--- Create, Save and Delete methods ---*/
-function ap_create_tour_from_post( ) {
-    $tour = new AP_Tour();
-    $tour->is_burning = $_POST['ap_burning_tour'];
-    $tour->country = $_POST['ap_tour_country'];
-    $tour->resort = $_POST['ap_tour_resort'];
-    $tour->hotel = $_POST['ap_tour_hotel'];
-    $tour->start_date = $_POST['ap_tour_start_date'];
-    $tour->duration = $_POST['ap_tour_duration'];
-    $tour->cost = $_POST['ap_tour_cost'];
-    if ( is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] ) ) {
-        $tour->icon_attachment_id = ap_attach_image( $_FILES['ap_tour_icon'] );
-    }
-
-    $tour->offer_name = $_POST['ap_tour_offer_name'];
-    $tour->offer_description = $_POST['ap_tour_offer_description'];
-    if ( is_uploaded_file( $_FILES['ap_tour_offer_banner']['tmp_name'] ) ) {
-        $tour->offer_banner_attachment_id = ap_attach_image( $_FILES['ap_tour_offer_banner'] );
-    }
-
-    $tour->save();
-    return $tour->id;
-}
-
 class AP_Tour {
     const burning_meta_name = 'ap_burning_tour';
     const country_meta_name = 'ap_tour_country';
@@ -80,6 +56,25 @@ class AP_Tour {
     public $offer_name;
     public $offer_description;
     public $offer_banner_attachment_id;
+
+    public function load( $tour_id ) {
+        $this->id = $tour_id;
+        $this->is_burning = $this->load_meta( self::burning_meta_name );
+        $this->country = $this->load_meta( self::country_meta_name );
+        $this->resort = $this->load_meta( self::resort_meta_name );
+        $this->hotel = $this->load_meta( self::hotel_meta_name );
+        $this->start_date = $this->load_meta( self::start_date_meta_name );
+        $this->duration = $this->load_meta( self::duration_meta_name );
+        $this->cost = $this->load_meta( self::cost_meta_name );
+        $this->icon_attachment_id = $this->load_meta( self::icon_meta_name );
+        $this->offer_name = $this->load_meta( self::offer_name_meta_name );
+        $this->offer_description = $this->load_meta( self::offer_description_meta_name );
+        $this->offer_banner_attachment_id = $this->load_meta( self::offer_banner_meta_name );
+    }
+
+    private function load_meta( $meta_name ) {
+        return get_post_meta( $this->id, $meta_name, true );
+    }
 
     public function save() {
         if ( !isset( $this->id ) ) {
@@ -131,4 +126,14 @@ class AP_Tour {
             update_post_meta( $this->id, $meta_name, esc_attr($meta_value) );
         }
     }
+}
+
+/*-----View-----*/
+function ap_get_tour() {
+    $ap_tour = $GLOBALS['ap_tour_exemplar'];
+    if ( empty( $ap_tour ) ) {
+        $ap_tour = new AP_Tour( );
+        $ap_tour->load( get_the_ID() );
+    }
+    return $ap_tour;
 }

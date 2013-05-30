@@ -34,64 +34,64 @@ Template Name: Serchresult-page
 <!--END Скрипт обеспечивает отображение дополнительных параметров при загрузке страницы в div#toursearch-->
 
 
-      
-  <div class="toursearch-wrapper">
-    <div id="toursearch">
-      <div id="main-parameters">
-        <span class="from-title">Хочу поехать в:</span>
-        <span class="date-title">Дата вылета:</span>
-        <select id="from-form" class="dropdown">
-          <option value="">Патайя</option>
-          <option value="">Тайланд</option>
-        </select>
-        <select id="to-form" class="dropdown">
-          <option value="">Патайя</option>
-          <option value="">Тайланд</option>
-        </select>
-        <input type="text" id="datepicker"/>
-        <span style="top: 45px; left: 780px;">на</span>
-        <select id="days-form" class="dropdown">
-          <option value="">1 день</option>
-          <option value="">2 дня</option>
-          <option value="">3 дня</option>
-          <option value="">4 дня</option>
-          <option value="">5 дней</option>
-          <option value="">6 дней</option>
-          <option value="">7 дней</option>
-        </select>
-      </div>
-      <div id="additional-parameters">
-        <span class="cost-title">Стоимость тура:</span>
-        <span class="starcount-title">Количество звезд:</span>
-        <span class="peoplecount-title">Сколько вас:</span>
-        
-        <input type="text" id="startcost"/>
-        <span style="position: absolute; top: 40px; left: 125px;">&mdash;</span>
-        <input type="text" id="endcost"/>
-        <select id="starcount" class="dropdown">
-          <option value="">Неважно</option>
-        </select>
-        <select id="adultcount" class="dropdown">
-          <option value="">1 взрослый</option>
-          <option value="">2 взрослх</option>
-          <option value="">3 взрослх</option>
-          <option value="">4 взрослх</option>
-        </select>
-        <select id="childrencount" class="dropdown">
-          <option value="">Без детей</option>
-          <option value="">1 ребенок</option>
-          <option value="">2 ребенок</option>
-          <option value="">3 ребенок</option>
-          <option value="">4 ребенок</option>
-        </select>
-      </div>
-      <div class="buttons">
-        <button id="additionalparameters-submit">ПОДОБРАТЬ</button>
-      </div>
-    </div>
-  </div>
-    
-  <br><br>
+<!--      -->
+<!--  <div class="toursearch-wrapper">-->
+<!--    <div id="toursearch">-->
+<!--      <div id="main-parameters">-->
+<!--        <span class="from-title">Хочу поехать в:</span>-->
+<!--        <span class="date-title">Дата вылета:</span>-->
+<!--        <select id="from-form" class="dropdown">-->
+<!--          <option value="">Патайя</option>-->
+<!--          <option value="">Тайланд</option>-->
+<!--        </select>-->
+<!--        <select id="to-form" class="dropdown">-->
+<!--          <option value="">Патайя</option>-->
+<!--          <option value="">Тайланд</option>-->
+<!--        </select>-->
+<!--        <input type="text" id="datepicker"/>-->
+<!--        <span style="top: 45px; left: 780px;">на</span>-->
+<!--        <select id="days-form" class="dropdown">-->
+<!--          <option value="">1 день</option>-->
+<!--          <option value="">2 дня</option>-->
+<!--          <option value="">3 дня</option>-->
+<!--          <option value="">4 дня</option>-->
+<!--          <option value="">5 дней</option>-->
+<!--          <option value="">6 дней</option>-->
+<!--          <option value="">7 дней</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div id="additional-parameters">-->
+<!--        <span class="cost-title">Стоимость тура:</span>-->
+<!--        <span class="starcount-title">Количество звезд:</span>-->
+<!--        <span class="peoplecount-title">Сколько вас:</span>-->
+<!--        -->
+<!--        <input type="text" id="startcost"/>-->
+<!--        <span style="position: absolute; top: 40px; left: 125px;">&mdash;</span>-->
+<!--        <input type="text" id="endcost"/>-->
+<!--        <select id="starcount" class="dropdown">-->
+<!--          <option value="">Неважно</option>-->
+<!--        </select>-->
+<!--        <select id="adultcount" class="dropdown">-->
+<!--          <option value="">1 взрослый</option>-->
+<!--          <option value="">2 взрослх</option>-->
+<!--          <option value="">3 взрослх</option>-->
+<!--          <option value="">4 взрослх</option>-->
+<!--        </select>-->
+<!--        <select id="childrencount" class="dropdown">-->
+<!--          <option value="">Без детей</option>-->
+<!--          <option value="">1 ребенок</option>-->
+<!--          <option value="">2 ребенок</option>-->
+<!--          <option value="">3 ребенок</option>-->
+<!--          <option value="">4 ребенок</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="buttons">-->
+<!--        <button id="additionalparameters-submit">ПОДОБРАТЬ</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--    -->
+<!--  <br><br>-->
     
   <div class="tourlist-wrapper">
     <div id="tourlist">
@@ -110,11 +110,11 @@ Template Name: Serchresult-page
             <p><strong>Hot Palmas Hotel Resort</strong></p>
           </div>
           <div class="hotelrating">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
+            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
           </div>
           <div class="cost">
             <h2>34 000 руб</h2>
@@ -126,29 +126,29 @@ Template Name: Serchresult-page
           </div>
         </div>
         
-        <div class="item">
-          <div class="image">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/3.jpg">
-          </div>
-          <div class="info">
-            <h2>Тайланд, Патайя</h2>
-            <p>Вылет 13.02.13 на 6 ночей (до 19.02.13)</p>
-            <p><strong>Hot Palmas Hotel Resort</strong></p>
-          </div>
-          <div class="hotelrating">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">
-          </div>
-          <div class="cost">
-            <h2>34 000 руб</h2>
-            <p>Цена за 1 путевку</p>
-            <div class="editdelete-links">
-              <a class="blue" href="" alt="">Редактировать</a>
-              <a class="blue" href="" alt="">Удалить</a></p>
-            </div>
-          </div>
-        </div>
+<!--        <div class="item">-->
+<!--          <div class="image">-->
+<!--            <img class="image-circle" src="--><?php //bloginfo('template_url'); ?><!--/images/3.jpg">-->
+<!--          </div>-->
+<!--          <div class="info">-->
+<!--            <h2>Тайланд, Патайя</h2>-->
+<!--            <p>Вылет 13.02.13 на 6 ночей (до 19.02.13)</p>-->
+<!--            <p><strong>Hot Palmas Hotel Resort</strong></p>-->
+<!--          </div>-->
+<!--          <div class="hotelrating">-->
+<!--            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">-->
+<!--            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">-->
+<!--            <img src="./wp-content/themes/imbalance2/images/star.png" alt="">-->
+<!--          </div>-->
+<!--          <div class="cost">-->
+<!--            <h2>34 000 руб</h2>-->
+<!--            <p>Цена за 1 путевку</p>-->
+<!--            <div class="editdelete-links">-->
+<!--              <a class="blue" href="" alt="">Редактировать</a>-->
+<!--              <a class="blue" href="" alt="">Удалить</a></p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
         
       </div>
     </div>

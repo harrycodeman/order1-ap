@@ -459,18 +459,33 @@ require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
 
 /*--- Custom query parameters (for post and tour editing) ---*/
 add_filter('query_vars', 'ap_add_query_vars' );
-function ap_add_query_vars( $query_vars )
-{
-    $query_vars[] = 'mode';
+function ap_add_query_vars( $query_vars ) {
+    $query_vars[] = 'tour_id';
     return $query_vars;
 }
 
-function ap_get_url_parameter( $parameter_name )
-{
+function ap_get_url_parameter( $parameter_name ) {
     global $wp_query;
     if (isset($wp_query->query_vars[$parameter_name]))
     {
         return $wp_query->query_vars[$parameter_name];
     }
     return NULL;
+}
+
+function ap_redirect_to( $link ) {
+    header("Location: " . $link );
+    exit( );
+}
+
+function ap_print_create_tour_page_permalink() {
+    echo get_permalink( 13 );
+}
+
+function ap_print_edit_tour_page_permalink( $tour_id ) {
+    echo get_permalink( $tour_id );
+}
+
+function ap_is_view_mode( ) {
+    return empty( $_POST );
 }

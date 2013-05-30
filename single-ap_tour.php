@@ -1,166 +1,259 @@
-<?php get_header(); ?>
-
-<div id="content">
-<?php if ( ap_is_edit_mode() ):
-    if ( is_user_logged_in() ):
-        get_template_part( 'ap_tour', 'edit' );
-    else:
-        get_template_part( 'error', 'low_rights' );
-    endif;
+<?php if ( !is_user_logged_in( ) ):
+    ap_show_error( 'low_rights' );
 else:
-    if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+    if ( ap_is_view_mode( ) ):
+        get_header( );
+        ap_add_js_calendar_to_element( '#addtour-datepicker' ); ?>
 
-        <div class="post_title">
-            <h1 class="entry-title"><?php the_title(); ?></h1>
+        <div id="content">
+            <div class="addtour-wrapper">
+                <div id="addtour">
+                    <center><h1>Редактирование тура под номером <?php the_ID(); ?></h1></center>
 
-            <div id="nav-above" class="navigation">
-                <div class="nav-previous">
-                    <?php if (get_previous_post(false) != null): ?>
-                        <?php previous_post_link( '%link', '« Previous' ); ?>
-                    <?php else: ?>
-                        « Previous
-                    <?php endif ?>
-                </div>
-                <span class="main_separator">/</span>
-                <div class="nav-next">
-                    <?php if (get_next_post(false) != null): ?>
-                        <?php next_post_link( '%link', 'Next »' ); ?>
-                    <?php else: ?>
-                        Next »
-                    <?php endif ?>
-                </div>
-            </div><!-- #nav-above -->
+                    <form name="create-tour-form" action="<?php ap_print_edit_tour_page_permalink( get_the_ID() ); ?>"
+                          method="post" enctype="multipart/form-data">
+                        <div class="tour">
+                            <div>
+                                <div>
+                                    <p>Страна</p>
+                                    <select name="ap_tour_country" id="country-addtour-form" class="dropdown">
+                                        <option <?php if ( ap_get_tour()->country === 'Египет' ) echo 'selected'; ?>>
+                                            Египет
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Россия' ) echo 'selected'; ?>>
+                                            Россия
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'США' ) echo 'selected'; ?>>
+                                            США
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Англия' ) echo 'selected'; ?>>
+                                            Англия
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Турция' ) echo 'selected'; ?>>
+                                            Турция
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Германия' ) echo 'selected'; ?>>
+                                            Германия
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Болгария' ) echo 'selected'; ?>>
+                                            Болгария
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->country === 'Аргентина' ) echo 'selected'; ?>>
+                                            Аргентина
+                                        </option>
+                                    </select>
+                                </div>
 
-            <div class="entry-meta">
-                <?php imbalance2_posted_by() ?>
-                <span class="main_separator">/</span>
-                <?php imbalance2_posted_on() ?>
-                <span class="main_separator">/</span>
-                <?php imbalance2_posted_in() ?>
-                <span class="main_separator">/</span>
-                <?php if ( get_comments_number() != 0 ) : ?>
-                    <a href="#comments"><?php printf( _n( 'One Comment', '%1$s Comments', get_comments_number(), 'imbalance2' ),
-                            number_format_i18n( get_comments_number() )
-                        ); ?></a>
-                <?php else: ?>
-                    <a href="#comments">No Comments</a>
-                <?php endif ?>
-            </div><!-- .entry-meta -->
-        </div>
+                                <div>
+                                    <p>Название отеля:</p>
+                                    <select name="ap_tour_hotel" id="hotelname-addtour-form" class="dropdown">
+                                        <option <?php if ( ap_get_tour()->hotel === 'Хилтон (5 звезд)' ) echo 'selected'; ?>>
+                                            Хилтон (5 звезд)
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Новая Гвинея (3 звезды)' ) echo 'selected'; ?>>
+                                            Новая Гвинея (3 звезды)
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Полтава (4 звезды)' ) echo 'selected'; ?>>
+                                            Полтава (4 звезды)
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Академия отдыха (5 звезд)' ) echo 'selected'; ?>>
+                                            Академия отдыха (5 звезд)
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Campus (2 звезды)' ) echo 'selected'; ?>>
+                                            Campus (2 звезды)
+                                        </option>
+                                    </select>
+                                </div>
 
-        <div id="wides"></div>
+                                <div>
+                                    <p>Стоимость тура:</p>
+                                    <input name="ap_tour_cost" type="text" id="cost-addtour-form"
+                                           value="<?php echo ap_get_tour()->cost; ?>" />
+                                </div>
+                                <div>
+                                    <span style="font-size: 18px; font-weight: bolder;">руб</span>
+                                </div>
 
-        <table id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <tr>
-                <td class="entry-aside">
+                            </div>
 
-                </td>
-                <td class="entry-content-right">
-                    <?php $icon_attachment_id = get_post_meta( $post->ID, 'ap_tour_icon', true );
-                    if (!empty( $icon_attachment_id )): ?>
-                        <img src="<?php echo wp_get_attachment_url( $icon_attachment_id ); ?>">
-                    <?php endif; ?>
-                    <?php the_content(); ?>
-                    <?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'imbalance2' ), 'after' => '</div>' ) ); ?>
+                            <div>
 
-                    <?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
-                        <div id="entry-author-info">
-                            <div id="author-avatar">
-                                <?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'imbalance2_author_bio_avatar_size', 60 ) ); ?>
-                            </div><!-- #author-avatar -->
-                            <div id="author-description">
-                                <h2><?php printf( esc_attr__( 'About %s', 'imbalance2' ), get_the_author() ); ?></h2>
-                                <?php the_author_meta( 'description' ); ?>
-                                <div id="author-link">
-                                    <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
-                                        <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'imbalance2' ), get_the_author() ); ?>
-                                    </a>
-                                </div><!-- #author-link	-->
-                            </div><!-- #author-description -->
-                        </div><!-- #entry-author-info -->
-                    <?php endif; ?>
-                    <div class="clear"></div>
+                                <div>
+                                    <p>Курорт/Город:</p>
+                                    <select name="ap_tour_resort" id="resortcity-addtour-form" class="dropdown">
+                                        <option <?php if ( ap_get_tour()->hotel === 'Хургада' ) echo 'selected'; ?>>
+                                            Хургада
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Томск' ) echo 'selected'; ?>>
+                                            Томск
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Шерегеш' ) echo 'selected'; ?>>
+                                            Шерегеш
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Мехико' ) echo 'selected'; ?>>
+                                            Мехико
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Прага' ) echo 'selected'; ?>>
+                                            Прага
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Лос-Анжелес' ) echo 'selected'; ?>>
+                                            Лос-Анжелес
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Бостон' ) echo 'selected'; ?>>
+                                            Бостон
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Париж' ) echo 'selected'; ?>>
+                                            Париж
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Выборг' ) echo 'selected'; ?>>
+                                            Выборг
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Калуга' ) echo 'selected'; ?>>
+                                            Калуга
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Пхукет' ) echo 'selected'; ?>>
+                                            Пхукет
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->hotel === 'Сочи' ) echo 'selected'; ?>>
+                                            Сочи
+                                        </option>
+                                    </select>
+                                </div>
 
-                    <div class="entry-utility">
-                        <?php imbalance2_tags() ?>
-                        <?php edit_post_link( __( 'Edit', 'imbalance2' ), '<span class="edit-link">', '</span>' ); ?>
-                    </div><!-- .entry-utility -->
 
-                    <div id="social">
-                        <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
-                        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                                <div>
+                                    <p>Дата заезда:</p>
+                                    <input name="ap_tour_start_date" type="text" id="addtour-datepicker"
+                                           style="position: static;" value="<?php echo ap_get_tour()->start_date; ?>" />
+                                </div>
 
-                        <div id="fb-root"></div>
-                        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-                        <fb:like href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" send="true" width="450" show_faces="false" font=""></fb:like>
-                    </div>
-                </td>
-            </tr>
-        </table><!-- #post-## -->
+                                <div>
+                                    <p>Количество ночей:</p>
+                                    <select name="ap_tour_duration" id="nightcount-addtour-form" class="dropdown">
+                                        <option <?php if ( ap_get_tour()->duration === '1' ) echo 'selected'; ?>>
+                                            1
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '2' ) echo 'selected'; ?>>
+                                            2
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '3' ) echo 'selected'; ?>>
+                                            3
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '4' ) echo 'selected'; ?>>
+                                            4
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '5' ) echo 'selected'; ?>>
+                                            5
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '6' ) echo 'selected'; ?>>
+                                            6
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '7' ) echo 'selected'; ?>>
+                                            7
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '8' ) echo 'selected'; ?>>
+                                            8
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '9' ) echo 'selected'; ?>>
+                                            9
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '10' ) echo 'selected'; ?>>
+                                            10
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '11' ) echo 'selected'; ?>>
+                                            11
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '12' ) echo 'selected'; ?>>
+                                            12
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '13' ) echo 'selected'; ?>>
+                                            13
+                                        </option>
+                                        <option <?php if ( ap_get_tour()->duration === '14' ) echo 'selected'; ?>>
+                                            14
+                                        </option>
+                                    </select>
+                                </div>
 
-        <?php comments_template( '', true ); ?>
+                                <div>
+                                    <br><br><br>
+                                    <input name="ap_burning_tour" type="checkbox" value="is_burning"
+                                        <?php if ( ap_get_tour()->is_burning ) echo 'checked'; ?>>
+                                    <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
+                                </div>
 
-    <?php endwhile; ?>
+                            </div>
+                        </div>
 
-        <?php $imbalance2_theme_options = get_option('imbalance2_theme_options');
-        if ( $imbalance2_theme_options['related'] != 0 ) :
-            ?>
+                        <br><br>
 
-            <div class="recent clear">
-                <?php
-                $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-                query_posts(
-                    array(
-                        'works' => $term->slug,
-                        'posts_per_page' => 10,
-                        'post__not_in' => array($post->ID)
-                    )
-                );
-                ?>
+                        <div class="photo">
+                            <div>
+                                <p>Фотография (200x200px):</p>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                                <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*">
+                            </div>
+                        </div>
 
-                <div id="related">
+                        <br><br>
 
-                    <?php while ( have_posts() ) : the_post(); ?>
+                        <div class="sliderinfo">
 
-                        <div class="box">
-                            <div class="rel">
-                                <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-                                <?php if ($imbalance2_theme_options['images_only'] == 0): ?>
-                                    <div class="categories"><?php imbalance2_posted_in(); ?></div>
-                                    <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-                                    <?php the_excerpt() ?>
-                                    <div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
-                                        <?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
-                                    </div>
-                                <?php endif ?>
-                                <div class="texts">
-                                    <?php if ($imbalance2_theme_options['images_only'] == 1): ?>
-                                        <a class="transparent" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-                                    <?php endif ?>
-                                    <div class="abs">
-                                        <?php if ($imbalance2_theme_options['images_only'] == 0): ?>
-                                            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-                                        <?php endif ?>
-                                        <div class="categories"><?php imbalance2_posted_in(); ?></div>
-                                        <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-                                        <?php the_excerpt() ?>
-                                        <div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
-                                            <?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
-                                        </div>
-                                    </div>
+                            <p>Информация для слайдера (не обязательно к заполнению)</p>
+                            <div>
+                                <div>
+                                    <p>Название акции:</p>
+                                    <input name="ap_tour_offer_name" type="text" id="actionname-addtour-form"
+                                        value="<?php echo ap_get_tour()->offer_name; ?>">
+                                </div>
+                                <div>
+                                    <p>Краткое описание:</p>
+                                    <textarea name="ap_tour_offer_description" id="briefdescription-addtour-form"
+                                              rows="5" cols="50"><?php echo ap_get_tour()->offer_description; ?></textarea>
+                                </div>
+                                <div>
+                                    <p>Фотография для слайдера(960x374px):</p>
+                                    <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file" type="file" name="">
                                 </div>
                             </div>
                         </div>
 
-                    <?php endwhile ?>
+                        <br><br>
 
-                </div>
+                        <div class="submitbuttons">
+                            <div>
+                                <button id="cancel-addtour-button" type="reset">ОТМЕНИТЬ</button>
+                                <button name="create-tour-submit-button" id="create-addtour-button" type="submit">СОХРАНИТЬ</button>
+                            </div>
+                        </div>
 
-                <?php wp_reset_query(); ?>
-            </div>
+                        <br><br>
+                    </form><!--create-tour-form-->
+                </div><!--addtour-->
+            </div><!--addtour-wrapper-->
+        </div><!-- #content -->
+        <?php get_footer( );
+    else:
+        $tour = new AP_Tour();
+        $tour->id = the_ID();
+        $tour->is_burning = $_POST['ap_burning_tour'];
+        $tour->country = $_POST['ap_tour_country'];
+        $tour->resort = $_POST['ap_tour_resort'];
+        $tour->hotel = $_POST['ap_tour_hotel'];
+        $tour->start_date = $_POST['ap_tour_start_date'];
+        $tour->duration = $_POST['ap_tour_duration'];
+        $tour->cost = $_POST['ap_tour_cost'];
+        if ( is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] ) ) {
+            $tour->icon_attachment_id = ap_attach_image( $_FILES['ap_tour_icon'] );
+        }
 
-    <?php endif;
-endif; ?>
-</div><!-- #content -->
+        $tour->offer_name = $_POST['ap_tour_offer_name'];
+        $tour->offer_description = $_POST['ap_tour_offer_description'];
+        if ( is_uploaded_file( $_FILES['ap_tour_offer_banner']['tmp_name'] ) ) {
+            $tour->offer_banner_attachment_id = ap_attach_image( $_FILES['ap_tour_offer_banner'] );
+        }
 
-<?php get_footer(); ?>
+        $tour->save();
+        ap_redirect_to( get_permalink( $tour->id ) );
+    endif;
+endif;
