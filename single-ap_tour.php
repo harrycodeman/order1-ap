@@ -81,40 +81,40 @@ else:
                                 <div>
                                     <p>Курорт/Город:</p>
                                     <select name="ap_tour_resort" id="resortcity-addtour-form" class="dropdown">
-                                        <option <?php if ( ap_get_tour()->hotel === 'Хургада' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Хургада' ) echo 'selected'; ?>>
                                             Хургада
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Томск' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Томск' ) echo 'selected'; ?>>
                                             Томск
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Шерегеш' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Шерегеш' ) echo 'selected'; ?>>
                                             Шерегеш
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Мехико' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Мехико' ) echo 'selected'; ?>>
                                             Мехико
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Прага' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Прага' ) echo 'selected'; ?>>
                                             Прага
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Лос-Анжелес' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Лос-Анжелес' ) echo 'selected'; ?>>
                                             Лос-Анжелес
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Бостон' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Бостон' ) echo 'selected'; ?>>
                                             Бостон
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Париж' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Париж' ) echo 'selected'; ?>>
                                             Париж
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Выборг' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Выборг' ) echo 'selected'; ?>>
                                             Выборг
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Калуга' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Калуга' ) echo 'selected'; ?>>
                                             Калуга
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Пхукет' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Пхукет' ) echo 'selected'; ?>>
                                             Пхукет
                                         </option>
-                                        <option <?php if ( ap_get_tour()->hotel === 'Сочи' ) echo 'selected'; ?>>
+                                        <option <?php if ( ap_get_tour()->resort === 'Сочи' ) echo 'selected'; ?>>
                                             Сочи
                                         </option>
                                     </select>
@@ -235,7 +235,7 @@ else:
         <?php get_footer( );
     else:
         $tour = new AP_Tour();
-        $tour->id = the_ID();
+        $tour->id = get_the_ID();
         $tour->is_burning = $_POST['ap_burning_tour'];
         $tour->country = $_POST['ap_tour_country'];
         $tour->resort = $_POST['ap_tour_resort'];

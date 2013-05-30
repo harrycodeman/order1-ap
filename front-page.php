@@ -33,40 +33,43 @@ Template Name: Front-page
         <div id="myCarousel" class="carousel slide">
             <!-- Carousel items -->
             <div class="carousel-inner">
-                <div class="active item">
-                    <div class="banner-info">
-                        <h2>День влюбленных в Турции</h2>
 
-                        <p class="shortannouncement-title">12 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
+                <?php
+                $tours_with_offer = get_posts(
+                    array(
+                        'post_type' => 'ap_tour',
+                        'meta_query' => array(
+                            array('key' => AP_Tour::offer_name_meta_name),
+                            array('key' => AP_Tour::offer_description_meta_name),
+                            array('key' => AP_Tour::offer_banner_meta_name)
+                        )
+                    )
+                );
 
-                        <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
-                            Resot</p>
+                $is_first = true;
+                foreach ($tours_with_offer as $tour_with_offer) {
+                    ap_load_tour( $tour_with_offer->ID ) ?>
 
-                        <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">13.02.2013
-                            - 7 ночей</p>
+                    <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
+                        <div class="banner-info">
+                            <h2><?php echo ap_get_tour()->offer_name; ?></h2>
 
-                        <p class="remainingtour-title">Осталось 4</p>
-                        <button type="button">КУПИТЬ ТУР</button>
+                            <p class="shortannouncement-title"><?php echo ap_get_tour()->offer_description; ?></p>
+
+                            <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                                <?php echo ap_get_tour()->hotel; ?>
+                            </p>
+
+                            <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">
+                                <?php echo ap_get_tour()->start_date . ' - ' . ap_get_tour()->duration . ' ночи(ей)'; ?>
+                            </p>
+
+                            <button type="button">КУПИТЬ ТУР</button>
+                        </div>
+                        <img src="<?php echo ap_get_tour_banner_url(); ?>" width="960px" height="374px" alt="">
                     </div>
-                    <img src="<?php ap_print_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
-                </div>
-                <div class="item">
-                    <div class="banner-info">
-                        <h2>День влюбленных в Турции</h2>
 
-                        <p class="shortannouncement-title">19 000 руб. за 7 дней вдвоем в сказочном Стамбуле</p>
-
-                        <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">Hot Palmas Hotel
-                            Resot</p>
-
-                        <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">13.02.2013
-                            - 7 ночей</p>
-
-                        <p class="remainingtour-title">Осталось 4</p>
-                        <button type="button">КУПИТЬ ТУР</button>
-                    </div>
-                    <img src="<?php ap_print_image_url('banner.png'); ?>" width="960px" height="374px" alt="">
-                </div>
+                <?php } ?>
             </div>
             <!-- Carousel nav -->
             <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
@@ -157,37 +160,30 @@ Template Name: Front-page
 
         <h1 class="red">Интересные предложения</h1>
 
-        <a href="/">
-            <div class="interestingoffer">
-                <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/1.jpg" alt="">
-                <span class="offername">Турция - Алания</span>
-                <span class="offerprice">32 000</span>
-            </div>
-        </a>
+        <?php
+        $nearest_tours = get_posts(
+            array(
+                'posts_per_page' => 4,
+                'post_type' => 'ap_tour',
+                'meta_key' => AP_Tour::start_date_meta_name,
+                'orderby' => 'meta_value',
+                'order' => 'ASC'
+            )
+        );
+
+        $is_first = true;
+        foreach ($nearest_tours as $tour) {
+            ap_load_tour( $tour->ID ) ?>
 
         <a href="/">
             <div class="interestingoffer">
-                <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/2.jpg" alt="">
-                <span class="offername">Тайланд - Патайя</span>
-                <span class="offerprice">23 000</span>
+                <img class="image-circle" src="<?php echo ap_get_tour_icon_url(); ?>" alt="">
+                <span class="offername"><?php echo ap_get_tour()->country . ' - ' . ap_get_tour()->resort; ?></span>
+                <span class="offerprice"><?php echo ap_get_tour()->cost; ?></span>
             </div>
         </a>
 
-        <a href="/">
-            <div class="interestingoffer">
-                <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/3.jpg" alt="">
-                <span class="offername">Испания - Майорка</span>
-                <span class="offerprice">32 000</span>
-            </div>
-        </a>
-
-        <a href="/">
-            <div class="interestingoffer">
-                <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/4.jpg" alt="">
-                <span class="offername">Тайланд - Патайя</span>
-                <span class="offerprice">32 000</span>
-            </div>
-        </a>
+        <?php } ?>
 
     </div>
 

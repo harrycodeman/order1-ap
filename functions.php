@@ -448,13 +448,6 @@ function ap_show_error( $error_type ) {
 }
 
 /*--- Custom post types registrations ---*/
-add_action( 'pre_get_posts', 'ap_show_tours_on_main_page' );
-function ap_show_tours_on_main_page( $query ) {
-    if ( $query->is_main_query() && $query->is_home() ) {
-        $query->set( 'post_type', array( 'post', 'ap_tour' ) );
-    }
-}
-
 require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
 
 /*--- Custom query parameters (for post and tour editing) ---*/

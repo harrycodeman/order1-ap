@@ -77,14 +77,16 @@ class AP_Tour {
     }
 
     public function save() {
-        if ( !isset( $this->id ) ) {
+        if ( empty( $this->id ) ) {
             $this->create_post();
+        }
+        else {
+            $this->update_post();
         }
         $this->save_info();
     }
 
-    private function create_post()
-    {
+    private function create_post() {
         $tour_title = join('_', array(
             $this->country,
             $this->resort,
@@ -102,6 +104,26 @@ class AP_Tour {
             'post_type' => 'ap_tour',
         );
         $this->id = wp_insert_post($tour_info);
+    }
+
+    private function update_post() {
+        $tour_title = join('_', array(
+            $this->country,
+            $this->resort,
+            'выезд', $this->start_date,
+            'на', $this->duration, 'дня'
+        ));
+        $tour_info = $new_post = array(
+            'comment_status' => 'closed',
+            'post_author' => get_current_user_id(),
+            'post_content' => '',
+            'post_excerpt' => '',
+            'post_title' => $tour_title,
+            'post_name' => $tour_title,
+            'post_status' => 'publish',
+            'post_type' => 'ap_tour',
+        );
+        $this->id = wp_update_post($tour_info);
     }
 
     private function save_info() {
@@ -129,11 +151,31 @@ class AP_Tour {
 }
 
 /*-----View-----*/
+function ap_load_tour( $tour_id ) {
+    $GLOBALS['ap_tour_exemplar_id'] = $tour_id;
+}
+
 function ap_get_tour() {
-    $ap_tour = $GLOBALS['ap_tour_exemplar'];
-    if ( empty( $ap_tour ) ) {
-        $ap_tour = new AP_Tour( );
-        $ap_tour->load( get_the_ID() );
+    $tour = $GLOBALS['ap_tour_exemplar'];
+    if ( empty( $tour ) ) {
+        $tour = new AP_Tour( );
+        $tour->load( ap_get_tour_id() );
     }
-    return $ap_tour;
+    return $tour;
+}
+
+function ap_get_tour_id() {
+    $tour_id = $GLOBALS['ap_tour_exemplar_id'];
+    if ( empty( $tour_id ) ) {
+        $tour_id = get_the_ID();
+    }
+    return $tour_id;
+}
+
+function ap_get_tour_icon_url() {
+    return wp_get_attachment_url( ap_get_tour()->icon_attachment_id );
+}
+
+function ap_get_tour_banner_url() {
+    return wp_get_attachment_url( ap_get_tour()->offer_banner_attachment_id );
 }

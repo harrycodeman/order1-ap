@@ -3,14 +3,13 @@
 Template Name: Создание тура
 */
 ?>
-<?php ap_add_js_calendar_to_element( '#addtour-datepicker' ); ?>
-
 
 <?php if ( !is_user_logged_in( ) ):
     ap_show_error( 'low_rights' );
 else:
     if ( empty( $_POST ) ):
-        get_header( ); ?>
+        get_header( );
+        ap_add_js_calendar_to_element( '#addtour-datepicker' ); ?>
             <div id="content">
                 <div class="addtour-wrapper">
                     <div id="addtour">
