@@ -136,27 +136,27 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 .red { color: #bf283b; }
 .blue { color: #64abe3;}
 
-	/*----------FRONT PAGE----------*/
-		/*----------BANNER----------*/
-		.banner-wrapper { width: 100%; }
-		.banner-wrapper #banner { width: 960px; height: 360px; margin:0 auto; }
-		.banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
-		.banner-wrapper #banner .item > img { margin-left: 20px; width: 960px; }
-		#banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
-		#banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
-		#banner .banner-info .hotel-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
-		#banner .banner-info .hotel-title > img { margin-right: 7px; }
-		#banner .banner-info .nightcount-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
+    /*----------FRONT PAGE----------*/
+        /*----------BANNER----------*/
+        .banner-wrapper { width: 100%; }
+        .banner-wrapper #banner { width: 960px; height: 360px; margin:0 auto; }
+        .banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
+        .banner-wrapper #banner .item > img { margin-left: 20px; width: 960px; }
+        #banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
+        #banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
+        #banner .banner-info .hotel-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
+        #banner .banner-info .hotel-title > img { margin-right: 7px; }
+        #banner .banner-info .nightcount-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }
         #banner .banner-info .nightcount-title > img { margin-right: 7px; }
-		#banner .banner-info .remainingtour-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 20px ; }
-		#banner .banner-info button { position: absolute; left: 122px; width: 144px; height: 40px; bottom: 10px; background: #d22f44; color: #fff; font-weight: bolder; letter-spacing: 1px; border: solid 1px #da4356; box-shadow: 0 1px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
-		
-		#banner .carousel-control { height: 36px; top: 75%; left: auto; opacity: 1; border: none; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; z-index:2; }
-		#banner .carousel-control.left { right: 39px; width: 36px; background: url('images/main-banner-left.png') center; }
+        #banner .banner-info .remainingtour-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 20px ; }
+        #banner .banner-info button { position: absolute; left: 122px; width: 144px; height: 40px; bottom: 10px; background: #d22f44; color: #fff; font-weight: bolder; letter-spacing: 1px; border: solid 1px #da4356; box-shadow: 0 1px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
+
+        #banner .carousel-control { height: 36px; top: 75%; left: auto; opacity: 0.9; border: none; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; z-index:2; }
+        #banner .carousel-control.left { right: 39px; width: 36px; background: url('images/main-banner-left.png') center; }
         #banner .carousel-control.divider { right: 37px; width: 2px; background: url('images/main-banner-divider.png') center; }
-		#banner .carousel-control.right { right: 0px; width: 37px; background: url('images/main-banner-right.png') center; }
-		/*----------END BANNER----------*/
-		
+        #banner .carousel-control.right { right: 0px; width: 37px; background: url('images/main-banner-right.png') center; }
+        /*----------END BANNER----------*/
+
 		/*----------TOURSEARCH----------*/
 		.toursearch-wrapper { background: url('images/toursearch-wrapper-background.png') center repeat-x;; width: 100%; }
 		#toursearch { width: 960px; height: 270px; margin:0 auto; position: relative; }
@@ -271,20 +271,21 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 		#contentmanagement a { color: #64abe3; }
 	/*----------END CONTENTMANAGEMENT PAGE----------*/
 	
-	/*----------ADDTOUR PAGE----------*/
-		.addtour-wrapper { width: 100%; }
-		#addtour { width: 960px; margin:0 auto; }
-		#addtour .tour { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-		#addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
-		#addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
-		#addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-	    #addtour input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-	    #addtour #country-addtour-form, #resortcity-addtour-form, #hotelname-addtour-form { width: 300px; }
-	    #addtour-datepicker { width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-		#addtour #nightcount-addtour-form { width: 140px; }
-		
-		#addtour .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-		#addtour .photo>div { display: inline-block; position: relative; height: 85px; margin: 0 0 0 20px;}
+    /*----------ADDTOUR PAGE----------*/
+        .addtour-wrapper { width: 100%; }
+        #addtour { width: 960px; margin:0 auto; }
+        #addtour .tour { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
+        #addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+        #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
+        #addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+        #addtour input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour #country-addtour-form, #resortcity-addtour-form, #hotelname-addtour-form { width: 300px !important; }
+        #addtour-datepicker { width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour #nightcount-addtour-form { width: 140px; }
+
+        #addtour .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
+        #addtour .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top; }
+        #addtour .photo>div>div { margin: 17px 0 0 20px;}
 	    
 	    #addtour .sliderinfo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
 		#addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}

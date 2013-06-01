@@ -358,51 +358,6 @@ function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 
-function ap_dirty_comments_list_start_el( $comment, $args, $depth ) {
-    $depth++;
-    $GLOBALS['comment_depth'] = $depth;
-    $GLOBALS['comment'] = $comment;
-
-    extract($args, EXTR_SKIP);
-
-    if ( 'div' == $args['style'] ) {
-        $tag = 'div';
-        $add_below = 'comment';
-    } else {
-        $tag = 'li';
-        $add_below = 'div-comment';
-    }
-    ?>
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-    <?php if ( 'div' != $args['style'] ) : ?>
-        <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-    <?php endif; ?>
-    <div class="comment-author vcard">
-        <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-        <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-    </div>
-    <?php if ($comment->comment_approved == '0') : ?>
-        <em class="comment-awaiting-moderation"><?php _e('Ваш комментарий ожидает рецензии.') ?></em>
-        <br />
-    <?php endif; ?>
-
-    <div class="comment-meta commentmetadata">
-        <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-            <?php printf( __('%1$s в %2$s'), get_comment_date(),  get_comment_time()) ?>
-        </a>
-    </div>
-
-    <?php comment_text() ?>
-
-    <div class="reply">
-        <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-    </div>
-    <?php if ( 'div' != $args['style'] ) : ?>
-        </div>
-    <?php endif; ?>
-<?php
-}
-
 function ap_add_js_calendar_to_element( $element_id ) { ?>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery.js"></script>
@@ -419,51 +374,8 @@ function ap_add_js_calendar_to_element( $element_id ) { ?>
     </script>
 <?php }
 
-function ap_is_edit_mode() {
-    return ap_get_url_parameter( 'mode' ) == 'edit';
-}
-
-function ap_attach_image( $file_to_attach ) {
-    function_exists( 'wp_handle_upload' ) or require_once( ABSPATH . 'wp-admin/includes/file.php' );
-    $required_for_upload_options = array( 'test_form' => false );
-    $uploaded_file = wp_handle_upload( $file_to_attach, $required_for_upload_options );
-
-    $attachment = array(
-        'guid' => $uploaded_file['url'],
-        'post_mime_type' => $uploaded_file['type'],
-        'post_title' => '',
-        'post_content' => '',
-        'post_status' => 'inherit'
-    );
-    $attach_id = wp_insert_attachment( $attachment, $uploaded_file['file'] );
-
-    function_exists( 'wp_generate_attachment_metadata' ) or require_once( ABSPATH . 'wp-admin/includes/image.php' );
-    $attach_data = wp_generate_attachment_metadata( $attach_id, $uploaded_file['file'] );
-    wp_update_attachment_metadata( $attach_id, $attach_data );
-    return $attach_id;
-}
-
 function ap_show_error( $error_type ) {
     get_template_part( 'error', $error_type );
-}
-
-/*--- Custom post types registrations ---*/
-require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
-
-/*--- Custom query parameters (for post and tour editing) ---*/
-add_filter('query_vars', 'ap_add_query_vars' );
-function ap_add_query_vars( $query_vars ) {
-    $query_vars[] = 'tour_id';
-    return $query_vars;
-}
-
-function ap_get_url_parameter( $parameter_name ) {
-    global $wp_query;
-    if (isset($wp_query->query_vars[$parameter_name]))
-    {
-        return $wp_query->query_vars[$parameter_name];
-    }
-    return NULL;
 }
 
 function ap_redirect_to( $link ) {
@@ -475,6 +387,10 @@ function ap_print_create_tour_page_permalink() {
     echo get_permalink( 13 );
 }
 
+function ap_get_create_tour_page_permalink() {
+    return get_permalink( 13 );
+}
+
 function ap_print_edit_tour_page_permalink( $tour_id ) {
     echo get_permalink( $tour_id );
 }
@@ -482,3 +398,19 @@ function ap_print_edit_tour_page_permalink( $tour_id ) {
 function ap_is_view_mode( ) {
     return empty( $_POST );
 }
+
+/*--- Регистрация дополнительных типов ---*/
+require_once( get_stylesheet_directory() . '/ap_post_types/ap_image.php' );
+require_once( get_stylesheet_directory() . '/ap_post_types/ap_tour.php' );
+
+/*--- Дополнительные настройки ---*/
+function disable_all_image_sizes( $sizes ) {
+    unset( $sizes['thumbnail']);
+    unset( $sizes['medium']);
+    unset( $sizes['large']);
+    unset( $sizes['post-thumbnail']);
+    unset( $sizes['homepage-thumb']);
+
+    return $sizes;
+}
+add_filter('intermediate_image_sizes_advanced', 'disable_all_image_sizes');

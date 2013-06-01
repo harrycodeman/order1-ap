@@ -1,6 +1,6 @@
 <?php
 
-/*--- Content type registering ---*/
+/*--- Регистрация типа контента ---*/
 add_action( 'init', 'ap_create_post_type_tour' );
 function ap_create_post_type_tour() {
     register_post_type( 'ap_tour',
@@ -22,13 +22,7 @@ function ap_create_post_type_tour() {
     );
 }
 
-//wp_nonce_field( basename( __FILE__ ), 'ap_tour_info_meta_box_nonce' );
-
-//if (!isset( $_POST['ap_tour_info_meta_box_nonce'] )
-//    || !wp_verify_nonce( $_POST['ap_tour_info_meta_box_nonce'], basename( __FILE__ )) ) {
-//    return $post_id;
-//}
-
+/*--- Модель ---*/
 class AP_Tour {
     const burning_meta_name = 'ap_burning_tour';
     const country_meta_name = 'ap_tour_country';
@@ -50,12 +44,28 @@ class AP_Tour {
     public $start_date;
     public $duration;
     public $cost;
-    public $icon_attachment_id;
+    private $icon;
     public $is_burning;
 
     public $offer_name;
     public $offer_description;
-    public $offer_banner_attachment_id;
+    private $offer_banner;
+
+    public function set_icon( AP_Image $image = NULL ) {
+        $this->icon = $image;
+    }
+
+    public function get_icon( ) {
+        return AP_Image::cast( $this->icon );
+    }
+
+    public function set_offer_banner( AP_Image $image = NULL ) {
+        $this->offer_banner = $image;
+    }
+
+    public function get_offer_banner( ) {
+        return AP_Image::cast( $this->offer_banner );
+    }
 
     public function load( $tour_id ) {
         $this->id = $tour_id;
@@ -66,17 +76,25 @@ class AP_Tour {
         $this->start_date = $this->load_meta( self::start_date_meta_name );
         $this->duration = $this->load_meta( self::duration_meta_name );
         $this->cost = $this->load_meta( self::cost_meta_name );
-        $this->icon_attachment_id = $this->load_meta( self::icon_meta_name );
+        $this->icon = $this->load_image( self::icon_meta_name );
         $this->offer_name = $this->load_meta( self::offer_name_meta_name );
         $this->offer_description = $this->load_meta( self::offer_description_meta_name );
-        $this->offer_banner_attachment_id = $this->load_meta( self::offer_banner_meta_name );
+        $this->offer_banner = $this->load_image( self::offer_banner_meta_name );
+    }
+
+    private function load_image( $meta_name ) {
+        $image_id = $this->load_meta( $meta_name );
+        if ( !empty( $image_id ) ) {
+            return AP_Image::load_from_id( $image_id );
+        }
+        return NULL;
     }
 
     private function load_meta( $meta_name ) {
         return get_post_meta( $this->id, $meta_name, true );
     }
 
-    public function save() {
+    public function save( ) {
         if ( empty( $this->id ) ) {
             $this->create_post();
         }
@@ -86,7 +104,7 @@ class AP_Tour {
         $this->save_info();
     }
 
-    private function create_post() {
+    private function create_post( ) {
         $tour_title = join('_', array(
             $this->country,
             $this->resort,
@@ -106,7 +124,7 @@ class AP_Tour {
         $this->id = wp_insert_post($tour_info);
     }
 
-    private function update_post() {
+    private function update_post( ) {
         $tour_title = join('_', array(
             $this->country,
             $this->resort,
@@ -126,7 +144,7 @@ class AP_Tour {
         $this->id = wp_update_post($tour_info);
     }
 
-    private function save_info() {
+    private function save_info( ) {
         $this->save_meta( self::burning_meta_name, $this->is_burning );
         $this->save_meta( self::country_meta_name, $this->country );
         $this->save_meta( self::resort_meta_name, $this->resort );
@@ -134,14 +152,24 @@ class AP_Tour {
         $this->save_meta( self::start_date_meta_name, $this->start_date );
         $this->save_meta( self::duration_meta_name, $this->duration );
         $this->save_meta( self::cost_meta_name, $this->cost );
-        $this->save_meta( self::icon_meta_name, $this->icon_attachment_id );
+        $this->save_image( $this->icon, self::icon_meta_name, 200, 200 );
         $this->save_meta( self::offer_name_meta_name, $this->offer_name );
         $this->save_meta( self::offer_description_meta_name, $this->offer_description );
-        $this->save_meta( self::offer_banner_meta_name, $this->offer_banner_attachment_id );
+        $this->save_image( $this->offer_banner, self::offer_banner_meta_name, 940, 374 );
+    }
+
+    private function save_image( AP_Image $image = NULL, $meta_name, $width, $height ) {
+        if ( !empty( $image ) ) {
+            $image->save( $width, $height );
+            update_post_meta( $this->id, $meta_name, esc_attr($image->id) );
+        }
+        else {
+            delete_post_meta( $this-> id, $meta_name);
+        }
     }
 
     private function save_meta( $meta_name, $meta_value ) {
-        if ( empty($meta_value) ) {
+        if ( empty( $meta_value ) ) {
             delete_post_meta( $this-> id, $meta_name);
         }
         else {
@@ -150,32 +178,39 @@ class AP_Tour {
     }
 }
 
-/*-----View-----*/
-function ap_load_tour( $tour_id ) {
-    $GLOBALS['ap_tour_exemplar_id'] = $tour_id;
+/*--- Отображение ---*/
+function ap_load_tour_for_post( $post ) {
+    $GLOBALS['ap_tour_exemplar_id'] = $post->ID;
 }
 
-function ap_get_tour() {
-    $tour = $GLOBALS['ap_tour_exemplar'];
-    if ( empty( $tour ) ) {
-        $tour = new AP_Tour( );
-        $tour->load( ap_get_tour_id() );
+function ap_get_tour( ) {
+    if ( array_key_exists( 'ap_tour_exemplar', $GLOBALS ) ) {
+        return $GLOBALS['ap_tour_exemplar'];
     }
+    $tour = new AP_Tour( );
+    $tour->load( ap_get_tour_id() );
     return $tour;
 }
 
-function ap_get_tour_id() {
-    $tour_id = $GLOBALS['ap_tour_exemplar_id'];
-    if ( empty( $tour_id ) ) {
-        $tour_id = get_the_ID();
+function ap_get_tour_id( ) {
+    if ( array_key_exists( 'ap_tour_exemplar_id', $GLOBALS ) ) {
+        return $GLOBALS['ap_tour_exemplar_id'];
     }
-    return $tour_id;
+    return get_the_ID();
 }
 
-function ap_get_tour_icon_url() {
-    return wp_get_attachment_url( ap_get_tour()->icon_attachment_id );
+function ap_get_tour_icon_url( ) {
+    $icon = ap_get_tour( )->get_icon( );
+    if ( !empty( $icon ) ) {
+        return $icon->get_url( );
+    }
+    return NULL;
 }
 
-function ap_get_tour_banner_url() {
-    return wp_get_attachment_url( ap_get_tour()->offer_banner_attachment_id );
+function ap_get_tour_banner_url( ) {
+    $offer_banner = ap_get_tour()->get_offer_banner( );
+    if ( !empty( $offer_banner ) ) {
+        return $offer_banner->get_url( );
+    }
+    return NULL;
 }

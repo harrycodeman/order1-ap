@@ -21,32 +21,17 @@ else:
                                 <div>
                                     <div>
                                         <p>Страна</p>
-                                        <select name="ap_tour_country" id="country-addtour-form" class="dropdown">
-                                            <option>Египет</option>
-                                            <option>Россия</option>
-                                            <option>США</option>
-                                            <option>Англия</option>
-                                            <option>Турция</option>
-                                            <option>Германия</option>
-                                            <option>Болгария</option>
-                                            <option>Аргентина</option>
-                                        </select>
+                                        <input name="ap_tour_country" type="text" id="country-addtour-form" required>
                                     </div>
 
                                     <div>
                                         <p>Название отеля:</p>
-                                        <select name="ap_tour_hotel" id="hotelname-addtour-form" class="dropdown">
-                                            <option>Хилтон (5 звезд)</option>
-                                            <option>Новая Гвинея (3 звезды)</option>
-                                            <option>Полтава (4 звезды)</option>
-                                            <option>Академия отдыха (5 звезд)</option>
-                                            <option>Campus (2 звезды)</option>
-                                        </select>
+                                        <input name="ap_tour_hotel" type="text" id="hotelname-addtour-form" required>
                                     </div>
 
                                     <div>
                                         <p>Стоимость тура:</p>
-                                        <input name="ap_tour_cost" type="text" id="cost-addtour-form" />
+                                        <input name="ap_tour_cost" type="text" id="cost-addtour-form" required>
                                     </div>
                                     <div>
                                         <span style="font-size: 18px; font-weight: bolder;">руб</span>
@@ -58,51 +43,27 @@ else:
 
                                     <div>
                                         <p>Курорт/Город:</p>
-                                        <select name="ap_tour_resort" id="resortcity-addtour-form" class="dropdown">
-                                            <option>Хургада</option>
-                                            <option>Томск</option>
-                                            <option>Шерегеш</option>
-                                            <option>Мехико</option>
-                                            <option>Прага</option>
-                                            <option>Лос-Анжелес</option>
-                                            <option>Бостон</option>
-                                            <option>Париж</option>
-                                            <option>Выборг</option>
-                                            <option>Калуга</option>
-                                            <option>Пхукет</option>
-                                            <option>Сочи</option>
-                                        </select>
+                                        <input name="ap_tour_resort" type="text" id="resortcity-addtour-form" required>
                                     </div>
 
 
                                     <div>
                                         <p>Дата заезда:</p>
-                                        <input name="ap_tour_start_date" type="text" id="addtour-datepicker" style="position: static;" />
+                                        <input name="ap_tour_start_date" type="text" id="addtour-datepicker" required>
                                     </div>
 
                                     <div>
                                         <p>Количество ночей:</p>
-                                        <select name="ap_tour_duration" id="nightcount-addtour-form" class="dropdown">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                            <option>13</option>
-                                            <option>14</option>
-                                        </select>
+                                        <input name="ap_tour_duration" type="text" id="nightcount-addtour-form"
+                                               required>
                                     </div>
 
                                     <div>
                                         <br><br><br>
                                         <input name="ap_burning_tour" type="checkbox" value="is_burning">
-                                        <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
+                                        <span class="red" style="font-size: 18px; font-weight: bolder;" >
+                                            Горящий тур
+                                        </span>
                                     </div>
 
                                 </div>
@@ -112,9 +73,12 @@ else:
 
                             <div class="photo">
                                 <div>
-                                    <p>Фотография (200x200px):</p>
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-                                    <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*">
+                                    <div>
+                                        <p>Фотография (200x200px):</p>
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                                        <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*"
+                                            required>
+                                    </div>
                                 </div>
                             </div>
 
@@ -164,16 +128,19 @@ else:
         $tour->duration = $_POST['ap_tour_duration'];
         $tour->cost = $_POST['ap_tour_cost'];
         if ( is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] ) ) {
-            $tour->icon_attachment_id = ap_attach_image( $_FILES['ap_tour_icon'] );
+            $tour->set_icon(
+                AP_Image::load_from_file_object( $_FILES['ap_tour_icon'] )
+            );
         }
-
         $tour->offer_name = $_POST['ap_tour_offer_name'];
         $tour->offer_description = $_POST['ap_tour_offer_description'];
         if ( is_uploaded_file( $_FILES['ap_tour_offer_banner']['tmp_name'] ) ) {
-            $tour->offer_banner_attachment_id = ap_attach_image( $_FILES['ap_tour_offer_banner'] );
+            $tour->set_offer_banner(
+                AP_Image::load_from_file_object( $_FILES['ap_tour_offer_banner'] )
+            );
         }
 
         $tour->save();
-        ap_redirect_to( get_permalink( $tour->id ) );
+        ap_redirect_to( ap_get_create_tour_page_permalink( ) );
     endif;
 endif;

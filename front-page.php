@@ -11,8 +11,8 @@ Template Name: Front-page
 <link href="./wp-content/themes/imbalance2/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
 <script type="text/javascript" src="./wp-content/themes/imbalance2/bootstrap/js/bootstrap.js"></script>
 
-<!--Скрипт обеспечивает вызов форм с дополнительными параметрами в div#toursearch-->
-<script>
+<!--Скрыть/показать параметры-->
+<script type="text/javascript">
     $(document).ready(function () {
         $("#additionalparameters-hideshow").click(function () {
             if ($("div#additional-parameters").css("display") != "none") {
@@ -30,8 +30,7 @@ Template Name: Front-page
 
 <div class="banner-wrapper">
     <div id="banner">
-        <div id="myCarousel" class="carousel slide">
-            <!-- Carousel items -->
+        <div id="banners_carousel" class="carousel slide">
             <div class="carousel-inner">
 
                 <?php
@@ -48,7 +47,7 @@ Template Name: Front-page
 
                 $is_first = true;
                 foreach ($tours_with_offer as $tour_with_offer) {
-                    ap_load_tour( $tour_with_offer->ID ) ?>
+                    ap_load_tour_for_post( $tour_with_offer ) ?>
 
                     <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
                         <div class="banner-info">
@@ -71,17 +70,17 @@ Template Name: Front-page
 
                 <?php } ?>
             </div>
-            <!-- Carousel nav -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
+            <a class="carousel-control left" href="#banners_carousel" data-slide="prev"></a>
             <div class="carousel-control divider"></div>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
+            <a class="carousel-control right" href="#banners_carousel" data-slide="next"></a>
         </div>
     </div>
 </div>
 
+<!--Запуск слайдера-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#myCarousel').carousel({
+        $('#banners_carousel').carousel({
             cycle: true,
             animation: 1000,
             itemFallbackDimension: 960
@@ -89,9 +88,6 @@ Template Name: Front-page
     });
 </script>
 
-</div>
-
-</div>
 <div class="toursearch-wrapper">
     <div id="toursearch">
         <div id="main-parameters">
@@ -105,7 +101,7 @@ Template Name: Front-page
                 <option value="">Патайя</option>
                 <option value="">Тайланд</option>
             </select>
-            <!--           <div class="detailsItem InputWCalendar"><span class="sh_calendar"><img src="/images/forma/dateicon.png" id="buttonDate" alt=""></span><div class="calen-cont"></div><input tabindex="3" title="Дата" size="16" id="date0" maxlength="10" type="text"><span class="date-arrow left"><img src="/images/date_inc.gif" onclick="stepDate(0,-1)" alt="-"></span><span class="date-arrow right"><img src="/images/date_inc.gif" onclick="stepDate(0,1)" alt="+"></span></div>-->
+
             <div id="div-datepicker">
                 <input type="text" id="datepicker">
 
@@ -165,17 +161,16 @@ Template Name: Front-page
             array(
                 'posts_per_page' => 4,
                 'post_type' => 'ap_tour',
-                'meta_key' => AP_Tour::start_date_meta_name,
-                'orderby' => 'meta_value',
-                'order' => 'ASC'
+                'orderby' => 'post_date',
+                'order' => 'DESC'
             )
         );
 
         $is_first = true;
         foreach ($nearest_tours as $tour) {
-            ap_load_tour( $tour->ID ) ?>
+            ap_load_tour_for_post( $tour ) ?>
 
-        <a href="/">
+        <a href="<?php echo get_permalink( $tour->ID ) ?>">
             <div class="interestingoffer">
                 <img class="image-circle" src="<?php echo ap_get_tour_icon_url(); ?>" alt="">
                 <span class="offername"><?php echo ap_get_tour()->country . ' - ' . ap_get_tour()->resort; ?></span>
@@ -222,8 +217,6 @@ Template Name: Front-page
                 <div id="content" class="homepage" role="main">
                     <?php query_posts('posts_per_page=1'); ?>
                     <?php if (have_posts()) : the_post(); ?>
-
-                        <!-- Display the Post's content in a div box. -->
                         <div id="article" class="entry">
                             <article>
                                 <?php the_content(); ?>
@@ -236,32 +229,8 @@ Template Name: Front-page
                             <br>
                             <a class="left" href="/">Похожие направления</a>
                         </div>
-
-
-                        <h2>Комментарии</h2>
-                        <ol class="commentlist">
-                            <?php
-                            //Gather comments for a specific page/post
-                            $comments = get_comments(array(
-                                'post_id' => get_the_ID(),
-                                'status' => 'approve' //Change this to the type of comments to be displayed
-                            ));
-
-                            //Display the list of comments d.m.Y
-                            wp_list_comments(
-                                array(
-                                    'per_page' => 5, //Allow comment pagination
-                                    'reverse_top_level' => true, //Show not the latest comments at the top of the list
-                                    'style' => 'ul',
-                                    'avatar_size' => 80,
-                                    'callback' => 'ap_dirty_comments_list_start_el'
-                                ),
-                                $comments);
-                            ?>
-                        </ol>
-
                     <?php else: ?>
-                        <p>Sorry, no posts matched your criteria.</p>
+                        <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
                     <?php endif; ?>
 
                 </div><!-- #content -->
