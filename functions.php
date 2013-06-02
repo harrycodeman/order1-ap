@@ -350,7 +350,7 @@ function ap_print_blog_url() {
     if( get_option( 'show_on_front' ) == 'page' ){
         echo get_permalink( get_option( 'page_for_posts' ) );
     } else {
-        echo bloginfo( 'url' );
+        bloginfo( 'url' );
     }
 }
 
@@ -358,11 +358,16 @@ function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 
-function ap_add_js_calendar_to_element( $element_id ) { ?>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
+function ap_add_js_calendar_to_element( $element_id ) {
+    global $ap_add_js_calendar_to_element_function;
+    if ( empty( $ap_add_js_calendar_to_element_function ) ) {
+        $ap_add_js_calendar_to_element_function = 1; ?>
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
+    <?php } ?>
 
     <script>
         $(document).ready(function(){
