@@ -155,7 +155,7 @@ class AP_Tour {
         $this->save_image( $this->icon, self::icon_meta_name, 200, 200 );
         $this->save_meta( self::offer_name_meta_name, $this->offer_name );
         $this->save_meta( self::offer_description_meta_name, $this->offer_description );
-        $this->save_image( $this->offer_banner, self::offer_banner_meta_name, 940, 374 );
+        $this->save_image( $this->offer_banner, self::offer_banner_meta_name, 960, 382 );
     }
 
     private function save_image( AP_Image $image = NULL, $meta_name, $width, $height ) {
@@ -179,38 +179,82 @@ class AP_Tour {
 }
 
 /*--- Отображение ---*/
-function ap_load_tour_for_post( $post ) {
+function ap_load_tour_for_post( WP_Post $post ) {
     $GLOBALS['ap_tour_exemplar_id'] = $post->ID;
 }
 
-function ap_get_tour( ) {
-    if ( array_key_exists( 'ap_tour_exemplar', $GLOBALS ) ) {
-        return $GLOBALS['ap_tour_exemplar'];
-    }
-    $tour = new AP_Tour( );
-    $tour->load( ap_get_tour_id() );
-    return $tour;
-}
-
-function ap_get_tour_id( ) {
+function ap_get_the_tour_id( ) {
     if ( array_key_exists( 'ap_tour_exemplar_id', $GLOBALS ) ) {
         return $GLOBALS['ap_tour_exemplar_id'];
     }
     return get_the_ID();
 }
 
-function ap_get_tour_icon_url( ) {
-    $icon = ap_get_tour( )->get_icon( );
-    if ( !empty( $icon ) ) {
-        return $icon->get_url( );
+function ap_get_the_tour( ) {
+    if ( array_key_exists( 'ap_tour_exemplar', $GLOBALS ) ) {
+        return $GLOBALS['ap_tour_exemplar'];
     }
-    return NULL;
+    $tour = new AP_Tour( );
+    $tour->load( ap_get_the_tour_id() );
+    return $tour;
 }
 
-function ap_get_tour_banner_url( ) {
-    $offer_banner = ap_get_tour()->get_offer_banner( );
-    if ( !empty( $offer_banner ) ) {
-        return $offer_banner->get_url( );
+function ap_the_tour_country( ) {
+    echo ap_get_the_tour( )->country;
+}
+
+function ap_the_tour_resort( ) {
+    echo ap_get_the_tour( )->resort;
+}
+
+function ap_the_tour_hotel( ) {
+    echo ap_get_the_tour( )->hotel;
+}
+
+function ap_the_tour_start_date( ) {
+    echo ap_get_the_tour( )->start_date;
+}
+
+function ap_the_tour_duration( ) {
+    echo ap_get_the_tour( )->duration;
+}
+
+function ap_the_tour_cost( ) {
+    echo ap_get_the_tour( )->cost;
+}
+
+function ap_the_tour_icon( ) {
+    $icon = ap_get_the_tour( )->get_icon( );
+    if ( !empty( $icon ) ) { ?>
+        <img class="image-circle" src="<?php echo $icon->get_url( ); ?>" width="200px" height="200px"
+             alt="Изображение остутствует">
+    <?php }
+    else { ?>
+        <img class="image-circle" width="200px" height="200px" alt="Изображение остутствует">;
+    <?php }
+}
+
+function ap_the_tour_burning( ) {
+    if ( ap_get_the_tour()->is_burning ) {
+        echo 'checked';
     }
-    return NULL;
+}
+
+function ap_the_tour_offer_name( ) {
+    echo ap_get_the_tour( )->offer_name;
+}
+
+function ap_the_tour_offer_description( ) {
+    echo ap_get_the_tour( )->offer_description;
+}
+
+function ap_the_tour_banner( $width = 960, $height = 382 ) {
+    $offer_banner = ap_get_the_tour()->get_offer_banner( );
+    if ( !empty( $offer_banner ) ) { ?>
+        <img src="<?php echo $offer_banner->get_url( ); ?>" width="<?= $width; ?>" height="<?= $height; ?>"
+             alt="Изображение остутствует">
+    <?php }
+    else { ?>
+        <img width="<?= $width; ?>" height="<?= $height; ?>" alt="Изображение остутствует">
+    <?php }
 }

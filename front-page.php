@@ -51,21 +51,21 @@ Template Name: Front-page
 
                     <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
                         <div class="banner-info">
-                            <h2><?php echo ap_get_tour()->offer_name; ?></h2>
+                            <h2><?php echo ap_get_the_tour()->offer_name; ?></h2>
 
-                            <p class="shortannouncement-title"><?php echo ap_get_tour()->offer_description; ?></p>
+                            <p class="shortannouncement-title"><?php echo ap_get_the_tour()->offer_description; ?></p>
 
                             <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                                <?php echo ap_get_tour()->hotel; ?>
+                                <?php echo ap_get_the_tour()->hotel; ?>
                             </p>
 
                             <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">
-                                <?php echo ap_get_tour()->start_date . ' - ' . ap_get_tour()->duration . ' ночи(ей)'; ?>
+                                <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration . ' ночи(ей)'; ?>
                             </p>
 
                             <button type="button">КУПИТЬ ТУР</button>
                         </div>
-                        <img src="<?php echo ap_get_tour_banner_url(); ?>" width="960px" height="374px" alt="">
+                        <?php ap_the_tour_banner(); ?>
                     </div>
 
                 <?php } ?>
@@ -104,7 +104,6 @@ Template Name: Front-page
 
             <div id="div-datepicker">
                 <input type="text" id="datepicker">
-
                 <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
             </div>
 
@@ -172,9 +171,9 @@ Template Name: Front-page
 
         <a href="<?php echo get_permalink( $tour->ID ) ?>">
             <div class="interestingoffer">
-                <img class="image-circle" src="<?php echo ap_get_tour_icon_url(); ?>" alt="">
-                <span class="offername"><?php echo ap_get_tour()->country . ' - ' . ap_get_tour()->resort; ?></span>
-                <span class="offerprice"><?php echo ap_get_tour()->cost; ?></span>
+                <?php ap_the_tour_icon(); ?>
+                <span class="offername"><?php echo ap_get_the_tour()->country . ' - ' . ap_get_the_tour()->resort; ?></span>
+                <span class="offerprice"><?php echo ap_get_the_tour()->cost; ?></span>
             </div>
         </a>
 

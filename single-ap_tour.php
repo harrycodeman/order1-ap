@@ -8,28 +8,28 @@ else:
         <div id="content">
             <div class="addtour-wrapper">
                 <div id="addtour">
-                    <center><h1>Редактирование тура</h1></center>
+                    <h1 class="moderating-header">Редактирование тура</h1>
 
                     <form name="create-tour-form" action="<?php ap_print_edit_tour_page_permalink( get_the_ID() ); ?>"
                           method="post" enctype="multipart/form-data">
                         <div class="tour">
                             <div>
                                 <div>
-                                    <p>Страна</p>
+                                    <p><label for="country-addtour-form">Страна</label></p>
                                     <input name="ap_tour_country" type="text" id="country-addtour-form"
-                                        value="<?php echo ap_get_tour()->country; ?>" required>
+                                        value="<?php ap_the_tour_country( ); ?>" required>
                                 </div>
 
                                 <div>
-                                    <p>Название отеля:</p>
+                                    <p><label for="hotelname-addtour-form">Название отеля</label></p>
                                     <input name="ap_tour_hotel" type="text" id="hotelname-addtour-form"
-                                        value="<?php echo ap_get_tour()->hotel; ?>" required>
+                                        value="<?php ap_the_tour_hotel( ); ?>" required>
                                 </div>
 
                                 <div>
-                                    <p>Стоимость тура:</p>
+                                    <p><label for="cost-addtour-form">Стоимость тура</label></p>
                                     <input name="ap_tour_cost" type="text" id="cost-addtour-form"
-                                           value="<?php echo ap_get_tour()->cost; ?>" required>
+                                           value="<?php ap_the_tour_cost( ); ?>" required>
                                 </div>
                                 <div>
                                     <span style="font-size: 18px; font-weight: bolder;">руб</span>
@@ -39,28 +39,31 @@ else:
 
                             <div>
                                 <div>
-                                    <p>Курорт/Город:</p>
+                                    <p><label for="resortcity-addtour-form">Курорт/Город</label></p>
                                     <input name="ap_tour_resort" type="text" id="resortcity-addtour-form"
-                                        value="<?php echo ap_get_tour()->resort; ?>" required>
+                                        value="<?php ap_the_tour_resort( ); ?>" required>
                                 </div>
 
                                 <div>
-                                    <p>Дата заезда:</p>
+                                    <p><label for="addtour-datepicker">Дата заезда</label></p>
                                     <input name="ap_tour_start_date" type="text" id="addtour-datepicker"
-                                           value="<?php echo ap_get_tour()->start_date; ?>" required>
+                                           value="<?php ap_the_tour_start_date( ); ?>" required>
+                                    <div id="calendar-image" onclick="$('#addtour-datepicker').focus()"></div>
                                 </div>
 
                                 <div>
-                                    <p>Количество ночей:</p>
+                                    <p><label for="nightcount-addtour-form">Количество ночей</label></p>
                                     <input name="ap_tour_duration" type="text" id="nightcount-addtour-form"
-                                           value="<?php echo ap_get_tour()->duration; ?>" required>
+                                           value="<?php ap_the_tour_duration( ); ?>" required>
                                 </div>
 
                                 <div>
                                     <br><br><br>
                                     <input name="ap_burning_tour" type="checkbox" value="is_burning"
-                                        <?php if ( ap_get_tour()->is_burning ) echo 'checked'; ?>>
-                                    <span class="red" style="font-size: 18px; font-weight: bolder;" >Горящий тур</span>
+                                           id="ap_burning_tour_id" <?php ap_the_tour_burning( ); ?>>
+                                    <span class="red" style="font-size: 18px; font-weight: bolder;" >
+                                        <label for="ap_burning_tour_id">Горящий тур</label>
+                                    </span>
                                 </div>
 
                             </div>
@@ -72,16 +75,14 @@ else:
                             <div>
                                 <div>
                                     <p>Текущяя фотография:</p>
-                                    <img src="<?php echo ap_get_tour_icon_url(); ?>" width="200px" height="200px"
-                                         alt="Изображение отсутствует">
+                                    <?php ap_the_tour_icon( ); ?>
                                 </div>
                             </div>
                             <div>
                                 <div>
-                                    <p>Новая фотография (200x200px):</p>
+                                    <p><label for="photo-addtour-file">Новая фотография (200x200px)</label></p>
                                     <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-                                    <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*"
-                                        required>
+                                    <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*">
                                 </div>
                             </div>
                         </div>
@@ -93,25 +94,30 @@ else:
                             <p>Информация для слайдера (не обязательно к заполнению)</p>
                             <div>
                                 <div>
-                                    <p>Название акции:</p>
+                                    <p><label for="actionname-addtour-form">Название акции</label></p>
                                     <input name="ap_tour_offer_name" type="text" id="actionname-addtour-form"
-                                        value="<?php echo ap_get_tour()->offer_name; ?>">
+                                        value="<?php ap_the_tour_offer_name( ); ?>">
                                 </div>
                                 <div>
-                                    <p>Краткое описание:</p>
+                                    <p><label for="briefdescription-addtour-form">Краткое описание</label></p>
                                     <textarea name="ap_tour_offer_description" id="briefdescription-addtour-form"
-                                              rows="5" cols="50"><?php echo ap_get_tour()->offer_description; ?></textarea>
+                                              rows="5" cols="50"><?php ap_the_tour_offer_description( ); ?></textarea>
                                 </div>
                                 <div class="slider-photo">
                                     <div>
                                         <p>Текущяя фотография для слайдера:</p>
-                                        <img src="<?php echo ap_get_tour_banner_url(); ?>" width="500px" height="195px" alt="Изображение отсутствует">
+                                        <?php ap_the_tour_banner( 640, 255 ); ?>
                                     </div>
                                 </div>
                                 <div class="slider-photo">
                                     <div>
-                                        <p>Новая фотография для слайдера(960x374px):</p>
-                                        <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file" type="file" name="">
+                                        <p>
+                                            <label for="sliderphoto-addtour-file">
+                                                Новая фотография для слайдера (940x382px)
+                                            </label>
+                                        </p>
+                                        <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file"
+                                               type="file" name="">
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +128,9 @@ else:
                         <div class="submitbuttons">
                             <div>
                                 <button id="cancel-addtour-button" type="reset">ОТМЕНИТЬ</button>
-                                <button name="create-tour-submit-button" id="create-addtour-button" type="submit">СОХРАНИТЬ</button>
+                                <button name="create-tour-submit-button" id="create-addtour-button" type="submit">
+                                    СОХРАНИТЬ
+                                </button>
                             </div>
                         </div>
 
