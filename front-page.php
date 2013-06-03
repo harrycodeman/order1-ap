@@ -91,8 +91,11 @@ Template Name: Front-page
 <div class="toursearch-wrapper">
     <div id="toursearch">
         <div id="main-parameters">
-            <span class="from-title">Хочу поехать в:</span>
-            <span class="date-title">Дата вылета:</span>
+            <span class="from-title">
+                <label for="from-form">Хочу поехать в</label>
+                <label style="display: none" for="to-form">Курорт</label>
+            </span>
+            <span class="date-title"><label for="datepicker">Дата вылета</label></span>
             <select id="from-form" class="dropdown">
                 <option value="">Патайя</option>
                 <option value="">Тайланд</option>
@@ -119,9 +122,9 @@ Template Name: Front-page
             </select>
         </div>
         <div id="additional-parameters">
-            <span class="cost-title">Стоимость тура:</span>
-            <span class="starcount-title">Количество звезд:</span>
-            <span class="peoplecount-title">Сколько вас:</span>
+            <span class="cost-title">Стоимость тура</span>
+            <span class="starcount-title">Количество звезд</span>
+            <span class="peoplecount-title">Сколько вас</span>
 
             <input type="text" id="startcost"/>
             <span style="position: absolute; top: 40px; left: 125px;">&mdash;</span>
@@ -147,8 +150,8 @@ Template Name: Front-page
             <button id="additionalparameters-hideshow">Указать дополнительные параметры</button>
             <button id="additionalparameters-submit">ПОДОБРАТЬ</button>
         </div>
-    </div>
-</div>
+    </div><!--#toursearch-->
+</div><!--#toursearch-wrapper-->
 <div class="interestingoffers-wrapper">
 
     <div id="interestingoffers">

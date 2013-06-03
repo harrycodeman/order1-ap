@@ -400,6 +400,10 @@ function ap_print_edit_tour_page_permalink( $tour_id ) {
     echo get_permalink( $tour_id );
 }
 
+function ap_print_search_tour_page_permalink(  ) {
+    echo get_permalink( 83 );
+}
+
 function ap_is_view_mode( ) {
     return empty( $_POST );
 }

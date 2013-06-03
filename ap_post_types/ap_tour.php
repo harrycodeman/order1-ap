@@ -223,14 +223,14 @@ function ap_the_tour_cost( ) {
     echo ap_get_the_tour( )->cost;
 }
 
-function ap_the_tour_icon( ) {
+function ap_the_tour_icon( $width = 200, $height = 200 ) {
     $icon = ap_get_the_tour( )->get_icon( );
     if ( !empty( $icon ) ) { ?>
-        <img class="image-circle" src="<?php echo $icon->get_url( ); ?>" width="200px" height="200px"
+        <img class="image-circle" src="<?php echo $icon->get_url( ); ?>" width="<?= $width; ?>" height="<?= $height; ?>"
              alt="Изображение остутствует">
     <?php }
     else { ?>
-        <img class="image-circle" width="200px" height="200px" alt="Изображение остутствует">;
+        <img class="image-circle" width="<?= $width; ?>" height="<?= $height; ?>" alt="Изображение остутствует">;
     <?php }
 }
 

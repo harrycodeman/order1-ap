@@ -74,7 +74,7 @@ else:
                         <div class="photo">
                             <div>
                                 <div>
-                                    <p>Текущяя фотография:</p>
+                                    <p>Текущяя фотография</p>
                                     <?php ap_the_tour_icon( ); ?>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@ else:
                                 </div>
                                 <div class="slider-photo">
                                     <div>
-                                        <p>Текущяя фотография для слайдера:</p>
+                                        <p>Текущяя фотография для слайдера</p>
                                         <?php ap_the_tour_banner( 640, 255 ); ?>
                                     </div>
                                 </div>

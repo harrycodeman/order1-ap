@@ -57,7 +57,6 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 #social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
 #header #social-buttons a { float: right;}
 #header #social-buttons a:nth-child(3) { margin-right: 10px; }
-
 /*----------END HEADER----------*/
 
 /*----------MAIN----------*/
@@ -159,15 +158,15 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 
         /*----------TOURSEARCH----------*/
         .toursearch-wrapper { background: url('images/toursearch-wrapper-background.png') center repeat-x;; width: 100%; }
-        #toursearch { width: 960px; height: 270px; margin:0 auto; position: relative; }
+        #toursearch { width: 960px; height: 271px; margin: 0 auto; position: relative; }
         #toursearch #main-parameters { position: absolute; top: 30px; width: inherit; height: 100px; }
-        #toursearch #main-parameters .dropdown { position: absolute;  top: 40px; height: 40px; font-size: 22px; color: #1c81b5; border: none; padding: 5px;}
-        #toursearch #from-form {  left: 10px;   width: 245px; }
-        #toursearch #to-form {  left: 290px;   width: 240px; }
-        #toursearch #days-form {  left: 813px;   width: 145px; }
+        #toursearch #from-form { position: absolute; top: 40px; left: 10px; width: 245px; height: 40px; }
+        #toursearch #to-form { position: absolute; top: 40px; left: 290px; width: 240px; height: 40px; }
+        #toursearch #days-form { position: absolute; top: 40px; left: 813px;   width: 145px; height: 40px; }
         #toursearch #div-datepicker { position: absolute; top: 40px; left: 630px; height: 40px; width: 120px; padding: 0px 20px 0px 5px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #toursearch #datepicker { position: absolute; top: 0px; left: 0px; height: 40px; width: 115px; font-size: 22px; color: #1c81b5; padding: 0px 25px 0px 5px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #toursearch #calendar-image { width: 19px; height: 18px; cursor: pointer; position: absolute; right: 3px; top: 10px; background: url('images/calendar.png') center no-repeat; }
+        #toursearch input[type="text"] { padding: 0 5px; font-size: 22px;  color: #1c81b5; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
 
         #toursearch #main-parameters span { position: absolute; top: 10px; width: 170px; font-size: 20px; font-weight: bolder; color: #fff; }
         #toursearch #main-parameters .from-title { left: 10px; }
@@ -178,33 +177,33 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #toursearch #additional-parameters .cost-title { left: 10px;}
         #toursearch #additional-parameters .starcount-title { left: 290px; }
         #toursearch #additional-parameters .peoplecount-title { left: 630px; }
-        #toursearch #startcost, #endcost { position: absolute; top: 35px; height: 30px; width: 85px; font-size: 22px; color: #1c81b5; padding: 0 10px; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #toursearch #startcost, #endcost { position: absolute; top: 35px; height: 40px; width: 105px; font-size: 22px; color: #1c81b5; border: none; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #toursearch #startcost { left: 10px; }
         #toursearch #endcost { left: 150px; }
 
-        #toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 30px; font-size: 16px; color: #1c81b5; border: none; padding: 3px;}
-        #toursearch #additional-parameters #starcount { width: 240px; left: 290px;}
+        #toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 40px; font-size: 16px; color: #1c81b5; border: none; padding: 3px;}
+        #toursearch #additional-parameters #starcount { width: 250px; left: 290px;}
         #toursearch #additional-parameters #adultcount { width: 140px; left: 630px;}
         #toursearch #additional-parameters #childrencount { width: 145px; left: 813px;}
 
         #toursearch button { position: absolute; font-size: 15px; border: none; }
-        #toursearch #additionalparameters-hideshow { top: 160px; left: 10px; width: 300px; font-size: 16px; color: #fff; background: transparent; text-decoration: none; border-bottom: 1px dotted; padding: 0px; cursor: pointer;}
-        #toursearch #additionalparameters-submit { right: 3px; width: 143px; height: 37px; top: 143px; font-weight: bolder;  background: #e6e2d7; color: #5e5953;}
+        #toursearch #additional-parameters #additionalparameters-submit { left: 813px; width: 156px; height: 40px; top: 35px; font-weight: bolder;  background: #bf273a; color: #fff; }
+        #toursearch #additional-parameters #additionalparameters-clear { left: 630px; width: 156px; height: 40px; top: 35px; font-weight: bolder;  background: #e3e1d8; color: #7e7d77; }
         /*----------END TOURSEARCH----------*/
 
-		/*----------INTERESTINGOFFERS----------*/
-		.interestingoffers-wrapper { background: #efeee9; width: 100%; }
-		#interestingoffers { /*background: url('images/interestingoffers-background.png') no-repeat;*/ width: 960px; height: 430px; margin:0 auto; }
-		#interestingoffers a:hover { text-decoration: none; }
-		.interestingoffer { display: inline-block; width: 237px; height: 325px; text-align: center; padding: 20px 0 0 0; vertical-align: top; zoom: 1; *display: inline;}
-		.interestingoffer img { width: 200px; height: 200px; }
-		.image-circle { -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; -o-border-radius: 50em; border-top-right-radius: 50em;  border-top-left-radius: 50em;  border-bottom-right-radius: 50em;  border-bottom-left-radius: 50em;}
-		.offername, .offerprice { display:block; font-size: 20px; font-weight: bold; margin-top: 10}
-		.offername { font-size: 16px; color:#535349; margin-top: 10px  }
-		.offerprice { font-size: 20px; }
-		#interestingoffers > h1 { color:#bf283b; margin: 0px; padding: 35px 0 20px 10px; }
-		.snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}
-		/*----------END INTERESTINGOFFERS----------*/
+        /*----------INTERESTINGOFFERS----------*/
+        .interestingoffers-wrapper { background: #efeee9; width: 100%; }
+        #interestingoffers { /*background: url('images/interestingoffers-background.png') no-repeat;*/ width: 960px; height: 430px; margin:0 auto; }
+        #interestingoffers a:hover { text-decoration: none; }
+        .interestingoffer { display: inline-block; width: 237px; height: 325px; text-align: center; padding: 20px 0 0 0; vertical-align: top; zoom: 1; *display: inline;}
+        .interestingoffer img { width: 200px; height: 200px; }
+        .image-circle { -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; -o-border-radius: 50em; border-top-right-radius: 50em;  border-top-left-radius: 50em;  border-bottom-right-radius: 50em;  border-bottom-left-radius: 50em;}
+        .offername, .offerprice { display:block; font-size: 20px; font-weight: bold; margin-top: 10}
+        .offername { font-size: 16px; color:#535349; margin-top: 10px  }
+        .offerprice { font-size: 20px; }
+        #interestingoffers > h1 { color:#bf283b; margin: 0px; padding: 35px 0 20px 10px; }
+        .snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}
+        /*----------END INTERESTINGOFFERS----------*/
 
 		/*----------TRIPARTICLES----------*/
 		.triparticles-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
@@ -292,7 +291,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 		#addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}
 	    #addtour .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
 	    #addtour #actionname-addtour-form { width: 500px; }
-	    #addtour #briefdescription-addtour-form { width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+	    #addtour #briefdescription-addtour-form { max-width: 625px; width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
 	    
 	    #addtour .submitbuttons { width: 680px; margin: 0 auto;}
 		#addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
@@ -351,34 +350,33 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 		#tourlist .list .item .cost p { margin: 0px 0 30px 0; }
 		#tourlist .list .item .cost .editdelete-links { height: 20px; }
 		#tourlist .list .item .cost .editdelete-links a { margin-left: 10px; }
+    /*----------END TOURLIST PAGE----------*/
 
-	/*----------END TOURLIST PAGE----------*/
-	
-	/*----------RESERVTOUR PAGE----------*/
-	
-		.reservtour-wrapper { width: 100%; }
-		#reservtour { width: 960px; margin:0 auto; }
-		#reservtour .tour { width: 680px; padding: 20px 0 20px 20px;}
-		#reservtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
-		#reservtour .tour>div>div { position: relative; display:-moz-inline-stack; display:inline-block; height: 85px; margin: 0 20px 0 0; zoom:1; *display:inline;}
-		#reservtour .dropdown { position: relative;  height: 40px; font-size: 20px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-	    #reservtour input[type="text"] {  width: 123px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-	    #reservtour #country-reservtour-form, #resortcity-reservtour-form, #hotelname-reservtour-form { width: 300px; }
-			    
-		#adultcount-reservtour-form, #childrencount-reservtour-form { width: 138px; }
-		
-		#reservtour .client { width: 680px; background: #fff; padding: 20px 0 20px 20px;}
-		#reservtour .client>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
-		#reservtour .client>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 0 20px 0 0;}
-		#surname-reservtour-form, #customer_phone, #email-reservtour-form, #name-reservtour-form { width: 300px !important; }
-		
+    /*----------RESERVTOUR PAGE----------*/
+        .reservtour-wrapper { width: 100%; }
+        #reservtour { width: 960px; margin:0 auto; }
+        #reservtour .tour { width: 680px; padding: 20px 0 20px 20px;}
+        #reservtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+        #reservtour .tour>div>div { position: relative; display:-moz-inline-stack; display:inline-block; height: 85px; margin: 0 20px 0 0; zoom:1; *display:inline;}
+        #reservtour .dropdown { position: relative;  height: 40px; font-size: 20px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+        #reservtour input[type="text"] {  width: 123px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #reservtour #country-reservtour-form, #resortcity-reservtour-form, #hotelname-reservtour-form { width: 300px; }
+
+        #adultcount-reservtour-form, #childrencount-reservtour-form { width: 138px; }
+
+        #reservtour .client { width: 680px; background: #fff; padding: 20px 0 20px 20px;}
+        #reservtour .client>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+        #reservtour .client>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 0 20px 0 0;}
+        #surname-reservtour-form, #customer_phone, #email-reservtour-form, #name-reservtour-form { width: 300px !important; }
+
         #reservtour .submitbuttons { width: 680px; margin: 0 20px;}
-		#reservtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
-		#reservtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
-		#reserve-reservtour-button { background: #bf273a; color: #fff; }
-	/*----------END RESERVTOUR PAGE----------*/
-	.content-wrapper { width: 100%; }
-	#content { width: 960px; margin:0 auto; position: relative;}
+        #reservtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
+        #reservtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
+        #reserve-reservtour-button { background: #bf273a; color: #fff; }
+    /*----------END RESERVTOUR PAGE----------*/
+
+    .content-wrapper { width: 100%; }
+    #content { width: 960px; margin:0 auto; position: relative;}
 /*----------END MAIN----------*/
 
 /*----------FOOTER----------*/
