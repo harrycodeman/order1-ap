@@ -59,8 +59,11 @@ Template Name: Front-page
                                 <?php echo ap_get_the_tour()->hotel; ?>
                             </p>
 
-                            <p class="nightcount-title"><img src="<?php ap_print_image_url('plane-dark.png'); ?>" alt="">
-                                <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration . ' ночи(ей)'; ?>
+                            <p class="nightcount-title">
+                                <img src="<?php ap_print_image_url('plane-dark.png'); ?>"
+                                     alt="">
+                                <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration
+                                    . ' ночей(и)'; ?>
                             </p>
 
                             <button type="button">КУПИТЬ ТУР</button>

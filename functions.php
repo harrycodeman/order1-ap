@@ -409,8 +409,12 @@ function ap_is_view_mode( ) {
 }
 
 /*--- Регистрация дополнительных типов ---*/
-require_once( get_stylesheet_directory() . '/ap_post_types/ap_image.php' );
-require_once( get_stylesheet_directory() . '/ap_post_types/ap_tour.php' );
+function ap_require_type( $type_name ) {
+    require_once( "ap_post_types/{$type_name}.php" );
+}
+
+ap_require_type( 'ap_image' );
+ap_require_type( 'ap_tour' );
 
 /*--- Дополнительные настройки ---*/
 function disable_all_image_sizes( $sizes ) {

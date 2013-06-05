@@ -17,16 +17,16 @@ Template Name: Страница поиска туров
                     <label style="display: none" for="to-form">Курорт</label>
                 </span>
                 <span class="date-title"><label for="datepicker">Дата вылета</label></span>
-                <input id="from-form" type="text" autocomplete="off" placeholder="Любая страна">
-                <input id="to-form" type="text" autocomplete="off" placeholder="Любой город">
+                <input name="ap_tour_country" id="from-form" type="text" autocomplete="off" placeholder="Любая страна">
+                <input name="ap_tour_resort" id="to-form" type="text" autocomplete="off" placeholder="Любой город">
 
                 <div id="div-datepicker">
-                    <input type="text" id="datepicker" autocomplete="off" placeholder="Любая">
+                    <input name="ap_tour_start_date" type="text" id="datepicker" autocomplete="off" placeholder="Любая">
                     <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
                 </div>
 
-                <span style="top: 48px; left: 782px;">на</span>
-                <input id="days-form" type="text" autocomplete="off" placeholder="Много дней">
+                <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много дней">
             </div>
             <div id="additional-parameters" style="display: block !important;">
                 <span class="cost-title">
@@ -35,10 +35,10 @@ Template Name: Страница поиска туров
                 </span>
 
                 <span class="starcount-title"><label for="starcount">Количество звезд</label></span>
-                <input type="text" id="startcost" autocomplete="off" placeholder="Дешево">
+                <input name="ap_tour_cost_min" id="startcost" type="text" autocomplete="off" placeholder="Дешево">
                 <span style="position: absolute; top: 46px; left: 132px; font-size: 10px; font-weight: bold;">&mdash;</span>
-                <input type="text" id="endcost" autocomplete="off" placeholder="Дорого">
-                <select id="starcount" class="dropdown">
+                <input name="ap_tour_cost_max" id="endcost" type="text"  autocomplete="off" placeholder="Дорого">
+                <select name="ap_tour_hotel_rating" id="starcount" class="dropdown">
                     <option value="0">Неважно</option>
                     <option value="1">1 (*)</option>
                     <option value="2">2 (**)</option>
@@ -57,41 +57,115 @@ Template Name: Страница поиска туров
 
 <br><br>
 
-  <div class="tourlist-wrapper">
+<?php
+$filter_title = 'Все доступные туры';
+$filter_args = array(
+    'post_type' => 'ap_tour',
+    'posts_per_page' => 10
+);
+$meta_query_args = array();
+if ( !ap_is_view_mode( ) ) {
+    /* Местоположение */
+    if ( !empty( $_POST['ap_tour_country'] ) ) {
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_country',
+                'value' => $_POST['ap_tour_country'],
+                'compare' => 'LIKE'
+            )
+        );
+        $inner_filter_part .= ' в ' . $_POST['ap_tour_country'];
+    }
+    if ( !empty( $_POST['ap_tour_resort'] ) ) {
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_resort',
+                'value' => $_POST['ap_tour_resort'],
+                'compare' => 'LIKE'
+            )
+        );
+        if ( empty( $inner_filter_part ) ) {
+            $inner_filter_part .= ' в ' . $_POST['ap_tour_resort'];
+        }
+        else {
+            $inner_filter_part .= ', ' . $_POST['ap_tour_resort'];
+        }
+    }
+
+    /* Цена */
+    if ( !empty( $_POST['ap_tour_cost_min'] )
+            || !empty( $_POST['ap_tour_cost_max'] ) ) {
+        $cost_min = empty( $_POST['ap_tour_cost_min'] ) ? 0 : $_POST['ap_tour_cost_min'];
+        $cost_max = empty( $_POST['ap_tour_cost_max'] ) ? 1000000000 : $_POST['ap_tour_cost_max'];
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_cost',
+                'value' => array( $cost_min, $cost_max ),
+                'type' => 'NUMERIC',
+                'compare' => 'BETWEEN'
+            )
+        );
+        if ( !empty( $inner_filter_part ) ) {
+            $inner_filter_part .= ' ';
+        }
+        $inner_filter_part .= 'по цене';
+        if ( !empty( $_POST['ap_tour_cost_min'] ) ) {
+            $inner_filter_part .= ' от ' . number_format( $cost_min, 0, '.', ' ' ) . 'руб';
+        }
+        if ( !empty( $_POST['ap_tour_cost_max'] ) ) {
+            $inner_filter_part .= ' до ' . number_format( $cost_max, 0, '.', ' ' ) . 'руб';
+        }
+    }
+
+    if ( !empty( $meta_query_args ) ) {
+        $filter_args['meta_query'] = $meta_query_args;
+    }
+    if ( !empty( $inner_filter_part ) ) {
+        $filter_title = 'Туры ' . $inner_filter_part;
+    }
+}
+?>
+
+<div class="tourlist-wrapper">
     <div id="tourlist">
-      
-      <h1 class="red">Туры в Тайланд, Патайя с 13.02.2013</h1>
-      
-      <div class="list">
-      
-        <div class="item">
-          <div class="image">
-            <img class="image-circle" src="<?php bloginfo('template_url'); ?>/images/2.jpg">
-          </div>
-          <div class="info">
-            <h2>Тайланд, Патайя</h2>
-            <p>Вылет 13.02.13 на 6 ночей (до 19.02.13)</p>
-            <p><strong>Hot Palmas Hotel Resort</strong></p>
-          </div>
-          <div class="hotelrating">
-            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-            <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-          </div>
-          <div class="cost">
-            <h2>34 000 руб</h2>
-            <p>Цена за 1 путевку</p>
-            <div class="editdelete-links">
-              <a class="blue" href="" alt="">Редактировать</a>
-              <a class="blue" href="" alt="">Удалить</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br><br>
+        <h1 class="red"><?= $filter_title; ?></h1>
+        <div class="list">
+            <?php
+            $posts_of_tours = get_posts( $filter_args );
+            foreach ( $posts_of_tours as $post_of_tour ) {
+                ap_load_tour_for_post( $post_of_tour ); ?>
+            <div class="item">
+                <div class="image">
+                    <?php ap_the_tour_icon( 100, 100 ); ?>
+                </div>
+                <div class="info">
+                    <h2><?php ap_the_tour_country( ); ?>, <?php ap_the_tour_resort( ); ?></h2>
+                    <p>Вылет <?php ap_the_tour_start_date( ); ?> на <?php ap_the_tour_duration( ); ?> ночей(и)</p>
+                    <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
+                </div>
+                <div class="hotelrating">
+                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                </div>
+                <div class="cost">
+                    <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
+                    <p>Цена за 1 путевку</p>
+                    <div class="editdelete-links">
+                        <a class="blue" href="">Редактировать</a>
+                        <a class="blue" href="">Удалить</a>
+                    </div>
+                </div>
+            </div><!--.item-->
+            <?php } ?>
+        </div><!--.list-->
+    </div><!--.tourlist-->
+</div><!--.tourlist-wrapper-->
+<br><br>
 
 <?php get_footer(); ?>

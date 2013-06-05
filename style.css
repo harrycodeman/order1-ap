@@ -181,12 +181,12 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #toursearch #startcost { left: 10px; }
         #toursearch #endcost { left: 150px; }
 
-        #toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 40px; font-size: 16px; color: #1c81b5; border: none; padding: 3px;}
+        #toursearch #additional-parameters .dropdown { position: absolute; top: 35px; height: 40px; font-size: 22px; color: #1c81b5; border: none; padding: 3px;}
         #toursearch #additional-parameters #starcount { width: 250px; left: 290px;}
         #toursearch #additional-parameters #adultcount { width: 140px; left: 630px;}
         #toursearch #additional-parameters #childrencount { width: 145px; left: 813px;}
 
-        #toursearch button { position: absolute; font-size: 15px; border: none; }
+        #toursearch button { position: absolute; font-size: 15px; border: none; cursor: pointer; }
         #toursearch #additional-parameters #additionalparameters-submit { left: 813px; width: 156px; height: 40px; top: 35px; font-weight: bolder;  background: #bf273a; color: #fff; }
         #toursearch #additional-parameters #additionalparameters-clear { left: 630px; width: 156px; height: 40px; top: 35px; font-weight: bolder;  background: #e3e1d8; color: #7e7d77; }
         /*----------END TOURSEARCH----------*/
@@ -205,64 +205,63 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         .snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}
         /*----------END INTERESTINGOFFERS----------*/
 
-		/*----------TRIPARTICLES----------*/
-		.triparticles-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-		#triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
-		#triparticles .title h1 { display: inline; }
-		#triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
-		#triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
-		#triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
-		#left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
-		#right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
-		#triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
-		#triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
-		#triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px;  color: #fff; margin: 0px; top: 190px;}
-		#article { position: relative; margin: 0 0 20px 0;}
-		article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
+        /*----------TRIPARTICLES----------*/
+        .triparticles-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
+        #triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
+        #triparticles .title h1 { display: inline; }
+        #triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
+        #triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
+        #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
+        #left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
+        #right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
+        #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
+        #triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; }
+        #triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px;  color: #fff; margin: 0px; top: 190px;}
+        #article { position: relative; margin: 0 0 20px 0;}
+        article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
         article > p { margin-top: 0px }
-		#triparticles .links { display: block; width: auto; height: 70px; }
-		#triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; margin-left: 20px;}
-		#triparticles .links a img { margin: 4px 5.5px 0 -18px; }
-		/*----------END TRIPARTICLES----------*/	
+        #triparticles .links { display: block; width: auto; height: 70px; }
+        #triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; margin-left: 20px;}
+        #triparticles .links a img { margin: 4px 5.5px 0 -18px; }
+        /*----------END TRIPARTICLES----------*/
 
-		/*----------LASTCOMMENTS----------*/
-		.lastcomments-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
-		#lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
-		#comments { padding: 0 0 0 246px; width: 714px; }
-		.homepage #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
-		.homepage .commentlist { margin: 0; padding: 0; list-style: none; }
-		.homepage .commentlist ul.children { list-style: none;}
-		.homepage .commentlist li > div { position: relative; padding: 15px 0 15px 0px; min-height: 100px; height: auto;}
-		.homepage .commentlist li li > div { margin-left: 100px; }
-		.homepage .commentlist li li li > div { margin-left: 200px; }
-		.homepage .commentlist li li li li > div { margin-left: 270px; }
-		.homepage .commentlist li li li li li > div { margin-left: 360px; }
-		.homepage .comment-avatar { position: absolute; top: 30px; left: -96px; }
-		.homepage .comment-content { margin-left: 96px; border-bottom: 1px solid #dedfe0; }
-		.homepage .comment-author { position: relative; float: left; width: 100%; font-size: 14px; color: #bf283b;  top: 10px; vertical-align: top;}
-		.homepage .comment-author>img { -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; -o-border-radius: 7px; }
-		.homepage cite { margin-left: 15px; font-style: normal; font-weight: bold; color: #bf283b; vertical-align: top;}
-		.homepage .comment-meta { position: absolute; left: 105px; top: 45px; width: 150px; padding-right: 40px; color: #999999; }
-		.homepage .comment-meta a { left: 10px; font-size: 10px; color: #535349; }
-		.homepage .comment-body { position: relative; clear: both; padding-top: 7px; font-size: 12px; line-height: 17px; vertical-align: top;}
-		.homepage .comment-body p { position: relative; left: 100px; top: -20px; margin: 0px;}
-		.homepage .says { display: none; }
-		.homepage #respond { padding-left: 4px; }
-		.homepage li.comment > div { position: relative; }
-		.homepage .reply { position: absolute; top: 30px; right: 20px; }
-		.homepage #reply-title { font-size: 21px; }
-		.homepage .comment-reply-link { display: none; }
-		.homepage .comment-form-author, .comment-form-email, .comment-form-url { float: left; width: 460px; margin: 0; padding: 10px 0; }
-		.homepage .comment-form-comment { clear: both; width: 460px; margin: 0; padding: 10px 0; }
-		.homepage input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding: 8px; outline: none; color: #6b6b6b; -moz-border-radius: 4px; border-radius: 4px; }
-		.homepage #comments input[type="text"] { width: 442px; }
-		.homepage #comments textarea { width: 442px; }
-		.homepage .commentlist li > div { position: relative; border-bottom: none; padding: 10px 0 0 4px; }
-		
-		/*----------END LASTCOMMENTS----------*/
-	/*----------END FRONT PAGE----------*/	
-	
-	/*----------CONTENTMANAGEMENT PAGE----------*/
+        /*----------LASTCOMMENTS----------*/
+        .lastcomments-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
+        #lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
+        #comments { padding: 0 0 0 246px; width: 714px; }
+        .homepage #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }
+        .homepage .commentlist { margin: 0; padding: 0; list-style: none; }
+        .homepage .commentlist ul.children { list-style: none;}
+        .homepage .commentlist li > div { position: relative; padding: 15px 0 15px 0px; min-height: 100px; height: auto;}
+        .homepage .commentlist li li > div { margin-left: 100px; }
+        .homepage .commentlist li li li > div { margin-left: 200px; }
+        .homepage .commentlist li li li li > div { margin-left: 270px; }
+        .homepage .commentlist li li li li li > div { margin-left: 360px; }
+        .homepage .comment-avatar { position: absolute; top: 30px; left: -96px; }
+        .homepage .comment-content { margin-left: 96px; border-bottom: 1px solid #dedfe0; }
+        .homepage .comment-author { position: relative; float: left; width: 100%; font-size: 14px; color: #bf283b;  top: 10px; vertical-align: top;}
+        .homepage .comment-author>img { -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; -o-border-radius: 7px; }
+        .homepage cite { margin-left: 15px; font-style: normal; font-weight: bold; color: #bf283b; vertical-align: top;}
+        .homepage .comment-meta { position: absolute; left: 105px; top: 45px; width: 150px; padding-right: 40px; color: #999999; }
+        .homepage .comment-meta a { left: 10px; font-size: 10px; color: #535349; }
+        .homepage .comment-body { position: relative; clear: both; padding-top: 7px; font-size: 12px; line-height: 17px; vertical-align: top;}
+        .homepage .comment-body p { position: relative; left: 100px; top: -20px; margin: 0px;}
+        .homepage .says { display: none; }
+        .homepage #respond { padding-left: 4px; }
+        .homepage li.comment > div { position: relative; }
+        .homepage .reply { position: absolute; top: 30px; right: 20px; }
+        .homepage #reply-title { font-size: 21px; }
+        .homepage .comment-reply-link { display: none; }
+        .homepage .comment-form-author, .comment-form-email, .comment-form-url { float: left; width: 460px; margin: 0; padding: 10px 0; }
+        .homepage .comment-form-comment { clear: both; width: 460px; margin: 0; padding: 10px 0; }
+        .homepage input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding: 8px; outline: none; color: #6b6b6b; -moz-border-radius: 4px; border-radius: 4px; }
+        .homepage #comments input[type="text"] { width: 442px; }
+        .homepage #comments textarea { width: 442px; }
+        .homepage .commentlist li > div { position: relative; border-bottom: none; padding: 10px 0 0 4px; }
+        /*----------END LASTCOMMENTS----------*/
+    /*----------END FRONT PAGE----------*/
+
+    /*----------CONTENTMANAGEMENT PAGE----------*/
         h1.moderating-header { text-align: center; }
 
         .contentmanagement-wrapper { width: 100%; }
@@ -286,70 +285,70 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addtour .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
         #addtour .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top; }
         #addtour .photo>div>div { margin: 17px 0 0 20px;}
-	    
-	    #addtour .sliderinfo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-		#addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}
-	    #addtour .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
-	    #addtour #actionname-addtour-form { width: 500px; }
-	    #addtour #briefdescription-addtour-form { max-width: 625px; width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-	    
-	    #addtour .submitbuttons { width: 680px; margin: 0 auto;}
-		#addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
-		#addtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
-		#cancel-addtour-button { background: #e3e1d8; color: #7e7d77; }
-		#create-addtour-button { background: #bf273a; color: #fff; }
-	/*----------END ADDTOUR PAGE----------*/	
-	
-	/*----------ADDARTICLE PAGE----------*/
-		.addarticle-wrapper { width: 100%; }
-		#addarticle { width: 960px; margin:0 auto; }
-		#addarticle .article { width: 680px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
-		#addarticle .article>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 100%; vertical-align: top;}
-		#addarticle .article>div>div { display: inline-block; position: relative; width: 660px; margin: 17px 0 0 20px;}
-	    #addarticle input[type="text"] {  width: 605px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-			    
-	    #addarticle #actionname-addarticle-form { width: 300px; }
-	    #addarticle #quote-addarticle-form, #addarticle  #text-addarticle-form { width: 600px; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px;}
-	   
-	    #addarticle .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-		#addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 155px; margin: 0 0 0 20px; }
-	    #addarticle .photo .addphoto  { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
+
+        #addtour .sliderinfo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
+        #addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}
+        #addtour .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
+        #addtour #actionname-addtour-form { width: 500px; }
+        #addtour #briefdescription-addtour-form { max-width: 625px; width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+
+        #addtour .submitbuttons { width: 680px; margin: 0 auto;}
+        #addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
+        #addtour .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
+        #cancel-addtour-button { background: #e3e1d8; color: #7e7d77; }
+        #create-addtour-button { background: #bf273a; color: #fff; }
+    /*----------END ADDTOUR PAGE----------*/
+
+    /*----------ADDARTICLE PAGE----------*/
+        .addarticle-wrapper { width: 100%; }
+        #addarticle { width: 960px; margin:0 auto; }
+        #addarticle .article { width: 680px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
+        #addarticle .article>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 100%; vertical-align: top;}
+        #addarticle .article>div>div { display: inline-block; position: relative; width: 660px; margin: 17px 0 0 20px;}
+        #addarticle input[type="text"] {  width: 605px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+
+        #addarticle #actionname-addarticle-form { width: 300px; }
+        #addarticle #quote-addarticle-form, #addarticle  #text-addarticle-form { width: 600px; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px;}
+
+        #addarticle .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
+        #addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 155px; margin: 0 0 0 20px; }
+        #addarticle .photo .addphoto  { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
         #addarticle .photo .item { text-align: center; font-size: 10px; }
         #addarticle .photo>p { font-weight: bolder; margin-left: 20px; }
         #addarticle .photo .item p { margin: 10px 0 0 0; }
         #addarticle .photo .item a { color: #64abe3;  }
-        
-	    #addarticle .submitbuttons { width: 680px; margin: 0 auto;}
-		#addarticle .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
-		#addarticle .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
-		#cancel-addarticle-button { background: #e3e1d8; color: #7e7d77; }
-		#create-addarticle-button { background: #bf273a; color: #fff; }
-	/*----------END ADDARTICLE PAGE----------*/	
-	
-	/*----------TOURLIST PAGE----------*/
-		.tourlist-wrapper { width: 100%; }
-		#tourlist { width: 960px; margin:0 auto; }
-		#tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
-		#tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
-		#tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-		#tourlist input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-		#tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
-		
-		#tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
-		#tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
-		#tourlist .list .item .image { width: 120px; }
-		#tourlist .list .item .image img { width: 100px; height:100px; }
-		#tourlist .list .item .info { width: 360px; vertical-align: top;}
-		#tourlist .list .item .info h2 { margin: 15px 0 0 0; }
-		#tourlist .list .item .info p { margin-top: 0px; }
-		#tourlist .list .item .hotelrating { padding: 15px 0; width: 200px; }
-		#tourlist .list .item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin-right: 5px; }
-		#tourlist .list .item .cost { width: 265px; height: 100px;}
-		#tourlist .list .item .cost > * { float:right; clear: both;}
-		#tourlist .list .item .cost h2 { margin-bottom: 0px; }
-		#tourlist .list .item .cost p { margin: 0px 0 30px 0; }
-		#tourlist .list .item .cost .editdelete-links { height: 20px; }
-		#tourlist .list .item .cost .editdelete-links a { margin-left: 10px; }
+
+        #addarticle .submitbuttons { width: 680px; margin: 0 auto;}
+        #addarticle .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}
+        #addarticle .submitbuttons button { width: 160px; height: 35px; margin: 0 30px 0 0; border: none; font-weight: bolder; cursor: pointer;}
+        #cancel-addarticle-button { background: #e3e1d8; color: #7e7d77; }
+        #create-addarticle-button { background: #bf273a; color: #fff; }
+    /*----------END ADDARTICLE PAGE----------*/
+
+    /*----------TOURLIST PAGE----------*/
+        .tourlist-wrapper { width: 100%; }
+        #tourlist { width: 960px; margin:0 auto; }
+        #tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
+        #tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
+        #tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
+        #tourlist input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
+
+        #tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
+        #tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
+        #tourlist .list .item .image { width: 120px; }
+        #tourlist .list .item .image img { width: 100px; height:100px; }
+        #tourlist .list .item .info { width: 360px; vertical-align: top;}
+        #tourlist .list .item .info h2 { margin: 15px 0 0 0; }
+        #tourlist .list .item .info p { margin-top: 0px; }
+        #tourlist .list .item .hotelrating { padding: 15px 0; width: 200px; }
+        #tourlist .list .item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin-right: 5px; }
+        #tourlist .list .item .cost { width: 265px; height: 100px;}
+        #tourlist .list .item .cost > * { float:right; clear: both;}
+        #tourlist .list .item .cost h2 { margin-bottom: 0px; }
+        #tourlist .list .item .cost p { margin: 0px 0 30px 0; }
+        #tourlist .list .item .cost .editdelete-links { height: 20px; }
+        #tourlist .list .item .cost .editdelete-links a { margin-left: 10px; }
     /*----------END TOURLIST PAGE----------*/
 
     /*----------RESERVTOUR PAGE----------*/
@@ -382,8 +381,8 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 /*----------FOOTER----------*/
 #footer { width: 960px; margin:0 auto; padding: 29px 0 25px; }
 .footer-wrapper { background: #bf273a url('images/footer-wrapper-background.png') center no-repeat; width: 100%; }
-#footer-logo { position: relative; left: 0px; float: left; background: url('images/footer-logo.png') no-repeat; width: 128px; height: 100px;}
-#site-info { float: left; width: 280px; margin-right: 60px; line-height: 22px; }
+#footer-logo { position: relative; left: 0px; float: left; background: url('images/footer-logo.png') no-repeat; width: 100px; height: 100px;}
+#site-info { float: left; width: 300px; margin-right: 60px; line-height: 22px; }
 #site-info a { font-weight: bold; text-decoration: none; color: #333; }
 #footer-left { float: right; width: 170px; margin-right: 30px; }
 #footer-center{ float: right; width: 120px; margin-right: 25px;}

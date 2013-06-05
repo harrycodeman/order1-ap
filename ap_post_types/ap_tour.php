@@ -220,7 +220,7 @@ function ap_the_tour_duration( ) {
 }
 
 function ap_the_tour_cost( ) {
-    echo ap_get_the_tour( )->cost;
+    echo number_format( ap_get_the_tour( )->cost, 0, '.', ' ' );
 }
 
 function ap_the_tour_icon( $width = 200, $height = 200 ) {
@@ -230,7 +230,8 @@ function ap_the_tour_icon( $width = 200, $height = 200 ) {
              alt="Изображение остутствует">
     <?php }
     else { ?>
-        <img class="image-circle" width="<?= $width; ?>" height="<?= $height; ?>" alt="Изображение остутствует">;
+        <img class="image-circle" src="<?php ap_print_image_url( 'tour-icon-missed.jpg' ); ?>" width="<?= $width; ?>"
+             height="<?= $height; ?>" alt="Изображение остутствует">;
     <?php }
 }
 
@@ -251,10 +252,11 @@ function ap_the_tour_offer_description( ) {
 function ap_the_tour_banner( $width = 960, $height = 382 ) {
     $offer_banner = ap_get_the_tour()->get_offer_banner( );
     if ( !empty( $offer_banner ) ) { ?>
-        <img src="<?php echo $offer_banner->get_url( ); ?>" width="<?= $width; ?>" height="<?= $height; ?>"
+        <img src="<?= $offer_banner->get_url( ); ?>" width="<?= $width; ?>" height="<?= $height; ?>"
              alt="Изображение остутствует">
     <?php }
     else { ?>
-        <img width="<?= $width; ?>" height="<?= $height; ?>" alt="Изображение остутствует">
+        <img src="<?php ap_print_image_url( 'tour-banner-missed.jpg' ); ?>" width="<?= $width; ?>"
+             height="<?= $height; ?>" alt="Изображение остутствует">
     <?php }
 }
