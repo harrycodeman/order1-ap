@@ -93,68 +93,54 @@ Template Name: Front-page
 
 <div class="toursearch-wrapper">
     <div id="toursearch">
-        <div id="main-parameters">
-            <span class="from-title">
-                <label for="from-form">Хочу поехать в</label>
-                <label style="display: none" for="to-form">Курорт</label>
-            </span>
-            <span class="date-title"><label for="datepicker">Дата вылета</label></span>
-            <select id="from-form" class="dropdown">
-                <option value="">Патайя</option>
-                <option value="">Тайланд</option>
-            </select>
-            <select id="to-form" class="dropdown">
-                <option value="">Патайя</option>
-                <option value="">Тайланд</option>
-            </select>
+        <form name="tour-search-form" action="<?php ap_print_search_tour_page_permalink( ); ?>"
+              method="post">
+            <div id="main-parameters">
+                <span class="from-title">
+                    <label for="from-form">Хочу поехать в</label>
+                    <label style="display: none" for="to-form">Курорт</label>
+                </span>
+                <span class="date-title"><label for="datepicker">Дата вылета</label></span>
+                <input name="ap_tour_country" id="from-form" type="text" autocomplete="off" placeholder="Любая страна">
+                <input name="ap_tour_resort" id="to-form" type="text" autocomplete="off" placeholder="Любой город">
 
-            <div id="div-datepicker">
-                <input type="text" id="datepicker">
-                <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
+                <div id="div-datepicker">
+                    <input name="ap_tour_start_date" type="text" id="datepicker" autocomplete="off" placeholder="Любая">
+                    <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
+                </div>
+
+                <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей">
             </div>
+            <div id="additional-parameters" style="display: block !important;">
+                <span class="cost-title">
+                    <label for="startcost">Стоимость тура</label>
+                    <label style="display: none" for="endcost">Максимальная стоимость тура</label>
+                </span>
 
-            <span style="top: 45px; left: 780px;">на</span>
-            <select id="days-form" class="dropdown">
-                <option value="">1 день</option>
-                <option value="">2 дня</option>
-                <option value="">3 дня</option>
-                <option value="">4 дня</option>
-                <option value="">5 дней</option>
-                <option value="">6 дней</option>
-                <option value="">7 дней</option>
-            </select>
-        </div>
-        <div id="additional-parameters">
-            <span class="cost-title">Стоимость тура</span>
-            <span class="starcount-title">Количество звезд</span>
-            <span class="peoplecount-title">Сколько вас</span>
-
-            <input type="text" id="startcost"/>
-            <span style="position: absolute; top: 40px; left: 125px;">&mdash;</span>
-            <input type="text" id="endcost"/>
-            <select id="starcount" class="dropdown">
-                <option value="">Неважно</option>
-            </select>
-            <select id="adultcount" class="dropdown">
-                <option value="">1 взрослый</option>
-                <option value="">2 взрослых</option>
-                <option value="">3 взрослых</option>
-                <option value="">4 взрослых</option>
-            </select>
-            <select id="childrencount" class="dropdown">
-                <option value="">Без детей</option>
-                <option value="">1 ребенок</option>
-                <option value="">2 ребенок</option>
-                <option value="">3 ребенок</option>
-                <option value="">4 ребенок</option>
-            </select>
-        </div>
-        <div class="buttons">
-            <button id="additionalparameters-hideshow">Указать дополнительные параметры</button>
-            <button id="additionalparameters-submit">ПОДОБРАТЬ</button>
-        </div>
+                <span class="starcount-title"><label for="starcount">Количество звезд</label></span>
+                <input name="ap_tour_cost_min" id="startcost" type="text" autocomplete="off" placeholder="Дешево">
+                <span style="position: absolute; top: 46px; left: 132px; font-size: 10px; font-weight: bold;">&mdash;</span>
+                <input name="ap_tour_cost_max" id="endcost" type="text"  autocomplete="off" placeholder="Дорого">
+                <select name="ap_tour_hotel_rating" id="starcount" class="dropdown">
+                    <option value="0">Неважно</option>
+                    <option value="1">1 (*)</option>
+                    <option value="2">2 (**)</option>
+                    <option value="3">3 (***)</option>
+                    <option value="4">4 (****)</option>
+                    <option value="5">5 (*****)</option>
+                </select>
+                <div class="buttons">
+                    <button id="additionalparameters-clear" type="reset">ОЧИСТИТЬ</button>
+                    <button id="additionalparameters-submit" type="submit">ПОДОБРАТЬ</button>
+                </div>
+            </div>
+        </form>
     </div><!--#toursearch-->
 </div><!--#toursearch-wrapper-->
+<div class="toursearch-bottom-line">
+</div>
+
 <div class="interestingoffers-wrapper">
 
     <div id="interestingoffers">

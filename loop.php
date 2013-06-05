@@ -93,7 +93,7 @@ $(document).ready(function() {
 		itemSelector : '#boxes .box',
 		loadingImg : '<?php echo get_bloginfo('stylesheet_directory') ?>/images/loading.gif',
 		loadingText : 'Загрузка...',
-		donetext : 'No more pages to load.',
+		donetext : 'Все страницы загружены',
 		debug : false
 	}, function(arrayOfNewElems) {
 		$('#boxes').masonry('appended', $(arrayOfNewElems));

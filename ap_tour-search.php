@@ -26,7 +26,7 @@ Template Name: Страница поиска туров
                 </div>
 
                 <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
-                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много дней">
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей">
             </div>
             <div id="additional-parameters" style="display: block !important;">
                 <span class="cost-title">
@@ -54,6 +54,8 @@ Template Name: Страница поиска туров
         </form>
     </div><!--#toursearch-->
 </div><!--#toursearch-wrapper-->
+<div class="toursearch-bottom-line">
+</div>
 
 <br><br>
 
@@ -119,6 +121,35 @@ if ( !ap_is_view_mode( ) ) {
             $inner_filter_part .= ' до ' . number_format( $cost_max, 0, '.', ' ' ) . 'руб';
         }
     }
+    /* Дата */
+    if ( !empty( $_POST['ap_tour_start_date'] ) ) {
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_start_date',
+                'value' => $_POST['ap_tour_start_date']
+            )
+        );
+        if ( !empty( $inner_filter_part ) ) {
+            $inner_filter_part .= ' ';
+        }
+        $inner_filter_part .= 'с вылетом ' . $_POST['ap_tour_start_date'];
+    }
+
+    /* Продолжительность */
+    if ( !empty( $_POST['ap_tour_duration'] ) ) {
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_duration',
+                'value' => $_POST['ap_tour_duration']
+            )
+        );
+        if ( !empty( $inner_filter_part ) ) {
+            $inner_filter_part .= ' ';
+        }
+        $inner_filter_part .= 'на ' . $_POST['ap_tour_duration'] . ' ночей(и)';
+    }
 
     if ( !empty( $meta_query_args ) ) {
         $filter_args['meta_query'] = $meta_query_args;
@@ -147,18 +178,21 @@ if ( !ap_is_view_mode( ) ) {
                     <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
                 </div>
                 <div class="hotelrating">
-                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                    <img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
                 </div>
                 <div class="cost">
                     <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
                     <p>Цена за 1 путевку</p>
                     <div class="editdelete-links">
-                        <a class="blue" href="">Редактировать</a>
-                        <a class="blue" href="">Удалить</a>
+                        <a class="blue" href="">
+                            <img src="<?php ap_print_image_url( 'shopping-cart.png' ) ?>" alt="Корзина покупок"
+                                width="13px" height="13px">
+                            Купить
+                        </a>
                     </div>
                 </div>
             </div><!--.item-->
