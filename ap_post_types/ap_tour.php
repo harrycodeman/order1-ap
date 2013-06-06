@@ -28,6 +28,7 @@ class AP_Tour {
     const country_meta_name = 'ap_tour_country';
     const resort_meta_name = 'ap_tour_resort';
     const hotel_meta_name = 'ap_tour_hotel';
+    const hotel_rating_meta_name = 'ap_tour_hotel_rating';
     const start_date_meta_name = 'ap_tour_start_date';
     const duration_meta_name = 'ap_tour_duration';
     const cost_meta_name = 'ap_tour_cost';
@@ -41,6 +42,7 @@ class AP_Tour {
     public $country;
     public $resort;
     public $hotel;
+    public $hotel_rating;
     public $start_date;
     public $duration;
     public $cost;
@@ -73,6 +75,7 @@ class AP_Tour {
         $this->country = $this->load_meta( self::country_meta_name );
         $this->resort = $this->load_meta( self::resort_meta_name );
         $this->hotel = $this->load_meta( self::hotel_meta_name );
+        $this->hotel_rating = $this->load_meta( self::hotel_rating_meta_name );
         $this->start_date = $this->load_meta( self::start_date_meta_name );
         $this->duration = $this->load_meta( self::duration_meta_name );
         $this->cost = $this->load_meta( self::cost_meta_name );
@@ -149,6 +152,7 @@ class AP_Tour {
         $this->save_meta( self::country_meta_name, $this->country );
         $this->save_meta( self::resort_meta_name, $this->resort );
         $this->save_meta( self::hotel_meta_name, $this->hotel );
+        $this->save_meta( self::hotel_rating_meta_name, $this->hotel_rating );
         $this->save_meta( self::start_date_meta_name, $this->start_date );
         $this->save_meta( self::duration_meta_name, $this->duration );
         $this->save_meta( self::cost_meta_name, $this->cost );
@@ -209,6 +213,16 @@ function ap_the_tour_resort( ) {
 
 function ap_the_tour_hotel( ) {
     echo ap_get_the_tour( )->hotel;
+}
+
+function ap_the_tour_hotel_rating( $value_to_check ) {
+    if ( empty( $value_to_check )
+            &&  empty( ap_get_the_tour( )->hotel_rating ) ) {
+        echo 'selected';
+    }
+    elseif ( $value_to_check === ap_get_the_tour( )->hotel_rating ) {
+        echo 'selected';
+    }
 }
 
 function ap_the_tour_start_date( ) {
