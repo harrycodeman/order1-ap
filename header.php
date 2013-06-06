@@ -77,7 +77,7 @@ $(document).ready(function() {
 		if ($(this).val() == '') $(this).val('Search');
 	});
 
-<?php if (is_home()): ?>
+<?php if ( is_home( ) ): ?>
 	// grid
 	$('#boxes').masonry({
 		itemSelector: '.box',

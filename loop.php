@@ -1,11 +1,11 @@
 <?php if ( ! have_posts() ) : ?>
-	<div id="post-0" class="post error404 not-found">
-		<h1 class="entry-title"><?php _e( 'Not Found', 'imbalance2' ); ?></h1>
-		<div class="entry-content">
-			<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'imbalance2' ); ?></p>
-			<?php get_search_form(); ?>
-		</div><!-- .entry-content -->
-	</div><!-- #post-0 -->
+    <div id="post-0" class="post error404 not-found">
+        <h1 class="entry-title"><?php _e( 'Not Found', 'imbalance2' ); ?></h1>
+        <div class="entry-content">
+            <p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'imbalance2' ); ?></p>
+            <?php get_search_form(); ?>
+        </div><!-- .entry-content -->
+    </div><!-- #post-0 -->
 <?php endif; ?>
 
 <?php $imbalance2_theme_options = get_option('imbalance2_theme_options') ?>
@@ -13,35 +13,35 @@
 <div id="boxes">
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<div class="box">
-		<div class="rel">
-			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-	<?php if ($imbalance2_theme_options['images_only'] == 0): ?>
-			<div class="categories"><?php imbalance2_posted_in(); ?></div>
-			<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-		<?php the_excerpt() ?>
-			<div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
-				<?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
-			</div>
-	<?php endif ?>
-			<div class="texts">
-	<?php if ($imbalance2_theme_options['images_only'] == 1): ?>
-				<a class="transparent" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-	<?php endif ?>
-				<div class="abs">
-	<?php if ($imbalance2_theme_options['images_only'] == 0): ?>
-				<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
-	<?php endif ?>
-					<div class="categories"><?php imbalance2_posted_in(); ?></div>
-					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-		<?php the_excerpt() ?>
-					<div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
-					<?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="box">
+        <div class="rel">
+            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
+    <?php if ($imbalance2_theme_options['images_only'] == 0): ?>
+            <div class="categories"><?php imbalance2_posted_in(); ?></div>
+            <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+        <?php the_excerpt() ?>
+            <div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
+                <?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
+            </div>
+    <?php endif ?>
+            <div class="texts">
+    <?php if ($imbalance2_theme_options['images_only'] == 1): ?>
+                <a class="transparent" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
+    <?php endif ?>
+                <div class="abs">
+    <?php if ($imbalance2_theme_options['images_only'] == 0): ?>
+                <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('homepage-thumb', array('alt' => '', 'title' => '')) ?></a>
+    <?php endif ?>
+                    <div class="categories"><?php imbalance2_posted_in(); ?></div>
+                    <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+        <?php the_excerpt() ?>
+                    <div class="posted"><?php imbalance2_posted_on() ?> <span class="main_separator">/</span>
+                    <?php echo comments_popup_link( __( 'No comments', 'imbalance2' ), __( 'One Comment', 'imbalance2' ), __( '% Comments', 'imbalance2' ) ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php endwhile; ?>
 </div>
@@ -66,12 +66,12 @@ $('.fetch a').on('click', function(e) {
         dataType: "html",
         success: function(out) {
             out = $.trim(out);
-            result = $(out).find('#boxes .box');
-            nextlink = $(out).find('.fetch a').attr('href');
+            var result = $(out).find('#boxes .box');
+            var next_link = $(out).find('.fetch a').attr('href');
             $('#boxes').append(result).masonry('appended', result);
-            $('.fetch a').removeClass('loading').text('Load more posts');
-            if (nextlink != undefined) {
-                $('.fetch a').attr('href', nextlink);
+            $('.fetch a').removeClass('loading').text('Загрузить следующие статьи');
+            if (next_link != undefined) {
+                $('.fetch a').attr('href', next_link);
             } else {
                 $('.fetch').remove();
             }
