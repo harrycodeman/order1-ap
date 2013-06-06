@@ -46,7 +46,9 @@
 <?php endwhile; ?>
 </div>
 
-<?php if ( $wp_query->max_num_pages > 1 ) :
+<?php
+global $wp_query;
+if ( $wp_query->max_num_pages > 1 ) :
 	if ( $imbalance2_theme_options['navigation'] == 0 ) : // Default ?>
 
 <div class="fetch">
@@ -55,25 +57,26 @@
 
 <script type="text/javascript">
 // Ajax-fetching "Load more posts"
-$('.fetch a').live('click', function(e) {
-	e.preventDefault();
-	$(this).addClass('loading').text('Загрузка...');
-	$.ajax({
-		type: "GET",
-		url: $(this).attr('href') + '#boxes',
-		dataType: "html",
-		success: function(out) {
-			result = $(out).find('#boxes .box');
-			nextlink = $(out).find('.fetch a').attr('href');
-			$('#boxes').append(result).masonry('appended', result);
-			$('.fetch a').removeClass('loading').text('Load more posts');
-			if (nextlink != undefined) {
-				$('.fetch a').attr('href', nextlink);
-			} else {
-				$('.fetch').remove();
-			}
-		}
-	});
+$('.fetch a').on('click', function(e) {
+    e.preventDefault();
+    $(this).addClass('loading').text('Загрузка...');
+    $.ajax({
+        type: "GET",
+        url: $(this).attr('href') + '#boxes',
+        dataType: "html",
+        success: function(out) {
+            out = $.trim(out);
+            result = $(out).find('#boxes .box');
+            nextlink = $(out).find('.fetch a').attr('href');
+            $('#boxes').append(result).masonry('appended', result);
+            $('.fetch a').removeClass('loading').text('Load more posts');
+            if (nextlink != undefined) {
+                $('.fetch a').attr('href', nextlink);
+            } else {
+                $('.fetch').remove();
+            }
+        }
+    });
 });
 </script>
 
