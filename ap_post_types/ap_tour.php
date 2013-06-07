@@ -215,14 +215,8 @@ function ap_the_tour_hotel( ) {
     echo ap_get_the_tour( )->hotel;
 }
 
-function ap_the_tour_hotel_rating( $value_to_check ) {
-    if ( empty( $value_to_check )
-            &&  empty( ap_get_the_tour( )->hotel_rating ) ) {
-        echo 'selected';
-    }
-    elseif ( $value_to_check === ap_get_the_tour( )->hotel_rating ) {
-        echo 'selected';
-    }
+function ap_the_tour_hotel_rating( ) {
+    echo ap_get_the_tour( )->hotel_rating;
 }
 
 function ap_the_tour_start_date( ) {
@@ -234,7 +228,8 @@ function ap_the_tour_duration( ) {
 }
 
 function ap_the_tour_cost( ) {
-    echo number_format( ap_get_the_tour( )->cost, 0, '.', ' ' );
+    $cost_without_spaces = preg_replace( '/\s+/', '', ap_get_the_tour( )->cost );
+    echo number_format( $cost_without_spaces, 0, '.', ' ' );
 }
 
 function ap_the_tour_icon( $width = 200, $height = 200 ) {

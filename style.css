@@ -278,11 +278,13 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
         #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
         #addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-        #addtour input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
-        #addtour #country-addtour-form, #resortcity-addtour-form, #hotelname-addtour-form { width: 280px !important; }
+        #addtour input[type="text"], input[type="number"] { width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour #country-addtour-form, #resortcity-addtour-form { width: 280px !important; }
         #addtour-datepicker { width: 125px !important; padding: 6.5px 10px 6.5px 5px !important; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #addtour #calendar-image { width: 19px; height: 18px; cursor: pointer; position: absolute; right: 3px; top: 55px; background: url('images/calendar.png') center no-repeat; }
         #addtour #nightcount-addtour-form { width: 114.5px; }
+        #addtour #hotelname-addtour-form { width: 161.5px; }
+        #addtour #hotel-rating-addtour-form { width: 80px; }
 
         #addtour .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
         #addtour .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top; }

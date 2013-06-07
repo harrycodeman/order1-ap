@@ -98,6 +98,21 @@ if ( !ap_is_view_mode( ) ) {
         }
     }
 
+    /* Рейтинг отеля */
+    if ( !empty( $_POST['ap_tour_hotel_rating'] ) ) {
+        array_push(
+            $meta_query_args,
+            array(
+                'key' => 'ap_tour_hotel_rating',
+                'value' => $_POST['ap_tour_hotel_rating']
+            )
+        );
+        if ( empty( $inner_filter_part ) ) {
+            $inner_filter_part .= ' ';
+        }
+        $inner_filter_part .= 'c ' . $_POST['ap_tour_hotel_rating'] . '-звездным отелем';
+    }
+
     /* Цена */
     if ( !empty( $_POST['ap_tour_cost_min'] )
             || !empty( $_POST['ap_tour_cost_max'] ) ) {
@@ -180,11 +195,9 @@ if ( !ap_is_view_mode( ) ) {
                     <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
                 </div>
                 <div class="hotelrating">
-                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                    <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <?php for ( $i = 0; $i < ap_get_the_tour()->hotel_rating; $i++ ) { ?>
+                        <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                    <?php } ?>
                 </div>
                 <div class="cost">
                     <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
@@ -198,6 +211,11 @@ if ( !ap_is_view_mode( ) ) {
                     </div>
                 </div>
             </div><!--.item-->
+            <?php }
+
+            $loaded_tours_count = count( $posts_of_tours );
+            if ( empty( $loaded_tours_count ) ) { ?>
+                <h2>К сожалению, не найдено ни одного тура, соответствующего текущим условиям поиска.<h2>
             <?php } ?>
         </div><!--.list-->
     </div><!--.tourlist-->

@@ -30,6 +30,12 @@ else:
                                     </div>
 
                                     <div>
+                                        <p><label for="hotel-rating-addtour-form">Уровень отеля</label></p>
+                                        <input name="ap_tour_hotel_rating" type="number" id="hotel-rating-addtour-form"
+                                               value="1" min="1" max="5" required>
+                                    </div>
+
+                                    <div>
                                         <p><label for="cost-addtour-form">Стоимость тура</label></p>
                                         <input name="ap_tour_cost" type="text" id="cost-addtour-form" required>
                                     </div>
@@ -131,6 +137,7 @@ else:
         $tour->country = $_POST['ap_tour_country'];
         $tour->resort = $_POST['ap_tour_resort'];
         $tour->hotel = $_POST['ap_tour_hotel'];
+        $tour->hotel_rating = $_POST['ap_tour_hotel_rating'];
         $tour->start_date = $_POST['ap_tour_start_date'];
         $tour->duration = $_POST['ap_tour_duration'];
         $tour->cost = $_POST['ap_tour_cost'];
