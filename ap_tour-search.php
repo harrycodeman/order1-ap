@@ -17,16 +17,20 @@ Template Name: Страница поиска туров
                     <label style="display: none" for="to-form">Курорт</label>
                 </span>
                 <span class="date-title"><label for="datepicker">Дата вылета</label></span>
-                <input name="ap_tour_country" id="from-form" type="text" autocomplete="off" placeholder="Любая страна">
-                <input name="ap_tour_resort" id="to-form" type="text" autocomplete="off" placeholder="Любой город">
+                <input name="ap_tour_country" id="from-form" type="text" autocomplete="off" placeholder="Любая страна"
+                       value="<?= $_POST['ap_tour_country']; ?>" class="search-input">
+                <input name="ap_tour_resort" id="to-form" type="text" autocomplete="off" placeholder="Любой город"
+                       value="<?= $_POST['ap_tour_resort']; ?>" class="search-input">
 
                 <div id="div-datepicker">
-                    <input name="ap_tour_start_date" type="text" id="datepicker" autocomplete="off" placeholder="Любая">
+                    <input name="ap_tour_start_date" type="text" id="datepicker" autocomplete="off" placeholder="Любая"
+                           value="<?= $_POST['ap_tour_start_date']; ?>" class="search-input">
                     <div id="calendar-image" onclick="$('#datepicker').focus()"></div>
                 </div>
 
                 <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
-                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей">
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей"
+                       value="<?= $_POST['ap_tour_duration']; ?>" class="search-input">
             </div>
             <div id="additional-parameters" style="display: block !important;">
                 <span class="cost-title">
@@ -35,10 +39,12 @@ Template Name: Страница поиска туров
                 </span>
 
                 <span class="starcount-title"><label for="starcount">Количество звезд</label></span>
-                <input name="ap_tour_cost_min" id="startcost" type="text" autocomplete="off" placeholder="Дешево">
+                <input name="ap_tour_cost_min" id="startcost" type="text" autocomplete="off" placeholder="Дешево"
+                       value="<?= $_POST['ap_tour_cost_min']; ?>" class="search-input">
                 <span style="position: absolute; top: 46px; left: 132px; font-size: 10px; font-weight: bold;">&mdash;</span>
-                <input name="ap_tour_cost_max" id="endcost" type="text"  autocomplete="off" placeholder="Дорого">
-                <select name="ap_tour_hotel_rating" id="starcount" class="dropdown">
+                <input name="ap_tour_cost_max" id="endcost" type="text"  autocomplete="off" placeholder="Дорого"
+                       value="<?= $_POST['ap_tour_cost_max']; ?>" class="search-input">
+                <select name="ap_tour_hotel_rating" id="starcount" class="dropdown search-select">
                     <option value="0">Неважно</option>
                     <option value="1">1 (*)</option>
                     <option value="2">2 (**)</option>
@@ -47,7 +53,7 @@ Template Name: Страница поиска туров
                     <option value="5">5 (*****)</option>
                 </select>
                 <div class="buttons">
-                    <button id="additionalparameters-clear" type="reset">ОЧИСТИТЬ</button>
+                    <button id="additionalparameters-clear" type="button">ОЧИСТИТЬ</button>
                     <button id="additionalparameters-submit" type="submit">ПОДОБРАТЬ</button>
                 </div>
             </div>
@@ -56,6 +62,18 @@ Template Name: Страница поиска туров
 </div><!--#toursearch-wrapper-->
 <div class="toursearch-bottom-line">
 </div>
+
+<!-- Кнопка очистки + установка значения для рейтинга отеля -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#additionalparameters-clear').on('click', function() {
+                $('.search-input').val('');
+                $('.search-select').val('0');
+            }
+        );
+    });
+    $('#starcount').val('<?= $_POST['ap_tour_hotel_rating'] ? $_POST['ap_tour_hotel_rating'] : 0; ?>');
+</script>
 
 <br><br>
 
@@ -107,7 +125,7 @@ if ( !ap_is_view_mode( ) ) {
                 'value' => $_POST['ap_tour_hotel_rating']
             )
         );
-        if ( empty( $inner_filter_part ) ) {
+        if ( !empty( $inner_filter_part ) ) {
             $inner_filter_part .= ' ';
         }
         $inner_filter_part .= 'c ' . $_POST['ap_tour_hotel_rating'] . '-звездным отелем';
@@ -138,6 +156,7 @@ if ( !ap_is_view_mode( ) ) {
             $inner_filter_part .= ' до ' . number_format( $cost_max, 0, '.', ' ' ) . 'руб';
         }
     }
+
     /* Дата */
     if ( !empty( $_POST['ap_tour_start_date'] ) ) {
         array_push(
@@ -185,42 +204,68 @@ if ( !ap_is_view_mode( ) ) {
             $posts_of_tours = get_posts( $filter_args );
             foreach ( $posts_of_tours as $post_of_tour ) {
                 ap_load_tour_for_post( $post_of_tour ); ?>
-            <div class="item">
-                <div class="image">
-                    <?php ap_the_tour_icon( 100, 100 ); ?>
-                </div>
-                <div class="info">
-                    <h2><?php ap_the_tour_country( ); ?>, <?php ap_the_tour_resort( ); ?></h2>
-                    <p>Вылет <?php ap_the_tour_start_date( ); ?> на <?php ap_the_tour_duration( ); ?> ночей(и)</p>
-                    <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
-                </div>
-                <div class="hotelrating">
-                    <?php for ( $i = 0; $i < ap_get_the_tour()->hotel_rating; $i++ ) { ?>
-                        <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                    <?php } ?>
-                </div>
-                <div class="cost">
-                    <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
-                    <p>Цена за 1 путевку</p>
-                    <div class="editdelete-links">
-                        <a class="blue" href="">
-                            <img src="<?php ap_print_image_url( 'shopping-cart.png' ) ?>" alt="Корзина покупок"
-                                width="13px" height="13px">
-                            Купить
-                        </a>
+                <div class="item">
+                    <div class="image">
+                        <?php ap_the_tour_icon( 100, 100 ); ?>
                     </div>
-                </div>
-            </div><!--.item-->
+                    <div class="info">
+                        <h2><?php ap_the_tour_country( ); ?>, <?php ap_the_tour_resort( ); ?></h2>
+                        <p>Вылет <?php ap_the_tour_start_date( ); ?> на <?php ap_the_tour_duration( ); ?> ночей(и)</p>
+                        <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
+                    </div>
+                    <div class="hotelrating">
+                        <?php for ( $i = 0; $i < ap_get_the_tour()->hotel_rating; $i++ ) { ?>
+                            <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
+                        <?php } ?>
+                    </div>
+                    <div class="cost">
+                        <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
+                        <p>Цена за 1 путевку</p>
+                        <div class="editdelete-links">
+                            <?php if ( is_user_logged_in( ) ) { ?>
+                                <a class="blue" href="<?php ap_print_edit_tour_page_permalink( ap_get_the_tour_id() ); ?>">
+                                    Редактировать
+                                </a>
+                                <a class="blue delete-tour-link"
+                                   href="<?php ap_print_edit_tour_page_permalink( ap_get_the_tour_id() ); ?>?delete_tour=1">
+                                    Удалить
+                                </a>
+                            <?php }
+                            else { ?>
+                                <a class="blue" href="">
+                                    <img src="<?php ap_print_image_url( 'shopping-cart.png' ) ?>" alt="Корзина покупок"
+                                        width="13px" height="13px">
+                                    Купить
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div><!--.item-->
             <?php }
 
             $loaded_tours_count = count( $posts_of_tours );
             if ( empty( $loaded_tours_count ) ) { ?>
-                <h2>К сожалению, не найдено ни одного тура, соответствующего текущим условиям поиска.<h2>
+                <h2>К сожалению, не найдено ни одного тура, соответствующего текущим условиям поиска.</h2>
             <?php } ?>
         </div><!--.list-->
     </div><!--.tourlist-->
 </div><!--.tourlist-wrapper-->
 <br><br>
+
+<!-- Удаление тура -->
+<script type="text/javascript">
+    $('.delete-tour-link').on('click', function(e) {
+            e.preventDefault();
+            $.ajax( $(this).attr('href') )
+                .done(function() {
+                    $('#additionalparameters-submit').click();
+                })
+                .fail(function() {
+                    alert('При удалении тура произошла ошибка!');
+                });
+        }
+    );
+</script>
 
 <?php
 //$filter_args['paged'] = $page_number + 1;

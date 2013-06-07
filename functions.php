@@ -314,27 +314,27 @@ endif;
 
 if ( ! function_exists( 'imbalance2_posted_on' ) ) :
 function imbalance2_posted_on() {
-	printf( __( '%1$s', 'imbalance2' ),
-		sprintf( '<span class="entry-date">%1$s</span>',
-			get_the_date()
-		)
-	);
+    printf( __( '%1$s', 'imbalance2' ),
+        sprintf( '<span class="entry-date">%1$s</span>',
+            get_the_date()
+        )
+    );
 }
 endif;
 
 if ( ! function_exists( 'imbalance2_posted_in' ) ) :
 function imbalance2_posted_in() {
-	if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-		$posted_in = __( '%1$s', 'imbalance2' );
-	} else {
-		$posted_in = __( 'Bookmark the <a href="%2$s" title="Permalink to %3$s" rel="bookmark">permalink</a>.', 'imbalance2' );
-	}
-	printf(
-		$posted_in,
-		get_the_category_list( ', ' ),
-		get_permalink(),
-		the_title_attribute( 'echo=0' )
-	);
+    if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
+        $posted_in = __( '%1$s', 'imbalance2' );
+    } else {
+        $posted_in = __( 'Bookmark the <a href="%2$s" title="Permalink to %3$s" rel="bookmark">permalink</a>.', 'imbalance2' );
+    }
+    printf(
+        $posted_in,
+        get_the_category_list( ', ' ),
+        get_permalink(),
+        the_title_attribute( 'echo=0' )
+    );
 }
 endif;
 
@@ -404,6 +404,10 @@ function ap_print_search_tour_page_permalink(  ) {
     echo get_permalink( 83 );
 }
 
+function ap_get_search_tour_page_permalink(  ) {
+    return get_permalink( 83 );
+}
+
 function ap_is_view_mode( ) {
     return empty( $_POST );
 }
@@ -418,12 +422,18 @@ ap_require_type( 'ap_tour' );
 
 /*--- Дополнительные настройки ---*/
 function disable_all_image_sizes( $sizes ) {
-    unset( $sizes['thumbnail']);
-    unset( $sizes['medium']);
-    unset( $sizes['large']);
-    unset( $sizes['post-thumbnail']);
-    unset( $sizes['homepage-thumb']);
+    unset( $sizes['thumbnail'] );
+    unset( $sizes['medium'] );
+    unset( $sizes['large'] );
+    unset( $sizes['post-thumbnail'] );
+    unset( $sizes['homepage-thumb'] );
 
     return $sizes;
 }
-add_filter('intermediate_image_sizes_advanced', 'disable_all_image_sizes');
+add_filter( 'intermediate_image_sizes_advanced', 'disable_all_image_sizes' );
+
+function ap_add_delete_tour_query_var( $vars ) {
+    $vars[] = 'delete_tour';
+    return $vars;
+}
+add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );

@@ -180,6 +180,10 @@ class AP_Tour {
             update_post_meta( $this->id, $meta_name, esc_attr($meta_value) );
         }
     }
+
+    public function delete( ) {
+        wp_delete_post( $this->id, true );
+    }
 }
 
 /*--- Отображение ---*/

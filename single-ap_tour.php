@@ -1,6 +1,15 @@
 <?php if ( !is_user_logged_in( ) ):
     ap_show_error( 'low_rights' );
 else:
+    $is_to_delete = get_query_var( 'delete_tour' );
+    if ( !empty( $is_to_delete ) ) {
+        $tour = new AP_Tour();
+        $tour->load( get_the_ID( ) );
+        $tour->delete( );
+
+        exit( );
+    }
+
     if ( ap_is_view_mode( ) ):
         get_header( );
         ap_add_js_calendar_to_element( '#addtour-datepicker' ); ?>
