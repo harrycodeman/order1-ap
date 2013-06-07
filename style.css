@@ -138,9 +138,10 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
     /*----------FRONT PAGE----------*/
         /*----------BANNER----------*/
         .banner-wrapper { width: 100%; }
-        .banner-wrapper #banner { width: 960px; height: 360px; margin:0 auto; }
+        .banner-wrapper #banner { width: 960px; height: 360px; margin: 0 auto; }
         .banner-wrapper .banner-info { position: absolute; width: 235px; height: 250px; left: -25px; top: 40px; background: #bf283b; padding: 20px 55px 20px 75px; z-index:1; }
-        .banner-wrapper #banner .item > img { margin-left: 20px; width: 960px; }
+        .banner-wrapper #banner .item>img { margin: 0px; width: 936px; display: inline-block; }
+        .banner-wrapper #banner .item .indent { width: 20px; height: 382px; display: inline-block; margin: 0px; }
         #banner .banner-info h2 { clear: both; font-size: 24px; line-height: 31px; font-weight: bold; color: #fff; margin: 5px 0px; }
         #banner .banner-info .shortannouncement-title { clear: both; font-size: 17px; line-height: 20px;  color: #fff; }
         #banner .banner-info .hotel-title { clear: both; font-size: 12px; line-height: 20px; font-weight: bolder;  color: #fff; margin: 0 0 0 0px; }

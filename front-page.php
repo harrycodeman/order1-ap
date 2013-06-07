@@ -68,7 +68,9 @@ Template Name: Front-page
 
                             <button type="button">КУПИТЬ ТУР</button>
                         </div>
-                        <?php ap_the_tour_banner(); ?>
+                        <div class="indent"></div>
+                        <?php ap_the_tour_banner( ); ?>
+
                     </div>
 
                 <?php } ?>
