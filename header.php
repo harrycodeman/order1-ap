@@ -226,7 +226,12 @@ $(document).ready(function() {
                   <?php echo $current_user->get( 'user_firstname' ) . ' ' . $current_user->get( 'user_lastname' ) . ' ('
                       . $current_user->get( 'user_login' ) . ')'; ?>
               </div>
-              <div style="position: absolute; top: 15px; right: 0;"><a href="<?= wp_logout_url( home_url( ) ); ?>">Выйти</a></div>
+              <div style="position: absolute; top: 15px; right: 0;">
+                  <a href="<?php ap_print_back_office_main_page_permalink( ); ?>">Управление</a>
+              </div>
+              <div style="position: absolute; top: 40px; right: 0;">
+                  <a href="<?= wp_logout_url( home_url( ) ); ?>">Выйти</a>
+              </div>
           <?php }
           else { ?>
               <div class="login-text">
