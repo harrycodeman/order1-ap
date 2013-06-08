@@ -29,13 +29,13 @@ Template Name: Управление контентом
     <div class="articles">
       <h2>Статьи</h2>
       <p><a class="blue" href="<?php ap_print_blog_url( ); ?>">Показать список статей</a></p>
-      <p><a class="blue" href="">Добавить новую статью</a></p>
+      <p><a class="blue" href="<?php ap_print_page_under_development_permalink( ); ?>">Добавить новую статью</a></p>
     </div>
     
     <div class="mainpage">
       <h2>Главная страница</h2>
-      <p><a class="blue" href="">Управление слайдером</a></p>
-      <p><a class="blue" href="">Статьи на главной</a></p>
+      <p><a class="blue" href="<?php ap_print_page_under_development_permalink( ); ?>">Управление слайдером</a></p>
+      <p><a class="blue" href="<?php ap_print_page_under_development_permalink( ); ?>">Статьи на главной</a></p>
     </div>
     
   </div>

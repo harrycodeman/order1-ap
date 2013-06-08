@@ -408,6 +408,14 @@ function ap_get_search_tour_page_permalink(  ) {
     return get_permalink( 83 );
 }
 
+function ap_print_page_under_development_permalink( ) {
+    echo get_permalink( 252 );
+}
+
+function ap_get_back_office_main_page_permalink( ) {
+    return get_permalink( 247 );
+}
+
 function ap_is_view_mode( ) {
     return empty( $_POST );
 }

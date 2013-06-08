@@ -211,7 +211,7 @@ $(document).ready(function() {
       <div id="site-title">
         <a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
       </div>
-      <div id="header-logo" onclick="location.href='<?php echo home_url( '/' );?>';" style="cursor:pointer;"></div>
+        <a href="<?php echo home_url( '/' );?>"><div id="header-logo" style="cursor:pointer;"></div></a>
       <div id="contacts">
         <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number red">243-456</span></h1>
         <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
@@ -219,12 +219,26 @@ $(document).ready(function() {
            target="_blank">Показать на карте</a>
       </div>
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
-      <div id="social-buttons">
-        <p>Войти через социальные сети</p>
-        <a href="http://vk.com"><img src="<?php ap_print_image_url('social-icon-vk.png'); ?>" alt="ВКонтакте"></a>
-        <a href="http://facebook.com">
-            <img src="<?php ap_print_image_url('social-icon-facebook.png'); ?>" alt="Facebook">
-        </a>
+      <div id="social-buttons-header" style="width: 170px; height: 54px;">
+          <?php if ( is_user_logged_in( ) ) {
+              $current_user = wp_get_current_user( ); ?>
+              <div style="position: absolute; top: 0; right: 0;">
+                  <?php echo $current_user->get( 'user_firstname' ) . ' ' . $current_user->get( 'user_lastname' ) . ' ('
+                      . $current_user->get( 'user_login' ) . ')'; ?>
+              </div>
+              <div style="position: absolute; top: 15px; right: 0;"><a href="<?= wp_logout_url( home_url( ) ); ?>">Выйти</a></div>
+          <?php }
+          else { ?>
+              <div class="login-text">
+                  <a href="<?= wp_login_url( ap_get_back_office_main_page_permalink( ) ); ?>">Войти</a> через социальные сети
+              </div>
+              <div class="social-links">
+                  <a href="http://vk.com"><img src="<?php ap_print_image_url('social-icon-vk.png'); ?>" alt="ВКонтакте"></a>
+                  <a href="http://facebook.com">
+                      <img src="<?php ap_print_image_url('social-icon-facebook.png'); ?>" alt="Facebook">
+                  </a>
+              </div>
+          <?php } ?>
       </div>
       <div id="header-center"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-center', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="search">

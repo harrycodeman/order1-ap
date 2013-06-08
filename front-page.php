@@ -208,23 +208,33 @@ Template Name: Front-page
                 </div>
 
                 <div id="content" class="homepage" role="main">
-                    <?php query_posts('posts_per_page=1'); ?>
-                    <?php if (have_posts()) : the_post(); ?>
+                    <?php
+                    $article_posts = get_posts(
+                        array(
+                            'posts_per_page' => 1,
+                            'orderby' => 'rand'
+                        )
+                    );
+                    foreach ( $article_posts as $article_post ) { ?>
                         <div id="article" class="entry">
                             <article>
-                                <?php the_content(); ?>
+                                <?= $article_post->post_content; ?>
                             </article>
                         </div>
 
                         <div class="links">
-                            <a class="left" href="/"><img src="<?php ap_print_image_url('plane.png'); ?>">Путевки
-                                в Париж</a>
+                            <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                                <img src="<?php ap_print_image_url('plane.png'); ?>">Путевки в Париж
+                            </a>
                             <br>
-                            <a class="left" href="/">Похожие направления</a>
+                            <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                                Похожие направления
+                            </a>
                         </div>
-                    <?php else: ?>
+                    <?php }
+                    if ( count( $article_posts ) < 1 ) { ?>
                         <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
-                    <?php endif; ?>
+                    <?php } ?>
 
                 </div><!-- #content -->
 

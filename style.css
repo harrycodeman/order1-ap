@@ -49,23 +49,23 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .menu ul a { font-size: 19px; line-height: 40px; color: #bf283b; text-decoration: none; }
 .phone-code { position: relative; top: 10px; color: #cdc9c0; font-size: 25px; letter-spacing: 1px;}
 .phone-number { position: relative; top: 10px; color: #bf283b; font-size: 25px;  letter-spacing: 1px;}
-#contacts { position: relative; top: 17px; float: left; width: 300px; height: 80px; padding: 0 17px 0px 0; overflow: hidden; font-size: 12px; line-height: 7px; }
+#contacts { position: relative; top: 17px; float: left; width: 300px; height: 80px; padding: 0 17px 0 0; overflow: hidden; font-size: 12px; line-height: 7px; }
 #contacts h1 { height: 40px; margin: 0;}
 #contacts a { text-decoration: underline;}
-#contacts p { line-height: 15px; margin-top: 0px; margin-bottom: 8px; }
+#contacts p { line-height: 15px; margin-top: 0; margin-bottom: 8px; }
 #header-logo { position: relative; top: 20px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 139px; height: 141px; margin-right: 90px;}
 #header-logo-inverted { position: relative; top: 50px; background: url('images/header-logo-inverted.png') center no-repeat; width: 139px; height: 141px; }
-#social-buttons { position: absolute; vertical-align: top; top: 0px; right: 10px; float: right; width: 170px;}
-#social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
-#header #social-buttons a { float: right;}
-#header #social-buttons a:nth-child(3) { margin-right: 10px; }
+#social-buttons-header { position: absolute; vertical-align: top; top: 20px; right: 10px; width: 170px;}
+#social-buttons-header .login-text { font-size: 11px; text-align: right; margin-bottom: 6.5px; }
+.social-links > a { float: right; margin-left: 10px; }
+/*#header #social-buttons a:nth-child(3) { margin-right: 10px; }*/
 /*----------END HEADER----------*/
 
 /*----------MAIN----------*/
-#main { /*background: url('images/main-wrapper-background.png') top no-repeat;*/ width: 960px; margin:0 auto; }
+#main { width: 960px; margin:0 auto; }
 .main-wrapper { background: url('images/main-wrapper-background.png') center top no-repeat; width: 100%; }
 #container { padding: 0 0 0 10px }
-#container > h1 { font-size: 34px; color:#535349; margin: 0px; padding: 10px 0 20px 0; }
+#container > h1 { font-size: 34px; color:#535349; margin: 0; padding: 10px 0 20px 0; }
 #boxes { }
 .box { width: 300px; margin-bottom: 35px; color: #636363; }
 .box .rel { position: relative; }
@@ -102,7 +102,7 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .entry-tags span { font-weight: bolder; }
 #social { padding: 20px 0 0 0; }
 .twitter-share-button { float: left; margin: 2px 20px 0 0; }
-.post img, .page img { margin: 0px 0; }
+.post img, .page img { margin: 0 0; }
 .post .alignleft, .page .alignleft { float: left; margin-right: 20px; }
 .post .alignright, .page .alignright { float: right; margin-left: 20px; }
 .post .aligncenter, .page .aligncenter { display: block; clear: both; margin: 20px auto; }
