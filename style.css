@@ -24,7 +24,8 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .clear { clear: both; }
 .main_separator { color: #dedfe0; }
 
-.wrapper { width: 100% !important; padding-top: 0px; background: url('images/wrapper-background.png') top center no-repeat;}
+.wrapper { width: 100% !important; padding-top: 0px; background: url('images/wrapper-background.png') top center no-repeat; }
+.error-wrapper { height: 100vh !important; width: 100% !important; padding-top: 0px !important; margin-top: 0px !important; background: url('images/blue-background-template.png') top center repeat !important; }
 
 @font-face {
   font-family: pfagorasanspro-bold;
@@ -53,6 +54,7 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 #contacts a { text-decoration: underline;}
 #contacts p { line-height: 15px; margin-top: 0px; margin-bottom: 8px; }
 #header-logo { position: relative; top: 20px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 139px; height: 141px; margin-right: 90px;}
+#header-logo-inverted { position: relative; top: 50px; background: url('images/header-logo-inverted.png') center no-repeat; width: 139px; height: 141px; }
 #social-buttons { position: absolute; vertical-align: top; top: 0px; right: 10px; float: right; width: 170px;}
 #social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
 #header #social-buttons a { float: right;}

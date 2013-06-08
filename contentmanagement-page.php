@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Contentmanagement-page
+Template Name: Управление контентом
 */
 ?>
 
@@ -14,20 +14,28 @@ Template Name: Contentmanagement-page
     
     <div class="tours">
       <h2>Туры</h2>
-      <p><a class="blue" href="" alt="Показать список туров">Показать список туров</a></p>
-      <p><a class="blue" href="" alt="Добавить новый тур">Добавить новый тур</a></p>
+      <p>
+          <a class="blue" href="<?php ap_print_search_tour_page_permalink( ); ?>">
+              Показать список туров
+          </a>
+      </p>
+      <p>
+          <a class="blue" href="<?php ap_print_create_tour_page_permalink( ); ?>">
+              Добавить новый тур
+          </a>
+      </p>
     </div>
     
     <div class="articles">
       <h2>Статьи</h2>
-      <p><a class="blue" href="" alt="Показать список статей">Показать список статей</a></p>
-      <p><a class="blue" href="" alt="Добавить новую статью">Добавить новую статью</a></p>
+      <p><a class="blue" href="<?php ap_print_blog_url( ); ?>">Показать список статей</a></p>
+      <p><a class="blue" href="">Добавить новую статью</a></p>
     </div>
     
     <div class="mainpage">
       <h2>Главная страница</h2>
-      <p><a class="blue" href="" alt="Управление слайдером">Управление слайдером</a></p>
-      <p><a class="blue" href="" alt="Статьи на главной">Статьи на главной</a></p>
+      <p><a class="blue" href="">Управление слайдером</a></p>
+      <p><a class="blue" href="">Статьи на главной</a></p>
     </div>
     
   </div>
