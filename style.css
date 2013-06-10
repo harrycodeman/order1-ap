@@ -216,7 +216,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #triparticles .title h1 { display: inline; }
         #triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
         #triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 30px 0 0 0; border: 10px solid #bf283b;}
-        #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: -999; }
+        #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: 0; }
         #left-arrow { background: url('images/left-arrow.png') no-repeat 83px 195px; float: left; width: 140px; height: 370px; opacity: 0.3;}
         #right-arrow { background: url('images/left-arrow.png') no-repeat 83px 223px; float: left; width: 140px; height: 370px; opacity: 0.3;}
         #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}

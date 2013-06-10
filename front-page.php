@@ -189,54 +189,55 @@ Template Name: Front-page
                     <a href="<?php ap_print_blog_url(); ?>">Другие статьи</a>
                 </div>
 
-                <div id="articlethumbnail">
-                    <div class="image">
-                        <img src="<?php ap_print_image_url('paris-by-night.jpg'); ?>" alt="">
-                    </div>
-                    <div id="left-arrow">
-                        <a href="/"></a>
-                    </div>
-                    <div class="announcement">
-                        <h1>Вид на Париж с высоты птичьего полета или гений Эйфеля</h1>
-
-                        <p>Неизменные границы города, его чёткий план устройства и нехватка места для нового
-                            строительства постепенно превратили город в действующий и живущий музей.</p>
-                    </div>
-                    <div id="right-arrow" class="horizontal-flip">
-                        <a href="/"></a>
-                    </div>
-                </div>
-
-                <div id="content" class="homepage" role="main">
-                    <?php
-                    $article_posts = get_posts(
-                        array(
-                            'posts_per_page' => 1,
-                            'orderby' => 'rand'
-                        )
-                    );
-                    foreach ( $article_posts as $article_post ) { ?>
-                        <div id="article" class="entry">
-                            <article>
-                                <?= $article_post->post_content; ?>
-                            </article>
+                <?php
+                $article_posts = get_posts(
+                    array(
+                        'posts_per_page' => 1,
+                        'orderby' => 'rand'
+                    )
+                );
+                foreach ( $article_posts as $article_post ) { ?>
+                    <div id="articlethumbnail">
+                        <div class="image">
+                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
+                            <img src="<?= $url; ?>" alt="" width="940px" height="370px">
                         </div>
-
-                        <div class="links">
-                            <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
-                                <img src="<?php ap_print_image_url('plane.png'); ?>">Путевки в Париж
-                            </a>
-                            <br>
-                            <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
-                                Похожие направления
-                            </a>
+                        <div id="left-arrow">
+                            <a href="/"></a>
                         </div>
-                    <?php }
-                    if ( count( $article_posts ) < 1 ) { ?>
-                        <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
-                    <?php } ?>
+                        <div class="announcement">
+                            <h1><?= $article_post->post_title; ?></h1>
 
-                </div><!-- #content -->
+                            <p>Неизменные границы города, его чёткий план устройства и нехватка места для нового
+                                строительства постепенно превратили город в действующий и живущий музей.</p>
+                        </div>
+                        <div id="right-arrow" class="horizontal-flip">
+                            <a href="/"></a>
+                        </div>
+                    </div>
+
+                    <div id="content" class="homepage" role="main">
+                            <div id="article" class="entry">
+                                <article>
+                                    <?= $article_post->post_content; ?>
+                                </article>
+                            </div>
+
+                            <div class="links">
+                                <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                                    <img src="<?php ap_print_image_url('plane.png'); ?>">Путевки в Париж
+                                </a>
+                                <br>
+                                <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                                    Похожие направления
+                                </a>
+                            </div>
+                    </div><!-- #content -->
+
+                <?php }
+                if ( count( $article_posts ) < 1 ) { ?>
+                    <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
+                <?php } ?>
 
             </div>
 

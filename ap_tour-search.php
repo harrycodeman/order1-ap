@@ -232,7 +232,7 @@ if ( !ap_is_view_mode( ) ) {
                                 </a>
                             <?php }
                             else { ?>
-                                <a class="blue" href="">
+                                <a class="blue" href="<?php ap_print_page_under_development_permalink( ); ?>">
                                     <img src="<?php ap_print_image_url( 'shopping-cart.png' ) ?>" alt="Корзина покупок"
                                         width="13px" height="13px">
                                     Купить
