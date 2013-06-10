@@ -2,7 +2,7 @@
 require_once ( get_stylesheet_directory() . '/theme-options.php' );
 if (!is_admin()) {
 	wp_deregister_script( 'jquery' );
-	wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.6.1.min.js' );
+	wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.9.1.min.js' );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
 	wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
@@ -314,27 +314,27 @@ endif;
 
 if ( ! function_exists( 'imbalance2_posted_on' ) ) :
 function imbalance2_posted_on() {
-	printf( __( '%1$s', 'imbalance2' ),
-		sprintf( '<span class="entry-date">%1$s</span>',
-			get_the_date()
-		)
-	);
+    printf( __( '%1$s', 'imbalance2' ),
+        sprintf( '<span class="entry-date">%1$s</span>',
+            get_the_date()
+        )
+    );
 }
 endif;
 
 if ( ! function_exists( 'imbalance2_posted_in' ) ) :
 function imbalance2_posted_in() {
-	if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-		$posted_in = __( '%1$s', 'imbalance2' );
-	} else {
-		$posted_in = __( 'Bookmark the <a href="%2$s" title="Permalink to %3$s" rel="bookmark">permalink</a>.', 'imbalance2' );
-	}
-	printf(
-		$posted_in,
-		get_the_category_list( ', ' ),
-		get_permalink(),
-		the_title_attribute( 'echo=0' )
-	);
+    if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
+        $posted_in = __( '%1$s', 'imbalance2' );
+    } else {
+        $posted_in = __( 'Bookmark the <a href="%2$s" title="Permalink to %3$s" rel="bookmark">permalink</a>.', 'imbalance2' );
+    }
+    printf(
+        $posted_in,
+        get_the_category_list( ', ' ),
+        get_permalink(),
+        the_title_attribute( 'echo=0' )
+    );
 }
 endif;
 
@@ -346,69 +346,106 @@ function imbalance2_tags() {
 endif;
 
 /*--- Helper functions ---*/
-function ap_get_blog_url() {
+function ap_print_blog_url() {
     if( get_option( 'show_on_front' ) == 'page' ){
         echo get_permalink( get_option( 'page_for_posts' ) );
     } else {
-        echo bloginfo( 'url' );
+        bloginfo( 'url' );
     }
 }
 
-function ap_get_image_url( $image_sub_path ) {
+function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 
-function ap_dirty_comments_list_start_el( $comment, $args, $depth ) {
-    $depth++;
-    $GLOBALS['comment_depth'] = $depth;
-    $GLOBALS['comment'] = $comment;
+function ap_add_js_calendar_to_element( $element_id ) {
+    global $ap_add_js_calendar_to_element_function;
+    if ( empty( $ap_add_js_calendar_to_element_function ) ) {
+        $ap_add_js_calendar_to_element_function = 1; ?>
 
-    extract($args, EXTR_SKIP);
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
+    <?php } ?>
 
-    if ( 'div' == $args['style'] ) {
-        $tag = 'div';
-        $add_below = 'comment';
-    } else {
-        $tag = 'li';
-        $add_below = 'div-comment';
-    }
-    ?>
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-    <?php if ( 'div' != $args['style'] ) : ?>
-        <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-    <?php endif; ?>
-    <div class="comment-author vcard">
-        <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-        <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-    </div>
-    <?php if ($comment->comment_approved == '0') : ?>
-        <em class="comment-awaiting-moderation"><?php _e('Выш комментарий ожидает рецензии.') ?></em>
-        <br />
-    <?php endif; ?>
+    <script>
+        $(document).ready(function(){
+            $.datepicker.setDefaults(
+                $.extend($.datepicker.regional["ru"])
+            );
+            $("<?php echo $element_id; ?>").datepicker();
+        });
+    </script>
+<?php }
 
-    <div class="comment-meta commentmetadata">
-        <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-            <?php printf( __('%1$s в %2$s'), get_comment_date(),  get_comment_time()) ?>
-        </a>
-    </div>
-
-    <?php comment_text() ?>
-
-    <div class="reply">
-        <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-    </div>
-    <?php if ( 'div' != $args['style'] ) : ?>
-        </div>
-    <?php endif; ?>
-<?php
+function ap_show_error( $error_type ) {
+    get_template_part( 'error', $error_type );
 }
 
-/*--- Custom post types registrations ---*/
-add_action( 'pre_get_posts', 'ap_show_tours_on_main_page' );
-function ap_show_tours_on_main_page( $query ) {
-    if ( $query->is_main_query() && $query->is_home() ) {
-        $query->set( 'post_type', array( 'post', 'ap_tour' ) );
-    }
+function ap_redirect_to( $link ) {
+    header("Location: " . $link );
+    exit( );
 }
 
-require_once( get_stylesheet_directory().'/ap_post_types/ap_tour.php' );
+function ap_print_create_tour_page_permalink() {
+    echo get_permalink( 13 );
+}
+
+function ap_get_create_tour_page_permalink() {
+    return get_permalink( 13 );
+}
+
+function ap_print_edit_tour_page_permalink( $tour_id ) {
+    echo get_permalink( $tour_id );
+}
+
+function ap_print_search_tour_page_permalink(  ) {
+    echo get_permalink( 83 );
+}
+
+function ap_get_search_tour_page_permalink(  ) {
+    return get_permalink( 83 );
+}
+
+function ap_print_page_under_development_permalink( ) {
+    echo get_permalink( 252 );
+}
+
+function ap_print_back_office_main_page_permalink( ) {
+    echo get_permalink( 247 );
+}
+
+function ap_get_back_office_main_page_permalink( ) {
+    return get_permalink( 247 );
+}
+
+function ap_is_view_mode( ) {
+    return empty( $_POST );
+}
+
+/*--- Регистрация дополнительных типов ---*/
+function ap_require_type( $type_name ) {
+    require_once( "ap_post_types/{$type_name}.php" );
+}
+
+ap_require_type( 'ap_image' );
+ap_require_type( 'ap_tour' );
+
+/*--- Дополнительные настройки ---*/
+function disable_all_image_sizes( $sizes ) {
+    unset( $sizes['thumbnail'] );
+    unset( $sizes['medium'] );
+    unset( $sizes['large'] );
+    unset( $sizes['post-thumbnail'] );
+    unset( $sizes['homepage-thumb'] );
+
+    return $sizes;
+}
+add_filter( 'intermediate_image_sizes_advanced', 'disable_all_image_sizes' );
+
+function ap_add_delete_tour_query_var( $vars ) {
+    $vars[] = 'delete_tour';
+    return $vars;
+}
+add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );

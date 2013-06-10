@@ -1,15 +1,50 @@
 <?php get_header(); ?>
 
-<div id="content">
-    <?php get_template_part( 'loop', 'single' ); ?>
+<?php the_post( ); ?>
 
-<!--    <div id="postdivrich" class="postarea">-->
-<!--        --><?php
-//        if (have_posts()) : the_post();
-//            wp_editor(get_the_content(), 'content', array( 'dfw', 'tinymce', 'editor_width' => 360 ));
-//        endif;
-//        ?>
-<!--    </div>--><!-- #postdivrich-->
-</div><!-- #content-->
+<div class="triparticles-wrapper">
+    <div id="content" class="homepage" role="main">
+        <div class="triparticles-wrapper">
+            <div id="triparticles">
+                <div id="articlethumbnail">
+                    <div class="image">
+                        <?php $url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID( ) ) ); ?>
+                        <img src="<?= $url; ?>" alt="" width="940px" height="370px">
+                    </div>
+                    <div id="left-arrow">
+                        <a href="/"></a>
+                    </div>
+                    <div class="announcement">
+                        <h1><?php the_title( ); ?></h1>
+
+                        <p>Неизменные границы города, его чёткий план устройства и нехватка места для нового
+                            строительства постепенно превратили город в действующий и живущий музей.</p>
+                    </div>
+                    <div id="right-arrow" class="horizontal-flip">
+                        <a href="/"></a>
+                    </div>
+                </div>
+
+                <div id="content" class="homepage" role="main">
+                <div id="article" class="entry">
+                    <article>
+                        <?php the_content( ); ?>
+                    </article>
+                </div>
+
+                <div class="links">
+                    <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                        <img src="<?php ap_print_image_url('plane.png'); ?>">Путевки в Париж
+                    </a>
+                    <br>
+                    <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
+                        Похожие направления
+                    </a>
+                </div>
+                </div><!-- #content -->
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php get_footer(); ?>
