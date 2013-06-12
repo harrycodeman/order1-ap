@@ -29,7 +29,7 @@ Template Name: Страница поиска туров
                 </div>
 
                 <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
-                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей"
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Долго"
                        value="<?= $_POST['ap_tour_duration']; ?>" class="search-input">
             </div>
             <div id="additional-parameters" style="display: block !important;">
@@ -150,10 +150,10 @@ if ( !ap_is_view_mode( ) ) {
         }
         $inner_filter_part .= 'по цене';
         if ( !empty( $_POST['ap_tour_cost_min'] ) ) {
-            $inner_filter_part .= ' от ' . number_format( $cost_min, 0, '.', ' ' ) . 'руб';
+            $inner_filter_part .= ' от ' . number_format( $cost_min, 0, '.', ' ' ) . ' руб';
         }
         if ( !empty( $_POST['ap_tour_cost_max'] ) ) {
-            $inner_filter_part .= ' до ' . number_format( $cost_max, 0, '.', ' ' ) . 'руб';
+            $inner_filter_part .= ' до ' . number_format( $cost_max, 0, '.', ' ' ) . ' руб';
         }
     }
 

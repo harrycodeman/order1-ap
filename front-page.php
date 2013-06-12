@@ -66,7 +66,11 @@ Template Name: Front-page
                                     . ' ночей(и)'; ?>
                             </p>
 
-                            <button type="button">КУПИТЬ ТУР</button>
+                            <button type="button"
+                                    onclick="location.href='<?php ap_print_reserve_tour_page_permalink(
+                                        ap_get_the_tour_id( ) ); ?>'">
+                                КУПИТЬ ТУР
+                            </button>
                         </div>
                         <div class="indent"></div>
                         <?php ap_the_tour_banner( ); ?>
@@ -112,7 +116,7 @@ Template Name: Front-page
                 </div>
 
                 <span style="top: 48px; left: 782px;"><label for="days-form">на</label></span>
-                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Много ночей">
+                <input name="ap_tour_duration" id="days-form" type="text" autocomplete="off" placeholder="Долго">
             </div>
             <div id="additional-parameters" style="display: block !important;">
                 <span class="cost-title">

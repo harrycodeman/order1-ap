@@ -191,6 +191,10 @@ function ap_load_tour_for_post( WP_Post $post ) {
     $GLOBALS['ap_tour_exemplar_id'] = $post->ID;
 }
 
+function ap_load_tour_for_id( $tour_id ) {
+    $GLOBALS['ap_tour_exemplar_id'] = $tour_id;
+}
+
 function ap_get_the_tour_id( ) {
     if ( array_key_exists( 'ap_tour_exemplar_id', $GLOBALS ) ) {
         return $GLOBALS['ap_tour_exemplar_id'];
