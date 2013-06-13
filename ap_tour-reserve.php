@@ -124,21 +124,30 @@ Template Name: Бронирование тура
 
 <?php }
 else {
+    $hotel_rating = "";
+    if ( !empty( $_POST['ap_tour_hotel_rating'] ) ) {
+        $hotel_rating_int = $_POST['ap_tour_hotel_rating'];
+        for ( $i = 0; $i < $hotel_rating_int; $i++ ) {
+            $hotel_rating .= "*";
+        }
+        $hotel_rating = empty( $hotel_rating ) ? "" : " (" . $hotel_rating . ")";
+    }
 
-    $headers[] = 'From: me <littlepantry@gmail.com>';
-    $is_mail_successful = wp_mail('littlepantry@gmail.com', 'The subject', 'The message', $headers);
-    echo $is_mail_successful;
+    $email_content =
+        "КОНТАКТНЫЕ ДАННЫЕ ПОКУПАТЕЛЯ\n"
+        . "Имя Фамилия: " . $_POST['ap_customer_first_name'] . " " . $_POST['ap_customer_last_name'] . "\n"
+        . "Телефон: " . $_POST['ap_customer_phone'] . "\n"
+        . "E-Mail: " . $_POST['ap_customer_email'] . "\n"
+        . "\n"
+        . "ПОЖЕЛАНИЯ\n"
+        . "Страна: " . $_POST['ap_tour_country'] . "\n"
+        . "Город/Курорт: " . $_POST['ap_tour_resort'] . "\n"
+        . "Отель: " . $_POST['ap_tour_hotel'] . $hotel_rating . "\n"
+        . "Даты: c " . $_POST['ap_tour_start_date'] . " по " . $_POST['ap_tour_end_date'] . "\n"
+        . "В составе: " . $_POST['ap_adults_count'] . " взрослых и " . $_POST['ap_children_count'] . " детей.";
 
-    echo $_POST['ap_tour_country'];
-    echo $_POST['ap_tour_resort'];
-    echo $_POST['ap_tour_hotel'];
-    echo $_POST['ap_tour_hotel_rating'];
-    echo $_POST['ap_tour_start_date'];
-    echo $_POST['ap_tour_end_date'];
-    echo $_POST['ap_adults_count'];
-    echo $_POST['ap_children_count'];
-    echo $_POST['ap_customer_last_name'];
-    echo $_POST['ap_customer_first_name'];
-    echo $_POST['ap_customer_phone'];
-    echo $_POST['ap_customer_email'];
+    $email_headers[] = 'From: Туристичесоке бюро АЛЫЕ ПАРУСА <mail@alyeparusa.info>';
+    wp_mail( 'littlepantry@gmail.com', 'Заявка на покупку тура', $email_content, $email_headers );
+
+    ap_redirect_to( home_url( ) );
 } ?>
