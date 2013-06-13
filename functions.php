@@ -421,7 +421,7 @@ function ap_get_back_office_main_page_permalink( ) {
 }
 
 function ap_print_reserve_tour_page_permalink( $tour_id ) {
-    echo get_permalink( 284 ) . '?ap_tour_id=' . $tour_id;
+    echo get_permalink( 284 ) . '&ap_tour_id=' . $tour_id;
 }
 
 function ap_is_view_mode( ) {
