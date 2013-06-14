@@ -420,9 +420,8 @@ function ap_get_back_office_main_page_permalink( ) {
     return get_permalink( 247 );
 }
 
-// TODO: проверяй наличие параметров в и добавляй & или ?
-function ap_print_reserve_tour_page_permalink( $tour_id ) {
-    echo get_permalink( 284 ) . '?ap_tour_id=' . $tour_id;
+function ap_print_reserve_tour_page_permalink( ) {
+    echo get_permalink( 284 );
 }
 
 function ap_is_view_mode( ) {
@@ -451,7 +450,6 @@ add_filter( 'intermediate_image_sizes_advanced', 'disable_all_image_sizes' );
 
 function ap_add_delete_tour_query_var( $vars ) {
     $vars[] = 'delete_tour';
-    $vars[] = 'ap_tour_id';
     return $vars;
 }
 add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );

@@ -4,14 +4,15 @@ Template Name: Бронирование тура
 */
 ?>
 
-<?php if ( empty( $_POST ) ) { ?>
+<?php
+if ( empty( $_POST ) || !empty( $_GET['ap_tour_id'] ) ) { ?>
 
     <?php get_header(); ?>
     <?php ap_add_js_calendar_to_element( '#reservtour-arrival-datepicker' ) ?>
     <?php ap_add_js_calendar_to_element( '#reservtour-departure-datepicker' ) ?>
 
     <?php
-    $tour_id = get_query_var( 'ap_tour_id' );
+    $tour_id = $_GET["ap_tour_id"];
     ap_load_tour_for_id( $tour_id );
     ?>
 
@@ -147,7 +148,15 @@ else {
         . "В составе: " . $_POST['ap_adults_count'] . " взрослых и " . $_POST['ap_children_count'] . " детей.";
 
     $email_headers[] = 'From: Туристичесоке бюро АЛЫЕ ПАРУСА <mail@alyeparusa.info>';
-    wp_mail( 'littlepantry@gmail.com', 'Заявка на покупку тура', $email_content, $email_headers );
+
+    $manager_users = get_users( array( 'role' => 'subscriber' ) );
+    foreach ($manager_users as $user) {
+        $manager_emails[] = $user->user_email;
+    }
+
+    if ( !empty( $manager_emails ) ) {
+        wp_mail( $manager_emails, 'Заявка на покупку тура', $email_content, $email_headers );
+    }
 
     ap_redirect_to( home_url( ) );
 } ?>
