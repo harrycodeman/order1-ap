@@ -167,7 +167,7 @@ Template Name: Front-page
         foreach ($nearest_tours as $tour) {
             ap_load_tour_for_post( $tour ) ?>
 
-        <a href="<?php echo get_permalink( $tour->ID ) ?>">
+        <a href="<?php ap_print_reserve_tour_page_permalink( ap_get_the_tour_id( ) ); ?>">
             <div class="interestingoffer">
                 <?php ap_the_tour_icon(); ?>
                 <span class="offername"><?php echo ap_get_the_tour()->country . ' - ' . ap_get_the_tour()->resort; ?></span>
@@ -239,13 +239,9 @@ Template Name: Front-page
                 if ( count( $article_posts ) < 1 ) { ?>
                     <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
                 <?php } ?>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+            </div><!--#triparticles-->
+        </div><!--.triparticles-wrapper-->
+    </div><!--.homepage-->
+</div><!--.triparticles-wrapper-->
 
 <?php get_footer(); ?>

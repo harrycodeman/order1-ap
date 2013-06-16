@@ -420,8 +420,13 @@ function ap_get_back_office_main_page_permalink( ) {
     return get_permalink( 247 );
 }
 
-function ap_print_reserve_tour_page_permalink( ) {
-    echo get_permalink( 284 );
+// TODO: добавь проверку на то производится ли добавление параметра, или задание первого
+function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
+    $permalink = get_permalink( 284 );
+    if ( !empty( $tour_id ) ) {
+        $permalink .= "?ap_tour_id=$tour_id";
+    }
+    echo $permalink;
 }
 
 function ap_is_view_mode( ) {

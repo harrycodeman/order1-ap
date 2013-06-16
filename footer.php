@@ -1,3 +1,5 @@
+    <div id="footer-placeholder"></div>
+
     <div class="footer-wrapper">
         <div id="footer">
             <div id="footer-logo"></div>

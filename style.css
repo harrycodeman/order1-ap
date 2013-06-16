@@ -24,8 +24,9 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .clear { clear: both; }
 .main_separator { color: #dedfe0; }
 
-.wrapper { width: 100% !important; padding-top: 0px; background: url('images/wrapper-background.png') top center no-repeat; }
-.error-wrapper { height: 100vh !important; width: 100% !important; padding-top: 0px !important; margin-top: 0px !important; background: url('images/blue-background-template.png') top center repeat !important; }
+.wrapper { min-height: 100vh !important; width: 100% !important; padding-top: 0px; background: url('images/wrapper-background.png') top center no-repeat; }
+.error-wrapper { width: 100% !important; padding-top: 0px !important; margin-top: 0px !important; }
+.error-text-wrapper { padding-left: 220px; }
 
 @font-face {
   font-family: pfagorasanspro-bold;
@@ -219,7 +220,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #left-arrow { /*background: url('images/left-arrow.png') no-repeat 83px 195px;*/ float: left; width: 140px; height: 370px; opacity: 0.3;}
         #right-arrow { /*background: url('images/left-arrow.png') no-repeat 83px 223px;*/ float: left; width: 140px; height: 370px; opacity: 0.3;}
         #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
-        #triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0 0 0 -25px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; background: rgba(191, 40, 59, 0.8); padding: 5px; text-align: left; }
+        #triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0 0 0 -80px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; background: rgba(191, 40, 59, 0.8); padding: 5px; text-align: left; }
         #triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px; color: #fff; margin: 0px; top: 190px; background: rgba(191, 40, 59, 0.8); padding: 5px; }
         #article { position: relative; margin: 0 0 20px 0;}
         article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
@@ -346,13 +347,13 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #tourlist .list .item .image img { width: 100px; height:100px; }
         #tourlist .list .item .info { width: 360px; vertical-align: top;}
         #tourlist .list .item .info h2 { margin: 15px 0 0 0; }
-        #tourlist .list .item .info p { margin-top: 0px; }
+        #tourlist .list .item .info p { margin-top: 0; }
         #tourlist .list .item .hotelrating { padding: 15px 0; width: 200px; }
         #tourlist .list .item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; margin-right: 5px; }
         #tourlist .list .item .cost { width: 265px; height: 100px;}
         #tourlist .list .item .cost > * { float:right; clear: both;}
-        #tourlist .list .item .cost h2 { margin-bottom: 0px; }
-        #tourlist .list .item .cost p { margin: 0px 0 30px 0; }
+        #tourlist .list .item .cost h2 { margin-bottom: 0; }
+        #tourlist .list .item .cost p { margin: 0 0 30px 0; }
         #tourlist .list .item .cost .editdelete-links { height: 20px; }
         #tourlist .list .item .cost .editdelete-links a { margin-left: 10px; }
     /*----------END TOURLIST PAGE----------*/
@@ -388,9 +389,11 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 /*----------END MAIN----------*/
 
 /*----------FOOTER----------*/
-#footer { width: 960px; margin:0 auto; padding: 29px 0 25px; }
-.footer-wrapper { background: #bf273a url('images/footer-wrapper-background.png') center no-repeat; width: 100%; }
-#footer-logo { position: relative; left: 0px; float: left; background: url('images/footer-logo.png') no-repeat; width: 100px; height: 100px;}
+#footer-placeholder { width: 100%; height: 171px; }
+
+.footer-wrapper { position: absolute; bottom: 0; background: #bf273a url('images/footer-wrapper-background.png') center no-repeat; width: 100%; }
+#footer { width: 960px; margin: 0 auto; padding: 29px 0 25px; }
+#footer-logo { position: relative; left: 0; float: left; background: url('images/footer-logo.png') no-repeat; width: 100px; height: 100px;}
 #site-info { float: left; width: 300px; margin-right: 60px; line-height: 22px; }
 #site-info a { font-weight: bold; text-decoration: none; color: #333; }
 #footer-left { float: right; width: 170px; margin-right: 30px; }
