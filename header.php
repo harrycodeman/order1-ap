@@ -213,8 +213,9 @@ $(document).ready(function() {
       </div>
         <a href="<?php echo home_url( '/' );?>"><div id="header-logo" style="cursor:pointer;"></div></a>
       <div id="contacts">
-        <h1><span class="phone-code">+7 (3822)</span> <span class="phone-number red">243-456</span></h1>
-        <p>г. Томск, пр. Комсомльский, 19, 3й этаж</p>
+        <h1><span class="phone-code">+7 (3462)</span> <span class="phone-number red">232-300</span></h1>
+        <p>г. Сургут, улица Лермонтова, дом 11/5,<br>
+            офис 210</p>
         <a class="blue" href="https://maps.google.com/maps?q=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+%D0%B4%D0%BE%D0%BC+11%2F5&hl=ru&ie=UTF8&ll=61.265044,73.38879&spn=0.004322,0.013239&sll=61.26507,73.38904&sspn=0.008645,0.026479&hnear=%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0,+11%2F5,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+628418&t=m&z=17&iwloc=A"
            target="_blank">Показать на карте</a>
       </div>
@@ -235,13 +236,7 @@ $(document).ready(function() {
           <?php }
           else { ?>
               <div class="login-text">
-                  <a href="<?= wp_login_url( ap_get_back_office_main_page_permalink( ) ); ?>">Войти</a> через социальные сети
-              </div>
-              <div class="social-links">
-                  <a href="http://vk.com"><img src="<?php ap_print_image_url('social-icon-vk.png'); ?>" alt="ВКонтакте"></a>
-                  <a href="http://facebook.com">
-                      <img src="<?php ap_print_image_url('social-icon-facebook.png'); ?>" alt="Facebook">
-                  </a>
+                  <a href="<?= wp_login_url( ap_get_back_office_main_page_permalink( ) ); ?>">Войти</a> на сайт
               </div>
           <?php } ?>
       </div>

@@ -55,121 +55,121 @@ function theme_options_do_page() {
 		$_REQUEST['settings-updated'] = false;
 
 	?>
-	<div class="wrap">
-		<?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options', 'imbalance2' ) . "</h2>"; ?>
+    <div class="wrap">
+        <?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options', 'imbalance2' ) . "</h2>"; ?>
 
-		<?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
-		<div class="updated fade"><p><strong><?php _e( 'Options saved', 'imbalance2' ); ?></strong></p></div>
-		<?php endif; ?>
+        <?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
+        <div class="updated fade"><p><strong><?php _e( 'Options saved', 'imbalance2' ); ?></strong></p></div>
+        <?php endif; ?>
 
-		<form method="post" action="options.php">
-			<?php settings_fields( 'imbalance2_options' ); ?>
-			<?php $options = get_option( 'imbalance2_theme_options' ); ?>
+        <form method="post" action="options.php">
+            <?php settings_fields( 'imbalance2_options' ); ?>
+            <?php $options = get_option( 'imbalance2_theme_options' ); ?>
 
-			<table class="form-table">
-				
-				<tr valign="top"><th scope="row"><?php _e( 'Navigation', 'imbalance2' ); ?></th>
-					<td>
-						<select name="imbalance2_theme_options[navigation]">
-							<?php
-								$selected = $options['navigation'];
-								$p = '';
-								$r = '';
+            <table class="form-table">
 
-								foreach ( $navigation_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
-							?>
-						</select>
-						<label class="description" for="imbalance2_theme_options[navigation]"><?php _e( 'Choose page navigation type', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                <tr valign="top"><th scope="row"><?php _e( 'Navigation', 'imbalance2' ); ?></th>
+                    <td>
+                        <select name="imbalance2_theme_options[navigation]">
+                            <?php
+                                $selected = $options['navigation'];
+                                $p = '';
+                                $r = '';
 
-				<tr valign="top"><th scope="row"><?php _e( 'Color', 'imbalance2' ); ?></th>
-					<td>
-						<input type="text" id="imbalance2_theme_options_color" name="imbalance2_theme_options[color]" value="<?php esc_attr_e( $options['color'] ); ?>" />
-						<div id="colorpicker"></div>
+                                foreach ( $navigation_options as $option ) {
+                                    $label = $option['label'];
+                                    if ( $selected == $option['value'] ) // Make default first in list
+                                        $p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                                    else
+                                        $r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                                }
+                                echo $p . $r;
+                            ?>
+                        </select>
+                        <label class="description" for="imbalance2_theme_options[navigation]"><?php _e( 'Choose page navigation type', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-						<script type="text/javascript">
+                <tr valign="top"><th scope="row"><?php _e( 'Color', 'imbalance2' ); ?></th>
+                    <td>
+                        <input type="text" id="imbalance2_theme_options_color" name="imbalance2_theme_options[color]" value="<?php esc_attr_e( $options['color'] ); ?>" />
+                        <div id="colorpicker"></div>
+
+                        <script type="text/javascript">
 jQuery(document).ready(function() {
-	jQuery('#colorpicker').farbtastic('#imbalance2_theme_options_color');
+jQuery('#colorpicker').farbtastic('#imbalance2_theme_options_color');
 });
-						</script>
+                    </script>
 
-						<label class="description" for="imbalance2_theme_options_color"><?php _e( 'Select theme color', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                        <label class="description" for="imbalance2_theme_options_color"><?php _e( 'Select theme color', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Use images only', 'imbalance2' ); ?></th>
-					<td>
-						<input id="imbalance2_theme_options[images_only]" name="imbalance2_theme_options[images_only]" type="checkbox" value="1" <?php checked( '1', $options['images_only'] ); ?> />
-						<label class="description" for="imbalance2_theme_options[images_only]"><?php _e( 'For index page and related posts', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                <tr valign="top"><th scope="row"><?php _e( 'Use images only', 'imbalance2' ); ?></th>
+                    <td>
+                        <input id="imbalance2_theme_options[images_only]" name="imbalance2_theme_options[images_only]" type="checkbox" value="1" <?php checked( '1', $options['images_only'] ); ?> />
+                        <label class="description" for="imbalance2_theme_options[images_only]"><?php _e( 'For index page and related posts', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Related posts', 'imbalance2' ); ?></th>
-					<td>
-						<input id="imbalance2_theme_options[related]" name="imbalance2_theme_options[related]" type="checkbox" value="1" <?php checked( '1', $options['related'] ); ?> />
-						<label class="description" for="imbalance2_theme_options[related]"><?php _e( 'Enable related posts in Single page', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                <tr valign="top"><th scope="row"><?php _e( 'Related posts', 'imbalance2' ); ?></th>
+                    <td>
+                        <input id="imbalance2_theme_options[related]" name="imbalance2_theme_options[related]" type="checkbox" value="1" <?php checked( '1', $options['related'] ); ?> />
+                        <label class="description" for="imbalance2_theme_options[related]"><?php _e( 'Enable related posts in Single page', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Font', 'imbalance2' ); ?></th>
-					<td>
-						<select name="imbalance2_theme_options[font]">
-							<?php
-								$selected = $options['font'];
-								$p = '';
-								$r = '';
+                <tr valign="top"><th scope="row"><?php _e( 'Font', 'imbalance2' ); ?></th>
+                    <td>
+                        <select name="imbalance2_theme_options[font]">
+                            <?php
+                                $selected = $options['font'];
+                                $p = '';
+                                $r = '';
 
-								foreach ( $font_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
-							?>
-						</select>
-						<label class="description" for="imbalance2_theme_options[font]"><?php _e( 'Choose font', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                                foreach ( $font_options as $option ) {
+                                    $label = $option['label'];
+                                    if ( $selected == $option['value'] ) // Make default first in list
+                                        $p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                                    else
+                                        $r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                                }
+                                echo $p . $r;
+                            ?>
+                        </select>
+                        <label class="description" for="imbalance2_theme_options[font]"><?php _e( 'Choose font', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Google analytics', 'imbalance2' ); ?></th>
-					<td>
-						<textarea id="imbalance2_theme_options[google]" class="large-text" cols="50" rows="10" name="imbalance2_theme_options[google]"><?php echo htmlspecialchars( $options['google'], ENT_QUOTES ) ?></textarea>
-						<label class="description" for="imbalance2_theme_options[google]"><?php _e( 'Enter Google analytics code', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                <tr valign="top"><th scope="row"><?php _e( 'Google analytics', 'imbalance2' ); ?></th>
+                    <td>
+                        <textarea id="imbalance2_theme_options[google]" class="large-text" cols="50" rows="10" name="imbalance2_theme_options[google]"><?php echo htmlspecialchars( $options['google'], ENT_QUOTES ) ?></textarea>
+                        <label class="description" for="imbalance2_theme_options[google]"><?php _e( 'Enter Google analytics code', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Favicon', 'imbalance2' ); ?></th>
-					<td>
-						<input id="imbalance2_theme_options[favicon]" class="regular-text" type="text" name="imbalance2_theme_options[favicon]" value="<?php esc_attr_e( $options['favicon'] ); ?>" />
-						<label class="description" for="imbalance2_theme_options[favicon]"><?php _e( 'Enter favicon url, default will be used when value is not set', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
+                <tr valign="top"><th scope="row"><?php _e( 'Favicon', 'imbalance2' ); ?></th>
+                    <td>
+                        <input id="imbalance2_theme_options[favicon]" class="regular-text" type="text" name="imbalance2_theme_options[favicon]" value="<?php esc_attr_e( $options['favicon'] ); ?>" />
+                        <label class="description" for="imbalance2_theme_options[favicon]"><?php _e( 'Enter favicon url, default will be used when value is not set', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Fluid grid', 'imbalance2' ); ?></th>
-					<td>
-						<input id="imbalance2_theme_options[fluid]" name="imbalance2_theme_options[fluid]" type="checkbox" value="1" <?php checked( '1', $options['fluid'] ); ?> />
-						<label class="description" for="imbalance2_theme_options[fluid]"><?php _e( 'Enable fluid grid', 'imbalance2' ); ?></label>
-					</td>
-				</tr>
-				
-			</table>
+                <tr valign="top"><th scope="row"><?php _e( 'Fluid grid', 'imbalance2' ); ?></th>
+                    <td>
+                        <input id="imbalance2_theme_options[fluid]" name="imbalance2_theme_options[fluid]" type="checkbox" value="1" <?php checked( '1', $options['fluid'] ); ?> />
+                        <label class="description" for="imbalance2_theme_options[fluid]"><?php _e( 'Enable fluid grid', 'imbalance2' ); ?></label>
+                    </td>
+                </tr>
 
-			<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e( 'Save Options', 'imbalance2' ); ?>" />
-			</p>
-		</form>
-	</div>
-	<?php
+            </table>
+
+            <p class="submit">
+                <input type="submit" class="button-primary" value="<?php _e( 'Save Options', 'imbalance2' ); ?>" />
+            </p>
+        </form>
+    </div>
+    <?php
 }
 
 /**
