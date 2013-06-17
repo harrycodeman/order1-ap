@@ -189,10 +189,12 @@ class AP_Tour {
 /*--- Отображение ---*/
 function ap_load_tour_for_post( WP_Post $post ) {
     $GLOBALS['ap_tour_exemplar_id'] = $post->ID;
+    unset( $GLOBALS['ap_tour_exemplar'] );
 }
 
 function ap_load_tour_for_id( $tour_id ) {
     $GLOBALS['ap_tour_exemplar_id'] = $tour_id;
+    unset( $GLOBALS['ap_tour_exemplar'] );
 }
 
 function ap_get_the_tour_id( ) {
@@ -206,8 +208,14 @@ function ap_get_the_tour( ) {
     if ( array_key_exists( 'ap_tour_exemplar', $GLOBALS ) ) {
         return $GLOBALS['ap_tour_exemplar'];
     }
+
     $tour = new AP_Tour( );
-    $tour->load( ap_get_the_tour_id() );
+    $tour_id = ap_get_the_tour_id( );
+    if ( !empty( $tour_id ) ) {
+        $tour->load( $tour_id );
+    }
+
+    $GLOBALS['ap_tour_exemplar'] = $tour;
     return $tour;
 }
 

@@ -5,7 +5,7 @@ Template Name: Бронирование тура
 ?>
 
 <?php
-if ( empty( $_POST ) || !empty( $_GET['ap_tour_id'] ) ) { ?>
+if ( empty( $_POST ) ) { ?>
 
     <?php get_header(); ?>
     <?php ap_add_js_calendar_to_element( '#reservtour-arrival-datepicker' ) ?>
@@ -23,7 +23,6 @@ if ( empty( $_POST ) || !empty( $_GET['ap_tour_id'] ) ) { ?>
                 <h1 style="text-align: center;">Бронирование тура</h1>
                 <div class="tour">
                     <div>
-
                         <div>
                             <p><label for="country-reservtour-form">Страна</label></p>
                             <input name="ap_tour_country" id="country-reservtour-form" type="text"
@@ -37,7 +36,7 @@ if ( empty( $_POST ) || !empty( $_GET['ap_tour_id'] ) ) { ?>
                         <div>
                             <p><label for="hotel-rating-reservtour-form">Уровень отеля</label></p>
                             <input name="ap_tour_hotel_rating" type="number" id="hotel-rating-reservtour-form"
-                                   value="<?php ap_the_tour_hotel_rating( ); ?>" min="1" max="5" placeholder="5*" required>
+                                   value="<?php ap_the_tour_hotel_rating( ); ?>" min="1" max="5" placeholder="5*">
                         </div>
                         <div>
                             <p><label for="adultcount-reservtour-form">Количество человек</label></p>
@@ -68,61 +67,42 @@ if ( empty( $_POST ) || !empty( $_GET['ap_tour_id'] ) ) { ?>
                                    placeholder="Попозже">
                             <div id="calendar-image" onclick="$('#reservtour-departure-datepicker').focus()"></div>
                         </div>
-
-              </div>
-
-            </div>
-
-            <div class="client">
-
-              <div>
-
-                <div>
-                  <p><label for="surname-reservtour-form">Фамилия</label></p>
-                  <input name="ap_customer_last_name" type="text" id="surname-reservtour-form">
+                    </div>
                 </div>
-
-                <div>
-                  <p><label for="customer_phone">Контактный телефон</label></p>
-                  <input name="ap_customer_phone" type="text" id="customer_phone" size="25">
+                <div class="client">
+                    <div>
+                        <div>
+                            <p><label for="surname-reservtour-form">Фамилия</label></p>
+                            <input name="ap_customer_last_name" type="text" id="surname-reservtour-form" required>
+                        </div>
+                        <div>
+                            <p><label for="customer_phone">Контактный телефон</label></p>
+                            <input name="ap_customer_phone" type="text" id="customer_phone" size="25" required>
+                        </div>
+                        <div>
+                            <p><label for="email-reservtour-form">E-mail</label></p>
+                            <input name="ap_customer_email" type="text" id="email-reservtour-form" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <p><label for="name-reservtour-form">Имя</label></p>
+                            <input name="ap_customer_first_name" type="text" id="name-reservtour-form" required>
+                        </div>
+                    </div>
                 </div>
-
-                <div>
-                  <p><label for="email-reservtour-form">E-mail</label></p>
-                  <input name="ap_customer_email" type="text" id="email-reservtour-form">
+                <br><br>
+                <div class="submitbuttons">
+                    <div>
+                        <button id="reserve-reservtour-button" type="submit">ЗАБРОНИРОВАТЬ</button>
+                    </div>
                 </div>
-
-              </div>
-
-              <div>
-
-                <div>
-                  <p><label for="name-reservtour-form">Имя</label></p>
-                  <input name="ap_customer_first_name" type="text" id="name-reservtour-form">
-                </div>
-
-              </div>
-
-            </div>
-
-            <br><br>
-
-            <div class="submitbuttons">
-
-              <div>
-                <button id="reserve-reservtour-button" type="submit">ЗАБРОНИРОВАТЬ</button>
-              </div>
-
-            </div>
-
-            <br><br>
-        </form>
-      </div> <!--#reservtour-->
-
+                <br><br>
+            </form>
+        </div> <!--#reservtour-->
     </div> <!--.reservtour-wrapper-->
 
     <?php get_footer(); ?>
-
 <?php }
 else {
     $hotel_rating = "";
