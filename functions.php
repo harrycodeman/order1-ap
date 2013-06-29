@@ -424,7 +424,13 @@ function ap_get_back_office_main_page_permalink( ) {
 function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
     $permalink = get_permalink( 284 );
     if ( !empty( $tour_id ) ) {
-        $permalink .= "?ap_tour_id=$tour_id";
+        if ( strpos( $permalink, '?' ) === FALSE ) {
+            $permalink .= '?';
+        }
+        else {
+            $permalink .= '&';
+        }
+        $permalink .= "ap_tour_id=$tour_id";
     }
     echo $permalink;
 }

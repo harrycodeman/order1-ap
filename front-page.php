@@ -67,8 +67,10 @@ Template Name: Front-page
                                     . ' ночей(и)'; ?>
                             </p>
 
-                            <form action="<?php ap_print_reserve_tour_page_permalink( ); ?>">
+                            <?php // TODO: вынеси в отдельный метод (форма перехода в раздел КУПИТЬ) ?>
+                            <form action="<?php home_url( ); ?>">
                                 <input type="hidden" name="ap_tour_id" value="<?= ap_get_the_tour_id( ); ?>" />
+                                <input type="hidden" name="page_id" value="284" />
                                 <button type="submit">КУПИТЬ ТУР</button>
                             </form>
                         </div>
