@@ -203,19 +203,21 @@ Template Name: Front-page
                     )
                 );
                 foreach ( $article_posts as $article_post ) { ?>
-                    <div id="articlethumbnail">
-                        <div class="image">
-                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
-                            <img src="<?= $url; ?>" alt="" width="940px" height="370px">
-                        </div>
-                        <div id="left-arrow">
-                            <a href="/"></a>
-                        </div>
-                        <div class="announcement">
-                            <h1><?= $article_post->post_title; ?></h1>
-                        </div>
-                        <div id="right-arrow" class="horizontal-flip">
-                            <a href="/"></a>
+                    <div id="articlethumbnail-outer">
+                        <div id="articlethumbnail">
+                            <div class="image">
+                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
+                                <img src="<?= $url; ?>" alt="" width="940px" height="370px">
+                            </div>
+                            <div id="left-arrow">
+                                <a href="/"></a>
+                            </div>
+                            <div class="announcement">
+                                <h1><?= $article_post->post_title; ?></h1>
+                            </div>
+                            <div id="right-arrow" class="horizontal-flip">
+                                <a href="/"></a>
+                            </div>
                         </div>
                     </div>
 
