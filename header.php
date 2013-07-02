@@ -213,11 +213,18 @@ $(document).ready(function() {
       </div>
         <a href="<?php echo home_url( '/' );?>"><div id="header-logo" style="cursor:pointer;"></div></a>
       <div id="contacts">
-        <h1><span class="phone-code">+7 (3462)</span> <span class="phone-number red">232-300</span></h1>
-        <p>г. Сургут, улица Лермонтова, дом 11/5,<br>
-            офис 210</p>
-        <a class="blue" href="https://maps.google.com/maps?q=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+%D0%B4%D0%BE%D0%BC+11%2F5&hl=ru&ie=UTF8&ll=61.265044,73.38879&spn=0.004322,0.013239&sll=61.26507,73.38904&sspn=0.008645,0.026479&hnear=%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0,+11%2F5,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+628418&t=m&z=17&iwloc=A"
-           target="_blank">Показать на карте</a>
+                      <div class="phone-code">+7 (3462)</div>
+                      <div class="phone-number">
+                          <div>23-23-00</div>
+                          <div>23-23-01</div>
+                      </div>
+                      <div class="address">г. Сургут, улица Лермонтова, дом 11/5, офис 210</div>
+                      <div>
+                          <a class="blue" href="https://maps.google.com/maps?q=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+%D0%B4%D0%BE%D0%BC+11%2F5&hl=ru&ie=UTF8&ll=61.265044,73.38879&spn=0.004322,0.013239&sll=61.26507,73.38904&sspn=0.008645,0.026479&hnear=%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0,+11%2F5,+%D0%A1%D1%83%D1%80%D0%B3%D1%83%D1%82,+%D0%A5%D0%B0%D0%BD%D1%82%D1%8B-%D0%9C%D0%B0%D0%BD%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D0%BD%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BA%D1%80%D1%83%D0%B3+-+%D0%AE%D0%B3%D1%80%D0%B0,+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F,+628418&t=m&z=17&iwloc=A"
+                             target="_blank">
+                              Показать на карте
+                          </a>
+                      </div>
       </div>
       <div id="header-left"><?php wp_nav_menu( array( 'container_class' => 'menu', 'theme_location' => 'header-left', 'walker' => new Imbalance2_Walker_Nav_Menu(), 'depth' => 1 ) ); ?></div>
       <div id="social-buttons-header" style="width: 170px; height: 54px;">
