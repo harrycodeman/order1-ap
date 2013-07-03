@@ -6,19 +6,21 @@
     <div id="content" class="homepage" role="main">
         <div class="triparticles-wrapper">
             <div id="triparticles">
-                <div id="articlethumbnail">
-                    <div class="image">
-                        <?php $url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID( ) ) ); ?>
-                        <img src="<?= $url; ?>" alt="" width="940px" height="370px">
-                    </div>
-                    <div id="left-arrow">
-                        <a href="/"></a>
-                    </div>
-                    <div class="announcement">
-                        <h1><?php the_title( ); ?></h1>
-                    </div>
-                    <div id="right-arrow" class="horizontal-flip">
-                        <a href="/"></a>
+                <div id="articlethumbnail-outer">
+                    <div id="articlethumbnail">
+                        <div class="image">
+                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID( ) ) ); ?>
+                            <img src="<?= $url; ?>" alt="" width="940px" height="370px">
+                        </div>
+                        <div id="left-arrow">
+                            <a href="/"></a>
+                        </div>
+                        <div class="announcement">
+                            <h1><?php the_title( ); ?></h1>
+                        </div>
+                        <div id="right-arrow" class="horizontal-flip">
+                            <a href="/"></a>
+                        </div>
                     </div>
                 </div>
 

@@ -67,8 +67,10 @@ Template Name: Front-page
                                     . ' ночей(и)'; ?>
                             </p>
 
-                            <form action="<?php ap_print_reserve_tour_page_permalink( ); ?>">
+                            <?php // TODO: вынеси в отдельный метод (форма перехода в раздел КУПИТЬ) ?>
+                            <form action="<?php home_url( ); ?>">
                                 <input type="hidden" name="ap_tour_id" value="<?= ap_get_the_tour_id( ); ?>" />
+                                <input type="hidden" name="page_id" value="284" />
                                 <button type="submit">КУПИТЬ ТУР</button>
                             </form>
                         </div>
@@ -201,19 +203,21 @@ Template Name: Front-page
                     )
                 );
                 foreach ( $article_posts as $article_post ) { ?>
-                    <div id="articlethumbnail">
-                        <div class="image">
-                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
-                            <img src="<?= $url; ?>" alt="" width="940px" height="370px">
-                        </div>
-                        <div id="left-arrow">
-                            <a href="/"></a>
-                        </div>
-                        <div class="announcement">
-                            <h1><?= $article_post->post_title; ?></h1>
-                        </div>
-                        <div id="right-arrow" class="horizontal-flip">
-                            <a href="/"></a>
+                    <div id="articlethumbnail-outer">
+                        <div id="articlethumbnail">
+                            <div class="image">
+                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
+                                <img src="<?= $url; ?>" alt="" width="940px" height="370px">
+                            </div>
+                            <div id="left-arrow">
+                                <a href="/"></a>
+                            </div>
+                            <div class="announcement">
+                                <h1><?= $article_post->post_title; ?></h1>
+                            </div>
+                            <div id="right-arrow" class="horizontal-flip">
+                                <a href="/"></a>
+                            </div>
                         </div>
                     </div>
 
