@@ -1,18 +1,18 @@
 <?php
 require_once ( get_stylesheet_directory() . '/theme-options.php' );
 if (!is_admin()) {
-	wp_deregister_script( 'jquery' );
-	wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.9.1.min.js' );
-	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
-	wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
-	
-	// javascript for infinite scroll
-	$imbalance2_theme_options = get_option('imbalance2_theme_options');
-	if ( $imbalance2_theme_options['navigation'] == 1 )
-	{
-		wp_enqueue_script( 'jquery_infinitescroll', get_bloginfo('stylesheet_directory').'/libs/jquery.infinitescroll.min.js' );
-	}
+    wp_deregister_script( 'jquery' );
+    wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.9.1.min.js' );
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
+    wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
+
+    // javascript for infinite scroll
+    $imbalance2_theme_options = get_option('imbalance2_theme_options');
+    if ( $imbalance2_theme_options['navigation'] == 1 )
+    {
+        wp_enqueue_script( 'jquery_infinitescroll', get_bloginfo('stylesheet_directory').'/libs/jquery.infinitescroll.min.js' );
+    }
 }
 
 // shortcodes
@@ -358,16 +358,22 @@ function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 
+function ap_print_script_url( $script_sub_path ) {
+    echo bloginfo( 'template_url' ) . "/libs/$script_sub_path";
+}
+
+function ap_get_script_url( $script_sub_path ) {
+    return get_bloginfo( 'stylesheet_directory' ) . "/libs/$script_sub_path";
+}
+
 function ap_add_js_calendar_to_element( $element_id ) {
     global $ap_add_js_calendar_to_element_function;
-    if ( empty( $ap_add_js_calendar_to_element_function ) ) {
-        $ap_add_js_calendar_to_element_function = 1; ?>
+if ( empty( $ap_add_js_calendar_to_element_function ) ) {
+    $ap_add_js_calendar_to_element_function = 1; ?>
 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js"></script>
-    <?php } ?>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<?php } ?>
 
     <script>
         $(document).ready(function(){
@@ -448,6 +454,15 @@ ap_require_type( 'ap_image' );
 ap_require_type( 'ap_tour' );
 
 /*--- Дополнительные настройки ---*/
+add_action('wp_enqueue_scripts', 'ap_add_js_libs');
+function ap_add_js_libs() {
+    wp_enqueue_script('jquery_image_select',
+        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js' ),
+        array('jquery'));
+    wp_enqueue_style( 'jquery_image_select_style',
+        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css' ) );
+}
+
 function disable_all_image_sizes( $sizes ) {
     unset( $sizes['thumbnail'] );
     unset( $sizes['medium'] );

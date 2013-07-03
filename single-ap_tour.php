@@ -133,6 +133,19 @@ else:
                                         </p>
                                         <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file"
                                                type="file" name="">
+
+<!--                                        <img id="cropper" src="--><?php //ap_print_image_url( 'paris-by-night.jpg' ); ?><!--">-->
+<!--                                        <script type="text/javascript">-->
+<!--                                            $(document).ready(function () {-->
+<!--                                                $('img#cropper').imgAreaSelect({-->
+<!--                                                    aspectRatio: '1:1',-->
+<!--                                                    handles: true,-->
+<!--                                                    fadeSpeed: 200,-->
+<!--                                                    onSelectEnd: alert('GG')-->
+<!--                                                });-->
+<!--                                            });-->
+<!--                                        </script>-->
+
                                     </div>
                                 </div>
                             </div>
