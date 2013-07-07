@@ -5,7 +5,15 @@ if (!is_admin()) {
     wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.min.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
-    wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
+    wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
+    wp_enqueue_script( 'jquery_ui_datepicker_ru',
+        get_bloginfo('stylesheet_directory').'/libs/jquery-ui.datepicker-ru.js',
+        array( 'jquery_ui' )
+    );
+    wp_enqueue_style( 'jquery_image_crop_style', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' );
+
+    wp_enqueue_script( 'bootstrap', get_bloginfo('stylesheet_directory').'/bootstrap/js/bootstrap.js' );
+    wp_enqueue_style( 'bootstrap_style', get_bloginfo('stylesheet_directory').'/bootstrap/css/bootstrap.css' );
 
     // javascript for infinite scroll
     $imbalance2_theme_options = get_option('imbalance2_theme_options');
@@ -366,19 +374,11 @@ function ap_get_script_url( $script_sub_path ) {
     return get_bloginfo( 'stylesheet_directory' ) . "/libs/$script_sub_path";
 }
 
-function ap_add_js_calendar_to_element( $element_id ) {
-    global $ap_add_js_calendar_to_element_function;
-if ( empty( $ap_add_js_calendar_to_element_function ) ) {
-    $ap_add_js_calendar_to_element_function = 1; ?>
-
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<?php } ?>
-
+function ap_add_js_calendar_to_element( $element_id ) { ?>
     <script>
         $(document).ready(function(){
             $.datepicker.setDefaults(
-                $.extend($.datepicker.regional["ru"])
+                $.extend( $.datepicker.regional[ "ru" ] )
             );
             $("<?php echo $element_id; ?>").datepicker();
         });
@@ -426,7 +426,6 @@ function ap_get_back_office_main_page_permalink( ) {
     return get_permalink( 247 );
 }
 
-// TODO: добавь проверку на то производится ли добавление параметра, или задание первого
 function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
     $permalink = get_permalink( 284 );
     if ( !empty( $tour_id ) ) {
@@ -445,23 +444,14 @@ function ap_is_view_mode( ) {
     return empty( $_POST );
 }
 
-/*--- Регистрация дополнительных типов ---*/
-function ap_require_type( $type_name ) {
-    require_once( "ap_post_types/{$type_name}.php" );
-}
-
-ap_require_type( 'ap_image' );
-ap_require_type( 'ap_tour' );
+/*--- Регистрация дополнительных типов и представлений ---*/
+require_once( 'ap_post_types/ap_image.php' );
+require_once( 'ap_post_types/ap_tour.php' );
+require_once( 'ap_views/ap_tour_views.php' );
 
 /*--- Дополнительные настройки ---*/
 add_action('wp_enqueue_scripts', 'ap_add_js_libs');
 function ap_add_js_libs() {
-//    wp_enqueue_script('jquery_image_select',
-//        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js' ),
-//        array('jquery'));
-//    wp_enqueue_style( 'jquery_image_select_style',
-//        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css' ) );
-
     wp_enqueue_script('jquery_image_crop',
         ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js' ),
         array('jquery'));
