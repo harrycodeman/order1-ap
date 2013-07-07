@@ -2,7 +2,7 @@
 require_once ( get_stylesheet_directory() . '/theme-options.php' );
 if (!is_admin()) {
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.9.1.min.js' );
+    wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.min.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
     wp_enqueue_script( 'jquery_ui', get_bloginfo('stylesheet_directory').'/libs/jquery-ui.custom.min.js' );
@@ -456,11 +456,17 @@ ap_require_type( 'ap_tour' );
 /*--- Дополнительные настройки ---*/
 add_action('wp_enqueue_scripts', 'ap_add_js_libs');
 function ap_add_js_libs() {
-    wp_enqueue_script('jquery_image_select',
-        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js' ),
+//    wp_enqueue_script('jquery_image_select',
+//        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js' ),
+//        array('jquery'));
+//    wp_enqueue_style( 'jquery_image_select_style',
+//        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css' ) );
+
+    wp_enqueue_script('jquery_image_crop',
+        ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js' ),
         array('jquery'));
-    wp_enqueue_style( 'jquery_image_select_style',
-        ap_get_script_url( 'jquery-plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css' ) );
+    wp_enqueue_style( 'jquery_image_crop_style',
+        ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.min.css' ) );
 }
 
 function disable_all_image_sizes( $sizes ) {
