@@ -1,6 +1,53 @@
 <?php
+function ap_tour_view_banners( ) { ?>
+    <div class="banner-wrapper">
+        <div id="banner">
+            <div id="banners_carousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <?php
+                    $tours_with_offer = get_posts(
+                        array(
+                            'post_type' => 'ap_tour',
+                            'meta_query' => array(
+                                array('key' => AP_Tour::offer_name_meta_name),
+                                array('key' => AP_Tour::offer_description_meta_name),
+                                array('key' => AP_Tour::offer_banner_meta_name)
+                            ),
+                            'orderby' => 'rand'
+                        )
+                    );
+                    $is_first = true;
+                    foreach ($tours_with_offer as $tour_with_offer) {
+                        ap_load_tour_for_post( $tour_with_offer ) ?>
+                        <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
+                            <div class="banner-info">
+                                <h2><?php echo ap_get_the_tour()->offer_name; ?></h2>
+                                <p class="shortannouncement-title"><?php echo ap_get_the_tour()->offer_description; ?></p>
+                                <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">
+                                    <?php echo ap_get_the_tour()->hotel; ?>
+                                </p>
+                                <p class="nightcount-title">
+                                    <img src="<?php ap_print_image_url('plane-dark.png'); ?>"
+                                         alt="">
+                                    <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration
+                                        . ' ночей(и)'; ?>
+                                </p>
+                                <?php ap_print_reserve_tour_page_go_button( ap_get_the_tour_id( ) ); ?>
+                            </div>
+                            <div class="indent"></div>
+                            <?php ap_the_tour_banner( ); ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <a class="carousel-control left" href="#banners_carousel" data-slide="prev"></a>
+                <div class="carousel-control divider"></div>
+                <a class="carousel-control right" href="#banners_carousel" data-slide="next"></a>
+            </div>
+        </div>
+    </div>
+<?php }
 
-function ap_tour_search_view( ) { ?>
+function ap_tour_view_search( ) { ?>
     <div class="toursearch-wrapper">
         <div id="toursearch">
             <form name="tour-search-form" action="<?php ap_print_search_tour_page_permalink( ); ?>"
@@ -69,4 +116,35 @@ function ap_tour_search_view( ) { ?>
         });
         $('#starcount').val('<?= $_POST['ap_tour_hotel_rating'] ? $_POST['ap_tour_hotel_rating'] : 0; ?>');
     </script>
+<?php }
+
+function ap_tour_view_interesting_offers( ) { ?>
+    <div class="interestingoffers-wrapper">
+        <div id="interestingoffers">
+            <h1 class="red">Интересные предложения</h1>
+            <?php
+            $nearest_tours = get_posts(
+                array(
+                    'posts_per_page' => 4,
+                    'post_type' => 'ap_tour',
+                    'orderby' => 'post_date',
+                    'order' => 'DESC'
+                )
+            );
+
+            foreach ($nearest_tours as $tour) {
+                ap_load_tour_for_post( $tour ) ?>
+                <a href="<?php ap_print_reserve_tour_page_permalink( ap_get_the_tour_id( ) ); ?>">
+                    <div class="interestingoffer">
+                        <?php ap_the_tour_icon(); ?>
+                        <span class="offername">
+                            <?php echo ap_get_the_tour()->country . ' - ' . ap_get_the_tour()->resort; ?>
+                        </span>
+                        <span class="offerprice"><?php echo ap_get_the_tour()->cost; ?></span>
+                    </div>
+                </a>
+            <?php } ?>
+    </div>
+    </div>
+    <div class="snipping"></div>
 <?php }

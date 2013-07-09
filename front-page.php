@@ -5,129 +5,9 @@ Template Name: Front-page
 ?>
 
 <?php get_header(); ?>
-<?php ap_add_js_calendar_to_element( '#datepicker' ); ?>
-
-<!--Скрыть/показать параметры-->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#additionalparameters-hideshow").click(function () {
-            if ($("div#additional-parameters").css("display") != "none") {
-                $("div#additional-parameters").css("display", "none");
-                $("#additionalparameters-hideshow").css("top", "160px").text("Указать дополнительные параметры");
-                $("#additionalparameters-submit").css("top", "143px");
-            } else {
-                $("div#additional-parameters").css("display", "block");
-                $("#additionalparameters-hideshow").css("top", "220px").text("Скрыть дополнительные параметры");
-                $("#additionalparameters-submit").css("top", "203px");
-            }
-        });
-    });
-</script>
-
-<div class="banner-wrapper">
-    <div id="banner">
-        <div id="banners_carousel" class="carousel slide">
-            <div class="carousel-inner">
-
-                <?php
-                $tours_with_offer = get_posts(
-                    array(
-                        'post_type' => 'ap_tour',
-                        'meta_query' => array(
-                            array('key' => AP_Tour::offer_name_meta_name),
-                            array('key' => AP_Tour::offer_description_meta_name),
-                            array('key' => AP_Tour::offer_banner_meta_name)
-                        ),
-                        'orderby' => 'rand'
-                    )
-                );
-
-                $is_first = true;
-                foreach ($tours_with_offer as $tour_with_offer) {
-                    ap_load_tour_for_post( $tour_with_offer ) ?>
-
-                    <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
-                        <div class="banner-info">
-                            <h2><?php echo ap_get_the_tour()->offer_name; ?></h2>
-
-                            <p class="shortannouncement-title"><?php echo ap_get_the_tour()->offer_description; ?></p>
-
-                            <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                                <?php echo ap_get_the_tour()->hotel; ?>
-                            </p>
-
-                            <p class="nightcount-title">
-                                <img src="<?php ap_print_image_url('plane-dark.png'); ?>"
-                                     alt="">
-                                <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration
-                                    . ' ночей(и)'; ?>
-                            </p>
-
-                            <?php // TODO: вынеси в отдельный метод (форма перехода в раздел КУПИТЬ) ?>
-                            <form action="<?php home_url( ); ?>">
-                                <input type="hidden" name="ap_tour_id" value="<?= ap_get_the_tour_id( ); ?>" />
-                                <input type="hidden" name="page_id" value="284" />
-                                <button type="submit">КУПИТЬ ТУР</button>
-                            </form>
-                        </div>
-                        <div class="indent"></div>
-                        <?php ap_the_tour_banner( ); ?>
-
-                    </div>
-
-                <?php } ?>
-            </div>
-            <a class="carousel-control left" href="#banners_carousel" data-slide="prev"></a>
-            <div class="carousel-control divider"></div>
-            <a class="carousel-control right" href="#banners_carousel" data-slide="next"></a>
-        </div>
-    </div>
-</div>
-
-<!--Запуск слайдера-->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#banners_carousel').carousel({
-            cycle: true,
-            animation: 1000,
-            itemFallbackDimension: 960
-        });
-    });
-</script>
-
-<?php ap_tour_search_view( ); ?>
-
-<div class="interestingoffers-wrapper">
-    <div id="interestingoffers">
-        <h1 class="red">Интересные предложения</h1>
-        <?php
-        $nearest_tours = get_posts(
-            array(
-                'posts_per_page' => 4,
-                'post_type' => 'ap_tour',
-                'orderby' => 'post_date',
-                'order' => 'DESC'
-            )
-        );
-
-        $is_first = true;
-        foreach ($nearest_tours as $tour) {
-            ap_load_tour_for_post( $tour ) ?>
-
-        <a href="<?php ap_print_reserve_tour_page_permalink( ap_get_the_tour_id( ) ); ?>">
-            <div class="interestingoffer">
-                <?php ap_the_tour_icon(); ?>
-                <span class="offername"><?php echo ap_get_the_tour()->country . ' - ' . ap_get_the_tour()->resort; ?></span>
-                <span class="offerprice"><?php echo ap_get_the_tour()->cost; ?></span>
-            </div>
-        </a>
-
-        <?php } ?>
-
-    </div>
-
-</div>
-<div class="snipping"></div>
+<?php ap_tour_view_banners( ); ?>
+<?php ap_tour_view_search( ); ?>
+<?php ap_tour_view_interesting_offers( ); ?>
 
 <div class="triparticles-wrapper">
     <div id="content" class="homepage" role="main">
@@ -146,43 +26,9 @@ Template Name: Front-page
                         'orderby' => 'rand'
                     )
                 );
-                foreach ( $article_posts as $article_post ) { ?>
-                    <div id="articlethumbnail-outer">
-                        <div id="articlethumbnail">
-                            <div class="image">
-                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $article_post->ID ) ); ?>
-                                <img src="<?= $url; ?>" alt="" width="940px" height="370px">
-                            </div>
-                            <div id="left-arrow">
-                                <a href="/"></a>
-                            </div>
-                            <div class="announcement">
-                                <h1><?= $article_post->post_title; ?></h1>
-                            </div>
-                            <div id="right-arrow" class="horizontal-flip">
-                                <a href="/"></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="content" class="homepage" role="main">
-                            <div id="article" class="entry">
-                                <article>
-                                    <?= $article_post->post_content; ?>
-                                </article>
-                            </div>
-
-                            <div class="links">
-                                <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
-                                    <img src="<?php ap_print_image_url('plane.png'); ?>">Путевки в Париж
-                                </a>
-                                <br>
-                                <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
-                                    Похожие направления
-                                </a>
-                            </div>
-                    </div><!-- #content -->
-                <?php }
+                foreach ( $article_posts as $article_post ) {
+                    ap_article_view_single( $article_post );
+                }
                 if ( count( $article_posts ) < 1 ) { ?>
                     <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
                 <?php } ?>
@@ -191,4 +37,5 @@ Template Name: Front-page
     </div><!--.homepage-->
 </div><!--.triparticles-wrapper-->
 
+<?php ap_add_js_calendar_to_element( '#datepicker' ); ?>
 <?php get_footer(); ?>
