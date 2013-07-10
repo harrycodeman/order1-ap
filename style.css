@@ -212,7 +212,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         /*----------END INTERESTINGOFFERS----------*/
 
         /*----------TRIPARTICLES----------*/
-        .triparticles-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
+        .triparticles-wrapper { width: 100%; }
         #triparticles { position: relative; width: 960px; height: auto; margin:0 auto; }
         #triparticles .title h1 { display: inline; }
         #triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
@@ -233,7 +233,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         /*----------END TRIPARTICLES----------*/
 
         /*----------LASTCOMMENTS----------*/
-        .lastcomments-wrapper { /*background: url('images/header-wrapper-background.png') center;*/ width: 100%; }
+        .lastcomments-wrapper { width: 100%; }
         #lastcomments { background: url('images/lastcomments-background.png') no-repeat; width: 960px; height: 600px; margin:0 auto; }
         #comments { padding: 0 0 0 246px; width: 714px; }
         .homepage #comments-title { font-size: 21px; margin: 40px 0 20px 4px; }

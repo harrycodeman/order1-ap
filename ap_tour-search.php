@@ -5,7 +5,6 @@ Template Name: Страница поиска туров
 ?>
 
 <?php get_header(); ?>
-<?php ap_add_js_calendar_to_element( '#datepicker' ); ?>
 <?php ap_tour_view_search( ); ?>
 <br><br>
 

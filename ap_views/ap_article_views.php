@@ -15,15 +15,15 @@ function ap_article_view_single( $article_post ) { ?>
             <div id="right-arrow" class="horizontal-flip">
                 <a href="/"></a>
             </div>
-        </div>
-    </div>
+        </div><!--articlethumbnail-->
+    </div><!--#articlethumbnail-outer-->
 
     <div id="content" class="homepage" role="main">
         <div id="article" class="entry">
             <article>
                 <?= $article_post->post_content; ?>
             </article>
-        </div>
+        </div><!--#article-->
 
         <div class="links">
             <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
@@ -33,6 +33,29 @@ function ap_article_view_single( $article_post ) { ?>
             <a class="left" href="<?php ap_print_page_under_development_permalink( ); ?>">
                 Похожие направления
             </a>
-        </div>
+        </div><!--.links-->
     </div><!--#content-->
+<?php }
+
+function ap_article_view_single_with_links( $article_posts ) { ?>
+    <div class="triparticles-wrapper">
+        <div id="content" class="homepage" role="main">
+            <div class="triparticles-wrapper">
+                <div id="triparticles">
+                    <div class="title">
+                        <h1>Статьи о путешествиях</h1>
+                        <a href="<?php ap_print_blog_url(); ?>">Другие статьи</a>
+                    </div>
+
+                    <?php if ( count( $article_posts ) === 1 ) {
+                        $article_post = $article_posts[0];
+                        ap_article_view_single( $article_post );
+                    }
+                    else { ?>
+                        <p>К сожалению, на текущий момент не опубликовано ни одной статьи.</p>
+                    <?php } ?>
+                </div><!--#triparticles-->
+            </div><!--.triparticles-wrapper-->
+        </div><!--.homepage-->
+    </div><!--.triparticles-wrapper-->
 <?php }

@@ -1,14 +1,18 @@
 <?php
-function ap_print_create_tour_page_permalink() {
+function ap_print_create_tour_page_permalink( ) {
     echo get_permalink( 13 );
 }
 
-function ap_get_create_tour_page_permalink() {
+function ap_get_create_tour_page_permalink( ) {
     return get_permalink( 13 );
 }
 
 function ap_print_edit_tour_page_permalink( $tour_id ) {
     echo get_permalink( $tour_id );
+}
+
+function ap_get_edit_tour_page_permalink( $tour_id ) {
+    return get_permalink( $tour_id );
 }
 
 function ap_print_search_tour_page_permalink(  ) {

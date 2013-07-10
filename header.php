@@ -213,11 +213,7 @@ $(document).ready(function() {
       </div>
         <a href="<?php echo home_url( '/' );?>"><div id="header-logo" style="cursor:pointer;"></div></a>
       <div id="contacts">
-                      <div class="phone-code">+7 (3462)</div>
-<!--          <div class="phone-code">-->
-<!--              <div>+7 (3462)</div>-->
-<!--              <div>+7 (3462)</div>-->
-<!--          </div>-->
+          <div class="phone-code">+7 (3462)</div>
           <div class="phone-number">
               <div class="phone-number-1">23-23-00</div>
               <div>23-23-01</div>
