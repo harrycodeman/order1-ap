@@ -9,7 +9,7 @@ Template Name: Создание тура
 else:
     if ( empty( $_POST ) ):
         get_header( );
-        ap_tour_view_edit( );
+        AP_TourEditView::show_for( );
         get_footer( );
     else:
         $tour = new AP_Tour();
