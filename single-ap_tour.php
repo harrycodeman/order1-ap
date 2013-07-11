@@ -12,7 +12,7 @@ else:
 
     if ( ap_is_view_mode( ) ):
         get_header( );
-        AP_TourEditView::show_for( ap_get_the_tour( ) );
+        AP_TourEditView::show_for( array( ap_get_the_tour( ) ) );
         get_footer( );
     else:
         $tour = new AP_Tour();

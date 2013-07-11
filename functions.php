@@ -377,7 +377,11 @@ function ap_is_view_mode( ) {
 require_once( 'ap_views/link_functions.php' );
 
 require_once( 'ap_post_types/ap_image.php' );
+
 require_once( 'ap_post_types/ap_tour.php' );
+require_once( 'ap_views/ap_tour_views/ap_tour_view.php' );
+require_once( 'ap_views/ap_tour_views/ap_tour_edit_view.php' );
+
 require_once( 'ap_views/ap_tour_views.php' );
 
 require_once('ap_views/ap_article_views.php');
