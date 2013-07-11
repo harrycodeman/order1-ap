@@ -149,42 +149,6 @@ function ap_the_tour_banner( $width = 960, $height = 382 ) {
     <?php }
 }
 
-function ap_tour_view_banners( $tours ) { ?>
-    <div class="banner-wrapper">
-        <div id="banner">
-            <div id="banners_carousel" class="carousel slide">
-                <div class="carousel-inner">
-                    <?php
-                    $is_first = true;
-                    foreach ($tours as $tour) {
-                        ap_load_tour_for_post( $tour ) ?>
-                        <div class="<?php if ( $is_first ) { $is_first = false; echo 'active'; } ?> item">
-                            <div class="banner-info">
-                                <h2><?php echo ap_get_the_tour()->offer_name; ?></h2>
-                                <p class="shortannouncement-title"><?php echo ap_get_the_tour()->offer_description; ?></p>
-                                <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="">
-                                    <?php echo ap_get_the_tour()->hotel; ?>
-                                </p>
-                                <p class="nightcount-title">
-                                    <img src="<?php ap_print_image_url('plane-dark.png'); ?>"
-                                         alt="">
-                                    <?php echo ap_get_the_tour()->start_date . ' - ' . ap_get_the_tour()->duration
-                                        . ' ночей(и)'; ?>
-                                </p>
-                                <?php ap_print_reserve_tour_page_go_button( ap_get_the_tour_id( ) ); ?>
-                            </div>
-                            <div class="indent"></div>
-                            <?php ap_the_tour_banner( ); ?>
-                        </div>
-                    <?php } ?>
-                </div>
-                <a class="carousel-control left" href="#banners_carousel" data-slide="prev"></a>
-                <div class="carousel-control divider"></div>
-                <a class="carousel-control right" href="#banners_carousel" data-slide="next"></a>
-            </div>
-        </div>
-    </div>
-<?php }
 
 function ap_tour_view_search( ) { ?>
     <div class="toursearch-wrapper">
@@ -279,39 +243,3 @@ function ap_tour_view_interesting_offers( $nearest_tours ) { ?>
     </div>
     <div class="snipping"></div>
 <?php }
-?>
-
-<!--                                        <img id="cropper" src="--><?php //ap_print_image_url( 'paris-by-night.jpg' ); ?><!--">-->
-<!--                                        <script type="text/javascript">-->
-<!--                                            jQuery(function($) {-->
-<!--                                                var jcrop_api;-->
-<!--                                                function readUrl(input) {-->
-<!--                                                    if (jcrop_api) {-->
-<!--                                                        jcrop_api.destroy();-->
-<!--                                                    }-->
-<!---->
-<!--                                                    if (input.files-->
-<!--                                                            && input.files[0]) {-->
-<!--                                                        var reader = new FileReader();-->
-<!--                                                        reader.onload = function (e) {-->
-<!--                                                            $('#cropper').attr('src', e.target.result);-->
-<!---->
-<!--//                                                            $('#cropper').Jcrop({-->
-<!--//                                                                    boxWidth: 640,-->
-<!--//                                                                    boxHeight: 255-->
-<!--//                                                                },-->
-<!--//                                                                function() {-->
-<!--//                                                                    jcrop_api = this;-->
-<!--//                                                                }-->
-<!--//                                                            );-->
-<!--                                                        }-->
-<!--                                                        reader.readAsDataURL(input.files[0]);-->
-<!--                                                    }-->
-<!--                                                }-->
-<!---->
-<!--                                                $("#sliderphoto-addtour-file").change(function(){-->
-<!--                                                    readUrl(this);-->
-<!--                                                });-->
-<!--                                            });-->
-<!--                                        </script>-->
-<?php

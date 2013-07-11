@@ -171,3 +171,40 @@ class AP_TourEditView extends AP_TourView {
         $view->show( );
     }
 }
+
+
+?>
+<!--                                        <img id="cropper" src="--><?php //ap_print_image_url( 'paris-by-night.jpg' ); ?><!--">-->
+<!--                                        <script type="text/javascript">-->
+<!--                                            jQuery(function($) {-->
+<!--                                                var jcrop_api;-->
+<!--                                                function readUrl(input) {-->
+<!--                                                    if (jcrop_api) {-->
+<!--                                                        jcrop_api.destroy();-->
+<!--                                                    }-->
+<!---->
+<!--                                                    if (input.files-->
+<!--                                                            && input.files[0]) {-->
+<!--                                                        var reader = new FileReader();-->
+<!--                                                        reader.onload = function (e) {-->
+<!--                                                            $('#cropper').attr('src', e.target.result);-->
+<!---->
+<!--//                                                            $('#cropper').Jcrop({-->
+<!--//                                                                    boxWidth: 640,-->
+<!--//                                                                    boxHeight: 255-->
+<!--//                                                                },-->
+<!--//                                                                function() {-->
+<!--//                                                                    jcrop_api = this;-->
+<!--//                                                                }-->
+<!--//                                                            );-->
+<!--                                                        }-->
+<!--                                                        reader.readAsDataURL(input.files[0]);-->
+<!--                                                    }-->
+<!--                                                }-->
+<!---->
+<!--                                                $("#sliderphoto-addtour-file").change(function(){-->
+<!--                                                    readUrl(this);-->
+<!--                                                });-->
+<!--                                            });-->
+<!--                                        </script>-->
+<?php

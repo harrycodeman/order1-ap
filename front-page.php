@@ -6,10 +6,9 @@ Template Name: Front-page
 
 <?php
 get_header();
-ap_tour_view_banners(
-    get_posts(
+AP_TourBannersView::show_for(
+    ap_get_tours(
         array(
-            'post_type' => 'ap_tour',
             'meta_query' => array(
                 array('key' => AP_Tour::offer_name_meta_name),
                 array('key' => AP_Tour::offer_description_meta_name),

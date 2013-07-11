@@ -182,3 +182,19 @@ class AP_Tour {
         wp_delete_post( $this->id, true );
     }
 }
+
+function ap_get_tours( array $params ) {
+    $params = array_merge(
+        array( 'post_type' => 'ap_tour' ),
+        $params
+    );
+
+    $result_tours = array( );
+    $tour_posts = get_posts( $params );
+    foreach ($tour_posts as $tour_post) {
+        $tour = new AP_Tour( );
+        $tour->load( $tour_post->ID );
+        array_push( $result_tours, $tour );
+    }
+    return $result_tours;
+}

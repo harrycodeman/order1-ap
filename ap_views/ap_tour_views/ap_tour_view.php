@@ -72,7 +72,7 @@ class AP_TourView {
         echo $this->the_property_or_empty( 'offer_description' );
     }
 
-    protected function ap_the_tour_banner( $width = 960, $height = 382 ) {
+    protected function ap_the_banner( $width = 960, $height = 382 ) {
         $offer_banner = $this->the_method_result_or_empty( 'get_offer_banner' );
         if ( !empty( $offer_banner ) ) {
             $offer_banner = AP_Image::cast( $offer_banner ); ?>
