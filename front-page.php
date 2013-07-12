@@ -18,7 +18,8 @@ AP_TourBannersView::show_for(
         )
     )
 );
-ap_tour_view_search( );
+AP_TourSearchPanelView::show_for( );
+//ap_tour_view_search( );
 ap_tour_view_interesting_offers(
     get_posts(
         array(
