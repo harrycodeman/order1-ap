@@ -382,6 +382,8 @@ require_once( 'ap_post_types/ap_tour.php' );
 require_once( 'ap_views/ap_tour_views/ap_tour_view.php' );
 require_once( 'ap_views/ap_tour_views/ap_tour_edit_view.php' );
 require_once( 'ap_views/ap_tour_views/ap_tour_banners_view.php' );
+require_once( 'ap_views/ap_tour_views/ap_tour_search_panel_view.php' );
+require_once( 'ap_views/ap_tour_views/ap_tour_interesting_offer_view.php' );
 
 require_once( 'ap_views/ap_tour_views.php' );
 

@@ -19,12 +19,10 @@ AP_TourBannersView::show_for(
     )
 );
 AP_TourSearchPanelView::show_for( );
-//ap_tour_view_search( );
-ap_tour_view_interesting_offers(
-    get_posts(
+AP_TourInterestingOfferView::show_for(
+    ap_get_tours(
         array(
             'posts_per_page' => 4,
-            'post_type' => 'ap_tour',
             'orderby' => 'post_date',
             'order' => 'DESC'
         )

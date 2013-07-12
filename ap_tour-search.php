@@ -5,7 +5,7 @@ Template Name: Страница поиска туров
 ?>
 
 <?php get_header(); ?>
-<?php ap_tour_view_search( ); ?>
+<?php AP_TourSearchPanelView::show_for( ); ?>
 <br><br>
 
 <?php
@@ -198,42 +198,4 @@ if ( !ap_is_view_mode( ) ) {
         }
     );
 </script>
-
-<?php
-//$filter_args['paged'] = $page_number + 1;
-//$has_next_page = get_posts( $filter_args );
-//
-//if ( $has_next_page ) { ?>
-<!--<div class="fetch">-->
-<!--    <a href="--><?php //ap_print_search_tour_page_permalink(); ?><!--?paged=--><?//= $page_number + 1; ?><!--">-->
-<!--        Загрузить следующие туры-->
-<!--    </a>-->
-<!--</div>-->
-<!---->
-<!--<script type="text/javascript">-->
-<!--    // Ajax-fetching "Load more posts"-->
-<!--    $('.fetch a').on('click', function(e) {-->
-<!--        e.preventDefault();-->
-<!--        $(this).addClass('loading').text('Загрузка...');-->
-<!--        $.ajax({-->
-<!--            type: "GET",-->
-<!--            url: $(this).attr('href') + '#boxes',-->
-<!--            dataType: "html",-->
-<!--            success: function(out) {-->
-<!--                out = $.trim(out);-->
-<!--                var result = $(out).find('#tours .item');-->
-<!--                var next_link = $(out).find('.fetch a').attr('href');-->
-<!--                $('#tours').append(result);-->
-<!--                $('.fetch a').removeClass('loading').text('Загрузить следующие туры');-->
-<!--                if (next_link != undefined) {-->
-<!--                    $('.fetch a').attr('href', next_link);-->
-<!--                } else {-->
-<!--                    $('.fetch').remove();-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-<?php //} ?>
-
 <?php get_footer(); ?>

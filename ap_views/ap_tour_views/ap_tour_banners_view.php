@@ -23,7 +23,7 @@ class AP_TourBannersView extends AP_TourView {
                                         <?php $this->the_offer_description( ); ?>
                                     </p>
                                     <p class="hotel-title"><img src="<?php ap_print_image_url('star.png'); ?>" alt="*">
-                                        <?php echo ap_get_the_tour()->hotel; ?>
+                                        <?php $this->the_hotel( ); ?>
                                     </p>
                                     <p class="nightcount-title">
                                         <img src="<?php ap_print_image_url('plane-dark.png'); ?>"
@@ -31,10 +31,10 @@ class AP_TourBannersView extends AP_TourView {
                                         <?php $this->the_start_date( ); echo ' - '; $this->the_duration( );
                                         echo ' ночей(и)'; ?>
                                     </p>
-                                    <?php ap_print_reserve_tour_page_go_button( ap_get_the_tour_id( ) ); ?>
+                                    <?php ap_print_reserve_tour_page_go_button( $this->get_the_id( ) ); ?>
                                 </div>
                                 <div class="indent"></div>
-                                <?php $this->ap_the_banner( ); ?>
+                                <?php $this->the_banner( ); ?>
                             </div>
                         <?php $this->next( );
                         } ?>
