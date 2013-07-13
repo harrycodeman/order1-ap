@@ -6,11 +6,12 @@ if (!is_admin()) {
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
-    wp_enqueue_script( 'jquery_ui_datepicker_ru',
+    wp_enqueue_script(
+        'jquery_ui_datepicker_ru',
         get_bloginfo('stylesheet_directory').'/libs/jquery-ui.datepicker-ru.js',
         array( 'jquery_ui' )
     );
-    wp_enqueue_style( 'jquery_image_crop_style', 'http://code.jquery.com/ui/1.10.2/themes/redmond/jquery-ui.css' );
+    wp_enqueue_style( 'jquery_ui_style', 'http://code.jquery.com/ui/1.10.2/themes/redmond/jquery-ui.css' );
 
     wp_enqueue_script( 'bootstrap', get_bloginfo('stylesheet_directory').'/bootstrap/js/bootstrap.js' );
     wp_enqueue_style( 'bootstrap_style', get_bloginfo('stylesheet_directory').'/bootstrap/css/bootstrap.css' );
@@ -353,7 +354,7 @@ function imbalance2_tags() {
 }
 endif;
 
-/*--- Helper functions ---*/
+/*--- Вспомогательные функции ---*/
 function ap_add_js_calendar_to_element( $element_id ) { ?>
     <script>
         $(document).ready(function(){
@@ -372,6 +373,97 @@ function ap_show_error( $error_type ) {
 function ap_is_view_mode( ) {
     return empty( $_POST );
 }
+
+// TODO: опиши условия, необходимые для корректной работы методов
+function ap_init_image_cropper( ) { ?>
+    <div id="image_crop_background_wrapper" style="display: none; position: fixed; top: 0; width: 100%; min-height: 100vh !important; background: transparent; z-index: 100;">
+        <div id="image_crop_wrapper" style="position: relative; top: 30px; margin: 0 auto; background: white; border: solid 2px #bf283b;">
+            <div id="image_crop_border" style="margin: 10px auto; background: white; border: dotted 1px #bf283b;">
+                <img id="crop_target" src="" style="max-width: 920px;">
+            </div>
+            <div style="margin: 10px;">
+                <div>
+                    <button id="cancel-addtour-button" class="crop">ОТМЕНИТЬ</button>
+                    <button id="create-addtour-button" class="crop">СОХРАНИТЬ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php }
+
+function ap_add_image_cropper_to_element( $element_id, $aspect_ratio ) { ?>
+    <script type="text/javascript">
+        jQuery(function($) {
+            var jcrop_api;
+            var crop_target = $('#crop_target');
+            var crop_x;
+            var crop_y;
+            var crop_width;
+            var crop_height;
+
+            function trace_coordinates(c) {
+                crop_x = c.x;
+                crop_y = c.y;
+                crop_width = c.w;
+                crop_height = c.h;
+            }
+
+            $('<?= $element_id ?>').change(function(){
+                crop_target.css('width', '');
+                crop_target.css('height', '');
+
+                $('#create-addtour-button.crop').click(function() {
+                    $('#image_crop_background_wrapper').css('display', 'none');
+
+                    $('<?= $element_id ?>_crop_x').val(crop_x);
+                    $('<?= $element_id ?>_crop_y').val(crop_y);
+                    $('<?= $element_id ?>_crop_width').val(crop_width);
+                    $('<?= $element_id ?>_crop_height').val(crop_height);
+
+                    $('#create-addtour-button.crop').off('click');
+                    jcrop_api.destroy();
+                });
+
+                $('#cancel-addtour-button.crop').click(function() {
+                    $('#image_crop_background_wrapper').css('display', 'none');
+                    $('<?= $element_id ?>').val('');
+                    $('#cancel-addtour-button.crop').off('click');
+                    jcrop_api.destroy();
+                });
+
+                if ( this.files
+                    && this.files[0] ) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        crop_target.one('load', function() {
+                            $('#image_crop_wrapper').css('width', crop_target.width() + 20);
+                            $('#image_crop_border').css('width', crop_target.width());
+
+                            crop_target.Jcrop({
+                                    bgColor: 'white',
+                                    aspectRatio: <?= $aspect_ratio; ?>,
+                                    onChange: trace_coordinates,
+                                    onSelect: trace_coordinates
+                                },
+                                function() {
+                                    jcrop_api = this;
+                                }
+                            );
+                        });
+
+                        crop_target.attr('src', e.target.result);
+                        $("#image_crop_background_wrapper").css( "display", "block" );
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+    </script>
+<?php }
+
 
 /*--- Регистрация дополнительных типов и представлений ---*/
 function register_type_with_views( $type ) {
@@ -395,11 +487,15 @@ register_type_with_views( 'AP_Tour' );
 /*--- Дополнительные настройки ---*/
 add_action('wp_enqueue_scripts', 'ap_add_js_libs');
 function ap_add_js_libs() {
-    wp_enqueue_script('jquery_image_crop',
+    wp_enqueue_script(
+        'jquery_image_crop',
         ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js' ),
-        array('jquery'));
-    wp_enqueue_style( 'jquery_image_crop_style',
-        ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.min.css' ) );
+        array('jquery')
+    );
+    wp_enqueue_style(
+        'jquery_image_crop_style',
+        ap_get_script_url( 'jquery-plugins/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.min.css' )
+    );
 }
 
 function disable_all_image_sizes( $sizes ) {

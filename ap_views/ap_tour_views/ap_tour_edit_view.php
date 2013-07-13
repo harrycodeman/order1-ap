@@ -81,9 +81,13 @@ class AP_TourEditView extends AP_TourView {
                                 <?php if ( $this->is_model_empty( ) ) { ?>
                                     <div>
                                         <p><label for="photo-addtour-file">Фотография (200x200px)</label></p>
-                                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
                                         <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*"
                                                required>
+                                        <input name="ap_tour_icon_crop_x" id="photo-addtour-file_crop_x" type="hidden">
+                                        <input name="ap_tour_icon_crop_y" id="photo-addtour-file_crop_y" type="hidden">
+                                        <input name="ap_tour_icon_crop_width" id="photo-addtour-file_crop_width" type="hidden">
+                                        <input name="ap_tour_icon_crop_height" id="photo-addtour-file_crop_height" type="hidden">
                                     </div>
                                 <?php }
                                 else { ?>
@@ -96,8 +100,13 @@ class AP_TourEditView extends AP_TourView {
                                     <div>
                                         <div>
                                             <p><label for="photo-addtour-file">Новая фотография (200x200px)</label></p>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-                                            <input name="ap_tour_icon" id="photo-addtour-file" type="file" accept="image/*">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                                            <input name="ap_tour_icon" id="photo-addtour-file" type="file"
+                                                   accept="image/*">
+                                            <input name="ap_tour_icon_crop_x" id="photo-addtour-file_crop_x" type="hidden">
+                                            <input name="ap_tour_icon_crop_y" id="photo-addtour-file_crop_y" type="hidden">
+                                            <input name="ap_tour_icon_crop_width" id="photo-addtour-file_crop_width" type="hidden">
+                                            <input name="ap_tour_icon_crop_height" id="photo-addtour-file_crop_height" type="hidden">
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -125,7 +134,12 @@ class AP_TourEditView extends AP_TourView {
                                                 Фотография для слайдера(960x374px)
                                             </label>
                                         </p>
-                                        <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file" type="file">
+                                        <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file" type="file"
+                                            accept="image/*">
+                                        <input name="ap_tour_offer_banner_crop_x"  id="sliderphoto-addtour-file_crop_x" type="hidden">
+                                        <input name="ap_tour_offer_banner_crop_y" id="sliderphoto-addtour-file_crop_y" type="hidden">
+                                        <input name="ap_tour_offer_banner_crop_width" id="sliderphoto-addtour-file_crop_width" type="hidden">
+                                        <input name="ap_tour_offer_banner_crop_height" id="sliderphoto-addtour-file_crop_height" type="hidden">
                                     </div>
                                 <?php }
                                 else { ?>
@@ -143,7 +157,11 @@ class AP_TourEditView extends AP_TourView {
                                                 </label>
                                             </p>
                                             <input name="ap_tour_offer_banner" id="sliderphoto-addtour-file"
-                                                   type="file" name="">
+                                                   type="file" accept="image/*">
+                                            <input name="ap_tour_offer_banner_crop_x"  id="sliderphoto-addtour-file_crop_x" type="hidden">
+                                            <input name="ap_tour_offer_banner_crop_y" id="sliderphoto-addtour-file_crop_y" type="hidden">
+                                            <input name="ap_tour_offer_banner_crop_width" id="sliderphoto-addtour-file_crop_width" type="hidden">
+                                            <input name="ap_tour_offer_banner_crop_height" id="sliderphoto-addtour-file_crop_height" type="hidden">
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -163,7 +181,12 @@ class AP_TourEditView extends AP_TourView {
                 </div><!--addtour-->
             </div><!--addtour-wrapper-->
         </div><!-- #content -->
+
         <?php ap_add_js_calendar_to_element( '#addtour-datepicker' );
+
+        ap_init_image_cropper( );
+        ap_add_image_cropper_to_element( '#photo-addtour-file', 1 );
+        ap_add_image_cropper_to_element( '#sliderphoto-addtour-file', 2.5 );
     }
 
     public static function show_for( AP_Tour $tour = null ) {

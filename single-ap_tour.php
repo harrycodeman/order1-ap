@@ -30,14 +30,30 @@ else:
         $tour->cost = $_POST['ap_tour_cost'];
         if ( is_uploaded_file( $_FILES['ap_tour_icon']['tmp_name'] ) ) {
             $tour->set_icon(
-                AP_Image::load_from_file_object( $_FILES['ap_tour_icon'] )
+                AP_Image::load_from_file_object(
+                    $_FILES['ap_tour_icon'],
+                    array(
+                        'x' => $_POST['ap_tour_icon_crop_x'],
+                        'y' => $_POST['ap_tour_icon_crop_y'],
+                        'width' => $_POST['ap_tour_icon_crop_width'],
+                        'height' => $_POST['ap_tour_icon_crop_height']
+                    )
+                )
             );
         }
         $tour->offer_name = $_POST['ap_tour_offer_name'];
         $tour->offer_description = $_POST['ap_tour_offer_description'];
         if ( is_uploaded_file( $_FILES['ap_tour_offer_banner']['tmp_name'] ) ) {
             $tour->set_offer_banner(
-                AP_Image::load_from_file_object( $_FILES['ap_tour_offer_banner'] )
+                AP_Image::load_from_file_object(
+                    $_FILES['ap_tour_offer_banner'],
+                    array(
+                        'x' => $_POST['ap_tour_offer_banner_crop_x'],
+                        'y' => $_POST['ap_tour_offer_banner_crop_y'],
+                        'width' => $_POST['ap_tour_offer_banner_crop_width'],
+                        'height' => $_POST['ap_tour_offer_banner_crop_height']
+                    )
+                )
             );
         }
 
