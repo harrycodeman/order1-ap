@@ -1,58 +1,10 @@
 <?php
 /*
-Template Name: Addarticle-page
+Template Name: Добавление статьи
 */
 ?>
 
 <?php get_header(); ?>
-
-<?php
-if ( $_SERVER['REQUEST_METHOD'] == 'POST'
-        && $_FILES["photo-filename"]["size"] > 0) {
-
-    //function 1 create post
-    $source = array(
-        'post_title' => $_FILES["photo-filename"]["name"],
-        'post_name' => 'test',
-        'post_excerpt' => 'Цитата поста2',
-        'post_content' => 'Удалось!!',
-        'post_status' => 'publish',
-        'post_author' => 1,
-        'post_type' => 'post',
-    );
-    $post_id = wp_insert_post($source);
-
-    //function 2 upload file
-    if ( ! function_exists( 'wp_handle_upload' ) ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
-    $uploaded_file = $_FILES['photo-filename'];
-    $upload_overrides = array( 'test_form' => false );
-    $move_file = wp_handle_upload( $uploaded_file, $upload_overrides );
-    if ( $move_file ) {
-        echo "File is valid, and was successfully uploaded.\n";
-        var_dump( $move_file);
-    } else {
-        echo "Possible file upload attack!\n";
-    }
-
-    //function 3 attach file
-    $filename = $move_file['file'];
-    $wp_filetype = wp_check_filetype(basename($filename), null );
-    $wp_upload_dir = wp_upload_dir();
-    $attachment = array(
-        'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),
-        'post_mime_type' => $wp_filetype['type'],
-        'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
-        'post_content' => '',
-        'post_status' => 'inherit'
-    );
-    $attach_id = wp_insert_attachment( $attachment, $filename, $post_id);
-    require_once(ABSPATH . 'wp-admin/includes/image.php');
-    $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-    wp_update_attachment_metadata( $attach_id, $attach_data );
-
-    update_post_meta( $post_id, '_thumbnail_id', $attach_id );
-}
-?>
 
 <div class="addarticle-wrapper">
   <div id="addarticle">
