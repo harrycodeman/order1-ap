@@ -1,6 +1,6 @@
 <?php
 class AP_TourInterestingOfferView extends AP_TourView {
-    public function __construct( array $tours ) {
+    public function __construct( array $tours = null ) {
         parent::__construct( $tours );
     }
 
@@ -25,7 +25,7 @@ class AP_TourInterestingOfferView extends AP_TourView {
         <div class="snipping"></div>
     <?php }
 
-    public static function show_for( array $tours ) {
+    public static function show_for( array $tours = null ) {
         $view = new AP_TourInterestingOfferView( $tours );
         $view->show( );
     }

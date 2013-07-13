@@ -1,6 +1,6 @@
 <?php
 class AP_TourReserveView extends AP_TourView {
-    public function __construct( array $tours ) {
+    public function __construct( array $tours = null ) {
         parent::__construct( $tours );
     }
 
@@ -94,7 +94,7 @@ class AP_TourReserveView extends AP_TourView {
         ap_add_js_calendar_to_element( '#reservtour-departure-datepicker' );
     }
 
-    public static function show_for( AP_Tour $tour ) {
+    public static function show_for( AP_Tour $tour = null ) {
         $tours = null;
         if ( !empty( $tour ) ) {
             $tours = array( $tour );

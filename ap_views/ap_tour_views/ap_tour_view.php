@@ -13,6 +13,10 @@ class AP_TourView {
         return $this->the_property_or_empty( 'id' );
     }
 
+    protected function get_the_hotel_rating( ) {
+        return $this->the_property_or_empty( 'hotel_rating' );
+    }
+
     protected function the_country( ) {
         echo $this->the_property_or_empty( 'country' );
     }

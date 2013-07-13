@@ -12,7 +12,6 @@ Template Name: Страница поиска туров
 $page_number = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $filter_title = 'Все доступные туры';
 $filter_args = array(
-    'post_type' => 'ap_tour',
     'numberposts' => -1,
     'paged' => $page_number
 );
@@ -125,77 +124,11 @@ if ( !ap_is_view_mode( ) ) {
         $filter_title = 'Туры ' . $inner_filter_part;
     }
 }
+
+AP_TourListView::show_for(
+    $filter_title,
+    ap_get_tours( $filter_args )
+);
 ?>
-
-<div class="tourlist-wrapper">
-    <div id="tourlist">
-        <h1 class="red"><?= $filter_title; ?></h1>
-        <div id="tours" class="list">
-            <?php
-            $posts_of_tours = get_posts( $filter_args );
-            foreach ( $posts_of_tours as $post_of_tour ) {
-                ap_load_tour_for_post( $post_of_tour ); ?>
-                <div class="item">
-                    <div class="image">
-                        <?php ap_the_tour_icon( 100, 100 ); ?>
-                    </div>
-                    <div class="info">
-                        <h2><?php ap_the_tour_country( ); ?>, <?php ap_the_tour_resort( ); ?></h2>
-                        <p>Вылет <?php ap_the_tour_start_date( ); ?> на <?php ap_the_tour_duration( ); ?> ночей(и)</p>
-                        <p><strong><?php ap_the_tour_hotel( ); ?></strong></p>
-                    </div>
-                    <div class="hotelrating">
-                        <?php for ( $i = 0; $i < ap_get_the_tour()->hotel_rating; $i++ ) { ?>
-                            <img src="<?php ap_print_image_url( 'star.png' ); ?>" alt="">
-                        <?php } ?>
-                    </div>
-                    <div class="cost">
-                        <h2><?php ap_the_tour_cost( ); ?> руб.</h2>
-                        <p>Цена за 1 путевку</p>
-                        <div class="editdelete-links">
-                            <?php if ( is_user_logged_in( ) ) { ?>
-                                <a class="blue" href="<?php ap_print_edit_tour_page_permalink( ap_get_the_tour_id() ); ?>">
-                                    Редактировать
-                                </a>
-                                <a class="blue delete-tour-link"
-                                   href="<?php ap_print_edit_tour_page_permalink( ap_get_the_tour_id() ); ?>?delete_tour=1">
-                                    Удалить
-                                </a>
-                            <?php }
-                            else { ?>
-                                <a class="blue"
-                                   href="<?php ap_print_reserve_tour_page_permalink( ap_get_the_tour_id( ) ); ?>">
-                                    <img src="<?php ap_print_image_url( 'shopping-cart.png' ) ?>" alt="Корзина покупок"
-                                        width="13px" height="13px">
-                                    Купить
-                                </a>
-                            <?php } ?>
-                        </div>
-                    </div>
-                </div><!--.item-->
-            <?php }
-
-            $loaded_tours_count = count( $posts_of_tours );
-            if ( empty( $loaded_tours_count ) ) { ?>
-                <h2>К сожалению, не найдено ни одного тура, соответствующего текущим условиям поиска.</h2>
-            <?php } ?>
-        </div><!--.list-->
-    </div><!--.tourlist-->
-</div><!--.tourlist-wrapper-->
 <br><br>
-
-<!-- Удаление тура -->
-<script type="text/javascript">
-    $('.delete-tour-link').on('click', function(e) {
-            e.preventDefault();
-            $.ajax( $(this).attr('href') )
-                .done(function() {
-                    $('#additionalparameters-submit').click();
-                })
-                .fail(function() {
-                    alert('При удалении тура произошла ошибка!');
-                });
-        }
-    );
-</script>
 <?php get_footer(); ?>
