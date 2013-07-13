@@ -166,7 +166,11 @@ class AP_TourEditView extends AP_TourView {
         <?php ap_add_js_calendar_to_element( '#addtour-datepicker' );
     }
 
-    public static function show_for( array $tours = null ) {
+    public static function show_for( AP_Tour $tour = null ) {
+        $tours = null;
+        if ( !empty( $tour ) ) {
+            $tours = array( $tour );
+        }
         $view = new AP_TourEditView( $tours );
         $view->show( );
     }

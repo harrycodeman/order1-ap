@@ -198,3 +198,9 @@ function ap_get_tours( array $params ) {
     }
     return $result_tours;
 }
+
+function ap_get_tour_by_id( $id ) {
+    $tour = new AP_Tour( );
+    $tour->load( $id );
+    return $tour;
+}
