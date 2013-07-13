@@ -1,6 +1,4 @@
 <?php
-
-/*--- Обертка над изображениями ---*/
 class AP_Image {
     public $id;
     private $server_path;

@@ -374,20 +374,23 @@ function ap_is_view_mode( ) {
 }
 
 /*--- Регистрация дополнительных типов и представлений ---*/
+function register_type_with_views( $type ) {
+    $file_name = strtolower( $type );
+
+    require_once( get_stylesheet_directory( ) . "/ap_post_types/${file_name}.php" );
+    if ( is_dir( get_stylesheet_directory( ) . "/ap_views/${file_name}_views" ) ) {
+        require_once( get_stylesheet_directory( ) . "/ap_views/${file_name}_views/${file_name}_view.php" );
+        foreach( glob( get_stylesheet_directory( ) . "/ap_views/${file_name}_views/*.php" ) as $view_file_name){
+            require_once( $view_file_name );
+        }
+    }
+}
+
 require_once( 'ap_views/link_functions.php' );
-
-require_once( 'ap_post_types/ap_image.php' );
-
-require_once( 'ap_post_types/ap_tour.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_edit_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_banners_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_search_panel_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_interesting_offer_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_reserve_view.php' );
-require_once( 'ap_views/ap_tour_views/ap_tour_list_view.php' );
-
 require_once('ap_views/ap_article_views.php');
+
+register_type_with_views( 'AP_Image' );
+register_type_with_views( 'AP_Tour' );
 
 /*--- Дополнительные настройки ---*/
 add_action('wp_enqueue_scripts', 'ap_add_js_libs');
