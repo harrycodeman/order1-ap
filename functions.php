@@ -10,7 +10,7 @@ if (!is_admin()) {
         get_bloginfo('stylesheet_directory').'/libs/jquery-ui.datepicker-ru.js',
         array( 'jquery_ui' )
     );
-    wp_enqueue_style( 'jquery_image_crop_style', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' );
+    wp_enqueue_style( 'jquery_image_crop_style', 'http://code.jquery.com/ui/1.10.2/themes/redmond/jquery-ui.css' );
 
     wp_enqueue_script( 'bootstrap', get_bloginfo('stylesheet_directory').'/bootstrap/js/bootstrap.js' );
     wp_enqueue_style( 'bootstrap_style', get_bloginfo('stylesheet_directory').'/bootstrap/css/bootstrap.css' );
@@ -26,7 +26,7 @@ if (!is_admin()) {
 // shortcodes
 function imbalance2_wide( $atts, $content = null )
 {
-	return '<div class="wide">' . do_shortcode($content) . '</div>';
+    return '<div class="wide">' . do_shortcode($content) . '</div>';
 }
 add_shortcode( 'wide', 'imbalance2_wide' );
 
