@@ -35,6 +35,14 @@ function ap_get_back_office_main_page_permalink( ) {
     return get_permalink( 247 );
 }
 
+function ap_print_create_article_page_permalink( ) {
+    echo get_permalink( 309 );
+}
+
+function ap_get_create_article_page_permalink( ) {
+    return get_permalink( 309 );
+}
+
 function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
     $permalink = get_permalink( 284 );
     if ( !empty( $tour_id ) ) {

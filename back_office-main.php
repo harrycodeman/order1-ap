@@ -29,7 +29,7 @@ Template Name: Управление контентом
     <div class="articles">
       <h2>Статьи</h2>
       <p><a class="blue" href="<?php ap_print_blog_url( ); ?>">Показать список статей</a></p>
-      <p><a class="blue" href="<?php ap_print_page_under_development_permalink( ); ?>">Добавить новую статью</a></p>
+      <p><a class="blue" href="<?php ap_print_create_article_page_permalink( ); ?>">Добавить новую статью</a></p>
     </div>
     
     <div class="mainpage">

@@ -58,7 +58,7 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 #header-logo { position: relative; top: 30px; left: 8px; float: left; background: url('images/header-logo.png') no-repeat; width: 175px; height: 178px; margin-right: 90px;}
 #header-logo-inverted { position: relative; top: 50px; background: url('images/header-logo-inverted.png') center no-repeat; width: 139px; height: 141px; }
 #social-buttons-header { position: absolute; vertical-align: top; top: 20px; right: 10px; width: 170px;}
-#social-buttons-header .login-text { font-size: 11px; text-align: right; margin-bottom: 6.5px; }
+#social-buttons-header .login-text { font-size: 11px; text-align: right; margin-bottom: 6px; }
 .social-links > a { float: right; margin-left: 10px; }
 /*----------END HEADER----------*/
 
@@ -81,8 +81,8 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .box h1 a { color: #333; }
 .box .posted { display: none; padding-top: 10px; color: #a1a1a1; }
 .box img { display: block; }
-.fetch { clear: both; width: 460px; margin: 0 auto 40px; background: #f9f9f9; -moz-border-radius: 4px; border-radius: 4px; text-align: center; }
-.fetch a { display: block; height: 40px; line-height: 40px; font-size: 16px; font-weight: bold; color: #333; text-decoration: none; }
+.fetch { clear: both; width: 460px; margin: 0 auto 40px; -moz-border-radius: 4px; border-radius: 4px; text-align: center; }
+.fetch a { display: block; height: 40px; line-height: 40px; font-size: 16px; font-weight: bold; color: #f5f5f5; text-decoration: none; }
 .fetch:hover a { color: #fff; }
 #content { padding-bottom: 20px; padding-top: 25px;}
 #nav-above { float: left; width: 210px; padding-right: 40px; text-align: right; color: #636363; }
@@ -229,7 +229,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         article > p { margin-top: 0px }
         #triparticles .links { display: block; width: auto; height: 70px; }
         #triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; margin-left: 20px;}
-        #triparticles .links a img { margin: 4px 5.5px 0 -18px; }
+        #triparticles .links a img { margin: 4px 5px 0 -18px; }
         /*----------END TRIPARTICLES----------*/
 
         /*----------LASTCOMMENTS----------*/
@@ -283,12 +283,12 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
         #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
         #addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-        #addtour input[type="text"], input[type="number"] { width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour input[type="text"], input[type="number"] { width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #addtour #country-addtour-form, #resortcity-addtour-form { width: 280px !important; }
-        #addtour-datepicker { width: 125px !important; padding: 6.5px 10px 6.5px 5px !important; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour-datepicker { width: 125px !important; padding: 6px 10px 6px 5px !important; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #addtour #calendar-image { width: 19px; height: 18px; cursor: pointer; position: absolute; right: 3px; top: 55px; background: url('images/calendar.png') center no-repeat; }
-        #addtour #nightcount-addtour-form { width: 114.5px; }
-        #addtour #hotelname-addtour-form { width: 161.5px; }
+        #addtour #nightcount-addtour-form { width: 114px; }
+        #addtour #hotelname-addtour-form { width: 161px; }
         #addtour #hotel-rating-addtour-form { width: 80px; }
 
         #addtour .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
@@ -299,7 +299,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addtour .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top;}
         #addtour .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
         #addtour #actionname-addtour-form { width: 500px; }
-        #addtour #briefdescription-addtour-form { max-width: 625px; width: 500px; padding: 6.5px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addtour #briefdescription-addtour-form { max-width: 625px; width: 500px; padding: 6px; font-size: 16px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
 
         #addtour .submitbuttons { width: 680px; margin: 0 auto;}
         #addtour .submitbuttons>div { display: inline-block; position: relative; vertical-align: top; margin-left: 20px; }
@@ -314,7 +314,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addarticle .article { width: 680px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
         #addarticle .article>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 100%; vertical-align: top;}
         #addarticle .article>div>div { display: inline-block; position: relative; width: 660px; margin: 17px 0 0 20px;}
-        #addarticle input[type="text"] {  width: 605px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #addarticle input[type="text"] {  width: 605px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
 
         #addarticle #actionname-addarticle-form { width: 300px; }
         #addarticle #quote-addarticle-form, #addarticle  #text-addarticle-form { width: 600px; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px;}
@@ -340,7 +340,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
         #tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
         #tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
-        #tourlist input[type="text"] {  width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
+        #tourlist input[type="text"] {  width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px; }
         #tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
 
         #tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
@@ -366,14 +366,14 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #reservtour .tour { width: 680px; margin: 0 auto; padding: 20px 0; }
         #reservtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top; }
         #reservtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px; }
-        #reservtour input[type="text"], input[type="number"] { width: 120px; padding: 6.5px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px; -moz-border-radius: 0px;  border-radius: 0px; }
+        #reservtour input[type="text"], input[type="number"] { width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0px; -moz-border-radius: 0px;  border-radius: 0px; }
         #reservtour #country-reservtour-form, #resortcity-reservtour-form { width: 280px !important; }
         #reservtour #hotelname-reservtour-form { width: 161px; }
         #reservtour #hotel-rating-reservtour-form { width: 80px; }
-        #reservtour #reservtour-arrival-datepicker, #reservtour-departure-datepicker {margin-top: 2px; height: 26px; padding-right: 26.5px !important; width: 100px !important; font-size: 20px !important; }
+        #reservtour #reservtour-arrival-datepicker, #reservtour-departure-datepicker {margin-top: 2px; height: 26px; padding-right: 26px !important; width: 100px !important; font-size: 20px !important; }
         #reservtour #calendar-image { width: 19px; height: 18px; cursor: pointer; position: absolute; right: 3px; top: 55px; background: url('images/calendar.png') center no-repeat; }
 
-        #adultcount-reservtour-form, #childrencount-reservtour-form { width: 120.5px; }
+        #adultcount-reservtour-form, #childrencount-reservtour-form { width: 120px; }
 
         #reservtour .client { width: 680px; background: #fff; margin: 0 auto; padding-bottom: 20px; }
         #reservtour .client>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top; }
@@ -400,7 +400,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 #site-info a { font-weight: bold; text-decoration: none; color: #333; }
 #footer-left { float: right; width: 170px; margin-right: 30px; }
 #footer-center{ float: right; width: 90px; margin: 0 25px;}
-#social-buttons p { font-size: 11px; float: right; margin-bottom: 6.5px; }
+#social-buttons p { font-size: 11px; float: right; margin-bottom: 6px; }
 #social-buttons a { float: right; }
 #footer-right { float: right; width: 140px; margin-right: 5px;}
 #footer-right a { float:  right; border-bottom: 1px dotted; }
@@ -411,7 +411,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 #footer .menu ul a { font-size: 12px; line-height: 10px; text-decoration: none; border-bottom: 1px dotted; }
 #footer a { color: #fff ; margin-right: 6px;}
 #footer .menu ul a:hover, #footer-right a:hover { color: #fff !important; border: none; text-decoration: none; }
-#footer-center p { font-size: 10px; margin-bottom: 6.5px; }
+#footer-center p { font-size: 10px; margin-bottom: 6px; }
 /*----------END FOOTER----------*/
 
 .horizontal-flip {

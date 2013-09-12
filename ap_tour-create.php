@@ -7,13 +7,13 @@ if ( !is_user_logged_in( ) ) {
     ap_show_error( 'low_rights' );
 }
 else {
-    if ( empty( $_POST ) ) {
+    if ( ap_is_view_mode( ) ) {
         get_header( );
         AP_TourEditView::show_for( );
         get_footer( ); ?>
     <? }
     else {
-        $tour = new AP_Tour();
+        $tour = new AP_Tour( );
         $tour->is_burning = $_POST['ap_burning_tour'];
         $tour->country = $_POST['ap_tour_country'];
         $tour->resort = $_POST['ap_tour_resort'];

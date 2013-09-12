@@ -2,7 +2,7 @@
 require_once ( get_stylesheet_directory() . '/theme-options.php' );
 if (!is_admin()) {
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.min.js' );
+    wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
@@ -392,7 +392,7 @@ function ap_init_image_cropper( ) { ?>
 
 <?php }
 
-function ap_add_image_cropper_to_element( $element_id, $aspect_ratio ) { ?>
+function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) { ?>
     <script type="text/javascript">
         jQuery(function($) {
             var jcrop_api;
@@ -443,7 +443,9 @@ function ap_add_image_cropper_to_element( $element_id, $aspect_ratio ) { ?>
 
                             crop_target.Jcrop({
                                     bgColor: 'white',
-                                    aspectRatio: <?= $aspect_ratio; ?>,
+                                    <?php if( !empty( $aspect_ratio ) ) { ?>
+                                        aspectRatio: <?= $aspect_ratio; ?>,
+                                    <? } ?>
                                     onChange: trace_coordinates,
                                     onSelect: trace_coordinates
                                 },
@@ -478,11 +480,12 @@ function register_type_with_views( $type ) {
     }
 }
 
-require_once( 'ap_views/link_functions.php' );
-require_once('ap_views/ap_article_views.php');
+require_once( "ap_views/link_functions.php" );
+require_once( "ap_views/ap_article_views.php" );
 
-register_type_with_views( 'AP_Image' );
-register_type_with_views( 'AP_Tour' );
+register_type_with_views( "AP_Image" );
+register_type_with_views( "AP_Tour" );
+register_type_with_views( "AP_Article" );
 
 /*--- Дополнительные настройки ---*/
 add_action('wp_enqueue_scripts', 'ap_add_js_libs');
