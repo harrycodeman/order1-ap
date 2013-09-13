@@ -74,18 +74,6 @@ class AP_Image {
             $image_editor = wp_get_image_editor( $this->server_path );
 
             if ( !is_wp_error( $image_editor ) ) {
-                // TODO: убрать костыль в виде постоянной максимальной ширины в 920px
-                $real_size = $image_editor->get_size( );
-                if ( $real_size['width'] > 920 ) {
-                    $scale_c = $real_size['width'] / 920;
-                    $this->crop_x *= $scale_c;
-                    $this->crop_y *= $scale_c;
-                    $this->crop_width *= $scale_c;
-                    $this->crop_height *= $scale_c;
-                }
-
-                var_dump($this);
-
                 $image_editor->crop( $this->crop_x, $this->crop_y, $this->crop_width, $this->crop_height );
                 $image_editor->save( $this->server_path );
             }
