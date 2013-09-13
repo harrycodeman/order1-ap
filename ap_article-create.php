@@ -119,7 +119,7 @@ else {
         }
 
         $article->save( );
-//        wp_safe_redirect( ap_get_create_article_page_permalink( ) );
+        wp_safe_redirect( ap_get_create_article_page_permalink( ) );
     }
 }
 ?>

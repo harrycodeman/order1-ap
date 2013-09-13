@@ -218,7 +218,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #triparticles .title a { position: absolute; right: 0px; top: 10px; color: #64abe3; }
         #triparticles #articlethumbnail-outer { border: 5px solid #bf283b; margin: 30px 0 0 0; }
         #triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 0; border: 5px solid transparent;}
-        #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: 0; }
+        #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: 0; overflow: hidden; }
         #left-arrow { float: left; width: 140px; height: 370px; opacity: 0.3;}
         #right-arrow { float: left; width: 140px; height: 370px; opacity: 0.3;}
         #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
