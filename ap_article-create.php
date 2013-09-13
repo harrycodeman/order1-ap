@@ -28,8 +28,7 @@ else {
                                 <div>
                                     <p><label for="text-addarticle-form">Полный текст статьи:</label></p>
                                     <textarea id="text-addarticle-form" name="ap_article_content" rows="15" cols="90"
-                                              required>
-                                    </textarea>
+                                              required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +41,32 @@ else {
                                        required>
                                 <input name="ap_article_icon_crop_x" id="photo-addtour-file_crop_x" type="hidden">
                                 <input name="ap_article_icon_crop_y" id="photo-addtour-file_crop_y" type="hidden">
-                                <input name="ap_article_icon_crop_width" id="photo-addtour-file_crop_width" type="hidden">
-                                <input name="ap_article_icon_crop_height" id="photo-addtour-file_crop_height" type="hidden">
+                                <input name="ap_article_icon_crop_width" id="photo-addtour-file_crop_width"
+                                       type="hidden">
+                                <input name="ap_article_icon_crop_height" id="photo-addtour-file_crop_height"
+                                       type="hidden">
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="sliderinfo">
+                            <div>
+                                <div>
+                                    <p>
+                                        <label for="sliderphoto-addtour-file">
+                                            Баннер для отображения на главной странице и на странице статьи (960x374px)
+                                        </label>
+                                    </p>
+                                    <input name="ap_article_banner" id="sliderphoto-addtour-file" type="file"
+                                           accept="image/*" required>
+                                    <input name="ap_article_banner_crop_x"  id="sliderphoto-addtour-file_crop_x"
+                                           type="hidden">
+                                    <input name="ap_article_banner_crop_y" id="sliderphoto-addtour-file_crop_y"
+                                           type="hidden">
+                                    <input name="ap_article_banner_crop_width"
+                                           id="sliderphoto-addtour-file_crop_width" type="hidden">
+                                    <input name="ap_article_banner_crop_height"
+                                           id="sliderphoto-addtour-file_crop_height" type="hidden">
+                                </div>
                             </div>
                         </div>
                         <br><br>
@@ -58,8 +81,8 @@ else {
                 </div>
             </div>
         <?php
-        ap_init_image_cropper( );
-        ap_add_image_cropper_to_element( '#photo-addtour-file' );
+        ap_add_image_cropper_to_element( 'photo-addtour-file' );
+        ap_add_image_cropper_to_element( 'sliderphoto-addtour-file', 2.5 );
 
         get_footer( );
     }
@@ -81,9 +104,22 @@ else {
                 )
             );
         }
+        if ( is_uploaded_file( $_FILES['ap_article_banner']['tmp_name'] ) ) {
+            $article->set_banner(
+                AP_Image::load_from_file_object(
+                    $_FILES['ap_article_banner'],
+                    array(
+                        'x' => $_POST['ap_article_banner_crop_x'],
+                        'y' => $_POST['ap_article_banner_crop_y'],
+                        'width' => $_POST['ap_article_banner_crop_width'],
+                        'height' => $_POST['ap_article_banner_crop_height']
+                    )
+                )
+            );
+        }
 
         $article->save( );
-        wp_safe_redirect( ap_get_create_article_page_permalink( ) );
+//        wp_safe_redirect( ap_get_create_article_page_permalink( ) );
     }
 }
 ?>

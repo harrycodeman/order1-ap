@@ -1,6 +1,9 @@
 <?php get_header(); ?>
 
-<?php the_post( ); ?>
+<?php the_post( );
+$article = ap_get_article_by_id( get_the_ID( ) );
+$article_banner = $article->get_banner( );
+?>
 
 <div class="triparticles-wrapper">
     <div id="content" class="homepage" role="main">
@@ -9,8 +12,14 @@
                 <div id="articlethumbnail-outer">
                     <div id="articlethumbnail">
                         <div class="image">
-                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID( ) ) ); ?>
-                            <img src="<?= $url; ?>" alt="" width="940px" height="370px">
+                            <?php if ( empty( $article_banner ) ) { ?>
+                            <img src="<?php ap_print_image_url( "tour-banner-missed.jpg" ); ?>" alt="Изображение остутствует"
+                                 width="940px" height="370px">
+                            <?php }
+                            else { ?>
+                            <img src="<?php echo $article_banner->get_url( ); ?>" alt="Иконка статьи"
+                                 width=940px" height="<?= $article_banner->get_height( ) * 940 / $article_banner->get_width( ); ?>">
+                            <?php } ?>
                         </div>
                         <div id="left-arrow">
                             <a href="/"></a>
