@@ -4,7 +4,8 @@ if (!is_admin()) {
     wp_deregister_script( 'jquery' );
     wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.js' );
     wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js' );
+    wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js', array('jquery') );
+    wp_enqueue_script( 'jquery_blockui', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.blockui-2.65.0.js', array('jquery') );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
     wp_enqueue_script(
         'jquery_ui_datepicker_ru',
@@ -375,32 +376,31 @@ function ap_is_view_mode( ) {
 }
 
 // TODO: опиши условия, необходимые для корректной работы методов
-function ap_init_image_cropper( ) { ?>
-    <div id="image_crop_background_wrapper" style="display: none; position: fixed; top: 0; width: 100%; min-height: 100vh !important; background: transparent; z-index: 100;">
-        <div id="image_crop_wrapper" style="position: relative; top: 30px; margin: 0 auto; background: white; border: solid 2px #bf283b;">
-            <div id="image_crop_border" style="margin: 10px auto; background: white; border: dotted 1px #bf283b;">
-                <img id="crop_target" src="" style="max-width: 920px;">
-            </div>
-            <div style="margin: 10px;">
-                <div>
-                    <button id="cancel-addtour-button" class="crop">ОТМЕНИТЬ</button>
-                    <button id="create-addtour-button" class="crop">СОХРАНИТЬ</button>
-                </div>
+function ap_init_image_cropper( $element_id ) { ?>
+    <div id="image_crop_wrapper_<?= $element_id; ?>" style="background: white; display: none;">
+        <div id="image_crop_border_<?= $element_id; ?>" style="background: white; border: dotted 1px #bf283b; width: 800px; height: 600px; margin: 10px auto;">
+            <img id="crop_target_<?= $element_id; ?>" src="">
+        </div>
+        <div class="clearfix" style="margin: 10px;">
+            <div>
+                <button id="cancel-addtour-button_<?= $element_id; ?>" class="crop" style="float: left;">ОТМЕНИТЬ</button>
+                <button id="create-addtour-button_<?= $element_id; ?>" class="crop" style="float: left;">СОХРАНИТЬ</button>
             </div>
         </div>
     </div>
-
 <?php }
 
-function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) { ?>
+function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) {
+    ap_init_image_cropper( $element_id );?>
     <script type="text/javascript">
-        jQuery(function($) {
-            var jcrop_api;
-            var crop_target = $('#crop_target');
-            var crop_x;
-            var crop_y;
-            var crop_width;
-            var crop_height;
+        $(document).ready(function($) {
+            $.fn.center = function(width) {
+                this.css("position", "absolute");
+                this.css("width", width + "px");
+                this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
+                this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
+                return this;
+            }
 
             function trace_coordinates(c) {
                 crop_x = c.x;
@@ -409,57 +409,63 @@ function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) { 
                 crop_height = c.h;
             }
 
-            $('<?= $element_id ?>').change(function(){
-                crop_target.css('width', '');
-                crop_target.css('height', '');
+            var jcrop_api;
+            var crop_target = $('#crop_target_<?= $element_id; ?>');
+            var crop_x;
+            var crop_y;
+            var crop_width;
+            var crop_height;
 
-                $('#create-addtour-button.crop').click(function() {
-                    $('#image_crop_background_wrapper').css('display', 'none');
+            $('#create-addtour-button_<?= $element_id; ?>.crop').on('click', function() {
+                $.blockUI({ message: '<p>Пожалуйста, подождите...</p>' });
+                $('#<?= $element_id ?>_crop_x').val(crop_x);
+                $('#<?= $element_id ?>_crop_y').val(crop_y);
+                $('#<?= $element_id ?>_crop_width').val(crop_width);
+                $('#<?= $element_id ?>_crop_height').val(crop_height);
 
-                    $('<?= $element_id ?>_crop_x').val(crop_x);
-                    $('<?= $element_id ?>_crop_y').val(crop_y);
-                    $('<?= $element_id ?>_crop_width').val(crop_width);
-                    $('<?= $element_id ?>_crop_height').val(crop_height);
+                jcrop_api.destroy();
+                $.unblockUI();
+            });
 
-                    $('#create-addtour-button.crop').off('click');
-                    jcrop_api.destroy();
-                });
+            $('#cancel-addtour-button_<?= $element_id; ?>.crop').on('click', function() {
+                $.blockUI({ message: '<p>Пожалуйста, подождите...</p>' });
+                $('#<?= $element_id ?>').val('');
 
-                $('#cancel-addtour-button.crop').click(function() {
-                    $('#image_crop_background_wrapper').css('display', 'none');
-                    $('<?= $element_id ?>').val('');
-                    $('#cancel-addtour-button.crop').off('click');
-                    jcrop_api.destroy();
-                });
+                jcrop_api.destroy();
+                $.unblockUI();
+            });
 
-                if ( this.files
-                    && this.files[0] ) {
+            $('#<?= $element_id ?>').change(function() {
+                $.blockUI({ message: '<p>Пожалуйста, подождите...</p>' });
+                if ( this.files && this.files[0] ) {
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
                         crop_target.one('load', function() {
-                            $('#image_crop_wrapper').css('width', crop_target.width() + 20);
-                            $('#image_crop_border').css('width', crop_target.width());
-
                             crop_target.Jcrop({
-                                    bgColor: 'white',
                                     <?php if( !empty( $aspect_ratio ) ) { ?>
                                         aspectRatio: <?= $aspect_ratio; ?>,
                                     <? } ?>
+                                    bgColor: 'white',
                                     onChange: trace_coordinates,
-                                    onSelect: trace_coordinates
+                                    onSelect: trace_coordinates,
+                                    boxWidth: 800,
+                                    boxHeight: 600
                                 },
                                 function() {
                                     jcrop_api = this;
                                 }
                             );
-                        });
 
-                        crop_target.attr('src', e.target.result);
-                        $("#image_crop_background_wrapper").css( "display", "block" );
+                            $.blockUI({ message: $("#image_crop_wrapper_<?= $element_id; ?>") });
+                            $('.blockUI.blockMsg').center( 820 );
+                        }).attr('src', e.target.result);
                     };
 
                     reader.readAsDataURL(this.files[0]);
+                }
+                else {
+                    $.unblockUI();
                 }
             });
         });

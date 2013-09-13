@@ -184,9 +184,8 @@ class AP_TourEditView extends AP_TourView {
 
         <?php ap_add_js_calendar_to_element( '#addtour-datepicker' );
 
-        ap_init_image_cropper( );
-        ap_add_image_cropper_to_element( '#photo-addtour-file', 1 );
-        ap_add_image_cropper_to_element( '#sliderphoto-addtour-file', 2.5 );
+        ap_add_image_cropper_to_element( 'photo-addtour-file', 1 );
+        ap_add_image_cropper_to_element( 'sliderphoto-addtour-file', 2.5 );
     }
 
     public static function show_for( AP_Tour $tour = null ) {

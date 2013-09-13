@@ -77,7 +77,7 @@ blockquote { border-left-width: 3px; border-left-style: solid; margin-left: 7px;
 .box .texts .abs { position: absolute; top: 0; }
 .box .categories { display: none; padding-bottom: 10px; }
 .box .categories a, .box .posted a { color: #a1a1a1; }
-.box h1 { margin: 30px 0 0 0; padding-bottom: 10px; font-size: 16px; }
+.box h1 { margin: 20px 0 0 0; padding-bottom: 5px; font-size: 16px; }
 .box h1 a { color: #333; }
 .box .posted { display: none; padding-top: 10px; color: #a1a1a1; }
 .box img { display: block; }
@@ -320,12 +320,16 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addarticle #quote-addarticle-form, #addarticle  #text-addarticle-form { width: 600px; border: solid 1px #dbd9d2; -webkit-border-radius: 0px;  -moz-border-radius: 0px;  border-radius: 0px;}
 
         #addarticle .photo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-        #addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 155px; margin: 0 0 0 20px; }
+        #addarticle .photo>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; margin: 0 0 0 20px; }
         #addarticle .photo .addphoto  { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 35px; width: 660px; margin: 0 0 0 20px;}
         #addarticle .photo .item { text-align: center; font-size: 10px; }
         #addarticle .photo>p { font-weight: bolder; margin-left: 20px; }
         #addarticle .photo .item p { margin: 10px 0 0 0; }
         #addarticle .photo .item a { color: #64abe3;  }
+
+        #addarticle .sliderinfo { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
+        #addarticle .sliderinfo>div { display: inline-block; position: relative; margin: 17px 0 0 20px; vertical-align: top; }
+        #addarticle .sliderinfo>p { position: relative; margin: 17px 0 0 20px; font-weight: bolder;}
 
         #addarticle .submitbuttons { width: 680px; margin: 0 auto;}
         #addarticle .submitbuttons>div { display: inline-block; position: relative; vertical-align: top;}

@@ -4,6 +4,8 @@ class AP_Image {
     private $server_path;
     private $mime_type;
     private $url;
+    private $width;
+    private $height;
 
     private $crop_x;
     private $crop_y;
@@ -35,7 +37,10 @@ class AP_Image {
         $result = new AP_Image();
         $result->id = $id;
         $result->server_path = get_attached_file( $result->id );
-        $result->url = wp_get_attachment_url( $result->id );
+        $result_attributes = wp_get_attachment_image_src( $result->id );
+        $result->url = $result_attributes[0];
+        $result->width = $result_attributes[1];
+        $result->height = $result_attributes[2];
         return $result;
     }
 
@@ -45,6 +50,14 @@ class AP_Image {
 
     public function get_url( ) {
         return $this->url;
+    }
+
+    public function get_width( ) {
+        return $this->width;
+    }
+
+    public function get_height( ) {
+        return $this->height;
     }
 
     public function save( $width = 0, $height = 0 ) {
@@ -59,16 +72,6 @@ class AP_Image {
         if ( $this->crop_width > 0
                 && $this->crop_height > 0 ) {
             $image_editor = wp_get_image_editor( $this->server_path );
-
-            // TODO: убрать костыль в виде постоянной максимальной ширины в 920px
-            $real_size = $image_editor->get_size( );
-            if ( $real_size['width'] > 920 ) {
-                $scale_c = $real_size['width'] / 920;
-                $this->crop_x *= $scale_c;
-                $this->crop_y *= $scale_c;
-                $this->crop_width *= $scale_c;
-                $this->crop_height *= $scale_c;
-            }
 
             if ( !is_wp_error( $image_editor ) ) {
                 $image_editor->crop( $this->crop_x, $this->crop_y, $this->crop_width, $this->crop_height );

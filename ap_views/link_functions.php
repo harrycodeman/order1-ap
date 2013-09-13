@@ -82,6 +82,10 @@ function ap_print_image_url( $image_sub_path ) {
     echo bloginfo( 'template_url' ) . "/images/$image_sub_path";
 }
 
+function ap_get_image_url( $image_sub_path ) {
+    return bloginfo( 'template_url' ) . "/images/$image_sub_path";
+}
+
 function ap_print_script_url( $script_sub_path ) {
     echo bloginfo( 'template_url' ) . "/libs/$script_sub_path";
 }
