@@ -5,7 +5,7 @@ if (!is_admin()) {
     wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js', array('jquery') );
-    wp_enqueue_script( 'jquery_blockui', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.blockui-2.65.0.js', array('jquery') );
+    wp_enqueue_script( 'jquery_blockui', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.blockUI-2.65.0.js', array('jquery') );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
     wp_enqueue_script(
         'jquery_ui_datepicker_ru',
