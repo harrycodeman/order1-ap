@@ -204,8 +204,8 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         .interestingoffer { display: inline-block; width: 237px; height: 325px; text-align: center; padding: 20px 0 0 0; vertical-align: top; zoom: 1; *display: inline;}
         .interestingoffer img { width: 200px; height: 200px; }
         .image-circle { -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; -o-border-radius: 50em; border-top-right-radius: 50em;  border-top-left-radius: 50em;  border-bottom-right-radius: 50em;  border-bottom-left-radius: 50em;}
-        .offername, .offerprice { display:block; font-size: 20px; font-weight: bold; margin-top: 10}
-        .offername { font-size: 16px; color:#535349; margin-top: 10px  }
+        .offername, .offerprice { display:block; font-size: 20px; font-weight: bold; margin-top: 10; margin-left: -36px; }
+        .offername { font-size: 16px; color:#535349; margin-top: 10px; margin-left: -36px; }
         .offerprice { font-size: 20px; }
         #interestingoffers > h1 { color:#bf283b; margin: 0px; padding: 35px 0 20px 10px; }
         .snipping { position: relative; height: 30px; background: url('images/interestingoffers-snipping.png') center bottom repeat no-repeat; top: -15px;}

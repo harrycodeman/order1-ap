@@ -13,8 +13,8 @@ class AP_TourInterestingOfferView extends AP_TourView {
                         <div class="interestingoffer">
                             <?php $this->the_icon( ); ?>
                             <span class="offername">
-                            <?php $this->the_country( ); echo ' - '; $this->the_resort( ); ?>
-                        </span>
+                                <?php $this->the_country( ); echo ' - '; $this->the_resort( ); ?>
+                            </span>
                             <span class="offerprice"><?php $this->the_cost( ); ?></span>
                         </div>
                     </a>

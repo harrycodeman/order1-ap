@@ -94,7 +94,7 @@ class AP_TourEditView extends AP_TourView {
                                     <div>
                                         <div>
                                             <p>Текущяя фотография</p>
-                                            <?php $this->the_icon( ); ?>
+                                            <?php $this->the_icon( 200, 200, false ); ?>
                                         </div>
                                     </div>
                                     <div>
