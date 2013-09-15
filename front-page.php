@@ -29,7 +29,7 @@ AP_TourInterestingOfferView::show_for(
     )
 );
 ap_article_view_single_with_links(
-    get_posts(
+    ap_get_articles(
         array(
             'posts_per_page' => 1,
             'orderby' => 'rand'

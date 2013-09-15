@@ -30,6 +30,14 @@ else {
                                     <textarea id="text-addarticle-form" name="ap_article_content" rows="15" cols="90"
                                               required></textarea>
                                 </div>
+                                <div>
+                                    <p><label for="country-addarticle-form">О стране:</label></p>
+                                    <input type="text" id="country-addarticle-form" name ="ap_article_country">
+                                </div>
+                                <div>
+                                    <p><label for="resort-addarticle-form">О городе:</label></p>
+                                    <input type="text" id="resort-addarticle-form" name ="ap_article_resort">
+                                </div>
                             </div>
                         </div>
                         <br><br>
@@ -91,6 +99,8 @@ else {
         $article->title = $_POST['ap_article_title'];
         $article->excerpt = $_POST['ap_article_excerpt'];
         $article->content = $_POST['ap_article_content'];
+        $article->country = $_POST['ap_article_country'];
+        $article->resort = $_POST['ap_article_resort'];
         if ( is_uploaded_file( $_FILES['ap_article_icon']['tmp_name'] ) ) {
             $article->set_icon(
                 AP_Image::load_from_file_object(

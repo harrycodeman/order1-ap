@@ -2,12 +2,16 @@
 class AP_Article {
     const icon_meta_name = 'ap_article_icon';
     const banner_meta_name = 'ap_article_banner';
+    const country_meta_name = 'ap_article_country';
+    const resort_meta_name = 'ap_article_resort';
 
     public $id;
 
     public $title;
     public $excerpt;
     public $content;
+    public $country;
+    public $resort;
     private $icon;
     private $banner;
 
@@ -29,6 +33,14 @@ class AP_Article {
 
     public function load( $tour_id ) {
         $this->id = $tour_id;
+
+        $article_post = get_post( $this->id );
+        $this->title = $article_post->post_title;
+        $this->excerpt = $article_post->post_excerpt;
+        $this->content = $article_post->post_content;
+
+        $this->country = $this->load_meta( self::country_meta_name );
+        $this->resort = $this->load_meta( self::resort_meta_name );
         $this->icon = $this->load_image( self::icon_meta_name );
         $this->banner = $this->load_image( self::banner_meta_name );
     }
@@ -82,6 +94,8 @@ class AP_Article {
     }
 
     private function save_info( ) {
+        $this->save_meta( self::country_meta_name, $this->country );
+        $this->save_meta( self::resort_meta_name, $this->resort );
         $this->save_image( $this->icon, self::icon_meta_name, 200, 200 );
         $this->save_image( $this->banner, self::banner_meta_name, 960, 382 );
     }
@@ -93,6 +107,15 @@ class AP_Article {
         }
         else {
             delete_post_meta( $this-> id, $meta_name);
+        }
+    }
+
+    private function save_meta( $meta_name, $meta_value ) {
+        if ( empty( $meta_value ) ) {
+            delete_post_meta( $this-> id, $meta_name);
+        }
+        else {
+            update_post_meta( $this->id, $meta_name, esc_attr($meta_value) );
         }
     }
 

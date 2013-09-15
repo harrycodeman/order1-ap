@@ -227,7 +227,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #article { position: relative; margin: 0 0 20px 0;}
         article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
         article > p { margin-top: 0px }
-        #triparticles .links { display: block; width: auto; height: 70px; }
+        #triparticles .links { display: block; width: auto; height: 0px; }
         #triparticles .links a { line-height: 20px; font-weight: bolder; clear: both; margin-left: 20px;}
         #triparticles .links a img { margin: 4px 5px 0 -18px; }
         /*----------END TRIPARTICLES----------*/

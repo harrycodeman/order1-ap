@@ -457,7 +457,10 @@ function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) {
                                 }
                             );
 
-                            $.blockUI({ message: $("#image_crop_wrapper_<?= $element_id; ?>") });
+                            $.blockUI({
+                                message: $("#image_crop_wrapper_<?= $element_id; ?>"),
+                                cursor: 'default'
+                            });
                             $('.blockUI.blockMsg').center( 820 );
                         }).attr('src', e.target.result);
                     };
