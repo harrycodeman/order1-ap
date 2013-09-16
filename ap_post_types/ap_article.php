@@ -96,11 +96,11 @@ class AP_Article {
     private function save_info( ) {
         $this->save_meta( self::country_meta_name, $this->country );
         $this->save_meta( self::resort_meta_name, $this->resort );
-        $this->save_image( $this->icon, self::icon_meta_name, 200, 200 );
+        $this->save_image( $this->icon, self::icon_meta_name );
         $this->save_image( $this->banner, self::banner_meta_name, 960, 382 );
     }
 
-    private function save_image( AP_Image $image = NULL, $meta_name, $width, $height ) {
+    private function save_image( AP_Image $image = NULL, $meta_name, $width = 0, $height = 0 ) {
         if ( !empty( $image ) ) {
             $image->save( $width, $height );
             update_post_meta( $this->id, $meta_name, esc_attr($image->id) );
