@@ -43,6 +43,28 @@ function ap_get_create_article_page_permalink( ) {
     return get_permalink( 309 );
 }
 
+function ap_print_edit_article_page_permalink( $article_id ) {
+    $permalink = get_permalink( 309 );
+    if ( strpos( $permalink, '?' ) === FALSE ) {
+        $permalink .= '?';
+    }
+    else {
+        $permalink .= '&';
+    }
+    echo $permalink."action=edit&article123_id=$article_id";
+}
+
+function ap_get_edit_article_page_permalink( $article_id ) {
+    $permalink = get_permalink( 309 );
+    if ( strpos( $permalink, '?' ) === FALSE ) {
+        $permalink .= '?';
+    }
+    else {
+        $permalink .= '&';
+    }
+    return $permalink."action=edit&article123_id=$article_id";
+}
+
 function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
     $permalink = get_permalink( 284 );
     if ( !empty( $tour_id ) ) {
@@ -55,6 +77,14 @@ function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
         $permalink .= "ap_tour_id=$tour_id";
     }
     echo $permalink;
+}
+
+function ap_print_article_permalink( $article_id ) {
+    return get_permalink( $article_id );
+}
+
+function ap_get_article_permalink( $article_id ) {
+    return get_permalink( $article_id );
 }
 
 function ap_print_reserve_tour_page_go_button( $tour_id = 0 ) { ?>

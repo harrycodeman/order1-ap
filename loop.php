@@ -30,13 +30,13 @@ function ap_print_icon_html( AP_Image $icon = null ) {
         <div class="rel">
             <a href="<?php the_permalink( ); ?>"><?php ap_print_icon_html( $article_icon ); ?></a>
             <h1><a href="<?php the_permalink( ); ?>"><?php the_title( ); ?></a></h1>
-            <?php the_excerpt( ); ?>
+            <?= get_the_excerpt( )."..."; ?>
             <div class="texts">
                 <div class="abs">
                     <a href="<?php the_permalink(); ?>"><?php ap_print_icon_html( $article_icon ); ?></a>
                     <?php // TODO: добавить ссылку на редактирование и удаление если пользователь зайден ?>
                     <h1><a href="<?php the_permalink( ); ?>"><?php the_title( ); ?></a></h1>
-                    <?php the_excerpt( ); ?>
+                    <?= get_the_excerpt( )."..."; ?>
                 </div>
             </div>
         </div>

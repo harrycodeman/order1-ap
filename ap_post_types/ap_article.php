@@ -4,11 +4,12 @@ class AP_Article {
     const banner_meta_name = 'ap_article_banner';
     const country_meta_name = 'ap_article_country';
     const resort_meta_name = 'ap_article_resort';
+    const quote_meta_name = 'ap_article_quote';
 
     public $id;
 
     public $title;
-    public $excerpt;
+    public $quote;
     public $content;
     public $country;
     public $resort;
@@ -31,14 +32,14 @@ class AP_Article {
         return AP_Image::cast( $this->banner );
     }
 
-    public function load( $tour_id ) {
-        $this->id = $tour_id;
+    public function load( $article_id ) {
+        $this->id = $article_id;
 
         $article_post = get_post( $this->id );
         $this->title = $article_post->post_title;
-        $this->excerpt = $article_post->post_excerpt;
         $this->content = $article_post->post_content;
 
+        $this->quote = $this->load_meta( self::quote_meta_name );
         $this->country = $this->load_meta( self::country_meta_name );
         $this->resort = $this->load_meta( self::resort_meta_name );
         $this->icon = $this->load_image( self::icon_meta_name );
@@ -68,11 +69,10 @@ class AP_Article {
     }
 
     private function create_post( ) {
-        $article_info = $new_post = array(
+        $article_info = array(
             'comment_status' => 'closed',
             'post_author' => get_current_user_id(),
             'post_content' => $this->content,
-            'post_excerpt' => $this->excerpt,
             'post_title' => $this->title,
             'post_name' => $this->title,
             'post_status' => 'publish',
@@ -81,11 +81,11 @@ class AP_Article {
     }
 
     private function update_post( ) {
-        $article_info = $new_post = array(
+        $article_info = array(
+            'ID' => $this->id,
             'comment_status' => 'closed',
             'post_author' => get_current_user_id(),
             'post_content' => $this->content,
-            'post_excerpt' => $this->excerpt,
             'post_title' => $this->title,
             'post_name' => $this->title,
             'post_status' => 'publish',
@@ -94,6 +94,7 @@ class AP_Article {
     }
 
     private function save_info( ) {
+        $this->save_meta( self::quote_meta_name, $this->quote );
         $this->save_meta( self::country_meta_name, $this->country );
         $this->save_meta( self::resort_meta_name, $this->resort );
         $this->save_image( $this->icon, self::icon_meta_name );

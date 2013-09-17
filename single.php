@@ -25,6 +25,7 @@ $article_banner = $article->get_banner( ); ?>
                         </div>
                         <div class="announcement">
                             <h1><?php the_title( ); ?></h1>
+                            <p><?= $article->quote; ?></p>
                         </div>
                         <div id="right-arrow" class="horizontal-flip">
                             <a href="/"></a>

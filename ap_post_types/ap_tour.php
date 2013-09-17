@@ -111,7 +111,7 @@ class AP_Tour {
             'выезд', $this->start_date,
             'на', $this->duration, 'дня'
         ));
-        $tour_info = $new_post = array(
+        $tour_info = array(
             'comment_status' => 'closed',
             'post_author' => get_current_user_id(),
             'post_content' => '',
@@ -131,7 +131,8 @@ class AP_Tour {
             'выезд', $this->start_date,
             'на', $this->duration, 'дня'
         ));
-        $tour_info = $new_post = array(
+        $tour_info = array(
+            'ID' => $this->id,
             'comment_status' => 'closed',
             'post_author' => get_current_user_id(),
             'post_content' => '',

@@ -195,20 +195,6 @@ function imbalance2_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'imbalance2_excerpt_length' );
 
 /**
- * Replaces "[...]" (appended to automatically generated excerpts).
- *
- * To override this in a child theme, remove the filter and add your own
- * function tied to the excerpt_more filter hook.
- *
- * @since Twenty Ten 1.0
- * @return string An ellipsis
- */
-function imbalance2_auto_excerpt_more( $more ) {
-	return '';
-}
-add_filter( 'excerpt_more', 'imbalance2_auto_excerpt_more' );
-
-/**
  * Remove inline styles printed when the gallery shortcode is used.
  *
  * Galleries are styled by the theme in Twenty Ten's style.css. This is just
@@ -475,7 +461,6 @@ function ap_add_image_cropper_to_element( $element_id, $aspect_ratio = NULL ) {
     </script>
 <?php }
 
-
 /*--- Регистрация дополнительных типов и представлений ---*/
 function register_type_with_views( $type ) {
     $file_name = strtolower( $type );
@@ -523,6 +508,8 @@ add_filter( 'intermediate_image_sizes_advanced', 'disable_all_image_sizes' );
 
 function ap_add_delete_tour_query_var( $vars ) {
     $vars[] = 'delete_tour';
+    $vars[] = 'action';
+    $vars[] = 'article_id';
     return $vars;
 }
 add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );

@@ -219,11 +219,11 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #triparticles #articlethumbnail-outer { border: 5px solid #bf283b; margin: 30px 0 0 0; }
         #triparticles #articlethumbnail { position: relative; width: 940px;  height: 370px;  margin: 0; border: 5px solid transparent;}
         #triparticles #articlethumbnail .image { position: absolute; width: 940px; height: 370px; z-index: 0; overflow: hidden; }
-        #left-arrow { float: left; width: 140px; height: 370px; opacity: 0.3;}
-        #right-arrow { float: left; width: 140px; height: 370px; opacity: 0.3;}
-        #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; text-align: center; padding: 55px 0 0 0;}
+        #left-arrow { background: url('images/left-arrow.png') no-repeat 83px 185px; float: left; width: 140px; height: 370px; opacity: 0.5; cursor: pointer; }
+        #right-arrow { background: url('images/left-arrow.png') no-repeat 83px 225px; float: left; width: 140px; height: 370px; opacity: 0.5; cursor: pointer; }
+        #triparticles #articlethumbnail .announcement { position: relative; float: left; width: 660px; height: 315px; padding: 55px 0 0 0;}
         #triparticles #articlethumbnail .announcement h1 { position: absolute; display: block; margin: 0 0 0 -80px; font-size: 41px; line-height: 53px; font-weight: lighter; color: #fff; background: rgba(191, 40, 59, 0.8); padding: 5px; text-align: left; }
-        #triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px; color: #fff; margin: 0px; top: 190px; background: rgba(191, 40, 59, 0.8); padding: 5px; }
+        #triparticles #articlethumbnail .announcement p { position: absolute; font-size: 18px; line-height: 25px; color: #fff; margin: 0px; top: 190px; background: rgba(191, 40, 59, 0.6); padding: 5px; }
         #article { position: relative; margin: 0 0 20px 0;}
         article { font-size: 14px; line-height: 20px; -webkit-column-count:2; -moz-column-count:2; column-count:2; -moz-column-width: 425px; -webkit-column-width: 425px; column-width: 425px; -webkit-column-gap: 60px; -moz-column-gap: 60px; column-gap: 60px; }
         article > p { margin-top: 0px }
