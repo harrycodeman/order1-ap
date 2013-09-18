@@ -51,7 +51,7 @@ function ap_print_edit_article_page_permalink( $article_id ) {
     else {
         $permalink .= '&';
     }
-    echo $permalink."action=edit&article123_id=$article_id";
+    echo $permalink."action=edit&article_id=$article_id";
 }
 
 function ap_get_edit_article_page_permalink( $article_id ) {
@@ -62,7 +62,29 @@ function ap_get_edit_article_page_permalink( $article_id ) {
     else {
         $permalink .= '&';
     }
-    return $permalink."action=edit&article123_id=$article_id";
+    return $permalink."action=edit&article_id=$article_id";
+}
+
+function ap_print_delete_article_permalink( $article_id ) {
+    $permalink = get_permalink( 309 );
+    if ( strpos( $permalink, '?' ) === FALSE ) {
+        $permalink .= '?';
+    }
+    else {
+        $permalink .= '&';
+    }
+    echo $permalink."action=delete&article_id=$article_id";
+}
+
+function ap_get_delete_article_permalink( $article_id ) {
+    $permalink = get_permalink( 309 );
+    if ( strpos( $permalink, '?' ) === FALSE ) {
+        $permalink .= '?';
+    }
+    else {
+        $permalink .= '&';
+    }
+    return $permalink."action=delete&article_id=$article_id";
 }
 
 function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {

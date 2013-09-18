@@ -195,6 +195,20 @@ function imbalance2_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'imbalance2_excerpt_length' );
 
 /**
+ * Replaces "[...]" (appended to automatically generated excerpts).
+ *
+ * To override this in a child theme, remove the filter and add your own
+ * function tied to the excerpt_more filter hook.
+ *
+ * @since Twenty Ten 1.0
+ * @return string An ellipsis
+ */
+function imbalance2_auto_excerpt_more( $more ) {
+    return '';
+}
+add_filter( 'excerpt_more', 'imbalance2_auto_excerpt_more' );
+
+/**
  * Remove inline styles printed when the gallery shortcode is used.
  *
  * Galleries are styled by the theme in Twenty Ten's style.css. This is just

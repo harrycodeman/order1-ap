@@ -4,6 +4,7 @@ Template Name: Добавление статьи
 */
 
 $action = get_query_var( 'action' );
+$id = get_query_var( "article_id" );
 
 if ( !is_user_logged_in( ) ) {
     ap_show_error( 'low_rights' );
@@ -134,9 +135,8 @@ else if ( empty( $action ) ) {
         wp_safe_redirect( ap_get_create_article_page_permalink( ) );
     }
 }
-else if ( $action === "edit" ) {
+else if ( $action === "edit" && !empty( $id ) ) {
     if ( ap_is_view_mode( ) ) {
-        $id = get_query_var( "article_id" );
         $article = ap_get_article_by_id( $id );
 
         get_header( ); ?>
@@ -179,6 +179,17 @@ else if ( $action === "edit" ) {
                     <div class="photo">
                         <div>
                             <p><label for="photo-addtour-file">Иконка для списка статей</label></p>
+                            <?php
+                            $icon = $article->get_icon( );
+                            if ( !empty( $icon ) ) { ?>
+                                <img src="<?= $icon->get_url( ); ?>" width="300" alt="Текущая иконка">
+                            <?php }
+                            else { ?>
+                                <img src="<?php ap_print_image_url( 'tour-icon-missed.jpg' ); ?>" width="300"
+                                     alt="Изображение остутствует">
+                            <?php } ?>
+
+                            <br>
                             <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
                             <input name="ap_article_icon" id="photo-addtour-file" type="file" accept="image/*">
                             <input name="ap_article_icon_crop_x" id="photo-addtour-file_crop_x" type="hidden">
@@ -192,23 +203,33 @@ else if ( $action === "edit" ) {
                     <br><br>
                     <div class="sliderinfo">
                         <div>
-                            <div>
-                                <p>
-                                    <label for="sliderphoto-addtour-file">
-                                        Баннер для отображения на главной странице и на странице статьи (960x374px)
-                                    </label>
-                                </p>
-                                <input name="ap_article_banner" id="sliderphoto-addtour-file" type="file"
-                                       accept="image/*">
-                                <input name="ap_article_banner_crop_x"  id="sliderphoto-addtour-file_crop_x"
-                                       type="hidden">
-                                <input name="ap_article_banner_crop_y" id="sliderphoto-addtour-file_crop_y"
-                                       type="hidden">
-                                <input name="ap_article_banner_crop_width"
-                                       id="sliderphoto-addtour-file_crop_width" type="hidden">
-                                <input name="ap_article_banner_crop_height"
-                                       id="sliderphoto-addtour-file_crop_height" type="hidden">
-                            </div>
+                            <p>
+                                <label for="sliderphoto-addtour-file">
+                                    Баннер для отображения на главной странице и на странице статьи (960x374px)
+                                </label>
+                            </p>
+                            <?php
+                            $banner = $article->get_banner( );
+                            if ( !empty( $banner ) ) { ?>
+                            <img src="<?= $banner->get_url( ); ?>" width="640" height="255"
+                                 alt="Текущйи баннер">
+                            <?php }
+                            else { ?>
+                                <img src="<?php ap_print_image_url( 'tour-banner-missed.jpg' ); ?>" width="640"
+                                     height="255" alt="Текущий баннер">
+                            <?php } ?>
+
+                            <br>
+                            <input name="ap_article_banner" id="sliderphoto-addtour-file" type="file"
+                                   accept="image/*">
+                            <input name="ap_article_banner_crop_x"  id="sliderphoto-addtour-file_crop_x"
+                                   type="hidden">
+                            <input name="ap_article_banner_crop_y" id="sliderphoto-addtour-file_crop_y"
+                                   type="hidden">
+                            <input name="ap_article_banner_crop_width"
+                                   id="sliderphoto-addtour-file_crop_width" type="hidden">
+                            <input name="ap_article_banner_crop_height"
+                                   id="sliderphoto-addtour-file_crop_height" type="hidden">
                         </div>
                     </div>
                     <br><br>
@@ -267,5 +288,11 @@ else if ( $action === "edit" ) {
         $article->save( );
         wp_safe_redirect( ap_get_article_permalink( $article->id ) );
     }
+}
+else if ( $action === "delete" && !empty( $id ) ) {
+    $article = ap_get_article_by_id( $id );
+    $article->delete( );
+
+    exit( );
 }
 ?>

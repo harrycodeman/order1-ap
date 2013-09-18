@@ -34,6 +34,15 @@ function ap_print_icon_html( AP_Image $icon = null ) {
             <div class="texts">
                 <div class="abs">
                     <a href="<?php the_permalink(); ?>"><?php ap_print_icon_html( $article_icon ); ?></a>
+                    <?php if ( is_user_logged_in( ) ) { ?>
+                        <a href="<?php ap_print_delete_article_permalink( $article->id ); ?>" class="delete-article-link" style="float: right;">
+                            Удалить
+                        </a>
+                        <a href="<?php ap_print_edit_article_page_permalink( $article->id ); ?>" style="float: right; padding-right: 10px;">
+                            Редактировать
+                        </a>
+                    <?php } ?>
+
                     <?php // TODO: добавить ссылку на редактирование и удаление если пользователь зайден ?>
                     <h1><a href="<?php the_permalink( ); ?>"><?php the_title( ); ?></a></h1>
                     <?= get_the_excerpt( )."..."; ?>
@@ -42,6 +51,21 @@ function ap_print_icon_html( AP_Image $icon = null ) {
         </div>
     </div>
 <?php endwhile; ?>
+
+<script type="text/javascript">
+    $('.delete-article-link').on('click', function(e) {
+            var divToDelete = $(this).closest(".box");
+            e.preventDefault();
+            $.ajax( $(this).attr('href') )
+                .done(function() {
+                    divToDelete.remove();
+                })
+                .fail(function() {
+                    alert('При удалении статьи произошла ошибка!');
+                });
+        }
+    );
+</script>
 </div>
 
 <?php

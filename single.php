@@ -20,14 +20,22 @@ $article_banner = $article->get_banner( ); ?>
                                  width=940px" height="<?= $article_banner->get_height( ) * 940 / $article_banner->get_width( ); ?>">
                             <?php } ?>
                         </div>
-                        <div id="left-arrow">
+                        <div id="left-arrow"
+                            <?php if ( !empty( $article->quote ) ) { ?>
+                                style="background: url(<?php ap_print_image_url( 'left-arrow.png' ); ?>) no-repeat 83px 185px;"
+                            <?php } ?>>
                             <a href="/"></a>
                         </div>
                         <div class="announcement">
                             <h1><?php the_title( ); ?></h1>
-                            <p><?= $article->quote; ?></p>
+                            <?php if ( !empty( $article->quote ) ) { ?>
+                                <p><?= $article->quote; ?></p>
+                            <?php } ?>
                         </div>
-                        <div id="right-arrow" class="horizontal-flip">
+                        <div id="right-arrow" class="horizontal-flip"
+                             <?php if ( !empty( $article->quote ) ) { ?>
+                                 style="background: url(<?php ap_print_image_url( 'left-arrow.png' ); ?>) no-repeat 83px 225px;"
+                             <?php } ?>>
                             <a href="/"></a>
                         </div>
                     </div>
