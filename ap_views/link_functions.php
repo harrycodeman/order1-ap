@@ -102,7 +102,7 @@ function ap_print_reserve_tour_page_permalink( $tour_id = 0 ) {
 }
 
 function ap_print_article_permalink( $article_id ) {
-    return get_permalink( $article_id );
+    echo get_permalink( $article_id );
 }
 
 function ap_get_article_permalink( $article_id ) {
