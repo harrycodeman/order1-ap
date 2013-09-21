@@ -17,6 +17,9 @@ if (!is_admin()) {
     wp_enqueue_script( 'bootstrap', get_bloginfo('stylesheet_directory').'/bootstrap/js/bootstrap.js' );
     wp_enqueue_style( 'bootstrap_style', get_bloginfo('stylesheet_directory').'/bootstrap/css/bootstrap.css' );
 
+    wp_enqueue_script( 'google_maps_api', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyC5JUSL8L2FcX5tTBEPOWrTp4fVR9qCg1k&v=3.exp&sensor=false&libraries=places' );
+    wp_enqueue_script( 'google_maps_markerclusterer', get_bloginfo('stylesheet_directory').'/libs/google-maps-plugins/src/markerclusterer.js', array('google_maps_api') );
+
     // javascript for infinite scroll
     $imbalance2_theme_options = get_option('imbalance2_theme_options');
     if ( $imbalance2_theme_options['navigation'] == 1 )
