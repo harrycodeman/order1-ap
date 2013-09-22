@@ -18,5 +18,6 @@ AP_TourListView::show_for(
             )
         )
     )
-);
-get_footer();
+); ?>
+<br>
+<?php get_footer(); ?>

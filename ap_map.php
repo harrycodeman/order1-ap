@@ -6,14 +6,23 @@ Template Name: Гид
 get_header( ); ?>
 
 <div id="map" style="width: 100%;"></div>
+<div id="legend" style="background: #B72537; height: 30px;">
+    <div class="clearfix" style="margin: 0 auto; width: 240px; color: #ffffff; font-size: 14px;">
+        <img src="<?php ap_print_image_url( 'map-icon-article.png' ); ?>" style=" float: left; padding: 7px;">
+        <div style="float: left; padding: 3px 20px 0 0; line-height: 25px;">Статьи</div>
+        <img src="<?php ap_print_image_url( 'map-icon-tour.png' ); ?>" style=" float: left; padding: 7px;">
+        <div style="float: left; padding: 3px 20px 0 0; line-height: 25px;">Вылеты/Туры</div>
+    </div>
+</div>
 <script>
     $(document).ready(function() {
         const headerHeight = 195;
         const footerHeight = 147;
+        const legendHeight = 30;
         var mapDiv = $("#map");
-        mapDiv.height($(window).height() - headerHeight - footerHeight);
+        mapDiv.height($(window).height() - headerHeight - footerHeight - legendHeight);
         $(window).on("resize", function() {
-            mapDiv.height($(window).height() - headerHeight - footerHeight)
+            mapDiv.height($(window).height() - headerHeight - footerHeight - legendHeight)
         });
 
         var mapSettings = {
