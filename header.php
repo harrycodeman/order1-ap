@@ -22,7 +22,6 @@
 <style type="text/css">
 /* color from theme options */
 <?php $color = getColor() ?>
-body, input, textarea { font-family: <?php echo getFonts() ?>; }
 a, .menu a:hover, #nav-above a:hover, #footer a:hover, .entry-meta a:hover { color: <?php echo $color ?>; }
 .fetch:hover { background: <?php echo $color ?>; }
 .fetch { background: <?php echo $color ?>; }

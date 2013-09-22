@@ -91,7 +91,7 @@ class AP_TourView {
         if ( !empty( $offer_banner ) ) {
             $offer_banner = AP_Image::cast( $offer_banner ); ?>
             <img src="<?= $offer_banner->get_url( ); ?>" width="<?= $width; ?>" height="<?= $height; ?>"
-                 alt="Изображение остутствует">
+                 alt="<?php $this->the_resort( ); ?>">
         <?php }
         else { ?>
             <img src="<?php ap_print_image_url( 'tour-banner-missed.jpg' ); ?>" width="<?= $width; ?>"
