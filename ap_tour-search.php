@@ -2,13 +2,10 @@
 /*
 Template Name: Страница поиска туров
 */
-?>
 
-<?php get_header(); ?>
-<?php AP_TourSearchPanelView::show_for( ); ?>
-<br><br>
+get_header();
+AP_TourSearchPanelView::show_for( );
 
-<?php
 $page_number = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $filter_title = 'Все доступные туры';
 $filter_args = array(
@@ -128,7 +125,6 @@ if ( !ap_is_view_mode( ) ) {
 AP_TourListView::show_for(
     $filter_title,
     ap_get_tours( $filter_args )
-);
-?>
-<br><br>
+); ?>
+<br>
 <?php get_footer(); ?>

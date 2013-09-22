@@ -17,7 +17,7 @@ $article_banner = $article->get_banner( ); ?>
                             <?php }
                             else { ?>
                             <img src="<?php echo $article_banner->get_url( ); ?>" alt="Иконка статьи"
-                                 width=940px" height="<?= $article_banner->get_height( ) * 940 / $article_banner->get_width( ); ?>">
+                                 width=940px" height="370px">
                             <?php } ?>
                         </div>
                         <div id="left-arrow"

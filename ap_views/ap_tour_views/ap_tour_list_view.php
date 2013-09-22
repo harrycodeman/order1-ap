@@ -19,8 +19,8 @@ class AP_TourListView extends AP_TourView {
                     else {
                         while ( $this->has_current( ) ) { ?>
                             <div class="item">
-                                <div class="image">
-                                    <?php $this->the_icon( 100, 100 ); ?>
+                                <div class="image" style="text-align: center;">
+                                    <?php $this->the_icon( 100, 100, true, 36, 36 ); ?>
                                 </div>
                                 <div class="info">
                                     <h2><?php $this->the_country( ); ?>, <?php $this->the_resort( ); ?></h2>

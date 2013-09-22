@@ -5,12 +5,12 @@ function ap_article_view_single( AP_Article $article ) {
         <div id="articlethumbnail">
             <div class="image">
                 <?php if ( empty( $article_banner ) ) { ?>
-                    <img src="<?php ap_print_image_url( "tour-banner-missed.jpg" ); ?>" alt="Изображение остутствует"
+                    <img src="<?php ap_print_image_url( "tour-banner-missed.jpg" ); ?>" alt="<?= $article->title; ?>"
                          width="940px" height="370px">
                 <?php }
                 else { ?>
                     <img src="<?php echo $article_banner->get_url( ); ?>" alt="Иконка статьи"
-                         width=940px" height="<?= $article_banner->get_height( ) * 940 / $article_banner->get_width( ); ?>">
+                         width=940px" height="370px">
                 <?php } ?>
             </div>
             <div id="left-arrow"

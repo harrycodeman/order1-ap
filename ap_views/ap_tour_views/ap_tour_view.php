@@ -49,7 +49,8 @@ class AP_TourView {
         }
     }
 
-    protected function the_icon( $width = 200, $height = 200, $with_burning_icon = true ) { ?>
+    protected function the_icon( $width = 200, $height = 200, $with_burning_icon = true, $burning_icon_width = 72,
+                                 $burning_icon_height = 72) { ?>
         <div style="width: <?= $width; ?>px; height: <?= $height; ?>px;">
             <?php $icon = $this->the_method_result_or_empty( 'get_icon' );
             if ( !empty( $icon ) ) {
@@ -62,13 +63,12 @@ class AP_TourView {
                      width="<?= $width; ?>" height="<?= $height; ?>" alt="Изображение остутствует">;
             <?php }
 
-            if ( $with_burning_icon ) {
-                if ( $this->has_current( ) && $this->tour_iterator->current( )->is_burning  ) { ?>
-                    <img src="<?php ap_print_image_url( 'hot-tour.png' ); ?>" alt="Изображение остутствует"
-                        style="height: 72px; width: 72px; position: relative; left: <?= $width/2; ?>px;
-                            top: <?= -$height/2 - 36; ?>px;">
-                <?php }
-            } ?>
+            if ( $with_burning_icon && $this->has_current( ) && $this->tour_iterator->current( )->is_burning  ) { ?>
+                <img src="<?php ap_print_image_url( 'hot-tour.png' ); ?>" alt="Изображение остутствует"
+                    style="height: <?= $burning_icon_height; ?>px; width: <?= $burning_icon_width; ?>px;
+                        position: relative; left: <?= $width/2; ?>px;
+                        top: <?= -($height + $burning_icon_height)/2 ; ?>px;">
+            <?php } ?>
         </div>
     <? }
 
