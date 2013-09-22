@@ -60,6 +60,11 @@ get_header( ); ?>
                         window.location.href = articleUrl;
                     });
                 }
+                else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
+                    setTimeout(function() {
+                        createMarkerForArticle(queryString, articleUrl);
+                    }, 1500);
+                }
             });
         }
 
@@ -89,6 +94,11 @@ get_header( ); ?>
                     google.maps.event.addListener(marker, 'click', function() {
                         window.location.href = tourUrl;
                     });
+                }
+                else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
+                    setTimeout(function() {
+                        createMarkerForTour(queryString, tourUrl);
+                    }, 1500);
                 }
             });
         }
