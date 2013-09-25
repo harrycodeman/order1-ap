@@ -22,7 +22,7 @@ get_header( ); ?>
         var mapDiv = $("#map");
         mapDiv.height($(window).height() - headerHeight - footerHeight - legendHeight);
         $(window).on("resize", function() {
-            mapDiv.height($(window).height() - headerHeight - footerHeight - legendHeight)
+            mapDiv.height($(window).height() - headerHeight - footerHeight - legendHeight);
         });
 
         var mapSettings = {
