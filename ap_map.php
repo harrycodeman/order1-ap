@@ -17,27 +17,47 @@ get_header( ); ?>
 <script>
     $(document).ready(function() {
         var styles = [{
-            url: '<?php ap_print_image_url( 'map/cluster-tours.png' ); ?>',
-            height: 49,
-            width: 49,
-            anchor: [12, 28],
+            url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
+            height: 32,
+            width: 32,
             textColor: '#ffffff',
-            textSize: 13
+            textSize: 13,
+            className: 'cluster-tours'
         }, {
-            url: '<?php ap_print_image_url( 'map/cluster-articles.png' ); ?>',
-            height: 49,
-            width: 49,
-            anchor: [12, 28],
+            url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
+            height: 32,
+            width: 32,
             textColor: '#ffffff',
-            textSize: 13
+            textSize: 13,
+            className: 'cluster-articles'
         }, {
-            url: '<?php ap_print_image_url( 'map/cluster-all.png' ); ?>',
-            height: 70,
-            width: 70,
-            anchor: [11, 40],
+            url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
+            height: 32,
+            width: 32,
             textColor: '#ffffff',
-            textSize: 13
+            textSize: 13,
+            className: 'cluster-all'
         }];
+
+<!--            [{-->
+<!--            url: '--><?php //ap_print_image_url( 'map/cluster-tours.png' ); ?><!--',-->
+<!--            height: 49,-->
+<!--            width: 49,-->
+<!--            textColor: '#ffffff',-->
+<!--            textSize: 13-->
+<!--        }, {-->
+<!--            url: '--><?php //ap_print_image_url( 'map/cluster-articles.png' ); ?><!--',-->
+<!--            height: 49,-->
+<!--            width: 49,-->
+<!--            textColor: '#ffffff',-->
+<!--            textSize: 13-->
+<!--        }, {-->
+<!--            url: '--><?php //ap_print_image_url( 'map/cluster-all.png' ); ?><!--',-->
+<!--            height: 70,-->
+<!--            width: 70,-->
+<!--            textColor: '#ffffff',-->
+<!--            textSize: 13-->
+<!--        }];-->
 
         const headerHeight = 195;
         const footerHeight = 147;
@@ -55,7 +75,8 @@ get_header( ); ?>
         };
         var map = new google.maps.Map(document.getElementById("map"), mapSettings);
         var searchService = new google.maps.places.PlacesService(map);
-        var clusterer = new MarkerClusterer(map, [], { averageCenter: true, styles: styles });
+        var clustererOptions = { 'averageCenter': true, 'styles': styles };
+        var clusterer = new MarkerClusterer(map, [], clustererOptions);
         clusterer.setCalculator(function (markers, numStyles) {
             var articlesCount = 0;
             var toursCount = 0;
@@ -70,18 +91,22 @@ get_header( ); ?>
 
             if (articlesCount == 0) {
                 return {
-                    text: '<p style="margin-top: 5px;">' + toursCount + '</p>',
+                    text: '<p class="total" style="margin-top: 0;">' + markers.length + '</p>'
+                        + '<p class="part" style="display: none; margin-top: 8px; margin-left: 15px;">' + toursCount + '</p>',
                     index: 1
                 };
             }
             if (toursCount == 0) {
                 return {
-                    text: '<p style="margin-top: 4px;">' + articlesCount + '</p>',
+                    text: '<p class="total" style="margin-top: 0;">' + markers.length + '</p>'
+                        + '<p class="part" style="display: none; margin-top: 1px; margin-left: 15px;">' + articlesCount + '</p>',
                     index: 2
                 };
             }
             return {
-                text: '<p style="margin-top: 5px;">' + articlesCount  + '</p><p style="margin-top: -4px;">' + toursCount + '</p>',
+                text: '<p class="total" style="margin-top: 0;">' + markers.length + '</p>'
+                    + '<p class="part" style="display: none; margin-top: 8px; margin-left: 15px;">' + articlesCount  + '</p>'
+                    +'<p class="part" style="display: none; margin-top: -20px; margin-left: 15px">' + toursCount + '</p>',
                 index: 3
             };
         });
@@ -147,7 +172,7 @@ get_header( ); ?>
                         map: map,
                         type: 'tour'
                     });
-                    google.maps.event.addListener(marker, 'click', function() {
+                    google.maps.event.addListener(marker, 'click', function () {
                         window.location.href = tourUrl;
                     });
                     clusterer.addMarker(marker);
@@ -159,6 +184,19 @@ get_header( ); ?>
                 }
             });
         }
+
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+            $('.cluster-tours').closest('div')
+                .on('mouseover', function () {
+
+                })
+                .on('mouseleave', function () {
+                    $(this).find('p').hide();
+                    $(this).find('p.cluster-tours').show();
+                    $(this).width(32).height(32);
+                    $(this).css('background-image', 'url(<?php ap_print_image_url("map/cluster-icon-total.png"); ?>)');
+                });
+        });
     });
 </script>
 

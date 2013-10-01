@@ -416,3 +416,14 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 
 .horizontal-flip { -moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); filter: FlipH; -ms-filter: "FlipH"; }
 .left { float: left !important; }
+
+/*----------MAP-----------------*/
+div.cluster-tours:hover { background-image: url("images/map/cluster-tours.png") !important; width: 49px !important; height: 49px !important; }
+div.cluster-articles:hover { background-image: url("images/map/cluster-articles.png") !important; width: 49px !important; height: 49px !important; }
+div.cluster-all:hover { background-image: url("images/map/cluster-all.png") !important; width: 70px !important; height: 70px !important; }
+
+div.cluster-tours:hover > p.total, div.cluster-articles:hover > p.total, div.cluster-all:hover > p.total,
+div.cluster-tours > p.part, div.cluster-articles > p.part, div.cluster-all > p.part { display: none !important; }
+
+div.cluster-tours:hover > p.part, div.cluster-articles:hover > p.part, div.cluster-all:hover > p.part,
+div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p.total { display: block !important; }
