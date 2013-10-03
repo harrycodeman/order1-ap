@@ -39,26 +39,6 @@ get_header( ); ?>
             className: 'cluster-all'
         }];
 
-<!--            [{-->
-<!--            url: '--><?php //ap_print_image_url( 'map/cluster-tours.png' ); ?><!--',-->
-<!--            height: 49,-->
-<!--            width: 49,-->
-<!--            textColor: '#ffffff',-->
-<!--            textSize: 13-->
-<!--        }, {-->
-<!--            url: '--><?php //ap_print_image_url( 'map/cluster-articles.png' ); ?><!--',-->
-<!--            height: 49,-->
-<!--            width: 49,-->
-<!--            textColor: '#ffffff',-->
-<!--            textSize: 13-->
-<!--        }, {-->
-<!--            url: '--><?php //ap_print_image_url( 'map/cluster-all.png' ); ?><!--',-->
-<!--            height: 70,-->
-<!--            width: 70,-->
-<!--            textColor: '#ffffff',-->
-<!--            textSize: 13-->
-<!--        }];-->
-
         const headerHeight = 195;
         const footerHeight = 147;
         const legendHeight = 30;
@@ -80,7 +60,7 @@ get_header( ); ?>
         clusterer.setCalculator(function (markers, numStyles) {
             var articlesCount = 0;
             var toursCount = 0;
-            for (var i in markers) {
+            for (var i = 0; i < markers.length; i++) {
                 if (markers[i].type === 'article') {
                     articlesCount++;
                 }
@@ -117,14 +97,14 @@ get_header( ); ?>
         ));
         foreach ($articles as $article) {
             if ( !empty( $article->resort ) ) { ?>
-                createMarkerForArticle('<?= $article->resort; ?>', '<?php ap_print_article_permalink( $article->id ); ?>');
+                createMarkerForArticle('<?= $article->resort; ?>', '<?php ap_print_article_permalink( $article->id ); ?>', <?= $article->id; ?>);
             <?php }
             else if ( !empty( $article->country ) ) { ?>
-                createMarkerForArticle('<?= $article->country; ?>', '<?php ap_print_article_permalink( $article->id ); ?>');
+                createMarkerForArticle('<?= $article->country; ?>', '<?php ap_print_article_permalink( $article->id ); ?>', <?= $article->id; ?>);
             <?php }
         } ?>
 
-        function createMarkerForArticle(queryString, articleUrl) {
+        function createMarkerForArticle(queryString, articleUrl, articleId) {
             var request = { query: queryString };
             searchService.textSearch(request, function(results, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK && results.length >= 1) {
@@ -133,7 +113,8 @@ get_header( ); ?>
                         icon: '<?php ap_print_image_url('map/article.png'); ?>',
                         position: place,
                         map: map,
-                        type: 'article'
+                        type: 'article',
+                        postId: articleId
                     });
                     google.maps.event.addListener(marker, 'mousedown', function(event) {
                         window.location.href = articleUrl;
@@ -142,7 +123,7 @@ get_header( ); ?>
                 }
                 else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
                     setTimeout(function() {
-                        createMarkerForArticle(queryString, articleUrl);
+                        createMarkerForArticle(queryString, articleUrl, articleId);
                     }, 1500);
                 }
             });
@@ -154,14 +135,14 @@ get_header( ); ?>
         ));
         foreach ($tours as $tour) {
             if ( !empty( $tour->resort ) ) { ?>
-                createMarkerForTour('<?= $tour->resort; ?>', '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>');
+                createMarkerForTour('<?= $tour->resort; ?>', '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>', <?= $tour->id; ?>);
             <?php }
             else if ( !empty( $tour->country ) ) { ?>
-                createMarkerForTour('<?= $tour->country; ?>', '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>');
+                createMarkerForTour('<?= $tour->country; ?>', '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>', <?= $tour->id; ?>);
             <?php }
         } ?>
 
-        function createMarkerForTour(queryString, tourUrl) {
+        function createMarkerForTour(queryString, tourUrl, tourId) {
             var request = { query: queryString };
             searchService.textSearch(request, function(results, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK && results.length >= 1) {
@@ -170,7 +151,8 @@ get_header( ); ?>
                         icon: '<?php ap_print_image_url('map/tour.png'); ?>',
                         position: place,
                         map: map,
-                        type: 'tour'
+                        type: 'tour',
+                        postId: tourId
                     });
                     google.maps.event.addListener(marker, 'click', function () {
                         window.location.href = tourUrl;
@@ -179,24 +161,11 @@ get_header( ); ?>
                 }
                 else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
                     setTimeout(function() {
-                        createMarkerForTour(queryString, tourUrl);
+                        createMarkerForTour(queryString, tourUrl, tourId);
                     }, 1500);
                 }
             });
         }
-
-        google.maps.event.addListener(map, 'bounds_changed', function() {
-            $('.cluster-tours').closest('div')
-                .on('mouseover', function () {
-
-                })
-                .on('mouseleave', function () {
-                    $(this).find('p').hide();
-                    $(this).find('p.cluster-tours').show();
-                    $(this).width(32).height(32);
-                    $(this).css('background-image', 'url(<?php ap_print_image_url("map/cluster-icon-total.png"); ?>)');
-                });
-        });
     });
 </script>
 
