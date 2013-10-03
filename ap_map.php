@@ -79,7 +79,7 @@ get_header( ); ?>
             if (toursCount == 0) {
                 return {
                     text: '<p class="total" style="margin-top: 0;">' + markers.length + '</p>'
-                        + '<p class="part" style="display: none; margin-top: 1px; margin-left: 15px;">' + articlesCount + '</p>',
+                        + '<p class="part" style="display: none; margin-top: 8px; margin-left: 15px;">' + articlesCount + '</p>',
                     index: 2
                 };
             }
