@@ -277,7 +277,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #addtour { width: 960px; margin:0 auto; }
         #addtour .tour { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
         #addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
-        #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; height: 85px; margin: 17px 0 0 20px;}
+        #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; margin: 17px 0 0 20px;}
         #addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
         #addtour input[type="text"], input[type="number"] { width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0;  -moz-border-radius: 0;  border-radius: 0; }
         #addtour #country-addtour-form, #resortcity-addtour-form { width: 280px !important; }
@@ -337,13 +337,13 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
     /*----------TOURLIST PAGE----------*/
         .tourlist-wrapper { width: 100%; }
         #tourlist { width: 960px; margin:0 auto; }
-        #tourlist .parameters { width: 960px; background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
+        #tourlist .parameters { background: #fff; margin: 0 auto; padding: 0 0 20px 0;}
         #tourlist .parameters >div { display:-moz-inline-stack; display:inline-block; zoom:1; position: relative; height: 85px; margin: 17px 0 0 20px; *display:inline; }
         #tourlist .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
         #tourlist input[type="text"] {  width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0;  -moz-border-radius: 0;  border-radius: 0; }
         #tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
 
-        #tourlist .list .item { width: 960px; height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
+        #tourlist .list .item { height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
         #tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
         #tourlist .list .item .image { width: 120px; }
         #tourlist .list .item .image img { width: 100px; height:100px; }
@@ -427,3 +427,6 @@ div.cluster-tours > p.part, div.cluster-articles > p.part, div.cluster-all > p.p
 
 div.cluster-tours:hover > p.part, div.cluster-articles:hover > p.part, div.cluster-all:hover > p.part,
 div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p.total { display: block !important; }
+
+.scrollable-panel .overview { position: absolute; left: 0; top: 0; }
+

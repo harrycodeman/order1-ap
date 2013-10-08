@@ -42,8 +42,6 @@ function ap_print_icon_html( AP_Image $icon = null ) {
                             Редактировать
                         </a>
                     <?php } ?>
-
-                    <?php // TODO: добавить ссылку на редактирование и удаление если пользователь зайден ?>
                     <h1><a href="<?php the_permalink( ); ?>"><?php the_title( ); ?></a></h1>
                     <?= get_the_excerpt( )."..."; ?>
                 </div>
