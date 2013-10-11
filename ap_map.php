@@ -202,7 +202,7 @@ get_header( ); ?>
 
 
         var infoWindow = new google.maps.InfoWindow({
-            maxWidth: 367.2
+            maxWidth: 387.2
         });
 
         google.maps.event.addListener(infoWindow, 'domready', function(c) {
