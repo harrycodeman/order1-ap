@@ -33,6 +33,8 @@ class AP_Tour {
     const offer_name_meta_name = 'ap_tour_offer_name';
     const offer_description_meta_name = 'ap_tour_offer_description';
     const offer_banner_meta_name = 'ap_tour_offer_banner';
+    const latitude_meta_name = 'ap_tour_latitude';
+    const longitude_meta_name = 'ap_tour_longitude';
 
     public $id;
 
@@ -50,6 +52,9 @@ class AP_Tour {
     public $offer_description;
     private $offer_banner;
 
+    public $latitude;
+    public $longitude;
+
     public function set_icon( AP_Image $image = NULL ) {
         $this->icon = $image;
     }
@@ -66,6 +71,10 @@ class AP_Tour {
         return AP_Image::cast( $this->offer_banner );
     }
 
+    public function has_location( ) {
+        return !empty( $this->latitude ) && !empty( $this->longitude );
+    }
+
     public function load( $tour_id ) {
         $this->id = $tour_id;
         $this->is_burning = $this->load_meta( self::burning_meta_name );
@@ -80,6 +89,8 @@ class AP_Tour {
         $this->offer_name = $this->load_meta( self::offer_name_meta_name );
         $this->offer_description = $this->load_meta( self::offer_description_meta_name );
         $this->offer_banner = $this->load_image( self::offer_banner_meta_name );
+        $this->latitude = $this->load_meta( self::latitude_meta_name );
+        $this->longitude = $this->load_meta( self::longitude_meta_name );
     }
 
     private function load_image( $meta_name ) {
@@ -158,6 +169,8 @@ class AP_Tour {
         $this->save_meta( self::offer_name_meta_name, $this->offer_name );
         $this->save_meta( self::offer_description_meta_name, $this->offer_description );
         $this->save_image( $this->offer_banner, self::offer_banner_meta_name, 960, 382 );
+        $this->save_meta( self::latitude_meta_name, $this->latitude );
+        $this->save_meta( self::longitude_meta_name, $this->longitude );
     }
 
     private function save_image( AP_Image $image = NULL, $meta_name, $width, $height ) {

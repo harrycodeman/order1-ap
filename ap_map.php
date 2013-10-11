@@ -16,39 +16,6 @@ get_header( ); ?>
 </div>
 <script>
     $(document).ready(function() {
-//        var input = document.getElementById('searchInput');
-//        var autocomplete = new google.maps.places.Autocomplete(input);
-//        var input2 = document.getElementById('searchInput2');
-//        var autocomplete2 = new google.maps.places.Autocomplete(input2);
-//        autocomplete2.setTypes(['establishment']);
-//
-//        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//            var place = autocomplete.getPlace();
-//            if (!place.geometry) {
-//                alert('Ничего не нашел!');
-//            }
-//            else {
-//                var latLng = place.geometry.location;
-//                alert(latLng.toString());
-//
-//                autocomplete2.setBounds(
-//                    new google.maps.LatLngBounds(
-//                        new google.maps.LatLng(latLng.lat() - 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925))),
-//                        new google.maps.LatLng(latLng.lat() + 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925)))
-//                    )
-//                );
-//            }
-//        });
-//        google.maps.event.addListener(autocomplete2, 'place_changed', function() {
-//            var place = autocomplete2.getPlace();
-//            if (!place.geometry) {
-//                alert('Ничего не нашел!');
-//            }
-//            else {
-//                alert(place.geometry.location.toString());
-//            }
-//        });
-
         var styles = [{
             url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
             height: 32,
@@ -90,7 +57,7 @@ get_header( ); ?>
         var searchService = new google.maps.places.PlacesService(map);
         var clustererOptions = { 'averageCenter': true, 'styles': styles, zoomOnClick: false };
         var clusterer = new MarkerClusterer(map, [], clustererOptions);
-        clusterer.setCalculator(function (markers, numStyles) {
+        clusterer.setCalculator(function (markers) {
             var articlesCount = 0;
             var toursCount = 0;
             for (var i = 0; i < markers.length; i++) {
@@ -125,11 +92,16 @@ get_header( ); ?>
         });
 
         <?php
-        $articles = ap_get_articles(array(
-            'numberposts' => -1
-        ));
+        $articles = ap_get_articles(
+            array(
+                'numberposts' => -1
+            )
+        );
         foreach ($articles as $article) {
-            if ( !empty( $article->resort ) ) { ?>
+            if ( $article->has_location( ) ) { ?>
+                createArticleMarkerByLatLng(<?= $article->latitude; ?>, <?= $article->longitude; ?>, '<?php ap_print_article_permalink( $article->id ); ?>', <?= $article->id; ?>);
+            <?php }
+            else if ( !empty( $article->resort ) ) { ?>
                 createMarkerForArticle('<?= $article->resort; ?>', '<?php ap_print_article_permalink( $article->id ); ?>', <?= $article->id; ?>);
             <?php }
             else if ( !empty( $article->country ) ) { ?>
@@ -142,17 +114,26 @@ get_header( ); ?>
             searchService.textSearch(request, function(results, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK && results.length >= 1) {
                     var place = results[0].geometry.location;
-                    var marker = new google.maps.Marker({
-                        icon: '<?php ap_print_image_url('map/article.png'); ?>',
-                        position: place,
-                        map: map,
-                        type: 'article',
-                        postId: articleId
+                    createArticleMarkerByLocation(place, articleUrl, articleId)
+
+                    $.ajax({
+                        type : "post",
+                        url : '<?= admin_url( 'admin-ajax.php' ); ?>',
+                        data: {
+                            action: "ap_save_article_location",
+                            nonce: '<?= wp_create_nonce("ap_save_article_location_nonce"); ?>',
+                            post_id: articleId,
+                            latitude: place.lat(),
+                            longitude: place.lng()
+                        },
+                        success: function() {
+                            console.log('Article ' + articleId + ' location updated to lat:' + place.lat()
+                                + ' and lng:' + place.lng());
+                        },
+                        fail: function() {
+                            console.log('ERROR: article ' + articleId + 'location does not updated!');
+                        }
                     });
-                    google.maps.event.addListener(marker, 'mousedown', function(event) {
-                        window.location.href = articleUrl;
-                    });
-                    clusterer.addMarker(marker);
                 }
                 else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
                     setTimeout(function() {
@@ -162,12 +143,34 @@ get_header( ); ?>
             });
         }
 
+        function createArticleMarkerByLatLng(lat, lng, articleUrl, articleId) {
+            var place = new google.maps.LatLng(lat, lng);
+            createArticleMarkerByLocation(place, articleUrl, articleId);
+        }
+
+        function createArticleMarkerByLocation(place, articleUrl, articleId) {
+            var marker = new google.maps.Marker({
+                icon: '<?php ap_print_image_url('map/article.png'); ?>',
+                position: place,
+                map: map,
+                type: 'article',
+                postId: articleId
+            });
+            google.maps.event.addListener(marker, 'mousedown', function(event) {
+                window.location.href = articleUrl;
+            });
+            clusterer.addMarker(marker);
+        }
+
         <?php
         $tours = ap_get_tours(array(
             'numberposts' => -1
         ));
         foreach ($tours as $tour) {
-            if ( !empty( $tour->resort ) ) { ?>
+            if ( $tour->has_location( ) ) { ?>
+                createTourMarkerByLatLng(<?= $tour->latitude; ?>, <?= $tour->longitude; ?>, '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>', <?= $tour->id; ?>);
+            <?php }
+            else if ( !empty( $tour->resort ) ) { ?>
                 createMarkerForTour('<?= $tour->resort; ?>', '<?php ap_print_reserve_tour_page_permalink( $tour->id ); ?>', <?= $tour->id; ?>);
             <?php }
             else if ( !empty( $tour->country ) ) { ?>
@@ -191,6 +194,25 @@ get_header( ); ?>
                         window.location.href = tourUrl;
                     });
                     clusterer.addMarker(marker);
+
+                    $.ajax({
+                        type : "post",
+                        url : '<?= admin_url( 'admin-ajax.php' ); ?>',
+                        data: {
+                            action: "ap_save_tour_location",
+                            nonce: '<?= wp_create_nonce("ap_save_tour_location_nonce"); ?>',
+                            post_id: tourId,
+                            latitude: place.lat(),
+                            longitude: place.lng()
+                        },
+                        success: function() {
+                            console.log('Tour ' + tourId + ' location updated to lat:' + place.lat()
+                                + ' and lng:' + place.lng());
+                        },
+                        fail: function() {
+                            console.log('ERROR: tour ' + tourId + 'location does not updated!');
+                        }
+                    });
                 }
                 else if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
                     setTimeout(function() {
@@ -200,6 +222,24 @@ get_header( ); ?>
             });
         }
 
+        function createTourMarkerByLatLng(lat, lng, tourUrl, tourId) {
+            var place = new google.maps.LatLng(lat, lng);
+            createTourMarkerByLocation(place, tourUrl, tourId);
+        }
+
+        function createTourMarkerByLocation(place, tourUrl, tourId) {
+            var marker = new google.maps.Marker({
+                icon: '<?php ap_print_image_url('map/tour.png'); ?>',
+                position: place,
+                map: map,
+                type: 'tour',
+                postId: tourId
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+                window.location.href = tourUrl;
+            });
+            clusterer.addMarker(marker);
+        }
 
         var infoWindow = new google.maps.InfoWindow({
             maxWidth: 387.2

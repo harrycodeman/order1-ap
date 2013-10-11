@@ -50,6 +50,8 @@ else {
                 )
             );
         }
+        $tour->latitude = $_POST['ap_tour_latitude'];
+        $tour->longitude = $_POST['ap_tour_longitude'];
 
         $tour->save();
         wp_safe_redirect( ap_get_create_tour_page_permalink( ) );

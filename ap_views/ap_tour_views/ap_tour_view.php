@@ -99,6 +99,14 @@ class AP_TourView {
         <?php }
     }
 
+    protected function the_latitude( ) {
+        echo $this->the_property_or_empty( 'latitude' );
+    }
+
+    protected function the_longitude( ) {
+        echo $this->the_property_or_empty( 'longitude' );
+    }
+
     protected function is_model_empty( ) {
         return empty( $this->tour_iterator );
     }
