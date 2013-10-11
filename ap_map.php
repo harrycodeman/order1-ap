@@ -5,37 +5,6 @@ Template Name: Гид
 
 get_header( ); ?>
 
-<?php
-//$votes = get_post_meta($post->ID, "votes", true);
-//$votes = ($votes == "") ? 0 : $votes;
-//?>
-<!--    This post has <div id='vote_counter'>--><?php //echo $votes ?><!--</div> votes<br>-->
-<!---->
-<?php
-//$nonce = wp_create_nonce("my_user_vote_nonce");
-//$link = admin_url('admin-ajax.php?action=my_user_vote&post_id='.$post->ID.'&nonce='.$nonce);
-//echo '<a class="user_vote" data-nonce="' . $nonce . '" data-post_id="' . $post->ID . '" href="' . $link . '">vote for this article</a>';
-//?>
-
-<div id="tempDiv" class="ui-helper-hidden">
-    <?php
-    AP_TourListViewSmall::show_for(
-        ap_get_tours(
-            array(
-                'numberposts' => -1,
-                'meta_query' => array(
-                    array(
-                        'key' => 'ap_tour_country',
-                        'value' => 'Турция',
-                        'compare' => 'LIKE'
-                    )
-                )
-            )
-        )
-    );
-    ?>
-</div>
-
 <div id="map" style="width: 100%;"></div>
 <div id="legend" style="background: #B72537; height: 30px;">
     <div class="clearfix" style="margin: 0 auto; width: 250px; color: #ffffff; font-size: 14px;">
@@ -47,43 +16,6 @@ get_header( ); ?>
 </div>
 <script>
     $(document).ready(function() {
-<!--        $(".user_vote").click( function(e) {-->
-<!--            e.preventDefault();-->
-<!---->
-<!--            post_id = $(this).attr("data-post_id");-->
-<!--            nonce = $(this).attr("data-nonce");-->
-<!---->
-<!--            $.ajax({-->
-<!--                type : "post",-->
-<!--                dataType : "json",-->
-<!--                url : '--><?//= admin_url( 'admin-ajax.php' ); ?><!--',-->
-<!--                data: {-->
-<!--                    action: "my_user_vote",-->
-<!--                    post_id : post_id,-->
-<!--                    nonce: nonce-->
-<!--                },-->
-<!--                success: function(response) {-->
-<!--                    if(response.type == "success") {-->
-<!--                        $("#vote_counter").html(response.vote_count)-->
-<!--                    }-->
-<!--                    else {-->
-<!--                        alert("Your vote could not be added")-->
-<!--                    }-->
-<!--                }-->
-<!--            })-->
-<!--        });-->
-
-        var infowindow = new google.maps.InfoWindow({
-            content: $('#tempDiv').html(),
-            disableAutoPan: true
-        });
-
-        google.maps.event.addListener(infowindow, 'domready', function(c) {
-            var parentDiv = $('.tourlist-wrapper').parent('div:not(#tempDiv)');
-            var parentDiv2 = parentDiv.parent('div');
-            parentDiv2.addClass('scrollable-panel');
-        });
-
 //        var input = document.getElementById('searchInput');
 //        var autocomplete = new google.maps.places.Autocomplete(input);
 //        var input2 = document.getElementById('searchInput2');
@@ -192,11 +124,6 @@ get_header( ); ?>
             };
         });
 
-        google.maps.event.addListener(clusterer, 'click', function(c) {
-            infowindow.setPosition(c.getCenter());
-            infowindow.open(map);
-        });
-
         <?php
         $articles = ap_get_articles(array(
             'numberposts' => -1
@@ -272,6 +199,56 @@ get_header( ); ?>
                 }
             });
         }
+
+
+        var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 367.2
+        });
+
+        google.maps.event.addListener(infoWindow, 'domready', function(c) {
+            var stab = $('#stab');
+            var infoWindowInnerDiv = stab.parent('div');
+            var infoWindowMiddleDiv = infoWindowInnerDiv.parent('div');
+            infoWindowMiddleDiv.addClass('map-infowindow-middle');
+
+            $.ajax({
+                type : "post",
+                dataType : "html",
+                url : '<?= admin_url( 'admin-ajax.php' ); ?>',
+                data: {
+                    action: "ap_get_posts_for_map_popup",
+                    post_ids: {
+                        tour_ids: infoWindow.tours,
+                        article_ids: infoWindow.articles
+                    },
+                    nonce: '<?= wp_create_nonce("ap_get_posts_for_map_popup_nonce"); ?>'
+                },
+                success: function(toursAndArticlesHtml) {
+                    infoWindowInnerDiv.html(toursAndArticlesHtml);
+                    var tourListWrapper = infoWindowInnerDiv.find('.tourlist-wrapper');
+                    tourListWrapper.scrollpanel();
+                }
+            });
+        });
+
+        google.maps.event.addListener(clusterer, 'click', function(c) {
+            var markers = c.getMarkers();
+            infoWindow.tours = [];
+            infoWindow.articles = [];
+            for (var i in markers) {
+                var marker = markers[i];
+                if (marker.type == 'tour') {
+                    infoWindow.tours.push(marker.postId);
+                }
+                else {
+                    infoWindow.articles.push(marker.postId);
+                }
+            }
+
+            infoWindow.setContent('<div id="stab" style="width: 390px; height: 300px;"></div>');
+            infoWindow.setPosition(c.getCenter());
+            infoWindow.open(map);
+        });
     });
 </script>
 

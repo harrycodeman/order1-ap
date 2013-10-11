@@ -5,6 +5,8 @@ if (!is_admin()) {
     wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js', array('jquery') );
+    wp_enqueue_script( 'jquery_scrollpanel', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.scrollpanel-0.1.js', array('jquery') );
+    wp_enqueue_script( 'jquery_mousewheel', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.mousewheel.js', array('jquery') );
     wp_enqueue_script( 'jquery_blockui', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.blockUI-2.65.0.js', array('jquery') );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
     wp_enqueue_script(
@@ -531,36 +533,35 @@ function ap_add_delete_tour_query_var( $vars ) {
 }
 add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );
 
-/* Настройки для работы с Ajax */
-add_action("wp_ajax_my_user_vote", "my_user_vote");
-add_action("wp_ajax_nopriv_my_user_vote", "my_user_vote");
+/* Обработчики Ajax вызовов */
+add_action("wp_ajax_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
+add_action("wp_ajax_nopriv_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
 
-function my_user_vote() {
-    if ( !wp_verify_nonce( $_REQUEST['nonce'], "my_user_vote_nonce")) {
+function ap_get_posts_for_map_popup() {
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "ap_get_posts_for_map_popup_nonce")) {
         exit("No naughty business please");
     }
 
-    $vote_count = get_post_meta($_REQUEST["post_id"], "votes", true);
-    $vote_count = ($vote_count == '') ? 0 : $vote_count;
-    $new_vote_count = $vote_count + 1;
+    $post_ids = $_REQUEST['post_ids'];
+    $tour_ids = $post_ids['tour_ids'];
+    $article_ids = $post_ids['article_ids'];
 
-    $vote = update_post_meta($_REQUEST["post_id"], "votes", $new_vote_count);
-
-    if($vote === false) {
-        $result['type'] = "error";
-        $result['vote_count'] = $vote_count;
-    }
-    else {
-        $result['type'] = "success";
-        $result['vote_count'] = $new_vote_count;
-    }
-
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-        $result = json_encode($result);
-        echo $result;
-    }
-    else {
-        header("Location: ".$_SERVER["HTTP_REFERER"]);
-    }
+    $tours = count($tour_ids) > 0 ?
+        ap_get_tours(
+            array(
+                'numberposts' => -1,
+                'post__in' => $tour_ids
+            )
+        )
+        : array();
+    $articles = count($article_ids) > 0 ?
+        ap_get_articles(
+            array(
+                'numberposts' => -1,
+                'post__in' => $article_ids
+            )
+        )
+        : array();
+    AP_TourListViewSmall::show_for($tours, $articles);
     die();
 }

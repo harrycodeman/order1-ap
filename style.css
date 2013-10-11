@@ -344,7 +344,7 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         #tourlist #country-tourlist-form, #resortcity-tourlist-form, #hotelname-tourlist-form { width: 300px; }
 
         #tourlist .list .item { height: 100px; background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
-        #tourlist .list .item>div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
+        #tourlist .list .item > div, #tourlist .list .item > a > div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
         #tourlist .list .item .image { width: 120px; }
         #tourlist .list .item .image img { width: 100px; height:100px; }
         #tourlist .list .item .info { width: 360px; vertical-align: top;}
@@ -418,9 +418,9 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
 .left { float: left !important; }
 
 /*----------MAP-----------------*/
-div.cluster-tours:hover { background-image: url("images/map/cluster-tours.png") !important; width: 49px !important; height: 49px !important; }
-div.cluster-articles:hover { background-image: url("images/map/cluster-articles.png") !important; width: 49px !important; height: 49px !important; }
-div.cluster-all:hover { background-image: url("images/map/cluster-all.png") !important; width: 70px !important; height: 70px !important; }
+div.cluster-tours:hover { background-image: url("images/map/cluster-tours.png") !important; width: 49px !important; height: 49px !important; margin-left: -9px; margin-top: -8.5px; }
+div.cluster-articles:hover { background-image: url("images/map/cluster-articles.png") !important; width: 49px !important; height: 49px !important;  margin-left: -9px; margin-top: -8.5px; }
+div.cluster-all:hover { background-image: url("images/map/cluster-all.png") !important; width: 70px !important; height: 70px !important; margin-left: -17.5px; margin-top: -19px; }
 
 div.cluster-tours:hover > p.total, div.cluster-articles:hover > p.total, div.cluster-all:hover > p.total,
 div.cluster-tours > p.part, div.cluster-articles > p.part, div.cluster-all > p.part { display: none !important; }
@@ -428,5 +428,36 @@ div.cluster-tours > p.part, div.cluster-articles > p.part, div.cluster-all > p.p
 div.cluster-tours:hover > p.part, div.cluster-articles:hover > p.part, div.cluster-all:hover > p.part,
 div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p.total { display: block !important; }
 
-.scrollable-panel .overview { position: absolute; left: 0; top: 0; }
+.tourlist-wrapper .sp-scrollbar {
+    width: 10px;
+    margin: 25px 4px 4px 4px;
+    background-color: rgba(191,40,59, 0.3);
+    cursor: pointer;
+    border-radius: 5px;
+}
 
+.tourlist-wrapper .sp-scrollbar .sp-thumb {
+    background-color: rgba(191,40,59, 0.8);
+    border-radius: 5px;
+}
+
+.map-infowindow-middle {
+    width: 390px !important;
+    height: 320px !important;
+}
+
+#tourlist .list .article-item { background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}
+#tourlist .list .article-item div { display:-moz-inline-stack; display:inline-block; vertical-align: top; zoom:1; *display:inline; }
+#tourlist .list .article-item .image { width: 120px; }
+#tourlist .list .article-item .image img { width: 100px; }
+#tourlist .list .article-item .info { width: 360px; vertical-align: top;}
+#tourlist .list .article-item .info h2 { margin: 15px 0 0 0; }
+#tourlist .list .article-item .info p { margin-top: 0; }
+#tourlist .list .article-item .hotelrating { padding: 15px 0; width: 200px; }
+#tourlist .list .article-item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; margin-right: 5px; *display:inline; }
+#tourlist .list .article-item .cost { width: 265px; height: 100px;}
+#tourlist .list .article-item .cost > * { float:right; clear: both;}
+#tourlist .list .article-item .cost h2 { margin-bottom: 0; }
+#tourlist .list .article-item .cost p { margin: 0 0 30px 0; }
+#tourlist .list .article-item .cost .editdelete-links { height: 20px; }
+#tourlist .list .article-item .cost .editdelete-links a { margin-left: 10px; }
