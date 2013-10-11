@@ -16,39 +16,6 @@ get_header( ); ?>
 </div>
 <script>
     $(document).ready(function() {
-//        var input = document.getElementById('searchInput');
-//        var autocomplete = new google.maps.places.Autocomplete(input);
-//        var input2 = document.getElementById('searchInput2');
-//        var autocomplete2 = new google.maps.places.Autocomplete(input2);
-//        autocomplete2.setTypes(['establishment']);
-//
-//        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//            var place = autocomplete.getPlace();
-//            if (!place.geometry) {
-//                alert('Ничего не нашел!');
-//            }
-//            else {
-//                var latLng = place.geometry.location;
-//                alert(latLng.toString());
-//
-//                autocomplete2.setBounds(
-//                    new google.maps.LatLngBounds(
-//                        new google.maps.LatLng(latLng.lat() - 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925))),
-//                        new google.maps.LatLng(latLng.lat() + 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925)))
-//                    )
-//                );
-//            }
-//        });
-//        google.maps.event.addListener(autocomplete2, 'place_changed', function() {
-//            var place = autocomplete2.getPlace();
-//            if (!place.geometry) {
-//                alert('Ничего не нашел!');
-//            }
-//            else {
-//                alert(place.geometry.location.toString());
-//            }
-//        });
-
         var styles = [{
             url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
             height: 32,
@@ -90,7 +57,7 @@ get_header( ); ?>
         var searchService = new google.maps.places.PlacesService(map);
         var clustererOptions = { 'averageCenter': true, 'styles': styles, zoomOnClick: false };
         var clusterer = new MarkerClusterer(map, [], clustererOptions);
-        clusterer.setCalculator(function (markers, numStyles) {
+        clusterer.setCalculator(function (markers) {
             var articlesCount = 0;
             var toursCount = 0;
             for (var i = 0; i < markers.length; i++) {
@@ -321,74 +288,7 @@ get_header( ); ?>
             infoWindow.setContent('<div id="stab" style="width: 390px; height: 300px;"></div>');
             infoWindow.setPosition(c.getCenter());
             infoWindow.open(map);
-
-
-//            codeLatLng();
         });
-
-
-
-
-
-
-
-
-//        if(!Array.prototype.indexOf) {
-//            Array.prototype.indexOf = function(needle) {
-//                for(var i = 0; i < this.length; i++) {
-//                    if(this[i] === needle) {
-//                        return i;
-//                    }
-//                }
-//                return -1;
-//            };
-//        }
-
-//        var geocoder = new google.maps.Geocoder();
-//        function codeLatLng() {
-//            var latlng = new google.maps.LatLng(40.730885,-73.997383);
-//            geocoder.geocode({'latLng': latlng}, function(results, status) {
-//                if (status == google.maps.GeocoderStatus.OK) {
-//                    var mostDetailedResult = results[1];
-//                    var addressComponents = mostDetailedResult['address_components'];
-//                    var country;
-//                    var resort;
-//                    var hotel;
-//
-//                    for (var key in addressComponents) {
-//                        var component = addressComponents[key];
-//                        if (component.types.indexOf('locality') > -1) {
-//                            resort = component.long_name;
-//                        }
-//                        else if (component.types.indexOf('country') > -1) {
-//                            country = component.long_name;
-//                        }
-//                    }
-////                    alert('' + resort + ', ' + country);
-////                    alert(JSON.stringify(results[0]));
-//                } else {
-//                    alert("Geocoder failed due to: " + status);
-//                }
-//            });
-//
-//            var request = {
-//                location: latlng,
-//                radius: '100',
-//                types: ['lodging']
-//            };
-//
-//            service = new google.maps.places.PlacesService(map);
-//            service.nearbySearch(request, function callback(results, status) {
-//                if (status == google.maps.places.PlacesServiceStatus.OK) {
-//                    for (var i = 0; i < results.length; i++) {
-//                        alert(JSON.stringify(results[i]));
-//                    }
-//                }
-//                else {
-//                    alert("Search failed due to: " + status);
-//                }
-//            });
-//        }
     });
 </script>
 
