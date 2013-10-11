@@ -5,6 +5,8 @@ if (!is_admin()) {
     wp_register_script( 'jquery', get_bloginfo('stylesheet_directory').'/libs/jquery-1.10.2.js' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery_masonry', get_bloginfo('stylesheet_directory').'/libs/jquery.masonry.min.js', array('jquery') );
+    wp_enqueue_script( 'jquery_scrollpanel', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.scrollpanel-0.1.js', array('jquery') );
+    wp_enqueue_script( 'jquery_mousewheel', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.mousewheel.js', array('jquery') );
     wp_enqueue_script( 'jquery_blockui', get_bloginfo('stylesheet_directory').'/libs/jquery-plugins/jquery.blockUI-2.65.0.js', array('jquery') );
     wp_enqueue_script( 'jquery_ui', 'http://code.jquery.com/ui/1.10.2/jquery-ui.js', array('jquery') );
     wp_enqueue_script(
@@ -530,3 +532,36 @@ function ap_add_delete_tour_query_var( $vars ) {
     return $vars;
 }
 add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );
+
+/* Обработчики Ajax вызовов */
+add_action("wp_ajax_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
+add_action("wp_ajax_nopriv_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
+
+function ap_get_posts_for_map_popup() {
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "ap_get_posts_for_map_popup_nonce")) {
+        exit("No naughty business please");
+    }
+
+    $post_ids = $_REQUEST['post_ids'];
+    $tour_ids = $post_ids['tour_ids'];
+    $article_ids = $post_ids['article_ids'];
+
+    $tours = count($tour_ids) > 0 ?
+        ap_get_tours(
+            array(
+                'numberposts' => -1,
+                'post__in' => $tour_ids
+            )
+        )
+        : array();
+    $articles = count($article_ids) > 0 ?
+        ap_get_articles(
+            array(
+                'numberposts' => -1,
+                'post__in' => $article_ids
+            )
+        )
+        : array();
+    AP_TourListViewSmall::show_for($tours, $articles);
+    die();
+}

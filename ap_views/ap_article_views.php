@@ -103,3 +103,51 @@ function ap_get_article_about_place_name( AP_Article $article ) {
     }
     return $result;
 }
+
+function ap_articles_list_view_for_map( $articles ) {
+    function ap_print_icon_html( AP_Image $icon = null ) {
+        if ( empty( $icon ) ) { ?>
+            <img src="<?php ap_print_image_url( "tour-icon-missed.jpg" ); ?>" alt="Изображение остутствует"
+                 width="100px" height="100px">
+        <?php }
+        else { ?>
+            <img src="<?php echo $icon->get_url( ); ?>" alt="Иконка статьи"
+                 width="100px" height="<?= $icon->get_height( ) * 100 / $icon->get_width( ); ?>">
+        <?php }
+    }
+
+    function get_excerpt_by_id( $post_id ){
+        $the_post = get_post($post_id); //Gets post ID
+        $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
+        $excerpt_length = 35; //Sets excerpt length by word count
+        $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
+        $words = explode(' ', $the_excerpt, $excerpt_length + 1);
+        if(count($words) > $excerpt_length) :
+            array_pop($words);
+            array_push($words, '…');
+            $the_excerpt = implode(' ', $words);
+        endif;
+        $the_excerpt = '<p>' . $the_excerpt . '</p>';
+        return $the_excerpt;
+    } ?>
+
+    <h1 class="red">Статьи</h1>
+    <div id="tours" class="list">
+        <?php foreach ( $articles as $article ) { ?>
+            <div class="article-item">
+                <a href="<?php ap_print_article_permalink( $article->id ); ?>">
+                    <div class="image" style="text-align: center;">
+                        <?php ap_print_icon_html( AP_Image::cast( $article->get_icon( ) ) ); ?>
+                    </div>
+                </a>
+                <div class="info" style="width: 260px;">
+                    <a href="<?php ap_print_article_permalink( $article->id ); ?>"
+                       style="color: #535349;">
+                        <h2><?= $article->title; ?></h2>
+                    </a>
+                    <?= get_excerpt_by_id( $article->id ); ?>
+                </div>
+            </div><!--.item-->
+        <?php } ?>
+    </div><!--#tours-->
+<? }

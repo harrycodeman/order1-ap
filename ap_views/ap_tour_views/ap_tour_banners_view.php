@@ -42,6 +42,15 @@ class AP_TourBannersView extends AP_TourView {
                     <a class="carousel-control left" href="#banners_carousel" data-slide="prev"></a>
                     <div class="carousel-control divider"></div>
                     <a class="carousel-control right" href="#banners_carousel" data-slide="next"></a>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#banners_carousel').carousel({
+                                cycle: true,
+                                animation: 1000,
+                                itemFallbackDimension: 960
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

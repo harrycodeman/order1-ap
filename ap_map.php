@@ -7,15 +7,48 @@ get_header( ); ?>
 
 <div id="map" style="width: 100%;"></div>
 <div id="legend" style="background: #B72537; height: 30px;">
-    <div class="clearfix" style="margin: 0 auto; width: 240px; color: #ffffff; font-size: 14px;">
-        <img src="<?php ap_print_image_url( 'map/article-icon.png' ); ?>" style=" float: left; padding: 7px;">
+    <div class="clearfix" style="margin: 0 auto; width: 250px; color: #ffffff; font-size: 14px;">
+        <img src="<?php ap_print_image_url( 'map/article-icon.png' ); ?>" style="float: left; padding: 7px;">
         <div style="float: left; padding: 3px 20px 0 0; line-height: 25px;">Статьи</div>
-        <img src="<?php ap_print_image_url( 'map/tour-icon.png' ); ?>" style=" float: left; padding: 7px;">
+        <img src="<?php ap_print_image_url( 'map/tour-icon.png' ); ?>" style="float: left; padding: 7px;">
         <div style="float: left; padding: 3px 20px 0 0; line-height: 25px;">Вылеты/Туры</div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
+//        var input = document.getElementById('searchInput');
+//        var autocomplete = new google.maps.places.Autocomplete(input);
+//        var input2 = document.getElementById('searchInput2');
+//        var autocomplete2 = new google.maps.places.Autocomplete(input2);
+//        autocomplete2.setTypes(['establishment']);
+//
+//        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+//            var place = autocomplete.getPlace();
+//            if (!place.geometry) {
+//                alert('Ничего не нашел!');
+//            }
+//            else {
+//                var latLng = place.geometry.location;
+//                alert(latLng.toString());
+//
+//                autocomplete2.setBounds(
+//                    new google.maps.LatLngBounds(
+//                        new google.maps.LatLng(latLng.lat() - 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925))),
+//                        new google.maps.LatLng(latLng.lat() + 0.25, latLng.lng() + 1/(2*Math.cos(latLng.lat()*0.0174532925)))
+//                    )
+//                );
+//            }
+//        });
+//        google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+//            var place = autocomplete2.getPlace();
+//            if (!place.geometry) {
+//                alert('Ничего не нашел!');
+//            }
+//            else {
+//                alert(place.geometry.location.toString());
+//            }
+//        });
+
         var styles = [{
             url: '<?php ap_print_image_url( 'map/cluster-icon-total.png' ); ?>',
             height: 32,
@@ -55,7 +88,7 @@ get_header( ); ?>
         };
         var map = new google.maps.Map(document.getElementById("map"), mapSettings);
         var searchService = new google.maps.places.PlacesService(map);
-        var clustererOptions = { 'averageCenter': true, 'styles': styles };
+        var clustererOptions = { 'averageCenter': true, 'styles': styles, zoomOnClick: false };
         var clusterer = new MarkerClusterer(map, [], clustererOptions);
         clusterer.setCalculator(function (markers, numStyles) {
             var articlesCount = 0;
@@ -166,6 +199,56 @@ get_header( ); ?>
                 }
             });
         }
+
+
+        var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 367.2
+        });
+
+        google.maps.event.addListener(infoWindow, 'domready', function(c) {
+            var stab = $('#stab');
+            var infoWindowInnerDiv = stab.parent('div');
+            var infoWindowMiddleDiv = infoWindowInnerDiv.parent('div');
+            infoWindowMiddleDiv.addClass('map-infowindow-middle');
+
+            $.ajax({
+                type : "post",
+                dataType : "html",
+                url : '<?= admin_url( 'admin-ajax.php' ); ?>',
+                data: {
+                    action: "ap_get_posts_for_map_popup",
+                    post_ids: {
+                        tour_ids: infoWindow.tours,
+                        article_ids: infoWindow.articles
+                    },
+                    nonce: '<?= wp_create_nonce("ap_get_posts_for_map_popup_nonce"); ?>'
+                },
+                success: function(toursAndArticlesHtml) {
+                    infoWindowInnerDiv.html(toursAndArticlesHtml);
+                    var tourListWrapper = infoWindowInnerDiv.find('.tourlist-wrapper');
+                    tourListWrapper.scrollpanel();
+                }
+            });
+        });
+
+        google.maps.event.addListener(clusterer, 'click', function(c) {
+            var markers = c.getMarkers();
+            infoWindow.tours = [];
+            infoWindow.articles = [];
+            for (var i in markers) {
+                var marker = markers[i];
+                if (marker.type == 'tour') {
+                    infoWindow.tours.push(marker.postId);
+                }
+                else {
+                    infoWindow.articles.push(marker.postId);
+                }
+            }
+
+            infoWindow.setContent('<div id="stab" style="width: 390px; height: 300px;"></div>');
+            infoWindow.setPosition(c.getCenter());
+            infoWindow.open(map);
+        });
     });
 </script>
 
