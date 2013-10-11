@@ -8,7 +8,7 @@ class AP_TourListViewSmall extends AP_TourView {
     }
 
     public function show( ) { ?>
-        <div class="tourlist-wrapper" style="width: 390px; height: 300px;">
+        <div class="tourlist-wrapper" style="width: 410px; height: 300px;">
             <div id="tourlist" style="width: 390px;">
                 <?php if ( $this->has_current( ) ) { ?>
                     <h1 class="red">Туры</h1>
