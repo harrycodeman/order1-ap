@@ -451,13 +451,5 @@ div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p
 #tourlist .list .article-item .image { width: 120px; }
 #tourlist .list .article-item .image img { width: 100px; }
 #tourlist .list .article-item .info { width: 360px; vertical-align: top;}
-#tourlist .list .article-item .info h2 { margin: 15px 0 0 0; }
+#tourlist .list .article-item .info h2 { margin: -5px 0 0 0; }
 #tourlist .list .article-item .info p { margin-top: 0; }
-#tourlist .list .article-item .hotelrating { padding: 15px 0; width: 200px; }
-#tourlist .list .article-item .hotelrating img { display:-moz-inline-stack; display:inline-block; zoom:1; margin-right: 5px; *display:inline; }
-#tourlist .list .article-item .cost { width: 265px; height: 100px;}
-#tourlist .list .article-item .cost > * { float:right; clear: both;}
-#tourlist .list .article-item .cost h2 { margin-bottom: 0; }
-#tourlist .list .article-item .cost p { margin: 0 0 30px 0; }
-#tourlist .list .article-item .cost .editdelete-links { height: 20px; }
-#tourlist .list .article-item .cost .editdelete-links a { margin-left: 10px; }
