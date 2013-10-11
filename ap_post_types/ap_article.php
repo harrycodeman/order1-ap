@@ -5,6 +5,8 @@ class AP_Article {
     const country_meta_name = 'ap_article_country';
     const resort_meta_name = 'ap_article_resort';
     const quote_meta_name = 'ap_article_quote';
+    const latitude_meta_name = 'ap_article_latitude';
+    const longitude_meta_name = 'ap_article_longitude';
 
     public $id;
 
@@ -13,6 +15,8 @@ class AP_Article {
     public $content;
     public $country;
     public $resort;
+    public $latitude;
+    public  $longitude;
     private $icon;
     private $banner;
 
@@ -32,6 +36,10 @@ class AP_Article {
         return AP_Image::cast( $this->banner );
     }
 
+    public function has_location( ) {
+        return !empty( $this->latitude ) && !empty( $this->longitude );
+    }
+
     public function load( $article_id ) {
         $this->id = $article_id;
 
@@ -42,6 +50,8 @@ class AP_Article {
         $this->quote = $this->load_meta( self::quote_meta_name );
         $this->country = $this->load_meta( self::country_meta_name );
         $this->resort = $this->load_meta( self::resort_meta_name );
+        $this->latitude = $this->load_meta( self::latitude_meta_name );
+        $this->longitude = $this->load_meta( self::longitude_meta_name );
         $this->icon = $this->load_image( self::icon_meta_name );
         $this->banner = $this->load_image( self::banner_meta_name );
     }
@@ -97,6 +107,8 @@ class AP_Article {
         $this->save_meta( self::quote_meta_name, $this->quote );
         $this->save_meta( self::country_meta_name, $this->country );
         $this->save_meta( self::resort_meta_name, $this->resort );
+        $this->save_meta( self::latitude_meta_name, $this->latitude );
+        $this->save_meta( self::longitude_meta_name, $this->longitude );
         $this->save_image( $this->icon, self::icon_meta_name );
         $this->save_image( $this->banner, self::banner_meta_name, 960, 382 );
     }

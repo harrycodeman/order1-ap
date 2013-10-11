@@ -536,7 +536,6 @@ add_filter( 'query_vars', 'ap_add_delete_tour_query_var' );
 /* Обработчики Ajax вызовов */
 add_action("wp_ajax_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
 add_action("wp_ajax_nopriv_ap_get_posts_for_map_popup", "ap_get_posts_for_map_popup");
-
 function ap_get_posts_for_map_popup() {
     if ( !wp_verify_nonce( $_REQUEST['nonce'], "ap_get_posts_for_map_popup_nonce")) {
         exit("No naughty business please");
@@ -563,5 +562,39 @@ function ap_get_posts_for_map_popup() {
         )
         : array();
     AP_TourListViewSmall::show_for($tours, $articles);
+    die();
+}
+
+add_action("wp_ajax_ap_save_article_location", "ap_save_article_location");
+add_action("wp_ajax_nopriv_ap_save_article_location", "ap_save_article_location");
+function ap_save_article_location() {
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "ap_save_article_location_nonce")) {
+        exit("No naughty business please");
+    }
+
+    $post_id = $_REQUEST['post_id'];
+    $article = ap_get_article_by_id( $post_id );
+
+    $article->latitude = $_REQUEST['latitude'];
+    $article->longitude = $_REQUEST['longitude'];
+
+    $article->save( );
+    die();
+}
+
+add_action("wp_ajax_ap_save_tour_location", "ap_save_tour_location");
+add_action("wp_ajax_nopriv_ap_save_tour_location", "ap_save_tour_location");
+function ap_save_tour_location() {
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "ap_save_tour_location_nonce")) {
+        exit("No naughty business please");
+    }
+
+    $post_id = $_REQUEST['post_id'];
+    $tour = ap_get_tour_by_id( $post_id );
+
+    $tour->latitude = $_REQUEST['latitude'];
+    $tour->longitude = $_REQUEST['longitude'];
+
+    $tour->save( );
     die();
 }
