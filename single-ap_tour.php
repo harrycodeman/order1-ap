@@ -56,8 +56,10 @@ else:
                 )
             );
         }
-        $tour->latitude = $_POST['ap_tour_latitude'];
-        $tour->longitude = $_POST['ap_tour_longitude'];
+        if ( !empty( $_POST['ap_tour_latitude'] ) && !empty( $_POST['ap_tour_longitude'] ) ) {
+            $tour->latitude = $_POST['ap_tour_latitude'];
+            $tour->longitude = $_POST['ap_tour_longitude'];
+        }
 
         $tour->save();
         ap_redirect_to( get_permalink( $tour->id ) );
