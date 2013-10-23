@@ -154,7 +154,7 @@ else if ( $action === "edit" && !empty( $id ) ) {
                                        value="<?= $article->title; ?>" required>
                             </div>
                             <div>
-                                <p><label for="quote-addarticle-form">Цитата (короткий текст в списке статей):</label></p>
+                                <p><label for="quote-addarticle-form">Цитата:</label></p>
                                 <textarea id="quote-addarticle-form" name="ap_article_quote" rows="2"
                                           cols="90"><?= empty( $article->quote ) ? "" : $article->quote; ?></textarea>
                             </div>

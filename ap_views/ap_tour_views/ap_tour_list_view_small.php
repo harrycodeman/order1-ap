@@ -10,8 +10,10 @@ class AP_TourListViewSmall extends AP_TourView {
     public function show( ) { ?>
         <div class="tourlist-wrapper" style="width: 410px; height: 300px;">
             <div id="tourlist" style="width: 390px;">
-                <?php if ( $this->has_current( ) ) { ?>
-                    <h1 class="red">Туры</h1>
+                <?php if ( $this->has_current( ) ) {
+                    if ( $this->count( ) > 1 || count( $this->articles ) != 0 ) { ?>
+                        <h1 class="red">Туры</h1>
+                    <?php } ?>
                     <div id="tours" class="list">
                         <?php while ( $this->has_current( ) ) { ?>
                                 <div class="item">
@@ -38,7 +40,8 @@ class AP_TourListViewSmall extends AP_TourView {
                 <?php }
 
                 if ( count( $this->articles ) > 0 ) {
-                    ap_articles_list_view_for_map( $this->articles );
+                    ap_articles_list_view_for_map( $this->articles,
+                        count( $this->articles ) > 1 || $this->count( ) != 0 );
                 } ?>
             </div><!--#tourlist-->
         </div><!--.tourlist-wrapper-->

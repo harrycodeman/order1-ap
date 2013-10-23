@@ -104,7 +104,7 @@ function ap_get_article_about_place_name( AP_Article $article ) {
     return $result;
 }
 
-function ap_articles_list_view_for_map( $articles ) {
+function ap_articles_list_view_for_map( $articles, $with_header ) {
     function ap_print_icon_html( AP_Image $icon = null ) {
         if ( empty( $icon ) ) { ?>
             <img src="<?php ap_print_image_url( "tour-icon-missed.jpg" ); ?>" alt="Изображение остутствует"
@@ -131,7 +131,9 @@ function ap_articles_list_view_for_map( $articles ) {
         return $the_excerpt;
     } ?>
 
-    <h1 class="red">Статьи</h1>
+    <?php if ( $with_header ) { ?>
+        <h1 class="red">Статьи</h1>
+    <?php } ?>
     <div id="tours" class="list">
         <?php foreach ( $articles as $article ) { ?>
             <div class="article-item">

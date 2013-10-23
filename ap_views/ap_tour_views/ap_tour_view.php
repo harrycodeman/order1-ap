@@ -1,11 +1,13 @@
 <?php
 class AP_TourView {
     private $tour_iterator;
+    private $count;
 
     protected function __construct( array $tours = null ) {
         if ( !empty( $tours ) ) {
             $tours = new ArrayObject( $tours );
             $this->tour_iterator = $tours->getIterator( );
+            $this->count = $tours->count();
         }
     }
 
@@ -130,6 +132,10 @@ class AP_TourView {
             return false;
         }
         return $this->tour_iterator->valid( );
+    }
+
+    protected function count( ) {
+        return $this->count;
     }
 
     protected function next( ) {

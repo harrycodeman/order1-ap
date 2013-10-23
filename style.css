@@ -428,6 +428,8 @@ div.cluster-tours > p.part, div.cluster-articles > p.part, div.cluster-all > p.p
 div.cluster-tours:hover > p.part, div.cluster-articles:hover > p.part, div.cluster-all:hover > p.part,
 div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p.total { display: block !important; }
 
+
+
 .tourlist-wrapper .sp-scrollbar {
     width: 10px;
     margin: 25px 4px 4px 4px;
@@ -442,8 +444,20 @@ div.cluster-tours > p.total, div.cluster-articles > p.total, div.cluster-all > p
 }
 
 .map-infowindow-middle {
+    overflow: hidden !important;
     width: 410px !important;
-    height: 320px !important;
+}
+
+.map-infowindow-middle-big {
+    height: 305px !important;
+}
+
+.map-infowindow-middle-tour {
+    height: 145px !important;
+}
+
+.map-infowindow-middle-article {
+    height: 240px !important;
 }
 
 #tourlist .list .article-item { background: url('images/tourlistlist-background.png') center bottom repeat-x; padding: 20px 0;}

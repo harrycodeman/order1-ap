@@ -156,8 +156,15 @@ get_header( ); ?>
                 type: 'article',
                 postId: articleId
             });
-            google.maps.event.addListener(marker, 'mousedown', function(event) {
-                window.location.href = articleUrl;
+            google.maps.event.addListener(marker, 'click', function(event) {
+                infoWindow.windowSize = 'article';
+
+                infoWindow.tours = [];
+                infoWindow.articles = [marker.postId];
+
+                infoWindow.setContent('<div id="stab" style="width: 390px; height: 235px;"></div>');
+                infoWindow.setPosition(marker.getPosition());
+                infoWindow.open(map);
             });
             clusterer.addMarker(marker);
         }
@@ -183,17 +190,7 @@ get_header( ); ?>
             searchService.textSearch(request, function(results, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK && results.length >= 1) {
                     var place = results[0].geometry.location;
-                    var marker = new google.maps.Marker({
-                        icon: '<?php ap_print_image_url('map/tour.png'); ?>',
-                        position: place,
-                        map: map,
-                        type: 'tour',
-                        postId: tourId
-                    });
-                    google.maps.event.addListener(marker, 'click', function () {
-                        window.location.href = tourUrl;
-                    });
-                    clusterer.addMarker(marker);
+                    createTourMarkerByLocation(place, tourUrl, tourId);
 
                     $.ajax({
                         type : "post",
@@ -236,7 +233,14 @@ get_header( ); ?>
                 postId: tourId
             });
             google.maps.event.addListener(marker, 'click', function () {
-                window.location.href = tourUrl;
+                infoWindow.windowSize = 'tour';
+
+                infoWindow.tours = [marker.postId];
+                infoWindow.articles = [];
+
+                infoWindow.setContent('<div id="stab" style="width: 390px; height: 140px;"></div>');
+                infoWindow.setPosition(marker.getPosition());
+                infoWindow.open(map);
             });
             clusterer.addMarker(marker);
         }
@@ -245,11 +249,41 @@ get_header( ); ?>
             maxWidth: 387.2
         });
 
+        google.maps.event.addListener(clusterer, 'click', function(c) {
+            infoWindow.windowSize = 'big';
+
+            var markers = c.getMarkers();
+            infoWindow.tours = [];
+            infoWindow.articles = [];
+            for (var i in markers) {
+                var marker = markers[i];
+                if (marker.type == 'tour') {
+                    infoWindow.tours.push(marker.postId);
+                }
+                else {
+                    infoWindow.articles.push(marker.postId);
+                }
+            }
+
+            infoWindow.setContent('<div id="stab" style="width: 390px; height: 300px;"></div>');
+            infoWindow.setPosition(c.getCenter());
+            infoWindow.open(map);
+        });
+
         google.maps.event.addListener(infoWindow, 'domready', function(c) {
             var stab = $('#stab');
             var infoWindowInnerDiv = stab.parent('div');
             var infoWindowMiddleDiv = infoWindowInnerDiv.parent('div');
             infoWindowMiddleDiv.addClass('map-infowindow-middle');
+            if (infoWindow.windowSize == 'big') {
+                infoWindowMiddleDiv.addClass('map-infowindow-middle-big');
+            }
+            else if (infoWindow.windowSize == 'tour') {
+                infoWindowMiddleDiv.addClass('map-infowindow-middle-tour');
+            }
+            else if (infoWindow.windowSize == 'article') {
+                infoWindowMiddleDiv.addClass('map-infowindow-middle-article');
+            }
 
             $.ajax({
                 type : "post",
@@ -269,25 +303,6 @@ get_header( ); ?>
                     tourListWrapper.scrollpanel();
                 }
             });
-        });
-
-        google.maps.event.addListener(clusterer, 'click', function(c) {
-            var markers = c.getMarkers();
-            infoWindow.tours = [];
-            infoWindow.articles = [];
-            for (var i in markers) {
-                var marker = markers[i];
-                if (marker.type == 'tour') {
-                    infoWindow.tours.push(marker.postId);
-                }
-                else {
-                    infoWindow.articles.push(marker.postId);
-                }
-            }
-
-            infoWindow.setContent('<div id="stab" style="width: 390px; height: 300px;"></div>');
-            infoWindow.setPosition(c.getCenter());
-            infoWindow.open(map);
         });
     });
 </script>
