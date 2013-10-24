@@ -121,10 +121,10 @@ class AP_TourEditView extends AP_TourView {
                                     }
 
                                     // Предотвращение сохранения на нажатие Enter'а
-                                    $('body').keypress(function (e) {
+                                    $('#location-addtour-form').keypress(function (e) {
                                         if (e.keyCode == '13') {
                                             e.preventDefault();
-                                            e.stopPropagation();
+//                                            e.stopPropagation();
                                         }
                                     });
                                 });
