@@ -23,8 +23,6 @@ class AP_TourEditView extends AP_TourView {
                     <form name="create-tour-form" action="<?= $handler_permalink ?>" method="post"
                           enctype="multipart/form-data">
                         <div class="tour">
-                            <img src="<?php ap_print_image_url( 'powered-by-google.png' ); ?>" alt="Powered by Google"
-                                style="margin-top: -15px; margin-right: 5px; float: right;">
                             <div style="width: 620px; margin-left: 20px;">
                                 <p><label for="location-addtour-form">Место назначения (не отображается)</label></p>
                                 <input name="ap_tour_location" type="text" id="location-addtour-form"
@@ -32,20 +30,46 @@ class AP_TourEditView extends AP_TourView {
                                 <input type="hidden" id="latitude" name="ap_tour_latitude" value="<?php $this->the_latitude( ); ?>">
                                 <input type="hidden" id="longitude" name="ap_tour_longitude" value="<?php $this->the_longitude( ); ?>">
                             </div>
-                            <div id="hiddenMap" style="display: none;"></div>
+                            <div id="mapContainer" class="clear" style="margin-left: 20px; width: 634px; height: 400px;">
+                                <div id="map" style="width: 430px; height: 400px; float: left;"></div>
+                                <div id="listing" style="width: 204px; height: 400px; float: right; overflow: auto;">
+                                    <table id="resultsTable">
+                                        <tbody id="results"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <script>
                                 $(document).ready(function() {
+                                    var markers = [];
+                                    var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+                                    var mapSettings = {
+                                        center: new google.maps.LatLng(30.0, 0.0),
+                                        zoom: 3,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                        mapTypeControl: false,
+                                        panControl: false,
+                                        zoomControl: false,
+                                        streetViewControl: false
+                                    };
+                                    var map = new google.maps.Map(document.getElementById("map"), mapSettings);
+
                                     var input = document.getElementById('location-addtour-form');
                                     var autoComplete = new google.maps.places.Autocomplete(input);
+
+                                    var placesService = new google.maps.places.PlacesService(map);
+                                    var geocoder = new google.maps.Geocoder();
 
                                     google.maps.event.addListener(autoComplete, 'place_changed', function() {
                                         var place = autoComplete.getPlace();
                                         if (!place.geometry) {
-                                            console.log('Ничего не нашел!');
+                                            console.log('В autocomplete ничего не выбрано!');
                                         }
                                         else {
                                             var latLng = place.geometry.location;
+                                            map.panTo(latLng);
+                                            map.setZoom(10);
                                             codeLatLng(latLng);
+                                            search();
                                         }
                                     });
 
@@ -60,15 +84,16 @@ class AP_TourEditView extends AP_TourView {
                                         };
                                     }
 
-                                    var geocoder = new google.maps.Geocoder();
                                     function codeLatLng(latLng) {
+                                        $('#latitude').val(latLng.lat());
+                                        $('#longitude').val(latLng.lng());
+
                                         $('#country-addtour-form').val('');
                                         $('#resortcity-addtour-form').val('');
                                         $('#hotelname-addtour-form').val('');
 
                                         var country = '';
                                         var resort = '';
-                                        var hotel = '';
 
                                         geocoder.geocode({'latLng': latLng}, function(results, status) {
                                             if (status == google.maps.GeocoderStatus.OK) {
@@ -93,38 +118,117 @@ class AP_TourEditView extends AP_TourView {
                                             } else {
                                                 console.log("Goecoder сламался со статусом: " + status);
                                             }
+                                            $('#country-addtour-form').val(country);
+                                            $('#resortcity-addtour-form').val(resort);
                                         });
+                                    }
 
-                                        var hotelsRequest = {
-                                            location: latLng,
-                                            radius: '100',
+                                    // Search for hotels in the selected city, within the viewport of the map.
+                                    function search() {
+                                        var search = {
+                                            bounds: map.getBounds(),
                                             types: ['lodging']
                                         };
 
-                                        var hiddenMap = document.getElementById('hiddenMap');
-                                        service = new google.maps.places.PlacesService(hiddenMap);
-                                        service.nearbySearch(hotelsRequest, function (results, status) {
+                                        placesService.search(search, function(results, status) {
+                                            clearResults();
+                                            clearMarkers();
+
                                             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                                hotel = results[0].name;
+                                                clearResults();
+                                                clearMarkers();
+                                                // Create a marker for each hotel found, and
+                                                // assign a letter of the alphabetic to each marker icon.
+                                                for (var i = 0; i < results.length; i++) {
+                                                    var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+                                                    var markerIcon = MARKER_PATH + markerLetter + '.png';
+                                                    // Use marker animation to drop the icons incrementally on the map.
+                                                    markers[i] = new google.maps.Marker({
+                                                        position: results[i].geometry.location,
+                                                        animation: google.maps.Animation.DROP,
+                                                        icon: markerIcon
+                                                    });
+                                                    // If the user clicks a hotel marker, select hotel on the form.
+                                                    markers[i].placeResult = results[i];
+                                                    google.maps.event.addListener(markers[i], 'click', selectHotel);
+                                                    setTimeout(dropMarker(i), i * 100);
+                                                    addResult(results[i], i);
+                                                }
                                             }
-                                            else {
-                                                console.log("Не удалось выполнить поиск со статусом: " + status);
-                                            }
-
-                                            $('#country-addtour-form').val(country);
-                                            $('#resortcity-addtour-form').val(resort);
-                                            $('#hotelname-addtour-form').val(hotel);
                                         });
-
-                                        $('#latitude').val(latLng.lat());
-                                        $('#longitude').val(latLng.lng());
                                     }
 
-                                    // Предотвращение сохранения на нажатие Enter'а
+                                    function clearMarkers() {
+                                        for (var i = 0; i < markers.length; i++) {
+                                            if (markers[i]) {
+                                                markers[i].setMap(null);
+                                            }
+                                        }
+                                        markers = [];
+                                    }
+
+                                    function dropMarker(i) {
+                                        return function() {
+                                            markers[i].setMap(map);
+                                        };
+                                    }
+
+                                    function addResult(result, i) {
+                                        var results = document.getElementById('results');
+                                        var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+                                        var markerIcon = MARKER_PATH + markerLetter + '.png';
+
+                                        var tr = document.createElement('tr');
+                                        tr.style.backgroundColor = (i % 2 == 0 ? '#F0F0F0' : '#FFFFFF');
+                                        tr.onclick = function() {
+                                            google.maps.event.trigger(markers[i], 'click');
+                                        };
+
+                                        var iconTd = document.createElement('td');
+                                        var nameTd = document.createElement('td');
+                                        var icon = document.createElement('img');
+                                        icon.src = markerIcon;
+                                        icon.setAttribute('class', 'placeIcon');
+                                        icon.setAttribute('className', 'placeIcon');
+                                        var name = document.createTextNode(result.name);
+                                        iconTd.appendChild(icon);
+                                        nameTd.appendChild(name);
+                                        tr.appendChild(iconTd);
+                                        tr.appendChild(nameTd);
+                                        results.appendChild(tr);
+                                    }
+
+                                    function clearResults() {
+                                        var results = document.getElementById('results');
+                                        while (results.childNodes[0]) {
+                                            results.removeChild(results.childNodes[0]);
+                                        }
+                                    }
+
+                                    function selectHotel() {
+                                        var marker = this;
+                                        placesService.getDetails({reference: marker.placeResult.reference},
+                                            function(place, status) {
+                                                if (status != google.maps.places.PlacesServiceStatus.OK) {
+                                                    return;
+                                                }
+                                                fillHotelField(place);
+                                            });
+                                    }
+
+                                    function fillHotelField(place) {
+                                        $('#hotelname-addtour-form').val(place.name);
+                                        var rating = 1;
+                                        if (place.rating) {
+                                            rating = Math.round(place.rating);
+                                        }
+                                        $('#hotel-rating-addtour-form').val(rating);
+                                    }
+
+                                    // Предотвращение сохранения на нажатие Enter'а при выборе местоположения
                                     $('#location-addtour-form').keypress(function (e) {
                                         if (e.keyCode == '13') {
                                             e.preventDefault();
-//                                            e.stopPropagation();
                                         }
                                     });
                                 });

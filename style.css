@@ -276,8 +276,9 @@ input[type="text"], textarea { background: #fff; border: 1px solid #ccc; padding
         .addtour-wrapper { width: 100%; }
         #addtour { width: 960px; margin:0 auto; }
         #addtour .tour { width: 680px; background: #fff; margin: 0 auto; padding: 20px 0;}
-        #addtour .tour>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
-        #addtour .tour>div>div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; margin: 17px 0 0 20px;}
+        #addtour .tour > div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; width: 335px; vertical-align: top;}
+        #addtour .tour > div:not(#mapContainer) > div { display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline; position: relative; margin: 17px 0 0 20px;}
+        #addtour .tour > #mapContainer > #listing tr { cursor: pointer; }
         #addtour .dropdown { position: relative;  height: 40px; font-size: 22px; color: #1c81b5; border: solid 1px #dbd9d2; padding: 5px;}
         #addtour input[type="text"], input[type="number"] { width: 120px; padding: 6px; font-size: 22px;  color: #1c81b5; border: solid 1px #dbd9d2; -webkit-border-radius: 0;  -moz-border-radius: 0;  border-radius: 0; }
         #addtour #country-addtour-form, #resortcity-addtour-form { width: 280px !important; }
