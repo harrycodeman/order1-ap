@@ -249,6 +249,10 @@ get_header( ); ?>
             maxWidth: 387.2
         });
 
+        google.maps.event.addListener(map, 'zoom_changed', function() {
+            infoWindow.close();
+        });
+
         google.maps.event.addListener(clusterer, 'click', function(c) {
             infoWindow.windowSize = 'big';
 
